@@ -3,7 +3,53 @@
   <entry>
     <title>WebsiteConstruction</title>
     <url>/2023/12/24/WebsiteConstruction/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h1 id="Building-a-Personal-Blog-with-Hexo-and-Github"><a href="#Building-a-Personal-Blog-with-Hexo-and-Github" class="headerlink" title="Building a Personal Blog with Hexo and Github"></a>Building a Personal Blog with Hexo and Github</h1><h2 id="Environment-requirements"><a href="#Environment-requirements" class="headerlink" title="Environment requirements"></a>Environment requirements</h2><h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git --version</span><br><span class="line">git version 2.35.1.windows.2</span><br></pre></td></tr></table></figure>
+
+<h3 id="npm-node-js"><a href="#npm-node-js" class="headerlink" title="npm &amp; node.js"></a>npm &amp; node.js</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm version</span><br><span class="line">&#123;</span><br><span class="line">  npm: <span class="string">&#x27;9.1.2&#x27;</span>,</span><br><span class="line">  node: <span class="string">&#x27;16.15.1&#x27;</span>,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Generate-SSH-keys"><a href="#Generate-SSH-keys" class="headerlink" title="Generate SSH keys"></a>Generate SSH keys</h2><p>If the SSH key is not installed, execute the following command.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;@example.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>@example.com</code> is the registered email address for Github.</p>
+<p>ENTER three times in a row and the key path will be displayed.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C:\...\.ssh\id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<p>Open the <code>id_rsa.pub</code> file and copy the contents.</p>
+<h2 id="Create-a-new-repository"><a href="#Create-a-new-repository" class="headerlink" title="Create a new repository"></a>Create a new repository</h2><p>Github creates a new repository called <code>Username.github.io</code>.</p>
+<p>The interface shows that it should be :</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Username / Username.github.io</span><br></pre></td></tr></table></figure>
+
+<p>The <code>Username</code> must be the Github Username.</p>
+<h2 id="Add-a-new-SSH-key"><a href="#Add-a-new-SSH-key" class="headerlink" title="Add a new SSH key"></a>Add a new SSH key</h2><p>Open <code>SSH and GPG keys</code> in Github <code>Settings</code> and add a new SSH key :</p>
+<p><code>Title</code> is arbitrary, <code>Key</code> is the <code>id_rsa.pub</code> file’s content.</p>
+<p>Use the following command to test whether the SSH connection is successful :</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<p>The following message is displayed to indicate success!</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Hi Username! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-Hexo"><a href="#Install-Hexo" class="headerlink" title="Install Hexo"></a>Install Hexo</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure>
+
+<p>If failed :</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h2 id="Init-Hexo"><a href="#Init-Hexo" class="headerlink" title="Init Hexo"></a>Init Hexo</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo init FileName</span><br><span class="line">$ <span class="built_in">cd</span> FileName</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+
+<h2 id="Deploy-Hexo"><a href="#Deploy-Hexo" class="headerlink" title="Deploy Hexo"></a>Deploy Hexo</h2><p>Copy the contents of <code>Clone with SSH</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git@github.com:Username/username.github.io.git</span><br></pre></td></tr></table></figure>
+
+<p>Open the <code>_config.yml</code> file in the <code>Filename</code> folder:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/one-command-deployment</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:Username/username.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<h2 id="Publish"><a href="#Publish" class="headerlink" title="Publish"></a>Publish</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo g <span class="comment"># generate</span></span><br><span class="line">$ hexo s <span class="comment"># server</span></span><br></pre></td></tr></table></figure>
+
+<p>Visit <a href="http://localhost:4000/">http://localhost:4000</a> to preview, the port can be changed.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo d <span class="comment"># upload</span></span><br></pre></td></tr></table></figure>
+<p>Upload to your Github repository.</p>
+<p>Visit <a href="https://username.github.io/">https://username.github.io</a>.</p>
+<h2 id="Hexo-Theme"><a href="#Hexo-Theme" class="headerlink" title="Hexo Theme"></a>Hexo Theme</h2><p>waiting…</p>
+<h2 id="Blogging"><a href="#Blogging" class="headerlink" title="Blogging"></a>Blogging</h2><p>waiting…</p>
+]]></content>
       <categories>
         <category>Practice</category>
       </categories>
