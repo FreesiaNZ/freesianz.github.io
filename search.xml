@@ -77,7 +77,11 @@
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: test</span><br><span class="line">date: 2023-12-24 17:00:00</span><br><span class="line">categories: </span><br><span class="line"><span class="bullet">-</span> A</span><br><span class="line">tags: </span><br><span class="line"><span class="bullet">-</span> B</span><br><span class="line"><span class="section">- C</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
 
 <p>写完之后执行以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s </span><br><span class="line">hexo d </span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s </span><br><span class="line">hexo d </span><br></pre></td></tr></table></figure>
+
+<p>执行 <code>hexo s</code> 即可打开 <a href="http://localhost:4000/">http://localhost:4000</a> 预览文章效果。 </p>
+<p>执行 <code>hexo d </code> 上传至 Github，等待片刻 <a href="https://username.github.io/">https://username.github.io</a> 查看博客。</p>
+]]></content>
       <categories>
         <category>How to Start a Personal Blog</category>
       </categories>
