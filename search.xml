@@ -46,7 +46,7 @@
 <h1 id="发布-Hexo"><a href="#发布-Hexo" class="headerlink" title="发布 Hexo"></a>发布 Hexo</h1><p><code>Filename</code> 文件夹下执行以下命令：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g <span class="comment"># generate</span></span><br><span class="line">hexo s <span class="comment"># server</span></span><br></pre></td></tr></table></figure>
 
-<p>访问 <a href="http://localhost:4000/">http://localhost:4000</a> 来预览, 端口默认 4000，可以自定义。</p>
+<p>访问 <a href="http://localhost:4000/">http://localhost:4000</a> 来预览，端口默认 4000 可以自定义。</p>
 <p>执行以下命令上传至 Github 仓库：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d <span class="comment"># upload</span></span><br></pre></td></tr></table></figure>
 
@@ -144,5 +144,119 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>HElib</title>
+    <url>/2023/12/28/HElib/</url>
+    <content><![CDATA[<h1 id="HElib-是什么？"><a href="#HElib-是什么？" class="headerlink" title="HElib 是什么？"></a>HElib 是什么？</h1><p>HElib（Homomorphic Encryption library）是一个用于同态加密的开源库。HElib 主要由 Shai Halevi 和 Victor Shoup 开发，在 Craig Gentry 担任 IBM 研究员后不久，最初发布于2013年5月5日。HElib 是用 C++ 编写的，并使用 NTL 数学库。</p>
+<p>以下是 HElib 的一些主要特点和功能：</p>
+<p>1.支持多种同态加密方案。支持多种同态加密方案，其中包括 BGV（Brakerski-Gentry-Vaikuntanathan）、BFV（Brakerski&#x2F;Fan-Vercauteren）和 CKKS（Cheon-Kim-Kim-Song）等。这些方案适用于不同的应用场景，包括整数算术、布尔电路评估和实数运算。</p>
+<p>2.高性能的同态加密操作。HElib 在上述原始方案中引入了许多优化以加速同态运算，包括 Smart-Vercauteren 密文打包技术和 Gentry-Halevi-Smart 优化，提升了算法的整体运行效率，这对于在实际应用中处理大规模数据集或复杂计算任务至关重要。</p>
+<p>3.C++实现。HElib 使用 C++ 编写，为开发人员提供了一个灵活而高效的编程框架。这使得开发人员可以轻松地集成 HElib 到他们的应用中，并实现自定义的同态计算。</p>
+<p>4.HElib 提供了一种“同态加密汇编语言”，支持 “set”、“add”、“multiply”、“shift” 等基本操作指令，此外还提供了自动噪声管理、改进的 “Bootstrapping” 方法、多线程等功能。</p>
+<p>Github : <a href="https://github.com/homenc/HElib">https://github.com/homenc/HElib</a></p>
+<h1 id="构建和安装-HElib"><a href="#构建和安装-HElib" class="headerlink" title="构建和安装 HElib"></a>构建和安装 HElib</h1><p>HElib 构建、安装和回归测试套件已在 Ubuntu 18.04、Ubuntu 20.04、Fedora 32、Fedora 33、CentOS 7.8、CentOS 8.2、macOS Mojave &gt;&#x3D; 10.14.6 和 macOS Catalina &gt;&#x3D; 10.15.7 上构建和测试。</p>
+<p>有两种不同的方法来建造和安装 HElib。第一个将自动下载并构建 GMP 和 NTL 依赖项，并将库打包到一个可重定位的文件夹中。相反，第二种方法要求您安装依赖项，并且这些依赖项在系统中可用。</p>
+<h2 id="先决条件"><a href="#先决条件" class="headerlink" title="先决条件"></a>先决条件</h2><h3 id="一般先决条件"><a href="#一般先决条件" class="headerlink" title="一般先决条件"></a>一般先决条件</h3><p>GNU make &gt;&#x3D; 3.82</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ make -v                        </span><br><span class="line">GNU Make 4.3</span><br><span class="line">Built <span class="keyword">for</span> x86_64-pc-linux-gnu</span><br><span class="line">Copyright (C) 1988-2020 Free Software Foundation, Inc.</span><br><span class="line">License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;</span><br><span class="line">This is free software: you are free to change and redistribute it.</span><br><span class="line">There is NO WARRANTY, to the extent permitted by law.</span><br></pre></td></tr></table></figure>
+
+<p>pthreads</p>
+<p>git &gt;&#x3D; 1.8.3 (required to build and run the HElib test suite)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ git --version                                   </span><br><span class="line">git version 2.39.2</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Linux-environment"><a href="#Linux-environment" class="headerlink" title="Linux environment"></a>Linux environment</h3><p>g++ &gt;&#x3D; 7.3.1</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ g++ -v</span><br><span class="line">Using built-in specs.</span><br><span class="line">COLLECT_GCC=g++</span><br><span class="line">COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper</span><br><span class="line">OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa</span><br><span class="line">OFFLOAD_TARGET_DEFAULT=1</span><br><span class="line">Target: x86_64-linux-gnu</span><br><span class="line">Configured with: ...</span><br><span class="line">Thread model: posix</span><br><span class="line">Supported LTO compression algorithms: zlib zstd</span><br><span class="line">gcc version 12.2.0 (Debian 12.2.0-14)</span><br></pre></td></tr></table></figure>
+
+<p>cmake &gt;&#x3D; 3.10.2</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ cmake -version</span><br><span class="line">cmake version 3.27.9</span><br><span class="line"></span><br><span class="line">CMake suite maintained and supported by Kitware (kitware.com/cmake).</span><br></pre></td></tr></table></figure>
+
+<h3 id="macOS-environment"><a href="#macOS-environment" class="headerlink" title="macOS environment"></a>macOS environment</h3><p>Apple clang &gt;&#x3D; 11.0.0 (available with the latest Xcode for the tested versions of macOS)</p>
+<p>Xcode Command Line Tools (can be installed with the command xcode-select –install in a teminal)</p>
+<p>cmake &gt;&#x3D; 3.17.3 (available from CMake or MacPorts Project and Homebrew as packages)</p>
+<h3 id="For-development"><a href="#For-development" class="headerlink" title="For development"></a>For development</h3><p>clang-format &gt;&#x3D; 9.0.0 (available with your linux distribution and for macOS from MacPorts Project and Homebrew as packages)</p>
+<h2 id="选项1-包构建-推荐大多数用户使用"><a href="#选项1-包构建-推荐大多数用户使用" class="headerlink" title="选项1:包构建(推荐大多数用户使用)"></a>选项1:包构建(推荐大多数用户使用)</h2><p>该选项将 HElib 及其依赖项(NTL和GMP)捆绑在一个目录中，然后可以在系统中自由移动。NTL 和 GMP 将被自动获取和编译。它可以全局安装(即 <code>/usr/local</code> )，如果未指定 <code>CMAKE_INSTALL_PREFIX</code>，则该选项为默认选项，但这应谨慎进行，因为现有版本的 NTL、GMP 或 HElib 将被覆盖。在这种情况下，需要另外两个先决条件:</p>
+<p>m4 &gt;&#x3D; 1.4.16</p>
+<p>m4 是一种宏处理器，它扫描用户输入的文本并将其输出，期间如果遇到宏就将其展开后输出。宏有两种，一种是内建的，另一种是用户定义的，它们能接受任意数量的参数。除了做展开宏的工作之外，m4 内建的宏能够加载文件，执行 Shell 命令，做整数运算，操纵文本，形成递归等等。m4 可用作编译器的前端，或者单纯作为宏处理器来用。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ m4 --version</span><br><span class="line">m4 (GNU M4) 1.4.19</span><br><span class="line">Copyright (C) 2021 Free Software Foundation, Inc.</span><br><span class="line">License GPLv3+: GNU GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html&gt;.</span><br><span class="line">This is free software: you are free to change and redistribute it.</span><br><span class="line">There is NO WARRANTY, to the extent permitted by law.</span><br><span class="line"></span><br><span class="line">Written by René Seindal.</span><br></pre></td></tr></table></figure>
+
+<p>patchelf &gt;&#x3D; 0.9(如果构建在Linux上)</p>
+<p>patchelf 是一个用来修改 elf 格式的动态库和可执行程序的小工具，可以修改动态链接库的库名字，以及链接库的 RPATH。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ patchelf --version</span><br><span class="line">patchelf 0.18.0</span><br></pre></td></tr></table></figure>
+
+<p>请注意，如果从库构建更改为包构建，使用干净的构建目录会更安全。</p>
+<h3 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h3><p>1.下载 HElib 并解压：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://github.com/homenc/HElib/archive/v2.1.0.tar.gz</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -zxvf v2.1.0.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>2.创建一个构建目录，通常作为 <code>src</code> 的同级:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mv</span> HElib-2.1.0/ HElib</span><br><span class="line"><span class="built_in">cd</span> HElib</span><br><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"><span class="built_in">cd</span> build</span><br></pre></td></tr></table></figure>
+
+<p>3.运行 cmake 配置步骤，指定您需要一个包构建(通过 <code>-DPACKAGE_BUILD=ON</code> )，并说明您希望安装的位置。例如，要在 <code>/home/alice/helib_install</code> 中安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cmake -DPACKAGE_BUILD=ON -DCMAKE_INSTALL_PREFIX=/home/alice/helib_install ..</span><br></pre></td></tr></table></figure>
+
+<p>可以在这里指定额外的选项，例如 <code>-DENABLE_TEST=ON</code> 启用 HElib 测试 。</p>
+<p>4.编译，指定可选的线程数(本例中为16)。其输出将位于可重定位文件夹 helib_pack中：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make -j16</span><br></pre></td></tr></table></figure>
+
+<p><code>make -j16</code> 要求高配置，低配置服务器指定较小的进程数，如 <code>make -j5</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">──(kali㉿kali)-[~/Documents/HElib/build]</span><br><span class="line">└─$ make -j4</span><br><span class="line">[  0%] Built target setup_install_dir</span><br><span class="line">...</span><br><span class="line">Install the project...</span><br><span class="line">-- Install configuration: &quot;RelWithDebInfo&quot;</span><br><span class="line">...</span><br><span class="line">[ 79%] Completed &#x27;helib_external&#x27;</span><br><span class="line">[100%] Built target helib_external</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>执行该命令时，报错：</p>
+<p>![make -j4 error](make -j4 error.png)</p>
+<p>5.(可选)如果在 <code>-DENABLE_TEST=ON</code> 的情况下执行步骤2，HElib 测试可以按如下方式运行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ctest</span><br></pre></td></tr></table></figure>
+
+<p>详细的 HElib 专用测试日志可在 <code>Testing/Temporary/LastTest.log</code> 中找到。</p>
+<p>6.(可选)运行安装步骤，将文件夹复制到(在本例中为 <code>/home/alice/helib_install</code> )：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<p>当然，如果保持默认或一些其他系统范围的路径，步骤5可能需要特权。</p>
+<h2 id="选项2-库构建-高级"><a href="#选项2-库构建-高级" class="headerlink" title="选项2:库构建(高级)"></a>选项2:库构建(高级)</h2><p>该方案涉及自行建造 HElib，与系统上已存在的依赖关系(NTL和GMP)相联系。这样，HElib 库可以四处移动，但是它的依赖项(NTL和GMP)不能，因为它们是绝对路径。对于此选项，您必须自己构建 GMP &gt;&#x3D;6.0.0 和 NTL &gt;&#x3D;11.4.3。</p>
+<p>…</p>
+<h2 id="HElib-构建选项"><a href="#HElib-构建选项" class="headerlink" title="HElib 构建选项"></a>HElib 构建选项</h2><h3 id="通用选项"><a href="#通用选项" class="headerlink" title="通用选项"></a>通用选项</h3><ul>
+<li><p><code>BUILD_SHARED=ON/OFF</code> (默认为 <code>OFF</code> )：构建为共享库。</p>
+</li>
+<li><p><code>CMAKE_BUILD_TYPE</code> (默认为 <code>RelWithDebInfo</code> )：选择构建的类型，选项有<code>Debug</code>、<code>RelWithDebInfo</code>、<code>Release</code>、<code>MinSizeRel</code>。</p>
+</li>
+<li><p><code>CMAKE_INSTALL_PREFIX</code> ：所需的 HElib 安装目录。</p>
+</li>
+<li><p><code>ENABLE_TEST=ON/OFF</code> (默认值为 <code>OFF</code> )：启用测试构建。</p>
+</li>
+<li><p><code>ENABLE_THREADS=ON/OFF</code> (默认值为 <code>ON</code> )：启用线程支持</p>
+</li>
+<li><p><code>PEDANTIC_BUILD=ON/OFF</code> (默认为 <code>ON</code> )：使用 <code>-Wall -Wpedantic -Wextra -Werror</code> 在构建期间。</p>
+</li>
+<li><p><code>HELIB_DEBUG=ON/OFF</code>(默认为 <code>OFF</code> )：在构建 HElib 时激活调试模块(通过定义 <code>HELIB_DEBUG</code> 宏)。当调试模块处于活动状态时，将生成用于调试目的的额外信息。</p>
+</li>
+</ul>
+<p>当使用 cmake 时，<code>HELIB_DEBUG</code> 将传播到使用 HElib 的程序。如果启用此选项，使用 HElib 的程序将在配置期间生成一个警告。这是为了提醒用户，如果初始化不正确，使用调试模块可能会导致问题，比如 sigsegv。</p>
+<h3 id="选项1-包构建-的特定参数"><a href="#选项1-包构建-的特定参数" class="headerlink" title="选项1(包构建)的特定参数"></a>选项1(包构建)的特定参数</h3><ul>
+<li><p><code>PACKAGE_DIR</code>：包构建将被安装到的位置。默认 <code> $&#123;CMAKE_INSTALL_PREFIX&#125;/helib_pack</code>。</p>
+</li>
+<li><p><code>FETCH_GMP</code>：是否提取和建立 GMP。默认为 <code>ON</code> 。如果设置为 <code>OFF</code> ，应该存在系统安装的 GMP 库，或者 <code>GMP_DIR</code> 应该指向有效的GMP前缀。</p>
+</li>
+<li><p><code>GMP_DIR</code>：GMP 库的前缀。如果 <code>FETCH_GMP=ON</code> ，则忽略。</p>
+</li>
+</ul>
+<h3 id="选项2-库构建-的特定参数"><a href="#选项2-库构建-的特定参数" class="headerlink" title="选项2(库构建)的特定参数"></a>选项2(库构建)的特定参数</h3><p>…</p>
+<h1 id="在项目中使用-HElib"><a href="#在项目中使用-HElib" class="headerlink" title="在项目中使用 HElib"></a>在项目中使用 HElib</h1><h2 id="标准方法"><a href="#标准方法" class="headerlink" title="标准方法"></a>标准方法</h2><p>在选项1或选项2中运行 <code>make install</code> 之后，可以在 <code>lib</code> 中找到所需的共享库文件以及 <code>include</code> 中的头文件。这些可以按照您所选择的构建系统的首选方式使用。</p>
+<h2 id="用-cmake-构建包"><a href="#用-cmake-构建包" class="headerlink" title="用 cmake 构建包"></a>用 cmake 构建包</h2><p>如果在 cmake 项目中使用 HElib，还有一种更简单的方法。</p>
+<p>1.在 <code>CMakeLists.txt</code> 中包含以下行:</p>
+<p>2.使用 <code>-Dhelib_DIR=&lt;helib install prefix&gt;/share/cmake/helib</code> 运行 <code>cmake</code> 步骤。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>在 <code>examples</code> 目录中可以找到使用 HElib 的基于 cmake 的项目的完整工作示例。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://en.wikipedia.org/wiki/HElib">HElib&#x2F;Wikipedia</a></p>
+<p><a href="https://www.cnblogs.com/pam-sh/p/14524581.html">HElib&#x2F;PamShao&#x2F;博客园</a></p>
+<p><a href="https://zpan-pam.oss-cn-shanghai.aliyuncs.com/video/INSTALL.pdf">Official Installation Documentation</a></p>
+<p><a href="https://segmentfault.com/a/1190000004104696#GNU%20M4%20%E7%AE%80%E4%BB%8B">GNU m4&#x2F;宏&#x2F;SegmentFault</a></p>
+<p><a href="https://www.cnblogs.com/ar-cheng/p/13225342.html">rpath和patchelf&#x2F;zaliasc&#x2F;博客园</a></p>
+]]></content>
+      <categories>
+        <category>Homomorphic Encryption</category>
+      </categories>
+      <tags>
+        <tag>Open Source Library</tag>
+      </tags>
   </entry>
 </search>
