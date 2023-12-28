@@ -137,6 +137,11 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/FreesiaNZ" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;FreesiaNZ" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
   <div class="cc-license animated" itemprop="license">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
   </div>
@@ -197,7 +202,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-12-28 11:21:23" itemprop="dateModified" datetime="2023-12-28T11:21:23+08:00">2023-12-28</time>
+      <time title="修改时间：2023-12-28 15:27:26" itemprop="dateModified" datetime="2023-12-28T15:27:26+08:00">2023-12-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -219,53 +224,81 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Building-a-Personal-Blog-with-Hexo-and-Github"><a href="#Building-a-Personal-Blog-with-Hexo-and-Github" class="headerlink" title="Building a Personal Blog with Hexo and Github"></a>Building a Personal Blog with Hexo and Github</h1><h2 id="Environment-requirements"><a href="#Environment-requirements" class="headerlink" title="Environment requirements"></a>Environment requirements</h2><h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br><span class="line">git version 2.35.1.windows.2</span><br></pre></td></tr></table></figure>
+          <h1 id="使用-Hexo-and-Github-搭建个人博客"><a href="#使用-Hexo-and-Github-搭建个人博客" class="headerlink" title="使用 Hexo and Github 搭建个人博客"></a>使用 Hexo and Github 搭建个人博客</h1><h2 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h2><h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br><span class="line">git version 2.35.1.windows.2</span><br></pre></td></tr></table></figure>
 
 <h3 id="npm-node-js"><a href="#npm-node-js" class="headerlink" title="npm &amp; node.js"></a>npm &amp; node.js</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">npm version</span><br><span class="line">&#123;</span><br><span class="line">  npm: <span class="string">&#x27;9.1.2&#x27;</span>,</span><br><span class="line">  node: <span class="string">&#x27;16.15.1&#x27;</span>,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Generate-SSH-keys"><a href="#Generate-SSH-keys" class="headerlink" title="Generate SSH keys"></a>Generate SSH keys</h2><p>If the SSH key is not installed, execute the following command.</p>
+<h2 id="生成-SSH-key"><a href="#生成-SSH-key" class="headerlink" title="生成 SSH key"></a>生成 SSH key</h2><p>如果你的 SSH key 未安装，执行以下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;@example.com&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p><code>@example.com</code> is the registered email address for Github.</p>
-<p>ENTER three times in a row and the key path will be displayed.</p>
+<p><code>@example.com</code> 是 Github 账户的注册邮箱。</p>
+<p>执行命令后，ENTER 三次后出现 key path。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\...\.ssh\id_rsa.pub</span><br></pre></td></tr></table></figure>
 
-<p>Open the <code>id_rsa.pub</code> file and copy the contents.</p>
-<h2 id="Create-a-new-repository"><a href="#Create-a-new-repository" class="headerlink" title="Create a new repository"></a>Create a new repository</h2><p>Github creates a new repository called <code>Username.github.io</code>.</p>
-<p>The interface shows that it should be :</p>
+<p>使用记事本打开 <code>id_rsa.pub</code> 文件并复制内容。</p>
+<h2 id="Github-创建仓库"><a href="#Github-创建仓库" class="headerlink" title="Github 创建仓库"></a>Github 创建仓库</h2><p>创建名为 <code>Username.github.io</code>的新仓库，<code>Username</code> 为 Github 账户名。</p>
+<p>输入仓库名的界面应该显示为：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Username / Username.github.io</span><br></pre></td></tr></table></figure>
 
-<p>The <code>Username</code> must be the Github Username.</p>
-<h2 id="Add-a-new-SSH-key"><a href="#Add-a-new-SSH-key" class="headerlink" title="Add a new SSH key"></a>Add a new SSH key</h2><p>Open <code>SSH and GPG keys</code> in Github <code>Settings</code> and add a new SSH key :</p>
-<p><code>Title</code> is arbitrary, <code>Key</code> is the <code>id_rsa.pub</code> file’s content.</p>
-<p>Use the following command to test whether the SSH connection is successful :</p>
+<h2 id="Github-新建-SSH-key"><a href="#Github-新建-SSH-key" class="headerlink" title="Github 新建 SSH key"></a>Github 新建 SSH key</h2><p>打开 Github <code>Settings</code> 中的 <code>SSH and GPG keys</code>，点击新建一个 SSH key：</p>
+<p>其中 <code>Title</code> 随意, <code>Key</code>是 <code>id_rsa.pub</code> 文件的内容。</p>
+<p>使用以下命令来测试 SSH 连接是否成功：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
 
-<p>The following message is displayed to indicate success!</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi Username! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>
+<p>出现以下信息代表成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi Username! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="Install-Hexo"><a href="#Install-Hexo" class="headerlink" title="Install Hexo"></a>Install Hexo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
+<h2 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><p>执行以下命令安装 Hexo：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
 
-<p>If failed :</p>
+<p>如果失败执行以下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 
-<h2 id="Init-Hexo"><a href="#Init-Hexo" class="headerlink" title="Init Hexo"></a>Init Hexo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init FileName</span><br><span class="line"><span class="built_in">cd</span> FileName</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<h2 id="Hexo-初始化"><a href="#Hexo-初始化" class="headerlink" title="Hexo 初始化"></a>Hexo 初始化</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init FileName</span><br><span class="line"><span class="built_in">cd</span> FileName</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
 
-<h2 id="Deploy-Hexo"><a href="#Deploy-Hexo" class="headerlink" title="Deploy Hexo"></a>Deploy Hexo</h2><p>Copy the contents of <code>Clone with SSH</code>:</p>
+<p><code>FileName</code>为你的博客文件夹。</p>
+<h2 id="部署-Hexo"><a href="#部署-Hexo" class="headerlink" title="部署 Hexo"></a>部署 Hexo</h2><p>复制 Github 仓库下 <code>Clone with SSH</code> 的内容：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git@github.com:Username/username.github.io.git</span><br></pre></td></tr></table></figure>
 
-<p>Open the <code>_config.yml</code> file in the <code>Filename</code> folder:</p>
+<p>打开 <code>Filename</code> 文件夹下的 <code>_config.yml</code> 文件，repo 后复制上一步的内容：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/one-command-deployment</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:Username/username.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 
-<h2 id="Publish"><a href="#Publish" class="headerlink" title="Publish"></a>Publish</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g <span class="comment"># generate</span></span><br><span class="line">hexo s <span class="comment"># server</span></span><br></pre></td></tr></table></figure>
+<p>注意 repo 后的空格。</p>
+<h2 id="发布-Hexo"><a href="#发布-Hexo" class="headerlink" title="发布 Hexo"></a>发布 Hexo</h2><p><code>Filename</code> 文件夹下执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g <span class="comment"># generate</span></span><br><span class="line">hexo s <span class="comment"># server</span></span><br></pre></td></tr></table></figure>
 
-<p>Visit <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> to preview, the port can be changed.</p>
+<p>访问 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 来预览, 端口默认 4000，可以自定义。</p>
+<p>执行以下命令上传至 Github 仓库：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d <span class="comment"># upload</span></span><br></pre></td></tr></table></figure>
-<p>Upload to your Github repository.</p>
-<p>Visit <a target="_blank" rel="noopener" href="https://username.github.io/">https://username.github.io</a>.</p>
-<h2 id="Hexo-Theme"><a href="#Hexo-Theme" class="headerlink" title="Hexo Theme"></a>Hexo Theme</h2><p>waiting…</p>
-<h2 id="Blogging"><a href="#Blogging" class="headerlink" title="Blogging"></a>Blogging</h2><p>waiting…</p>
 
+<p>访问 <a target="_blank" rel="noopener" href="https://username.github.io/">https://username.github.io</a> 即可。</p>
+<h2 id="改主题"><a href="#改主题" class="headerlink" title="改主题"></a>改主题</h2><p>使用的是 NexT 主题，更多主题在 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> FileName</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+
+<h2 id="写博客"><a href="#写博客" class="headerlink" title="写博客"></a>写博客</h2><p>执行下列命令来创建一篇新页面或者新文章：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Hexo 有 3 种默认 layout：<code>post</code>、<code>page</code> 和 <code>draft</code>。</p>
+<p>首先手动创建 <code>about</code>、<code>categories</code> 和 <code>tags</code> 页面，并添加 layout 属性：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page about</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 关于</span><br><span class="line">date: 2023-12-24 17:00:00</span><br><span class="line">layout: about</span><br><span class="line">---​</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 分类</span><br><span class="line">date: 2023-12-24 17:00:00</span><br><span class="line">layout: categories</span><br><span class="line">---​</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">date: 2023-12-24 17:00:00</span><br><span class="line">layout: tags</span><br><span class="line">---​</span><br></pre></td></tr></table></figure>
+
+<p>现在我们想写一篇名为 <code>test</code> 的文章，在 <code>A</code> 分类，标签为 <code>B</code> 和 <code>C</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new post <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: test</span><br><span class="line">date: 2023-12-24 17:00:00</span><br><span class="line">categories: </span><br><span class="line"><span class="bullet">-</span> A</span><br><span class="line">tags: </span><br><span class="line"><span class="bullet">-</span> B</span><br><span class="line"><span class="section">- C</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+
+<p>写完之后执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s </span><br><span class="line">hexo d </span><br></pre></td></tr></table></figure>
       
     </div>
 
