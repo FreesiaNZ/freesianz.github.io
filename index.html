@@ -161,7 +161,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://freesianz.github.io/2023/12/24/WebsiteConstruction/">
+    <link itemprop="mainEntityOfPage" href="https://freesianz.github.io/2023/12/24/Website%20Construction/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -179,7 +179,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/24/WebsiteConstruction/" class="post-title-link" itemprop="url">Website Construction</a>
+          <a href="/2023/12/24/Website%20Construction/" class="post-title-link" itemprop="url">Website Construction</a>
         </h2>
 
         <div class="post-meta-container">
@@ -189,9 +189,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-12-24 17:18:17 / 修改时间：18:14:59" itemprop="dateCreated datePublished" datetime="2023-12-24T17:18:17+08:00">2023-12-24</time>
+      <time title="创建时间：2023-12-24 17:18:17" itemprop="dateCreated datePublished" datetime="2023-12-24T17:18:17+08:00">2023-12-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-12-28 11:21:23" itemprop="dateModified" datetime="2023-12-28T11:21:23+08:00">2023-12-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -199,7 +205,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Practice/" itemprop="url" rel="index"><span itemprop="name">Practice</span></a>
+          <a href="/categories/How-to-Start-a-Personal-Blog/" itemprop="url" rel="index"><span itemprop="name">How to Start a Personal Blog</span></a>
         </span>
     </span>
 
@@ -213,9 +219,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Building-a-Personal-Blog-with-Hexo-and-Github"><a href="#Building-a-Personal-Blog-with-Hexo-and-Github" class="headerlink" title="Building a Personal Blog with Hexo and Github"></a>Building a Personal Blog with Hexo and Github</h1><h2 id="Environment-requirements"><a href="#Environment-requirements" class="headerlink" title="Environment requirements"></a>Environment requirements</h2><h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git --version</span><br><span class="line">git version 2.35.1.windows.2</span><br></pre></td></tr></table></figure>
+          <h1 id="Building-a-Personal-Blog-with-Hexo-and-Github"><a href="#Building-a-Personal-Blog-with-Hexo-and-Github" class="headerlink" title="Building a Personal Blog with Hexo and Github"></a>Building a Personal Blog with Hexo and Github</h1><h2 id="Environment-requirements"><a href="#Environment-requirements" class="headerlink" title="Environment requirements"></a>Environment requirements</h2><h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br><span class="line">git version 2.35.1.windows.2</span><br></pre></td></tr></table></figure>
 
-<h3 id="npm-node-js"><a href="#npm-node-js" class="headerlink" title="npm &amp; node.js"></a>npm &amp; node.js</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ npm version</span><br><span class="line">&#123;</span><br><span class="line">  npm: <span class="string">&#x27;9.1.2&#x27;</span>,</span><br><span class="line">  node: <span class="string">&#x27;16.15.1&#x27;</span>,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="npm-node-js"><a href="#npm-node-js" class="headerlink" title="npm &amp; node.js"></a>npm &amp; node.js</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">npm version</span><br><span class="line">&#123;</span><br><span class="line">  npm: <span class="string">&#x27;9.1.2&#x27;</span>,</span><br><span class="line">  node: <span class="string">&#x27;16.15.1&#x27;</span>,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="Generate-SSH-keys"><a href="#Generate-SSH-keys" class="headerlink" title="Generate SSH keys"></a>Generate SSH keys</h2><p>If the SSH key is not installed, execute the following command.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;@example.com&quot;</span></span><br></pre></td></tr></table></figure>
@@ -238,12 +244,12 @@
 <p>The following message is displayed to indicate success!</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi Username! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>
 
-<h2 id="Install-Hexo"><a href="#Install-Hexo" class="headerlink" title="Install Hexo"></a>Install Hexo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure>
+<h2 id="Install-Hexo"><a href="#Install-Hexo" class="headerlink" title="Install Hexo"></a>Install Hexo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
 
 <p>If failed :</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 
-<h2 id="Init-Hexo"><a href="#Init-Hexo" class="headerlink" title="Init Hexo"></a>Init Hexo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init FileName</span><br><span class="line">$ <span class="built_in">cd</span> FileName</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<h2 id="Init-Hexo"><a href="#Init-Hexo" class="headerlink" title="Init Hexo"></a>Init Hexo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init FileName</span><br><span class="line"><span class="built_in">cd</span> FileName</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
 
 <h2 id="Deploy-Hexo"><a href="#Deploy-Hexo" class="headerlink" title="Deploy Hexo"></a>Deploy Hexo</h2><p>Copy the contents of <code>Clone with SSH</code>:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git@github.com:Username/username.github.io.git</span><br></pre></td></tr></table></figure>
@@ -251,10 +257,10 @@
 <p>Open the <code>_config.yml</code> file in the <code>Filename</code> folder:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/one-command-deployment</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:Username/username.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 
-<h2 id="Publish"><a href="#Publish" class="headerlink" title="Publish"></a>Publish</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo g <span class="comment"># generate</span></span><br><span class="line">$ hexo s <span class="comment"># server</span></span><br></pre></td></tr></table></figure>
+<h2 id="Publish"><a href="#Publish" class="headerlink" title="Publish"></a>Publish</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g <span class="comment"># generate</span></span><br><span class="line">hexo s <span class="comment"># server</span></span><br></pre></td></tr></table></figure>
 
 <p>Visit <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> to preview, the port can be changed.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d <span class="comment"># upload</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d <span class="comment"># upload</span></span><br></pre></td></tr></table></figure>
 <p>Upload to your Github repository.</p>
 <p>Visit <a target="_blank" rel="noopener" href="https://username.github.io/">https://username.github.io</a>.</p>
 <h2 id="Hexo-Theme"><a href="#Hexo-Theme" class="headerlink" title="Hexo Theme"></a>Hexo Theme</h2><p>waiting…</p>
