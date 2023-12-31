@@ -60,7 +60,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make -j16</span><br></pre></td></tr></table></figure>
 
 <p><code>make -j16</code> 要求高配置，低配置服务器指定较小的进程数，如 <code>make -j4</code>。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">──(kali㉿kali)-[~/Documents/HElib/build]</span><br><span class="line">└─$ make -j4</span><br><span class="line">[  0%] Built target setup_install_dir</span><br><span class="line">...</span><br><span class="line">Install the project...</span><br><span class="line">-- Install configuration: &quot;RelWithDebInfo&quot;</span><br><span class="line">...</span><br><span class="line">[ 79%] Completed &#x27;helib_external&#x27;</span><br><span class="line">[100%] Built target helib_external</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">──(kali㉿kali)-[~/Documents/HElib/build]</span><br><span class="line">└─$ make -j4</span><br><span class="line">[  <span class="number">0</span>%] Built <span class="keyword">target</span> setup_install_dir</span><br><span class="line">...</span><br><span class="line"><span class="keyword">Install</span> the <span class="keyword">project</span>...</span><br><span class="line">-- <span class="keyword">Install</span> configuration: <span class="string">&quot;RelWithDebInfo&quot;</span></span><br><span class="line">...</span><br><span class="line">[ <span class="number">79</span>%] Completed &#x27;helib_external&#x27;</span><br><span class="line">[<span class="number">100</span>%] Built <span class="keyword">target</span> helib_external</span><br></pre></td></tr></table></figure>
 
 <p>执行该命令时，报错如下 :</p>
 <img src="/2023/12/28/HElib/error-make-j4.png" class>
@@ -211,7 +211,7 @@
 <p>对于 .NET 开发人员来说，安装 Microsoft SEAL 的最简单方法是使用 NuGet.org 上的多平台 NuGet 软件包。只需将此软件包作为依赖项添加到您的 .NET 项目中，就可以开始使用了。</p>
 <p>要使用 Microsoft SEAL 和 .NET 开发 Android 和 iOS 移动应用程序，只需将此软件包添加到 Xamarin 项目中即可。与 Microsoft SEAL C++ 库不同，.NET 封装库仅适用于 64 位平台，因此仅支持 arm64-v8a&#x2F;x86_64 Android ABI 和 arm64&#x2F;x86_64 iOS 体系结构。</p>
 <h3 id="从-vcpkg-安装"><a href="#从-vcpkg-安装" class="headerlink" title="从 vcpkg 安装"></a>从 vcpkg 安装</h3><p>你可以使用 vcpkg 依赖关系管理器下载并安装 seal。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/Microsoft/vcpkg.git</span><br><span class="line">cd vcpkg</span><br><span class="line">./bootstrap-vcpkg.sh # ./bootstrap-vcpkg.bat for Windows</span><br><span class="line">./vcpkg integrate install</span><br><span class="line">./vcpkg install seal</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Microsoft/vcpkg.git</span><br><span class="line"><span class="built_in">cd</span> vcpkg</span><br><span class="line">./bootstrap-vcpkg.sh <span class="comment"># ./bootstrap-vcpkg.bat for Windows</span></span><br><span class="line">./vcpkg integrate install</span><br><span class="line">./vcpkg install seal</span><br></pre></td></tr></table></figure>
 
 <p>vcpkg 中的 “seal “端口由微软团队成员和社区贡献者保持更新。如果版本过时，请在 vcpkg 代码库中创建问题或拉动请求。</p>
 <h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>使用 Microsoft SEAL 需要用户投入一些时间学习同态加密的基本概念。代码附带了大量注释示例，旨在逐步教授这些概念，并演示 API 的大部分内容。这些示例有 C++ 和 C# 版本（且完全相同），并分为多个源文件，分别位于 <code>native/examples/</code> (C++) 和 <code>dotnet/examples/</code> (C#)，具体如下：</p>
@@ -306,40 +306,40 @@
 <p>注意：使用 Clang++ 编译的 Microsoft SEAL 比使用 GNU G++ 编译的运行时性能要好得多。</p>
 <h4 id="构建-Microsoft-SEAL"><a href="#构建-Microsoft-SEAL" class="headerlink" title="构建 Microsoft SEAL"></a>构建 Microsoft SEAL</h4><p>我们假定 Microsoft SEAL 已克隆到一个名为 SEAL 的目录中，并假定在 SEAL 目录中执行以下所有命令。</p>
 <p>您可以通过执行以下命令为您的计算机构建 Microsoft SEAL 库（源码外）：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cmake -S . -B build</span><br><span class="line">cmake --build build</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">cmake -S . -<span class="keyword">B </span><span class="keyword">build</span></span><br><span class="line"><span class="keyword"></span>cmake --<span class="keyword">build </span><span class="keyword">build</span></span><br></pre></td></tr></table></figure>
 
 <p>编译完成后，可在 build&#x2F;lib&#x2F; 和 build&#x2F;bin&#x2F; 目录中找到输出二进制文件。</p>
 <p>可以指定各种配置选项并将其传递给 CMake 编译系统。这些选项将在下文的 CMake 基本选项和 CMake 高级选项部分进行介绍。</p>
 <h4 id="安装-Microsoft-SEAL"><a href="#安装-Microsoft-SEAL" class="headerlink" title="安装 Microsoft SEAL"></a>安装 Microsoft SEAL</h4><p>如果您拥有系统的 root 访问权限，您可以按如下方法全局安装 Microsoft SEAL：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cmake -S . -B build</span><br><span class="line">cmake --build build</span><br><span class="line">sudo cmake --install build</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">cmake -S . -<span class="keyword">B </span><span class="keyword">build</span></span><br><span class="line"><span class="keyword"></span>cmake --<span class="keyword">build </span><span class="keyword">build</span></span><br><span class="line"><span class="keyword"></span>sudo cmake --<span class="keyword">install </span><span class="keyword">build</span></span><br></pre></td></tr></table></figure>
 
 <p>要在本地安装 Microsoft SEAL，例如安装到 ~&#x2F;mylibs&#x2F;，请执行以下操作：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cmake -S . -B build -DCMAKE_INSTALL_PREFIX=~/mylibs</span><br><span class="line">cmake --build build</span><br><span class="line">sudo cmake --install build</span><br></pre></td></tr></table></figure>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line">cmake -S . -B <span class="keyword">build</span> -DCMAKE_INSTALL_PREFIX=~/mylibs</span><br><span class="line">cmake --<span class="keyword">build</span> <span class="keyword">build</span></span><br><span class="line">sudo cmake --install <span class="keyword">build</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="在-Windows-上编译和安装"><a href="#在-Windows-上编译和安装" class="headerlink" title="在 Windows 上编译和安装"></a>在 Windows 上编译和安装</h4><p>在 Windows 系统中，上述脚本可在 Visual Studio 的开发人员命令提示符下使用 Ninja 或 “Visual Studio 17 2022 “生成器运行。</p>
 <p>使用 Ninja 生成器时，请根据要构建的平台使用相应的命令提示符。如果要为 x64 平台构建，请使用 x64 Native Tools Command Prompt for Visual Studio 2022 命令提示符配置和构建库。如果要为 x86 构建库，请使用 x86 Native Tools Command Prompt for Visual Studio 2022 命令提示符配置和构建库。要使用 Ninja 进行编译，请键入：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cmake -S . -B build -G Ninja</span><br><span class="line">cmake --build build</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">cmake -S . -<span class="keyword">B </span><span class="keyword">build </span>-G Ninja</span><br><span class="line">cmake --<span class="keyword">build </span><span class="keyword">build</span></span><br></pre></td></tr></table></figure>
 
 <p>使用 “Visual Studio 17 2022 “生成器时，可以使用开发人员命令提示符（Developer Command Prompt for VS 2022）命令提示符来配置和构建库。默认情况下，生成的平台为 x64。你可以使用架构标志 <code>-A &lt;x64|Win32&gt;</code> 指定所需的平台，并使用 <code>--config &lt;Debug|Release&gt;</code> 指定所需的配置。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 在 Release 模式下生成并构建 x64 版本</span><br><span class="line">cmake -S . -B build -G &quot;Visual Studio 17 2022&quot; -A x64</span><br><span class="line">cmake --build build --config Release</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 Release 模式下生成并构建 x64 版本</span></span><br><span class="line">cmake -S . -<span class="keyword">B </span><span class="keyword">build </span>-G <span class="string">&quot;Visual Studio 17 2022&quot;</span> -A x64</span><br><span class="line">cmake --<span class="keyword">build </span><span class="keyword">build </span>--<span class="built_in">config</span> Release</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 在 Release 模式下生成并构建 x86 版本</span><br><span class="line">cmake -S . -B build -G &quot;Visual Studio 17 2022&quot; -A Win32</span><br><span class="line">cmake --build build --config Release</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在 Release 模式下生成并构建 x86 版本</span></span><br><span class="line">cmake -S . -<span class="keyword">B </span><span class="keyword">build </span>-G <span class="string">&quot;Visual Studio 17 2022&quot;</span> -A Win32</span><br><span class="line">cmake --<span class="keyword">build </span><span class="keyword">build </span>--<span class="built_in">config</span> Release</span><br></pre></td></tr></table></figure>
 
 <p>在 Windows 中安装库也同样有效。不过，你不能使用 <code>sudo</code> 命令，而需要在具有管理员权限的命令提示符下运行 <code>cmake --install build</code>。默认情况下，文件将被安装到 <code>C:/Program Files (x86)/SEAL\</code>。</p>
 <p>Visual Studio 2022 支持基于 CMake 的项目。你可以选择菜单选项 <code>File/Open/Folder...</code>（文件&#x2F;打开&#x2F;文件夹…），然后导航然后导航到 Microsoft SEAL 资源库所在的文件夹。打开文件夹后，Visual Studio 将检测到这是一个基于 CMake 的项目，并启用菜单命令 <code>Project/CMake settings for SEAL</code>。这将打开 CMake 设置编辑器，它提供了一个用户界面，可以创建不同的配置和设置不同的 CMake 选项。</p>
 <p>构建完成后，可在 <code>build\lib\</code> 或 <code>build\lib\Release\</code> 中找到输出静态库 <code>seal-&lt;version&gt;.lib</code>。在与应用程序链接时，强烈建议使用 CMake，正如在《通过 CMake 与 Microsoft SEAL 链接》中所解释的那样。或者，你需要添加 <code>native\src\</code> （完整路径）和 <code>build\native\src\</code> 作为包含目录，以找到 Microsoft SEAL 头文件。</p>
 <h4 id="为-Android-和-iOS-构建"><a href="#为-Android-和-iOS-构建" class="headerlink" title="为 Android 和 iOS 构建"></a>为 Android 和 iOS 构建</h4><p>Microsoft SEAL 可针对 Android 和 iOS 进行编译。在源代码树的 android&#x2F; 目录下，你可以找到一个 Android Studio 项目，用来编译 Android 版库。</p>
 <p>要编译 iOS 版库，请使用以下脚本：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 配置 CMake</span><br><span class="line">cmake -S . -B build -GXcode -DSEAL_BUILD_SEAL_C=ON -DSEAL_BUILD_STATIC_SEAL_C=ON -DCMAKE_SYSTEM_NAME=iOS &quot;-DCMAKE_OSX_ARCHITECTURES=arm64;x86_64&quot; -C cmake/memset_s.iOS.cmake</span><br><span class="line"></span><br><span class="line"># 为 x86_64 构建 libseal*.a</span><br><span class="line">xcodebuild -project build/SEAL.xcodeproj -sdk iphonesimulator -arch x86_64 -configuration Release clean build</span><br><span class="line">mkdir -p build/lib/x86_64</span><br><span class="line">cp build/lib/Release/libseal*.a build/lib/x86_64</span><br><span class="line"></span><br><span class="line"># 为 arm64 构建 libseal*.a</span><br><span class="line">xcodebuild -project SEAL.xcodeproj -sdk iphoneos -arch arm64 -configuration Release clean build</span><br><span class="line">mkdir -p build/lib/arm64</span><br><span class="line">cp build/lib/Release/libseal*.a build/lib/arm64</span><br><span class="line"></span><br><span class="line"># 将 libseal-*.a 合并为 libseal.a，将 libsealc-*.a 合并为 libsealc.a</span><br><span class="line">lipo -create -output build/lib/libseal.a build/lib/x86_64/libseal-*.a arm64/libseal-*.a</span><br><span class="line">lipo -create -output build/lib/libsealc.a build/lib/x86_64/libsealc-*.a build/lib/arm64/libsealc-*.a</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置 CMake</span></span><br><span class="line">cmake -S . -B build -GXcode -DSEAL_BUILD_SEAL_C=ON -DSEAL_BUILD_STATIC_SEAL_C=ON -DCMAKE_SYSTEM_NAME=iOS <span class="string">&quot;-DCMAKE_OSX_ARCHITECTURES=arm64;x86_64&quot;</span> -C cmake/memset_s.iOS.cmake</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为 x86_64 构建 libseal*.a</span></span><br><span class="line">xcodebuild -project build/SEAL.xcodeproj -sdk iphonesimulator -<span class="built_in">arch</span> x86_64 -configuration Release clean build</span><br><span class="line"><span class="built_in">mkdir</span> -p build/lib/x86_64</span><br><span class="line"><span class="built_in">cp</span> build/lib/Release/libseal*.a build/lib/x86_64</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为 arm64 构建 libseal*.a</span></span><br><span class="line">xcodebuild -project SEAL.xcodeproj -sdk iphoneos -<span class="built_in">arch</span> arm64 -configuration Release clean build</span><br><span class="line"><span class="built_in">mkdir</span> -p build/lib/arm64</span><br><span class="line"><span class="built_in">cp</span> build/lib/Release/libseal*.a build/lib/arm64</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 libseal-*.a 合并为 libseal.a，将 libsealc-*.a 合并为 libsealc.a</span></span><br><span class="line">lipo -create -output build/lib/libseal.a build/lib/x86_64/libseal-*.a arm64/libseal-*.a</span><br><span class="line">lipo -create -output build/lib/libsealc.a build/lib/x86_64/libsealc-*.a build/lib/arm64/libsealc-*.a</span><br></pre></td></tr></table></figure>
 
 <p>通过这些方法生成的本地库只能通过以下章节中描述的 .NET 库调用。具体来说，它们不包含任何可用于 Java（Android）或 Objective C（iOS）的封装器。</p>
 <h4 id="为-WebAssembly-构建"><a href="#为-WebAssembly-构建" class="headerlink" title="为 WebAssembly 构建"></a>为 WebAssembly 构建</h4><p>Microsoft SEAL 可在 Windows、Linux 和 macOS 上使用 emscripten 编译 JavaScript 和 WebAssembly。为 Web 构建意味着 SEAL 可在任何客户端&#x2F;服务器环境中运行，如所有主流浏览器（如 Edge、Chrome、Firefox、Safari）和 NodeJS。</p>
 <p>为 WebAssembly 构建需要安装 emscripten 工具链。配置该工具链的最简单方法是克隆 emsdk，然后按照说明操作（附带针对特定系统的注释）。例如，在 Linux 和 macOS 上，在 emsdk repo 中运行以下命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 安装最新的工具链</span><br><span class="line">./emsdk install latest</span><br><span class="line">./emsdk activate latest</span><br><span class="line"># 获取环境源代码</span><br><span class="line">source ./emsdk_env.sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装最新的工具链</span></span><br><span class="line">./emsdk install latest</span><br><span class="line">./emsdk activate latest</span><br><span class="line"><span class="comment"># 获取环境源代码</span></span><br><span class="line"><span class="built_in">source</span> ./emsdk_env.sh</span><br></pre></td></tr></table></figure>
 
 <p>在 Windows 环境下，最好在 Visual Studio 的开发人员命令提示符下运行；并将 <code>./emsdk</code> 和 <code>source ./emsdk_env.sh</code> 分别替换为 <code>emsdk</code> 和 <code>emsdk_env.bat</code>。在其他环境下，必须在路径中添加 <code>cmake</code>，并在下面的配置步骤中指定 “Ninja “或 “MinGW Makefiles “作为生成器。</p>
 <p>在同一 shell 中，导航到 Microsoft SEAL 的根目录，运行以下命令来构建 WebAssembly：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 配置 CMake。发布版构建的示例标志</span><br><span class="line">emcmake cmake -S . -B build \</span><br><span class="line"> -dbuild_shared_libs=off \</span><br><span class="line"> -DCMAKE_BUILD_TYPE=Release \</span><br><span class="line"> -DCMAKE_CXX_FLAGS_RELEASE=&quot;-DNDEBUG -flto -O3&quot;\</span><br><span class="line"> -DCMAKE_C_FLAGS_RELEASE=&quot;-DNDEBUG -flto -O3&quot; \</span><br><span class="line"> -DSEAL_BUILD_BENCH=OFF \ # 可以为 WASM 构建基准。将其更改为 ON。</span><br><span class="line"> -dseal_build_examples=off （关闭</span><br><span class="line"> -dseal_build_tests=off （关闭</span><br><span class="line"> -dseal_use_cxx17=ON （关闭</span><br><span class="line"> -dseal_use_intrin=on （关闭</span><br><span class="line"> -dseal_use_msgsl=off （关闭</span><br><span class="line"> -dseal_use_zlib=on （关闭</span><br><span class="line"> # Make static library (shared).</span><br><span class="line"></span><br><span class="line"># 制作静态库（emscripten 不支持共享库）</span><br><span class="line">emmake make -C build -j</span><br><span class="line"></span><br><span class="line"># 构建 WebAssembly 模块</span><br><span class="line">emcc</span><br><span class="line"> -Wall \</span><br><span class="line"> -flto \</span><br><span class="line"> -O3 \</span><br><span class="line"> build/lib/libseal-4.1.a\</span><br><span class="line"> -bind（绑定</span><br><span class="line"> -o &quot;build/bin/seal_wasm.js&quot;\</span><br><span class="line"> -s WASM=1</span><br><span class="line"> -s ALLOW_MEMORY_GROWTH=1</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置 CMake。发布版构建的示例标志</span></span><br><span class="line">emcmake cmake -S . -B build \</span><br><span class="line"> <span class="attribute">-dbuild_shared_libs</span>=off \</span><br><span class="line"> <span class="attribute">-DCMAKE_BUILD_TYPE</span>=Release \</span><br><span class="line"> <span class="attribute">-DCMAKE_CXX_FLAGS_RELEASE</span>=<span class="string">&quot;-DNDEBUG -flto -O3&quot;</span>\</span><br><span class="line"> <span class="attribute">-DCMAKE_C_FLAGS_RELEASE</span>=<span class="string">&quot;-DNDEBUG -flto -O3&quot;</span> \</span><br><span class="line"> <span class="attribute">-DSEAL_BUILD_BENCH</span>=OFF \ # 可以为 WASM 构建基准。将其更改为 ON。</span><br><span class="line"> <span class="attribute">-dseal_build_examples</span>=off （关闭</span><br><span class="line"> <span class="attribute">-dseal_build_tests</span>=off （关闭</span><br><span class="line"> <span class="attribute">-dseal_use_cxx17</span>=ON （关闭</span><br><span class="line"> <span class="attribute">-dseal_use_intrin</span>=on （关闭</span><br><span class="line"> <span class="attribute">-dseal_use_msgsl</span>=off （关闭</span><br><span class="line"> <span class="attribute">-dseal_use_zlib</span>=on （关闭</span><br><span class="line"> # Make static library (shared).</span><br><span class="line"></span><br><span class="line"><span class="comment"># 制作静态库（emscripten 不支持共享库）</span></span><br><span class="line">emmake make -C build -j</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建 WebAssembly 模块</span></span><br><span class="line">emcc</span><br><span class="line"> -Wall \</span><br><span class="line"> -flto \</span><br><span class="line"> -O3 \</span><br><span class="line"> build/lib/libseal-4.1.a\</span><br><span class="line"> -bind（绑定</span><br><span class="line"> -o <span class="string">&quot;build/bin/seal_wasm.js&quot;</span>\</span><br><span class="line"> -s <span class="attribute">WASM</span>=1</span><br><span class="line"> -s <span class="attribute">ALLOW_MEMORY_GROWTH</span>=1</span><br></pre></td></tr></table></figure>
 
 <p>注意：在构建 WebAssembly 模块时，有许多标志需要考虑。有关高级构建标志，请参阅 settings.js 文件。</p>
 <p>构建将在 build&#x2F;bin&#x2F; 目录下生成两个输出文件：<code>seal_wasm.js</code> 和 <code>seal_wasm.wasm</code>。工件的文件大小非常小。这是因为优化标志执行了死代码消除（DCE），因为没有生成与 JavaScript 的绑定。要从 JavaScript 域调用 WebAssembly，就必须定义这些绑定；不过，Microsoft SEAL 目前不包含任何定义。构建标记 <code>--bind</code> 希望使用 embind 语法指定绑定。</p>
@@ -419,7 +419,7 @@
 </tr>
 </tbody></table>
 <p>像往常一样，这些选项可以通过 <code>-D</code> 标志传递给 CMake。例如，可以运行</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cmake -S . -B build -DSEAL_BUILD_EXAMPLES=ON</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">cmake -S . -<span class="keyword">B </span><span class="keyword">build </span>-DSEAL_BUILD_EXAMPLES=ON</span><br></pre></td></tr></table></figure>
 
 <p>来配置 Microsoft SEAL 静态库的发布版构建，并同时构建示例。</p>
 <h4 id="CMake-高级选项"><a href="#CMake-高级选项" class="headerlink" title="CMake 高级选项"></a>CMake 高级选项</h4><p>以下选项可用于 CMake 以进一步配置联编。大多数用户无需更改这些选项，这也是它们被标记为高级选项的原因。</p>
@@ -468,20 +468,20 @@
 </tr>
 </tbody></table>
 <h4 id="通过-CMake-链接-Microsoft-SEAL"><a href="#通过-CMake-链接-Microsoft-SEAL" class="headerlink" title="通过 CMake 链接 Microsoft SEAL"></a>通过 CMake 链接 Microsoft SEAL</h4><p>如果使用 CMake，将自己的应用程序和库与 Microsoft SEAL 进行链接非常简单。只需在 <code>CMakeLists.txt </code>中添加以下内容即可：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">find_package(SEAL 4.1 REQUIRED)</span><br><span class="line">target_link_libraries(&lt;your target&gt; SEAL::seal)</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">find_package</span><span class="params">(SEAL <span class="number">4.1</span> REQUIRED)</span></span></span><br><span class="line"><span class="function"><span class="title">target_link_libraries</span><span class="params">(&lt;your target&gt; SEAL::seal)</span></span></span><br></pre></td></tr></table></figure>
 
 <p>如果 Microsoft SEAL 已全局安装，上述 find_package 命令很可能会自动找到该库。如果要与安装在本地的 Microsoft SEAL 进行链接，例如如上所述安装在 ~&#x2F;mylibs 中，则可能需要在配置应用程序时告诉 CMake 在何处查找 Microsoft SEAL，方法如下</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd &lt;包含 CMakeLists.txt 的目录&gt;</span><br><span class="line">cmake . -DCMAKE_PREFIX_PATH=~/mylibs</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> &lt;包含 CMakeLists.txt 的目录&gt;</span><br><span class="line">cmake . -DCMAKE_PREFIX_PATH=~/mylibs</span><br></pre></td></tr></table></figure>
 <p>如果 Microsoft SEAL 是使用 vcpkg 或 Homebrew 等软件包管理器安装的，请参阅它们的文档了解如何与已安装的库链接。例如，vcpkg 要求您在配置项目时指定 vcpkg CMake 工具链文件。</p>
 <h4 id="示例、测试和基准测试"><a href="#示例、测试和基准测试" class="headerlink" title="示例、测试和基准测试"></a>示例、测试和基准测试</h4><p>在构建 Microsoft SEAL 时，可以通过设置 <code>SEAL_BUILD_EXAMPLES=ON</code>、<code>SEAL_BUILD_TESTS=ON</code> 和 <code>SEAL_BUILD_BENCH=ON</code> 来构建示例、测试和基准；请参阅 CMake 基本选项。另外，也可以通过以下命令，将示例、测试和基准作为与 Microsoft SEAL（安装在 <code>~/mylibs</code>）链接的独立 CMake 项目来构建。如果该库是全局安装的，则省略 <code>SEAL_ROOT</code> 设置。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd native/&lt;examples|tests|bench&gt;</span><br><span class="line">cmake -S . -B build -DSEAL_ROOT=~/mylibs</span><br><span class="line">cmake --build build</span><br></pre></td></tr></table></figure>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cd</span> native/&lt;examples|tests|bench&gt;</span><br><span class="line">cmake -S . -B build -DSEAL_ROOT=~<span class="string">/mylibs</span></span><br><span class="line">cmake <span class="params">--build</span> build</span><br></pre></td></tr></table></figure>
 
 <p>默认情况下，基准会针对参数和基元向量运行，这可能会提供大量信息。要执行基准案例子集，请参阅 Google 基准 README。对于高级用户，可以使用自定义参数集覆盖 native&#x2F;bench&#x2F;bench.cpp 中的 <code>bm_parms_vec</code> 变量。</p>
 <p>注意：基准代码严格用于实验目的；它允许不安全的参数，不得在实际应用中使用。请勿将基准作为示例。</p>
 <h3 id="构建-NET-组件"><a href="#构建-NET-组件" class="headerlink" title="构建 .NET 组件"></a>构建 .NET 组件</h3><p>Microsoft SEAL 提供了一个 .NET 标准库，该库封装了 Microsoft SEAL 中的功能，可用于 .NET 开发。除非打算开发 Microsoft SEAL 或构建自定义 NuGet 包，否则强烈建议使用现有的 NuGet 包。在构建 .NET 组件之前，必须在构建 C++ 组件之后构建 C 封装库 SEAL_C。SEAL_C 库仅供 .NET 库使用，最终用户不得使用。</p>
 <p>注意：SEAL_C 和 .NET 库仅支持 64 位平台。</p>
 <h4 id="Windows、Linux-和-macOS"><a href="#Windows、Linux-和-macOS" class="headerlink" title="Windows、Linux 和 macOS"></a>Windows、Linux 和 macOS</h4><p>要编译 .NET 代码，您需要安装 .NET SDK（&gt;&#x3D; 6.0）。使用 CMake 构建 SEAL_C 库将生成 .NET 封装库、示例和单元测试的项目文件。在运行 .NET 应用程序时，SEAL_C 库必须可以被发现，例如，必须与可执行文件位于同一目录下。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dotnet build build/dotnet/src --configuration &lt;Debug|Release&gt; # Build .NET wrapper library</span><br><span class="line">dotnet test build/dotnet/tests # Build and run .NET unit tests</span><br><span class="line">dotnet run -p build/dotnet/examples # Build and run .NET examples</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dotnet build build/dotnet/src --configuration &lt;Debug|Release&gt; <span class="comment"># Build .NET wrapper library</span></span><br><span class="line">dotnet <span class="built_in">test</span> build/dotnet/tests <span class="comment"># Build and run .NET unit tests</span></span><br><span class="line">dotnet run -p build/dotnet/examples <span class="comment"># Build and run .NET examples</span></span><br></pre></td></tr></table></figure>
 
 <p>你可以使用 <code>--configuration &lt;Debug|Release&gt;</code> 来运行 <code>Debug</code> 或 <code>Release</code> 示例和单元测试。你可以使用 <code>--verbosity detailed</code> 来打印正在运行的单元测试列表。</p>
 <p>在 Windows 上，还可以使用 Microsoft Visual Studio 2022 解决方案文件，例如，<code>out/build/x64-Debug/dotnet/SEALNet.sln</code> 来构建所有三个项目。</p>
@@ -554,7 +554,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ ./sealdemo              </span><br></pre></td></tr></table></figure>
 
 <p>成功 <code>return 0</code>：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ echo $?            </span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~<span class="regexp">/OpenPano/</span>SEALDemo]</span><br><span class="line">└─<span class="variable">$ </span>echo <span class="variable">$?</span>            </span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="学习-SEAL-Example"><a href="#学习-SEAL-Example" class="headerlink" title="学习 SEAL Example"></a>学习 SEAL Example</h2><p>SEAL 自带一些例子程序，在 <code>SEAL/native/examples</code> 文件夹下：</p>
 <img src="/2023/12/30/SEAL/sealexamples-cpp.png" class>
@@ -637,6 +637,22 @@
 ]]></content>
   </entry>
   <entry>
+    <title>《做研究是有趣的》</title>
+    <url>/2023/12/30/%E3%80%8A%E5%81%9A%E7%A0%94%E7%A9%B6%E6%98%AF%E6%9C%89%E8%B6%A3%E7%9A%84%E3%80%8B/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Freesia&#39;s Reading Journal</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>《最后的假期》</title>
+    <url>/2023/12/31/%E3%80%8A%E6%9C%80%E5%90%8E%E7%9A%84%E5%81%87%E6%9C%9F%E3%80%8B/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Freesia&#39;s Cinematic Journal</category>
+      </categories>
+  </entry>
+  <entry>
     <title>使用 Hexo and Github 搭建个人博客</title>
     <url>/2023/12/24/%E4%BD%BF%E7%94%A8%20Hexo%20and%20Github%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h1 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h1><h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git --version</span><br><span class="line">git version 2.35.1.windows.2</span><br></pre></td></tr></table></figure>
@@ -650,15 +666,15 @@
 
 <p><code>@example.com</code> 是 Github 账户的注册邮箱。</p>
 <p>执行命令后，ENTER 三次后出现 key path。</p>
-<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">C:\<span class="string">...</span>\<span class="string">.ssh</span>\id_rsa.pub</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">C:\...\.ssh\id_rsa.pub</span><br></pre></td></tr></table></figure>
 
 <p>使用记事本打开 <code>id_rsa.pub</code> 文件并复制内容。</p>
-<h1 id="Github-创建仓库"><a href="#Github-创建仓库" class="headerlink" title="Github 创建仓库"></a>Github 创建仓库</h1><p>创建名为 <code>Username.github.io</code>的新仓库，<code>Username</code> 为 Github 账户名。</p>
+<h1 id="Github-创建仓库"><a href="#Github-创建仓库" class="headerlink" title="Github 创建仓库"></a>Github 创建仓库</h1><p>创建名为 <code>Username.github.io</code> 的新仓库，<code>Username</code> 为 Github 账户名。</p>
 <p>输入仓库名的界面应该显示为：</p>
 <figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">Username / Username.github.<span class="built_in">io</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="Github-新建-SSH-key"><a href="#Github-新建-SSH-key" class="headerlink" title="Github 新建 SSH key"></a>Github 新建 SSH key</h1><p>打开 Github <code>Settings</code> 中的 <code>SSH and GPG keys</code>，点击新建一个 SSH key：</p>
-<p>其中 <code>Title</code> 随意, <code>Key</code>是 <code>id_rsa.pub</code> 文件的内容。</p>
+<p>其中 <code>Title</code> 随意, <code>Key</code> 是 <code>id_rsa.pub</code> 文件的内容。</p>
 <p>使用以下命令来测试 SSH 连接是否成功：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
 
@@ -673,12 +689,12 @@
 
 <h1 id="Hexo-初始化"><a href="#Hexo-初始化" class="headerlink" title="Hexo 初始化"></a>Hexo 初始化</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init FileName</span><br><span class="line"><span class="built_in">cd</span> FileName</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
 
-<p><code>FileName</code>为你的博客文件夹。</p>
+<p><code>FileName</code> 为你的博客文件夹。</p>
 <h1 id="部署-Hexo"><a href="#部署-Hexo" class="headerlink" title="部署 Hexo"></a>部署 Hexo</h1><p>复制 Github 仓库下 <code>Clone with SSH</code> 的内容：</p>
 <figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">git@github<span class="selector-class">.com</span>:Username/username<span class="selector-class">.github</span><span class="selector-class">.io</span>.git</span><br></pre></td></tr></table></figure>
 
 <p>打开 <code>Filename</code> 文件夹下的 <code>_config.yml</code> 文件，repo 后复制上一步的内容：</p>
-<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="meta"># Deployment</span></span><br><span class="line"><span class="meta">## Docs: https:<span class="comment">//hexo.io/docs/one-command-deployment</span></span></span><br><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">  type:</span> git</span><br><span class="line"><span class="symbol">  repo:</span> git@github.com:Username/username.github.io.git</span><br><span class="line"><span class="symbol">  branch:</span> master</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:Username/username.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
 
 <p>注意 repo 后的空格。</p>
 <h1 id="发布-Hexo"><a href="#发布-Hexo" class="headerlink" title="发布 Hexo"></a>发布 Hexo</h1><p><code>Filename</code> 文件夹下执行以下命令：</p>
@@ -693,7 +709,7 @@
 <h2 id="下载-Next"><a href="#下载-Next" class="headerlink" title="下载 Next"></a>下载 Next</h2><p>使用 git clone 下载 Next，也可以通过 npm 安装：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> FileName</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
 
-<h2 id="配置-Hexo"><a href="#配置-Hexo" class="headerlink" title="配置 Hexo"></a>配置 Hexo</h2><p>Hexo 配置文件：<code>_config.yml</code>。</p>
+<h2 id="配置-Hexo"><a href="#配置-Hexo" class="headerlink" title="配置 Hexo"></a>配置 Hexo</h2><p>Hexo 配置文件：<code>_config.yml</code> 。</p>
 <blockquote>
 <p>配置时注意 <code>: </code> 冒号后的空格。</p>
 </blockquote>
@@ -761,16 +777,17 @@
 </tr>
 </tbody></table>
 <p>如果同样使用 NexT 主题，此处写 <code>next</code> 。</p>
-<h2 id="配置-Next"><a href="#配置-Next" class="headerlink" title="配置 Next"></a>配置 Next</h2><p>Next 配置文件：<code>_config.yml</code>。</p>
+<h2 id="配置-Next"><a href="#配置-Next" class="headerlink" title="配置 Next"></a>配置 Next</h2><p>Next 配置文件：<code>_config.yml</code> 。</p>
 <h3 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h3><p>waiting…</p>
-<h3 id="代码块主题更改"><a href="#代码块主题更改" class="headerlink" title="代码块主题更改"></a>代码块主题更改</h3><p>Next 配置文件：<code>_config.yml</code>。</p>
+<h3 id="代码块主题更改"><a href="#代码块主题更改" class="headerlink" title="代码块主题更改"></a>代码块主题更改</h3><p>Next 配置文件：<code>_config.yml</code> 。</p>
 <p>可用主题在 <a href="https://theme-next.js.org/highlight/">https://theme-next.js.org/highlight/</a> 查看。</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line">  <span class="attr">theme:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">github-dark</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">github-dark</span></span><br><span class="line">  <span class="attr">prism:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">prism</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">prism-dark</span></span><br><span class="line">  <span class="comment"># Add copy button on codeblock</span></span><br><span class="line">  <span class="attr">copy_button:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># Available values: default | flat | mac</span></span><br><span class="line">    <span class="attr">style:</span> <span class="string">mac</span></span><br><span class="line">  <span class="comment"># Fold code block</span></span><br><span class="line">  <span class="attr">fold:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">height:</span> <span class="number">500</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="显示当前浏览进度"><a href="#显示当前浏览进度" class="headerlink" title="显示当前浏览进度"></a>显示当前浏览进度</h3><p>Next 配置文件：<code>_config.yml</code>。</p>
+<h3 id="显示当前浏览进度"><a href="#显示当前浏览进度" class="headerlink" title="显示当前浏览进度"></a>显示当前浏览进度</h3><p>Next 配置文件：<code>_config.yml</code> 。</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">back2top:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Back to top in sidebar.</span></span><br><span class="line">  <span class="attr">sidebar:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Scroll percent label in b2t button.</span></span><br><span class="line">  <span class="attr">scrollpercent:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p><code>scrollpercent</code> 的值为真开启浏览进度，如果 <code>sidebar</code> 的值为真，进度显示在侧栏。</p>
-<h3 id="统计博客字数-估算阅读时间"><a href="#统计博客字数-估算阅读时间" class="headerlink" title="统计博客字数+估算阅读时间"></a>统计博客字数+估算阅读时间</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm install hexo-word-counter</span><br></pre></td></tr></table></figure>
+
+<p><code>scrollpercent</code> 的值为真开启浏览进度。如果 <code>sidebar</code> 的值为真，进度显示在侧栏。</p>
+<h3 id="统计博客字数-估算阅读时间"><a href="#统计博客字数-估算阅读时间" class="headerlink" title="统计博客字数+估算阅读时间"></a>统计博客字数+估算阅读时间</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-word-counter</span><br></pre></td></tr></table></figure>
 
 <p>Hexo 配置文件：<code>_config.yml</code> 添加以下配置：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">symbols_count_time:</span></span><br><span class="line">  <span class="attr">symbols:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">time:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">total_symbols:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">total_time:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">exclude_codeblock:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">awl:</span> <span class="number">2</span></span><br><span class="line">  <span class="attr">wpm:</span> <span class="number">300</span></span><br><span class="line">  <span class="attr">suffix:</span> <span class="string">&quot;mins.&quot;</span></span><br></pre></td></tr></table></figure>
@@ -795,11 +812,28 @@
 </tr>
 </tbody></table>
 <p>中文的推荐配置为 <code>awl = 2</code> 和 <code>wpm = 300</code>。</p>
+<h3 id="阅读全文"><a href="#阅读全文" class="headerlink" title="阅读全文"></a>阅读全文</h3><p>直接在文章中添加 <code>&lt;!--more--&gt;</code> 来控制摘要内容。</p>
+<img src="/2023/12/24/%E4%BD%BF%E7%94%A8%20Hexo%20and%20Github%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/read-more.png" class>
+
+<h3 id="修改加载动画"><a href="#修改加载动画" class="headerlink" title="修改加载动画"></a>修改加载动画</h3><p>Next 配置文件：<code>_config.yml</code>。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">pace:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">color:</span> <span class="string">black</span></span><br><span class="line">  <span class="attr">theme:</span> <span class="string">bounce</span></span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>color</code> 为加载进度的颜色，<code>theme</code> 为加载进度的主题。</p>
+<p>想要知道每个主题的效果，可通过 <a href="https://codebyzach.github.io/pace/">https://codebyzach.github.io/pace/</a> 来查看！</p>
+<h3 id="添加运行时间"><a href="#添加运行时间" class="headerlink" title="添加运行时间"></a>添加运行时间</h3><p>在 <code>/themes/next/layout/_partials/footer.njk</code> 文件末尾加入以下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- &lt;br /&gt; --&gt;</span><br><span class="line">&lt;!-- 网站运行时间的设置 --&gt;</span><br><span class="line">&lt;span id=&quot;timeDate&quot;&gt;计算天数中&lt;/span&gt;</span><br><span class="line">&lt;!-- &lt;span id=&quot;times&quot;&gt;计算天数时分秒中...&lt;/span&gt; --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var now = new Date();</span><br><span class="line">    function createtime() &#123;</span><br><span class="line">        var grt= new Date(&quot;12/24/2023 17:00:00&quot;);//你的建站时间或者网站上线时间</span><br><span class="line">        now.setTime(now.getTime()+250);</span><br><span class="line">        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);</span><br><span class="line">        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);</span><br><span class="line">        if(String(hnum).length ==1 )&#123;hnum = &quot;0&quot; + hnum;&#125; minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);</span><br><span class="line">        mnum = Math.floor(minutes); if(String(mnum).length ==1 )&#123;mnum = &quot;0&quot; + mnum;&#125;</span><br><span class="line">        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);</span><br><span class="line">        snum = Math.round(seconds); </span><br><span class="line">        if(String(snum).length ==1 )&#123;snum = &quot;0&quot; + snum;&#125;</span><br><span class="line">        // var times = document.getElementById(&quot;times&quot;).innerHTML = hnum + &quot; 小时 &quot; + mnum + &quot; 分 &quot; + snum + &quot; 秒&quot;;</span><br><span class="line">        document.getElementById(&quot;timeDate&quot;).innerHTML = &quot;Your Blog 已存在 &quot;+dnum+&quot; 天 &quot;+hnum + &quot; 小时 &quot; + mnum + &quot; 分 &quot; + snum + &quot; 秒&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">setInterval(&quot;createtime()&quot;,250);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改网站图标"><a href="#修改网站图标" class="headerlink" title="修改网站图标"></a>修改网站图标</h3><p>Next 配置文件：<code>_config.yml</code> 。</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">favicon:</span></span><br><span class="line">  <span class="attr">small:</span> <span class="string">/images/favicon-16x16-next.png</span></span><br><span class="line">  <span class="attr">medium:</span> <span class="string">/images/favicon-32x32-next.png</span></span><br><span class="line">  <span class="attr">apple_touch_icon:</span> <span class="string">/images/apple-touch-icon-next.png</span></span><br><span class="line">  <span class="attr">safari_pinned_tab:</span> <span class="string">/images/logo.svg</span></span><br><span class="line">  <span class="comment">#android_manifest: /manifest.json</span></span><br></pre></td></tr></table></figure>
+
+<p>可使用 照片 或者 <a href="https://sspai.com/link?target=http://www.favicon-generator.org/">相关网站</a> 生成同尺寸图像。</p>
+<p>本网站图标由 <a href="https://www.logosc.cn/logo/">https://www.logosc.cn/logo/</a> 生成。</p>
+<h3 id="修改个人头像"><a href="#修改个人头像" class="headerlink" title="修改个人头像"></a>修改个人头像</h3><p>将原来的 <code>\themes\next\source\images</code> 中 <code>avatar.png</code> 覆盖为自己想要的头像即可。</p>
 <h1 id="撰写博客"><a href="#撰写博客" class="headerlink" title="撰写博客"></a>撰写博客</h1><p>执行下列命令来创建一篇新页面或者新文章：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
 
 <p>Hexo 有 3 种默认 layout：<code>post</code>、<code>page</code> 和 <code>draft</code>。</p>
-<p>首先手动创建 <code>about</code>、<code>categories</code> 和 <code>tags</code> 页面，并添加 layout 属性：</p>
+<p>首先手动创建 <code>about</code> 、<code>categories</code> 和 <code>tags</code> 页面，并添加 layout 属性：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page about</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 关于</span><br><span class="line">date: 2023-12-24 17:00:00</span><br><span class="line">layout: about</span><br><span class="line">---​</span><br></pre></td></tr></table></figure>
@@ -812,7 +846,7 @@
 
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">date: 2023-12-24 17:00:00</span><br><span class="line">layout: tags</span><br><span class="line">---​</span><br></pre></td></tr></table></figure>
 
-<p>现在我们想写一篇名为 <code>test</code> 的文章，在 <code>A</code> 分类，标签为 <code>B</code> 和 <code>C</code>：</p>
+<p>如果我们想写一篇名为 <code>test</code> 的文章，在 <code>A</code> 分类，标签为 <code>B</code> 和 <code>C</code>：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new post <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: test</span><br><span class="line">date: 2023-12-24 17:00:00</span><br><span class="line">categories: </span><br><span class="line"><span class="bullet">-</span> A</span><br><span class="line">tags: </span><br><span class="line"><span class="bullet">-</span> B</span><br><span class="line"><span class="section">- C</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
@@ -821,9 +855,9 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s </span><br><span class="line">hexo d </span><br></pre></td></tr></table></figure>
 
 <p>执行 <code>hexo s</code> 即可打开 <a href="http://localhost:4000/">http://localhost:4000</a> 预览文章效果。 </p>
-<p>执行 <code>hexo d </code> 上传至 Github，等待片刻 <a href="https://username.github.io/">https://username.github.io</a> 查看博客。</p>
+<p>执行 <code>hexo d</code> 上传至 Github，等待片刻 <a href="https://username.github.io/">https://username.github.io</a> 查看博客。</p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://zhuanlan.zhihu.com/p/655349835">手把手教你使用 Hexo+GitHub 搭建个人博客并发布文章-知乎</a><br><a href="https://zhuanlan.zhihu.com/p/376366002">Hexo+Github 搭建博客-知乎</a><br><a href="https://www.yunyoujun.cn/posts/how-to-build-your-site#%E4%BD%BF%E7%94%A8-hexo-%E4%B8%BB%E9%A2%98">教你如何从零开始搭建一个属于自己的网站-云游君的小站</a><br><a href="https://zhuanlan.zhihu.com/p/251363116#:~:text=%E6%B5%8B%E8%AF%95hexo%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F%EF%BC%9A%20%24%20hexo%20new%20test%20%24%20hexo%20g,test%E8%A1%A8%E7%A4%BA%E6%96%B0%E5%BB%BA%E4%B8%80%E7%AF%87%E5%90%8D%E4%B8%BAtest%E7%9A%84%E5%8D%9A%E6%96%87%EF%BC%8Chexo%20g%E8%A1%A8%E7%A4%BA%E7%94%9F%E6%88%90%EF%BC%8C%E6%98%AFhexo%20generate%E7%9A%84%E7%AE%80%E5%86%99%EF%BC%8Chexo%20s%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8Chexo%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E6%98%AFhexo%20server%E7%9A%84%E7%AE%80%E5%86%99%E3%80%82%20%E6%88%90%E5%8A%9F%E5%90%8E%E4%BC%9A%E6%9C%89%E5%A6%82%E4%B8%8B%E6%8F%90%E7%A4%BA%EF%BC%8C%E8%BF%9B%E5%85%A5%20http%3A%2F%2Flocalhost%3A4000%20%E5%8D%B3%E5%8F%AF%E7%9C%8B%E5%88%B0%E5%88%9A%E5%88%9A%E7%94%9F%E6%88%90%E7%9A%84%E7%BD%91%E9%A1%B5%E3%80%82">hexo 基本安装及配置-知乎</a></p>
-<p><a href="https://shallingzhang.github.io/2022/08/31/Hexo-Next%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96%E5%8D%9A%E5%AE%A2/#%E9%85%8D%E7%BD%AE">Hexo+Next 主题美化博客-Shalling’s Blog</a><br><a href="https://www.cnblogs.com/mmzuo-798/p/10510225.html">Hexo server 报错 TypeError: Cannot read property ‘utcOffset’ of null 解决方法-博客园</a><br><a href="https://sspai.com/post/59568">hexo next 主题优化-少数派</a><br><a href="https://www.cnblogs.com/factory/p/10567649.html">Hexo 的 next主题安装-博客园</a><br><a href="http://home.ustc.edu.cn/~liujunyan/blog/hexo-next-theme-config/">Hexo 博客 NexT 主题的安装使用-Julian’s blog</a><br><a href="https://theme-next.js.org/pisces/">NexT-Theme for Hexo</a><br><a href="https://github.com/next-theme/hexo-theme-next?tab=readme-ov-file">NexT Theme-Github</a><br><a href="https://hexo.io/themes/">Themes | Hexo</a><br><a href="https://juejin.cn/post/6924497164362055693">玩遍博客网站，我整理了 Hexo 及其流行的风格主题-掘金</a><br><a href="https://zhuanlan.zhihu.com/p/491537945">8 款颜值爆赞的 Hexo 主题推荐！快来搭建个人博客玩玩-知乎</a></p>
+<p><a href="https://shallingzhang.github.io/2022/08/31/Hexo-Next%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96%E5%8D%9A%E5%AE%A2/#%E9%85%8D%E7%BD%AE">Hexo+Next 主题美化博客-Shalling’s Blog</a><br><a href="https://www.cnblogs.com/mmzuo-798/p/10510225.html">Hexo server 报错 TypeError: Cannot read property ‘utcOffset’ of null 解决方法-博客园</a><br><a href="https://sspai.com/post/59568">hexo next 主题优化-少数派</a><br><a href="https://www.cnblogs.com/factory/p/10567649.html">Hexo 的 next主题安装-博客园</a><br><a href="http://home.ustc.edu.cn/~liujunyan/blog/hexo-next-theme-config/">Hexo 博客 NexT 主题的安装使用-Julian’s blog</a><br><a href="https://theme-next.js.org/pisces/">NexT-Theme for Hexo</a><br><a href="https://github.com/next-theme/hexo-theme-next?tab=readme-ov-file">NexT Theme-Github</a><br><a href="https://hexo.io/themes/">Themes | Hexo</a><br><a href="https://juejin.cn/post/6924497164362055693">玩遍博客网站，我整理了 Hexo 及其流行的风格主题-掘金</a><br><a href="https://zhuanlan.zhihu.com/p/491537945">8 款颜值爆赞的 Hexo 主题推荐！快来搭建个人博客玩玩-知乎</a><br><a href="https://juejin.cn/post/7169115268944560135">Hexo-Next 主题搭建个人博客最新配置教程-掘金</a></p>
 <p><a href="https://hexo.io/zh-cn/docs/writing.html">写作-Hexo</a><br><a href="https://zhuanlan.zhihu.com/p/132823826">使用 Hexo 新建、编辑并预览文章-知乎</a></p>
 ]]></content>
       <categories>
@@ -833,21 +867,5 @@
         <tag>Hexo</tag>
         <tag>Github</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>《做研究是有趣的》</title>
-    <url>/2023/12/30/%E3%80%8A%E5%81%9A%E7%A0%94%E7%A9%B6%E6%98%AF%E6%9C%89%E8%B6%A3%E7%9A%84%E3%80%8B/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Freesia&#39;s Reading Journal</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>《最后的假期》</title>
-    <url>/2023/12/31/%E3%80%8A%E6%9C%80%E5%90%8E%E7%9A%84%E5%81%87%E6%9C%9F%E3%80%8B/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Freesia&#39;s Cinematic Journal</category>
-      </categories>
   </entry>
 </search>

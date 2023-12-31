@@ -6,10 +6,10 @@
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/uploads/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/uploads/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-1.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -17,6 +17,8 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/black/pace-theme-bounce.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"freesianz.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
@@ -232,14 +234,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span></span>
+      <span>7.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>NaN:aN</span>
+      <span>26 分钟</span>
     </span>
 </div>
 
@@ -335,7 +337,7 @@
 <p>对于 .NET 开发人员来说，安装 Microsoft SEAL 的最简单方法是使用 NuGet.org 上的多平台 NuGet 软件包。只需将此软件包作为依赖项添加到您的 .NET 项目中，就可以开始使用了。</p>
 <p>要使用 Microsoft SEAL 和 .NET 开发 Android 和 iOS 移动应用程序，只需将此软件包添加到 Xamarin 项目中即可。与 Microsoft SEAL C++ 库不同，.NET 封装库仅适用于 64 位平台，因此仅支持 arm64-v8a&#x2F;x86_64 Android ABI 和 arm64&#x2F;x86_64 iOS 体系结构。</p>
 <h3 id="从-vcpkg-安装"><a href="#从-vcpkg-安装" class="headerlink" title="从 vcpkg 安装"></a>从 vcpkg 安装</h3><p>你可以使用 vcpkg 依赖关系管理器下载并安装 seal。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/Microsoft/vcpkg.git</span><br><span class="line">cd vcpkg</span><br><span class="line">./bootstrap-vcpkg.sh # ./bootstrap-vcpkg.bat for Windows</span><br><span class="line">./vcpkg integrate install</span><br><span class="line">./vcpkg install seal</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Microsoft/vcpkg.git</span><br><span class="line"><span class="built_in">cd</span> vcpkg</span><br><span class="line">./bootstrap-vcpkg.sh <span class="comment"># ./bootstrap-vcpkg.bat for Windows</span></span><br><span class="line">./vcpkg integrate install</span><br><span class="line">./vcpkg install seal</span><br></pre></td></tr></table></figure>
 
 <p>vcpkg 中的 “seal “端口由微软团队成员和社区贡献者保持更新。如果版本过时，请在 vcpkg 代码库中创建问题或拉动请求。</p>
 <h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>使用 Microsoft SEAL 需要用户投入一些时间学习同态加密的基本概念。代码附带了大量注释示例，旨在逐步教授这些概念，并演示 API 的大部分内容。这些示例有 C++ 和 C# 版本（且完全相同），并分为多个源文件，分别位于 <code>native/examples/</code> (C++) 和 <code>dotnet/examples/</code> (C#)，具体如下：</p>
@@ -430,40 +432,40 @@
 <p>注意：使用 Clang++ 编译的 Microsoft SEAL 比使用 GNU G++ 编译的运行时性能要好得多。</p>
 <h4 id="构建-Microsoft-SEAL"><a href="#构建-Microsoft-SEAL" class="headerlink" title="构建 Microsoft SEAL"></a>构建 Microsoft SEAL</h4><p>我们假定 Microsoft SEAL 已克隆到一个名为 SEAL 的目录中，并假定在 SEAL 目录中执行以下所有命令。</p>
 <p>您可以通过执行以下命令为您的计算机构建 Microsoft SEAL 库（源码外）：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmake -S . -B build</span><br><span class="line">cmake --build build</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmake -S . -<span class="keyword">B </span><span class="keyword">build</span></span><br><span class="line"><span class="keyword"></span>cmake --<span class="keyword">build </span><span class="keyword">build</span></span><br></pre></td></tr></table></figure>
 
 <p>编译完成后，可在 build&#x2F;lib&#x2F; 和 build&#x2F;bin&#x2F; 目录中找到输出二进制文件。</p>
 <p>可以指定各种配置选项并将其传递给 CMake 编译系统。这些选项将在下文的 CMake 基本选项和 CMake 高级选项部分进行介绍。</p>
 <h4 id="安装-Microsoft-SEAL"><a href="#安装-Microsoft-SEAL" class="headerlink" title="安装 Microsoft SEAL"></a>安装 Microsoft SEAL</h4><p>如果您拥有系统的 root 访问权限，您可以按如下方法全局安装 Microsoft SEAL：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cmake -S . -B build</span><br><span class="line">cmake --build build</span><br><span class="line">sudo cmake --install build</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cmake -S . -<span class="keyword">B </span><span class="keyword">build</span></span><br><span class="line"><span class="keyword"></span>cmake --<span class="keyword">build </span><span class="keyword">build</span></span><br><span class="line"><span class="keyword"></span>sudo cmake --<span class="keyword">install </span><span class="keyword">build</span></span><br></pre></td></tr></table></figure>
 
 <p>要在本地安装 Microsoft SEAL，例如安装到 ~&#x2F;mylibs&#x2F;，请执行以下操作：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cmake -S . -B build -DCMAKE_INSTALL_PREFIX=~/mylibs</span><br><span class="line">cmake --build build</span><br><span class="line">sudo cmake --install build</span><br></pre></td></tr></table></figure>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cmake -S . -B <span class="keyword">build</span> -DCMAKE_INSTALL_PREFIX=~/mylibs</span><br><span class="line">cmake --<span class="keyword">build</span> <span class="keyword">build</span></span><br><span class="line">sudo cmake --install <span class="keyword">build</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="在-Windows-上编译和安装"><a href="#在-Windows-上编译和安装" class="headerlink" title="在 Windows 上编译和安装"></a>在 Windows 上编译和安装</h4><p>在 Windows 系统中，上述脚本可在 Visual Studio 的开发人员命令提示符下使用 Ninja 或 “Visual Studio 17 2022 “生成器运行。</p>
 <p>使用 Ninja 生成器时，请根据要构建的平台使用相应的命令提示符。如果要为 x64 平台构建，请使用 x64 Native Tools Command Prompt for Visual Studio 2022 命令提示符配置和构建库。如果要为 x86 构建库，请使用 x86 Native Tools Command Prompt for Visual Studio 2022 命令提示符配置和构建库。要使用 Ninja 进行编译，请键入：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmake -S . -B build -G Ninja</span><br><span class="line">cmake --build build</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmake -S . -<span class="keyword">B </span><span class="keyword">build </span>-G Ninja</span><br><span class="line">cmake --<span class="keyword">build </span><span class="keyword">build</span></span><br></pre></td></tr></table></figure>
 
 <p>使用 “Visual Studio 17 2022 “生成器时，可以使用开发人员命令提示符（Developer Command Prompt for VS 2022）命令提示符来配置和构建库。默认情况下，生成的平台为 x64。你可以使用架构标志 <code>-A &lt;x64|Win32&gt;</code> 指定所需的平台，并使用 <code>--config &lt;Debug|Release&gt;</code> 指定所需的配置。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 在 Release 模式下生成并构建 x64 版本</span><br><span class="line">cmake -S . -B build -G &quot;Visual Studio 17 2022&quot; -A x64</span><br><span class="line">cmake --build build --config Release</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 Release 模式下生成并构建 x64 版本</span></span><br><span class="line">cmake -S . -<span class="keyword">B </span><span class="keyword">build </span>-G <span class="string">&quot;Visual Studio 17 2022&quot;</span> -A x64</span><br><span class="line">cmake --<span class="keyword">build </span><span class="keyword">build </span>--<span class="built_in">config</span> Release</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 在 Release 模式下生成并构建 x86 版本</span><br><span class="line">cmake -S . -B build -G &quot;Visual Studio 17 2022&quot; -A Win32</span><br><span class="line">cmake --build build --config Release</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 Release 模式下生成并构建 x86 版本</span></span><br><span class="line">cmake -S . -<span class="keyword">B </span><span class="keyword">build </span>-G <span class="string">&quot;Visual Studio 17 2022&quot;</span> -A Win32</span><br><span class="line">cmake --<span class="keyword">build </span><span class="keyword">build </span>--<span class="built_in">config</span> Release</span><br></pre></td></tr></table></figure>
 
 <p>在 Windows 中安装库也同样有效。不过，你不能使用 <code>sudo</code> 命令，而需要在具有管理员权限的命令提示符下运行 <code>cmake --install build</code>。默认情况下，文件将被安装到 <code>C:/Program Files (x86)/SEAL\</code>。</p>
 <p>Visual Studio 2022 支持基于 CMake 的项目。你可以选择菜单选项 <code>File/Open/Folder...</code>（文件&#x2F;打开&#x2F;文件夹…），然后导航然后导航到 Microsoft SEAL 资源库所在的文件夹。打开文件夹后，Visual Studio 将检测到这是一个基于 CMake 的项目，并启用菜单命令 <code>Project/CMake settings for SEAL</code>。这将打开 CMake 设置编辑器，它提供了一个用户界面，可以创建不同的配置和设置不同的 CMake 选项。</p>
 <p>构建完成后，可在 <code>build\lib\</code> 或 <code>build\lib\Release\</code> 中找到输出静态库 <code>seal-&lt;version&gt;.lib</code>。在与应用程序链接时，强烈建议使用 CMake，正如在《通过 CMake 与 Microsoft SEAL 链接》中所解释的那样。或者，你需要添加 <code>native\src\</code> （完整路径）和 <code>build\native\src\</code> 作为包含目录，以找到 Microsoft SEAL 头文件。</p>
 <h4 id="为-Android-和-iOS-构建"><a href="#为-Android-和-iOS-构建" class="headerlink" title="为 Android 和 iOS 构建"></a>为 Android 和 iOS 构建</h4><p>Microsoft SEAL 可针对 Android 和 iOS 进行编译。在源代码树的 android&#x2F; 目录下，你可以找到一个 Android Studio 项目，用来编译 Android 版库。</p>
 <p>要编译 iOS 版库，请使用以下脚本：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 配置 CMake</span><br><span class="line">cmake -S . -B build -GXcode -DSEAL_BUILD_SEAL_C=ON -DSEAL_BUILD_STATIC_SEAL_C=ON -DCMAKE_SYSTEM_NAME=iOS &quot;-DCMAKE_OSX_ARCHITECTURES=arm64;x86_64&quot; -C cmake/memset_s.iOS.cmake</span><br><span class="line"></span><br><span class="line"># 为 x86_64 构建 libseal*.a</span><br><span class="line">xcodebuild -project build/SEAL.xcodeproj -sdk iphonesimulator -arch x86_64 -configuration Release clean build</span><br><span class="line">mkdir -p build/lib/x86_64</span><br><span class="line">cp build/lib/Release/libseal*.a build/lib/x86_64</span><br><span class="line"></span><br><span class="line"># 为 arm64 构建 libseal*.a</span><br><span class="line">xcodebuild -project SEAL.xcodeproj -sdk iphoneos -arch arm64 -configuration Release clean build</span><br><span class="line">mkdir -p build/lib/arm64</span><br><span class="line">cp build/lib/Release/libseal*.a build/lib/arm64</span><br><span class="line"></span><br><span class="line"># 将 libseal-*.a 合并为 libseal.a，将 libsealc-*.a 合并为 libsealc.a</span><br><span class="line">lipo -create -output build/lib/libseal.a build/lib/x86_64/libseal-*.a arm64/libseal-*.a</span><br><span class="line">lipo -create -output build/lib/libsealc.a build/lib/x86_64/libsealc-*.a build/lib/arm64/libsealc-*.a</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置 CMake</span></span><br><span class="line">cmake -S . -B build -GXcode -DSEAL_BUILD_SEAL_C=ON -DSEAL_BUILD_STATIC_SEAL_C=ON -DCMAKE_SYSTEM_NAME=iOS <span class="string">&quot;-DCMAKE_OSX_ARCHITECTURES=arm64;x86_64&quot;</span> -C cmake/memset_s.iOS.cmake</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为 x86_64 构建 libseal*.a</span></span><br><span class="line">xcodebuild -project build/SEAL.xcodeproj -sdk iphonesimulator -<span class="built_in">arch</span> x86_64 -configuration Release clean build</span><br><span class="line"><span class="built_in">mkdir</span> -p build/lib/x86_64</span><br><span class="line"><span class="built_in">cp</span> build/lib/Release/libseal*.a build/lib/x86_64</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为 arm64 构建 libseal*.a</span></span><br><span class="line">xcodebuild -project SEAL.xcodeproj -sdk iphoneos -<span class="built_in">arch</span> arm64 -configuration Release clean build</span><br><span class="line"><span class="built_in">mkdir</span> -p build/lib/arm64</span><br><span class="line"><span class="built_in">cp</span> build/lib/Release/libseal*.a build/lib/arm64</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 libseal-*.a 合并为 libseal.a，将 libsealc-*.a 合并为 libsealc.a</span></span><br><span class="line">lipo -create -output build/lib/libseal.a build/lib/x86_64/libseal-*.a arm64/libseal-*.a</span><br><span class="line">lipo -create -output build/lib/libsealc.a build/lib/x86_64/libsealc-*.a build/lib/arm64/libsealc-*.a</span><br></pre></td></tr></table></figure>
 
 <p>通过这些方法生成的本地库只能通过以下章节中描述的 .NET 库调用。具体来说，它们不包含任何可用于 Java（Android）或 Objective C（iOS）的封装器。</p>
 <h4 id="为-WebAssembly-构建"><a href="#为-WebAssembly-构建" class="headerlink" title="为 WebAssembly 构建"></a>为 WebAssembly 构建</h4><p>Microsoft SEAL 可在 Windows、Linux 和 macOS 上使用 emscripten 编译 JavaScript 和 WebAssembly。为 Web 构建意味着 SEAL 可在任何客户端&#x2F;服务器环境中运行，如所有主流浏览器（如 Edge、Chrome、Firefox、Safari）和 NodeJS。</p>
 <p>为 WebAssembly 构建需要安装 emscripten 工具链。配置该工具链的最简单方法是克隆 emsdk，然后按照说明操作（附带针对特定系统的注释）。例如，在 Linux 和 macOS 上，在 emsdk repo 中运行以下命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 安装最新的工具链</span><br><span class="line">./emsdk install latest</span><br><span class="line">./emsdk activate latest</span><br><span class="line"># 获取环境源代码</span><br><span class="line">source ./emsdk_env.sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装最新的工具链</span></span><br><span class="line">./emsdk install latest</span><br><span class="line">./emsdk activate latest</span><br><span class="line"><span class="comment"># 获取环境源代码</span></span><br><span class="line"><span class="built_in">source</span> ./emsdk_env.sh</span><br></pre></td></tr></table></figure>
 
 <p>在 Windows 环境下，最好在 Visual Studio 的开发人员命令提示符下运行；并将 <code>./emsdk</code> 和 <code>source ./emsdk_env.sh</code> 分别替换为 <code>emsdk</code> 和 <code>emsdk_env.bat</code>。在其他环境下，必须在路径中添加 <code>cmake</code>，并在下面的配置步骤中指定 “Ninja “或 “MinGW Makefiles “作为生成器。</p>
 <p>在同一 shell 中，导航到 Microsoft SEAL 的根目录，运行以下命令来构建 WebAssembly：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"># 配置 CMake。发布版构建的示例标志</span><br><span class="line">emcmake cmake -S . -B build \</span><br><span class="line"> -dbuild_shared_libs=off \</span><br><span class="line"> -DCMAKE_BUILD_TYPE=Release \</span><br><span class="line"> -DCMAKE_CXX_FLAGS_RELEASE=&quot;-DNDEBUG -flto -O3&quot;\</span><br><span class="line"> -DCMAKE_C_FLAGS_RELEASE=&quot;-DNDEBUG -flto -O3&quot; \</span><br><span class="line"> -DSEAL_BUILD_BENCH=OFF \ # 可以为 WASM 构建基准。将其更改为 ON。</span><br><span class="line"> -dseal_build_examples=off （关闭</span><br><span class="line"> -dseal_build_tests=off （关闭</span><br><span class="line"> -dseal_use_cxx17=ON （关闭</span><br><span class="line"> -dseal_use_intrin=on （关闭</span><br><span class="line"> -dseal_use_msgsl=off （关闭</span><br><span class="line"> -dseal_use_zlib=on （关闭</span><br><span class="line"> # Make static library (shared).</span><br><span class="line"></span><br><span class="line"># 制作静态库（emscripten 不支持共享库）</span><br><span class="line">emmake make -C build -j</span><br><span class="line"></span><br><span class="line"># 构建 WebAssembly 模块</span><br><span class="line">emcc</span><br><span class="line"> -Wall \</span><br><span class="line"> -flto \</span><br><span class="line"> -O3 \</span><br><span class="line"> build/lib/libseal-4.1.a\</span><br><span class="line"> -bind（绑定</span><br><span class="line"> -o &quot;build/bin/seal_wasm.js&quot;\</span><br><span class="line"> -s WASM=1</span><br><span class="line"> -s ALLOW_MEMORY_GROWTH=1</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置 CMake。发布版构建的示例标志</span></span><br><span class="line">emcmake cmake -S . -B build \</span><br><span class="line"> <span class="attribute">-dbuild_shared_libs</span>=off \</span><br><span class="line"> <span class="attribute">-DCMAKE_BUILD_TYPE</span>=Release \</span><br><span class="line"> <span class="attribute">-DCMAKE_CXX_FLAGS_RELEASE</span>=<span class="string">&quot;-DNDEBUG -flto -O3&quot;</span>\</span><br><span class="line"> <span class="attribute">-DCMAKE_C_FLAGS_RELEASE</span>=<span class="string">&quot;-DNDEBUG -flto -O3&quot;</span> \</span><br><span class="line"> <span class="attribute">-DSEAL_BUILD_BENCH</span>=OFF \ # 可以为 WASM 构建基准。将其更改为 ON。</span><br><span class="line"> <span class="attribute">-dseal_build_examples</span>=off （关闭</span><br><span class="line"> <span class="attribute">-dseal_build_tests</span>=off （关闭</span><br><span class="line"> <span class="attribute">-dseal_use_cxx17</span>=ON （关闭</span><br><span class="line"> <span class="attribute">-dseal_use_intrin</span>=on （关闭</span><br><span class="line"> <span class="attribute">-dseal_use_msgsl</span>=off （关闭</span><br><span class="line"> <span class="attribute">-dseal_use_zlib</span>=on （关闭</span><br><span class="line"> # Make static library (shared).</span><br><span class="line"></span><br><span class="line"><span class="comment"># 制作静态库（emscripten 不支持共享库）</span></span><br><span class="line">emmake make -C build -j</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建 WebAssembly 模块</span></span><br><span class="line">emcc</span><br><span class="line"> -Wall \</span><br><span class="line"> -flto \</span><br><span class="line"> -O3 \</span><br><span class="line"> build/lib/libseal-4.1.a\</span><br><span class="line"> -bind（绑定</span><br><span class="line"> -o <span class="string">&quot;build/bin/seal_wasm.js&quot;</span>\</span><br><span class="line"> -s <span class="attribute">WASM</span>=1</span><br><span class="line"> -s <span class="attribute">ALLOW_MEMORY_GROWTH</span>=1</span><br></pre></td></tr></table></figure>
 
 <p>注意：在构建 WebAssembly 模块时，有许多标志需要考虑。有关高级构建标志，请参阅 settings.js 文件。</p>
 <p>构建将在 build&#x2F;bin&#x2F; 目录下生成两个输出文件：<code>seal_wasm.js</code> 和 <code>seal_wasm.wasm</code>。工件的文件大小非常小。这是因为优化标志执行了死代码消除（DCE），因为没有生成与 JavaScript 的绑定。要从 JavaScript 域调用 WebAssembly，就必须定义这些绑定；不过，Microsoft SEAL 目前不包含任何定义。构建标记 <code>--bind</code> 希望使用 embind 语法指定绑定。</p>
@@ -543,7 +545,7 @@
 </tr>
 </tbody></table>
 <p>像往常一样，这些选项可以通过 <code>-D</code> 标志传递给 CMake。例如，可以运行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake -S . -B build -DSEAL_BUILD_EXAMPLES=ON</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake -S . -<span class="keyword">B </span><span class="keyword">build </span>-DSEAL_BUILD_EXAMPLES=ON</span><br></pre></td></tr></table></figure>
 
 <p>来配置 Microsoft SEAL 静态库的发布版构建，并同时构建示例。</p>
 <h4 id="CMake-高级选项"><a href="#CMake-高级选项" class="headerlink" title="CMake 高级选项"></a>CMake 高级选项</h4><p>以下选项可用于 CMake 以进一步配置联编。大多数用户无需更改这些选项，这也是它们被标记为高级选项的原因。</p>
@@ -592,20 +594,20 @@
 </tr>
 </tbody></table>
 <h4 id="通过-CMake-链接-Microsoft-SEAL"><a href="#通过-CMake-链接-Microsoft-SEAL" class="headerlink" title="通过 CMake 链接 Microsoft SEAL"></a>通过 CMake 链接 Microsoft SEAL</h4><p>如果使用 CMake，将自己的应用程序和库与 Microsoft SEAL 进行链接非常简单。只需在 <code>CMakeLists.txt </code>中添加以下内容即可：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find_package(SEAL 4.1 REQUIRED)</span><br><span class="line">target_link_libraries(&lt;your target&gt; SEAL::seal)</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">find_package</span><span class="params">(SEAL <span class="number">4.1</span> REQUIRED)</span></span></span><br><span class="line"><span class="function"><span class="title">target_link_libraries</span><span class="params">(&lt;your target&gt; SEAL::seal)</span></span></span><br></pre></td></tr></table></figure>
 
 <p>如果 Microsoft SEAL 已全局安装，上述 find_package 命令很可能会自动找到该库。如果要与安装在本地的 Microsoft SEAL 进行链接，例如如上所述安装在 ~&#x2F;mylibs 中，则可能需要在配置应用程序时告诉 CMake 在何处查找 Microsoft SEAL，方法如下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &lt;包含 CMakeLists.txt 的目录&gt;</span><br><span class="line">cmake . -DCMAKE_PREFIX_PATH=~/mylibs</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> &lt;包含 CMakeLists.txt 的目录&gt;</span><br><span class="line">cmake . -DCMAKE_PREFIX_PATH=~/mylibs</span><br></pre></td></tr></table></figure>
 <p>如果 Microsoft SEAL 是使用 vcpkg 或 Homebrew 等软件包管理器安装的，请参阅它们的文档了解如何与已安装的库链接。例如，vcpkg 要求您在配置项目时指定 vcpkg CMake 工具链文件。</p>
 <h4 id="示例、测试和基准测试"><a href="#示例、测试和基准测试" class="headerlink" title="示例、测试和基准测试"></a>示例、测试和基准测试</h4><p>在构建 Microsoft SEAL 时，可以通过设置 <code>SEAL_BUILD_EXAMPLES=ON</code>、<code>SEAL_BUILD_TESTS=ON</code> 和 <code>SEAL_BUILD_BENCH=ON</code> 来构建示例、测试和基准；请参阅 CMake 基本选项。另外，也可以通过以下命令，将示例、测试和基准作为与 Microsoft SEAL（安装在 <code>~/mylibs</code>）链接的独立 CMake 项目来构建。如果该库是全局安装的，则省略 <code>SEAL_ROOT</code> 设置。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd native/&lt;examples|tests|bench&gt;</span><br><span class="line">cmake -S . -B build -DSEAL_ROOT=~/mylibs</span><br><span class="line">cmake --build build</span><br></pre></td></tr></table></figure>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> native/&lt;examples|tests|bench&gt;</span><br><span class="line">cmake -S . -B build -DSEAL_ROOT=~<span class="string">/mylibs</span></span><br><span class="line">cmake <span class="params">--build</span> build</span><br></pre></td></tr></table></figure>
 
 <p>默认情况下，基准会针对参数和基元向量运行，这可能会提供大量信息。要执行基准案例子集，请参阅 Google 基准 README。对于高级用户，可以使用自定义参数集覆盖 native&#x2F;bench&#x2F;bench.cpp 中的 <code>bm_parms_vec</code> 变量。</p>
 <p>注意：基准代码严格用于实验目的；它允许不安全的参数，不得在实际应用中使用。请勿将基准作为示例。</p>
 <h3 id="构建-NET-组件"><a href="#构建-NET-组件" class="headerlink" title="构建 .NET 组件"></a>构建 .NET 组件</h3><p>Microsoft SEAL 提供了一个 .NET 标准库，该库封装了 Microsoft SEAL 中的功能，可用于 .NET 开发。除非打算开发 Microsoft SEAL 或构建自定义 NuGet 包，否则强烈建议使用现有的 NuGet 包。在构建 .NET 组件之前，必须在构建 C++ 组件之后构建 C 封装库 SEAL_C。SEAL_C 库仅供 .NET 库使用，最终用户不得使用。</p>
 <p>注意：SEAL_C 和 .NET 库仅支持 64 位平台。</p>
 <h4 id="Windows、Linux-和-macOS"><a href="#Windows、Linux-和-macOS" class="headerlink" title="Windows、Linux 和 macOS"></a>Windows、Linux 和 macOS</h4><p>要编译 .NET 代码，您需要安装 .NET SDK（&gt;&#x3D; 6.0）。使用 CMake 构建 SEAL_C 库将生成 .NET 封装库、示例和单元测试的项目文件。在运行 .NET 应用程序时，SEAL_C 库必须可以被发现，例如，必须与可执行文件位于同一目录下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dotnet build build/dotnet/src --configuration &lt;Debug|Release&gt; # Build .NET wrapper library</span><br><span class="line">dotnet test build/dotnet/tests # Build and run .NET unit tests</span><br><span class="line">dotnet run -p build/dotnet/examples # Build and run .NET examples</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dotnet build build/dotnet/src --configuration &lt;Debug|Release&gt; <span class="comment"># Build .NET wrapper library</span></span><br><span class="line">dotnet <span class="built_in">test</span> build/dotnet/tests <span class="comment"># Build and run .NET unit tests</span></span><br><span class="line">dotnet run -p build/dotnet/examples <span class="comment"># Build and run .NET examples</span></span><br></pre></td></tr></table></figure>
 
 <p>你可以使用 <code>--configuration &lt;Debug|Release&gt;</code> 来运行 <code>Debug</code> 或 <code>Release</code> 示例和单元测试。你可以使用 <code>--verbosity detailed</code> 来打印正在运行的单元测试列表。</p>
 <p>在 Windows 上，还可以使用 Microsoft Visual Studio 2022 解决方案文件，例如，<code>out/build/x64-Debug/dotnet/SEALNet.sln</code> 来构建所有三个项目。</p>
@@ -678,7 +680,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ ./sealdemo              </span><br></pre></td></tr></table></figure>
 
 <p>成功 <code>return 0</code>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ echo $?            </span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~<span class="regexp">/OpenPano/</span>SEALDemo]</span><br><span class="line">└─<span class="variable">$ </span>echo <span class="variable">$?</span>            </span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="学习-SEAL-Example"><a href="#学习-SEAL-Example" class="headerlink" title="学习 SEAL Example"></a>学习 SEAL Example</h2><p>SEAL 自带一些例子程序，在 <code>SEAL/native/examples</code> 文件夹下：</p>
 <img src="/2023/12/30/SEAL/sealexamples-cpp.png" class>
@@ -805,18 +807,39 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">NaNm</span>
+    <span title="站点总字数">11k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">NaN:aN</span>
+    <span title="站点阅读时长">38 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">计算中...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("12/24/2023 17:00:00");//你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "Freesia's Blog 已存在 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
     </div>
   </footer>
 
@@ -840,6 +863,7 @@
 
 
 
+  <script src="/js/third-party/pace.js"></script>
 
 
   
