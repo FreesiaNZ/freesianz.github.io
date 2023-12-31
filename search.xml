@@ -609,30 +609,7 @@
 <td align="center">Performance Test</td>
 </tr>
 </tbody></table>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>无序列表</p>
-<ul>
-<li>1</li>
-<li>2</li>
-</ul>
-<ul>
-<li>1</li>
-<li>2</li>
-</ul>
-<ol>
-<li>1</li>
-<li>2</li>
-</ol>
-<p><a href="https://en.wikipedia.org/wiki/Microsoft_SEAL">Microsoft SEAL-Wikipedia</a></p>
-<p><a href="https://github.com/microsoft/SEAL">Microsoft SEAL-Github</a></p>
-<p><a href="https://blog.csdn.net/ldxcsdn/category_11390861.html">SEAL-普什清决-CSDN</a></p>
-<p><a href="https://blog.csdn.net/y2y2999/article/details/120401918">Microsoft SEAL 库的安装与配置-CSDN</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/83360110">微软同态加密库 SEAL 使用-知乎</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/625323032">Microsoft-SEAL 库示例运行及分析-知乎</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/581274964">Microsoft-SEAL 库学习记录-知乎</a></p>
-<p><a href="https://blog.csdn.net/qq_46000760/article/details/121079835">Linux 安装 Microsoft SEAL-CSDN</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/578128192">全同态加密运算库 Microsoft SEAL 安装过程-知乎</a></p>
-<p><a href="https://blog.csdn.net/weixin_42634645/article/details/123688311">make -j 卡死-CSDN</a></p>
-<p><a href="https://blog.csdn.net/qq_46000760/article/details/125005001#SnippetTab">ubuntu vcpkg-CSDN</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://en.wikipedia.org/wiki/Microsoft_SEAL">Microsoft SEAL-Wikipedia</a><br><a href="https://github.com/microsoft/SEAL">Microsoft SEAL-Github</a><br><a href="https://blog.csdn.net/ldxcsdn/category_11390861.html">SEAL-普什清决-CSDN</a><br><a href="https://blog.csdn.net/y2y2999/article/details/120401918">Microsoft SEAL 库的安装与配置-CSDN</a><br><a href="https://zhuanlan.zhihu.com/p/83360110">微软同态加密库 SEAL 使用-知乎</a><br><a href="https://zhuanlan.zhihu.com/p/625323032">Microsoft-SEAL 库示例运行及分析-知乎</a><br><a href="https://zhuanlan.zhihu.com/p/581274964">Microsoft-SEAL 库学习记录-知乎</a><br><a href="https://blog.csdn.net/qq_46000760/article/details/121079835">Linux 安装 Microsoft SEAL-CSDN</a><br><a href="https://zhuanlan.zhihu.com/p/578128192">全同态加密运算库 Microsoft SEAL 安装过程-知乎</a><br><a href="https://blog.csdn.net/weixin_42634645/article/details/123688311">make -j 卡死-CSDN</a><br><a href="https://blog.csdn.net/qq_46000760/article/details/125005001#SnippetTab">ubuntu vcpkg-CSDN</a></p>
 ]]></content>
       <categories>
         <category>Homomorphic Encryption</category>
