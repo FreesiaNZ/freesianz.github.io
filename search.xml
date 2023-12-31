@@ -689,11 +689,89 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d <span class="comment"># upload</span></span><br></pre></td></tr></table></figure>
 
 <p>访问 <a href="https://username.github.io/">https://username.github.io</a> 即可。</p>
-<h1 id="改主题"><a href="#改主题" class="headerlink" title="改主题"></a>改主题</h1><p>使用的是 NexT 主题，更多主题在 </p>
+<h1 id="主题美化"><a href="#主题美化" class="headerlink" title="主题美化"></a>主题美化</h1><p>本博客使用的是 NexT 主题，更多主题在 <a href="https://hexo.io/themes/">https://hexo.io/themes/</a> 。</p>
+<h2 id="下载-Next"><a href="#下载-Next" class="headerlink" title="下载 Next"></a>下载 Next</h2><p>使用 git clone 下载 Next，也可以通过 npm 安装：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> FileName</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
 
-<p>waiting…</p>
-<h1 id="写博客"><a href="#写博客" class="headerlink" title="写博客"></a>写博客</h1><p>执行下列命令来创建一篇新页面或者新文章：</p>
+<h2 id="配置-Hexo"><a href="#配置-Hexo" class="headerlink" title="配置 Hexo"></a>配置 Hexo</h2><p>Hexo 配置文件：<code>_config.yml</code>。</p>
+<blockquote>
+<p>配置时注意 <code>: </code> 冒号后的空格。</p>
+</blockquote>
+<p>配置可参考官方文档：<a href="https://hexo.io/docs/configuration.html%E3%80%82">https://hexo.io/docs/configuration.html。</a></p>
+<h3 id="Site-配置"><a href="#Site-配置" class="headerlink" title="Site 配置"></a>Site 配置</h3><table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>title</td>
+<td>您网站的标题</td>
+</tr>
+<tr>
+<td>subtitle</td>
+<td>您网站的副标题</td>
+</tr>
+<tr>
+<td>description</td>
+<td>您网站的描述</td>
+</tr>
+<tr>
+<td>keywords</td>
+<td>您网站的关键字。支持多个值。</td>
+</tr>
+<tr>
+<td>author</td>
+<td>你的名字</td>
+</tr>
+<tr>
+<td>language</td>
+<td>您网站的语言。</td>
+</tr>
+<tr>
+<td>timezone</td>
+<td>您网站的时区。</td>
+</tr>
+</tbody></table>
+<p>其中 <code>language</code> 要显示中文的话值为 <code>zh-CN</code>，<code>timezone</code> 的值必须为 <code>Asia/Shanghai</code>，与 Hexo 时区一致，否则 Hexo 运行失败。</p>
+<h3 id="URL-配置"><a href="#URL-配置" class="headerlink" title="URL 配置"></a>URL 配置</h3><table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>url</td>
+<td>您网站的 URL，必须以 <code>http://</code> 或 <code>https://</code> 开头。</td>
+</tr>
+</tbody></table>
+<p>例如我的 <code>url</code> 为：<a href="https://freesianz.github.io/">https://freesianz.github.io/</a> 。</p>
+<h3 id="Extensions-配置"><a href="#Extensions-配置" class="headerlink" title="Extensions 配置"></a>Extensions 配置</h3><table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>theme</td>
+<td>主题名称。</td>
+</tr>
+</tbody></table>
+<p>如果同样使用 NexT 主题，此处写 <code>next</code> 。</p>
+<h2 id="配置-Next"><a href="#配置-Next" class="headerlink" title="配置 Next"></a>配置 Next</h2><p>Next 配置文件：<code>_config.yml</code>。</p>
+<h3 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h3><p>waiting…</p>
+<h3 id="代码块主题更改"><a href="#代码块主题更改" class="headerlink" title="代码块主题更改"></a>代码块主题更改</h3><p>Next 配置文件：<code>_config.yml</code>。</p>
+<p>可用主题在 <a href="https://theme-next.js.org/highlight/">https://theme-next.js.org/highlight/</a> 查看。</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line">  <span class="attr">theme:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">github-dark</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">github-dark</span></span><br><span class="line">  <span class="attr">prism:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">prism</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">prism-dark</span></span><br><span class="line">  <span class="comment"># Add copy button on codeblock</span></span><br><span class="line">  <span class="attr">copy_button:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># Available values: default | flat | mac</span></span><br><span class="line">    <span class="attr">style:</span> <span class="string">default</span></span><br><span class="line">  <span class="comment"># Fold code block</span></span><br><span class="line">  <span class="attr">fold:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">height:</span> <span class="number">500</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="统计博客字数-估算阅读时间"><a href="#统计博客字数-估算阅读时间" class="headerlink" title="统计博客字数+估算阅读时间"></a>统计博客字数+估算阅读时间</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-word-counter</span><br></pre></td></tr></table></figure>
+
+<p>在 Hexo 的配置文件中加入下面的配置：</p>
+<p>symbols_count_time:<br>  symbols: true<br>  time: true<br>  total_symbols: true<br>  total_time: true<br>  exclude_codeblock: false<br>  awl: 3<br>  wpm: 200<br>  suffix: “mins.”<br>确认 NexT 的配置（默认就是这个不必添加修改，确认一下存在无误即可）：<br>symbols_count_time:<br>  separated_meta: true<br>  item_text_post: true<br>  item_text_total: false</p>
+<h1 id="撰写博客"><a href="#撰写博客" class="headerlink" title="撰写博客"></a>撰写博客</h1><p>执行下列命令来创建一篇新页面或者新文章：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
 
 <p>Hexo 有 3 种默认 layout：<code>post</code>、<code>page</code> 和 <code>draft</code>。</p>
@@ -720,42 +798,9 @@
 
 <p>执行 <code>hexo s</code> 即可打开 <a href="http://localhost:4000/">http://localhost:4000</a> 预览文章效果。 </p>
 <p>执行 <code>hexo d </code> 上传至 Github，等待片刻 <a href="https://username.github.io/">https://username.github.io</a> 查看博客。</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
-<li><p><a href="https://zhuanlan.zhihu.com/p/655349835">手把手教你使用Hexo+GitHub搭建个人博客并发布文章（附常见问题解决方法） - 知乎</a></p>
-</li>
-<li><p><a href="https://zhuanlan.zhihu.com/p/376366002">「第二期」 hexo+github搭建博客（发布文章） - 知乎</a></p>
-</li>
-<li><p><a href="https://www.yunyoujun.cn/posts/how-to-build-your-site#%E4%BD%BF%E7%94%A8-hexo-%E4%B8%BB%E9%A2%98">教你如何从零开始搭建一个属于自己的网站 - 云游君的小站</a></p>
-</li>
-<li><p><a href="https://zhuanlan.zhihu.com/p/251363116#:~:text=%E6%B5%8B%E8%AF%95hexo%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F%EF%BC%9A%20%24%20hexo%20new%20test%20%24%20hexo%20g,test%E8%A1%A8%E7%A4%BA%E6%96%B0%E5%BB%BA%E4%B8%80%E7%AF%87%E5%90%8D%E4%B8%BAtest%E7%9A%84%E5%8D%9A%E6%96%87%EF%BC%8Chexo%20g%E8%A1%A8%E7%A4%BA%E7%94%9F%E6%88%90%EF%BC%8C%E6%98%AFhexo%20generate%E7%9A%84%E7%AE%80%E5%86%99%EF%BC%8Chexo%20s%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8Chexo%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E6%98%AFhexo%20server%E7%9A%84%E7%AE%80%E5%86%99%E3%80%82%20%E6%88%90%E5%8A%9F%E5%90%8E%E4%BC%9A%E6%9C%89%E5%A6%82%E4%B8%8B%E6%8F%90%E7%A4%BA%EF%BC%8C%E8%BF%9B%E5%85%A5%20http%3A%2F%2Flocalhost%3A4000%20%E5%8D%B3%E5%8F%AF%E7%9C%8B%E5%88%B0%E5%88%9A%E5%88%9A%E7%94%9F%E6%88%90%E7%9A%84%E7%BD%91%E9%A1%B5%E3%80%82">hexo基本安装及配置 - 知乎</a></p>
-</li>
-<li><p><a href="https://shallingzhang.github.io/2022/08/31/Hexo-Next%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96%E5%8D%9A%E5%AE%A2/#%E9%85%8D%E7%BD%AE">Hexo+Next主题美化博客 | Shalling’s Blog</a></p>
-</li>
-<li><p><a href="https://www.cnblogs.com/mmzuo-798/p/10510225.html">Hexo server 报错 TypeError: Cannot read property ‘utcOffset’ of null解决方法 - front-gl - 博客园</a></p>
-</li>
-<li><p><a href="https://shallingzhang.github.io/2022/08/31/Hexo-Next%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96%E5%8D%9A%E5%AE%A2/">Hexo+Next主题美化博客 | Shalling’s Blog</a></p>
-</li>
-<li><p><a href="https://sspai.com/post/59568">hexo next 主题优化 | 这里可能有你遇到所有问题的答案 - 少数派</a></p>
-</li>
-<li><p><a href="https://www.cnblogs.com/factory/p/10567649.html">Hexo的next主题安装 - 浪里个小胖子 - 博客园</a></p>
-</li>
-<li><p><a href="http://home.ustc.edu.cn/~liujunyan/blog/hexo-next-theme-config/">Hexo博客NexT主题的安装使用 | Julian’s blog</a></p>
-</li>
-<li><p><a href="https://theme-next.js.org/pisces/">NexT - Theme for Hexo</a></p>
-</li>
-<li><p><a href="https://github.com/next-theme/hexo-theme-next?tab=readme-ov-file">next-theme&#x2F;hexo-theme-next: 🎉 Elegant and powerful theme for Hexo.</a></p>
-</li>
-<li><p><a href="https://hexo.io/themes/">Themes | Hexo</a></p>
-</li>
-<li><p><a href="https://juejin.cn/post/6924497164362055693">玩遍博客网站，我整理了 Hexo 及其流行的风格主题 - 掘金</a></p>
-</li>
-<li><p><a href="https://zhuanlan.zhihu.com/p/491537945">8 款颜值爆赞的 Hexo 主题推荐！快来搭建个人博客玩玩 | Github掘金计划 - 知乎</a></p>
-</li>
-<li><p><a href="https://hexo.io/zh-cn/docs/writing.html">写作 | Hexo</a></p>
-</li>
-<li><p><a href="https://zhuanlan.zhihu.com/p/132823826">使用hexo新建、编辑并预览文章 - 知乎</a></p>
-</li>
-</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://zhuanlan.zhihu.com/p/655349835">手把手教你使用 Hexo+GitHub 搭建个人博客并发布文章-知乎</a><br><a href="https://zhuanlan.zhihu.com/p/376366002">Hexo+Github 搭建博客-知乎</a><br><a href="https://www.yunyoujun.cn/posts/how-to-build-your-site#%E4%BD%BF%E7%94%A8-hexo-%E4%B8%BB%E9%A2%98">教你如何从零开始搭建一个属于自己的网站-云游君的小站</a><br><a href="https://zhuanlan.zhihu.com/p/251363116#:~:text=%E6%B5%8B%E8%AF%95hexo%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F%EF%BC%9A%20%24%20hexo%20new%20test%20%24%20hexo%20g,test%E8%A1%A8%E7%A4%BA%E6%96%B0%E5%BB%BA%E4%B8%80%E7%AF%87%E5%90%8D%E4%B8%BAtest%E7%9A%84%E5%8D%9A%E6%96%87%EF%BC%8Chexo%20g%E8%A1%A8%E7%A4%BA%E7%94%9F%E6%88%90%EF%BC%8C%E6%98%AFhexo%20generate%E7%9A%84%E7%AE%80%E5%86%99%EF%BC%8Chexo%20s%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8Chexo%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E6%98%AFhexo%20server%E7%9A%84%E7%AE%80%E5%86%99%E3%80%82%20%E6%88%90%E5%8A%9F%E5%90%8E%E4%BC%9A%E6%9C%89%E5%A6%82%E4%B8%8B%E6%8F%90%E7%A4%BA%EF%BC%8C%E8%BF%9B%E5%85%A5%20http%3A%2F%2Flocalhost%3A4000%20%E5%8D%B3%E5%8F%AF%E7%9C%8B%E5%88%B0%E5%88%9A%E5%88%9A%E7%94%9F%E6%88%90%E7%9A%84%E7%BD%91%E9%A1%B5%E3%80%82">hexo 基本安装及配置-知乎</a></p>
+<p><a href="https://shallingzhang.github.io/2022/08/31/Hexo-Next%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96%E5%8D%9A%E5%AE%A2/#%E9%85%8D%E7%BD%AE">Hexo+Next 主题美化博客-Shalling’s Blog</a><br><a href="https://www.cnblogs.com/mmzuo-798/p/10510225.html">Hexo server 报错 TypeError: Cannot read property ‘utcOffset’ of null 解决方法-博客园</a><br><a href="https://sspai.com/post/59568">hexo next 主题优化-少数派</a><br><a href="https://www.cnblogs.com/factory/p/10567649.html">Hexo 的 next主题安装-博客园</a><br><a href="http://home.ustc.edu.cn/~liujunyan/blog/hexo-next-theme-config/">Hexo 博客 NexT 主题的安装使用-Julian’s blog</a><br><a href="https://theme-next.js.org/pisces/">NexT-Theme for Hexo</a><br><a href="https://github.com/next-theme/hexo-theme-next?tab=readme-ov-file">NexT Theme-Github</a><br><a href="https://hexo.io/themes/">Themes | Hexo</a><br><a href="https://juejin.cn/post/6924497164362055693">玩遍博客网站，我整理了 Hexo 及其流行的风格主题-掘金</a><br><a href="https://zhuanlan.zhihu.com/p/491537945">8 款颜值爆赞的 Hexo 主题推荐！快来搭建个人博客玩玩-知乎</a></p>
+<p><a href="https://hexo.io/zh-cn/docs/writing.html">写作-Hexo</a><br><a href="https://zhuanlan.zhihu.com/p/132823826">使用 Hexo 新建、编辑并预览文章-知乎</a></p>
 ]]></content>
       <categories>
         <category>How to Start a Personal Blog</category>
@@ -766,11 +811,19 @@
       </tags>
   </entry>
   <entry>
-    <title>做研究是有趣的</title>
-    <url>/2023/12/30/%E5%81%9A%E7%A0%94%E7%A9%B6%E6%98%AF%E6%9C%89%E8%B6%A3%E7%9A%84/</url>
+    <title>《做研究是有趣的》</title>
+    <url>/2023/12/30/%E3%80%8A%E5%81%9A%E7%A0%94%E7%A9%B6%E6%98%AF%E6%9C%89%E8%B6%A3%E7%9A%84%E3%80%8B/</url>
     <content><![CDATA[]]></content>
       <categories>
         <category>Freesia&#39;s Reading Journal</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>《最后的假期》</title>
+    <url>/2023/12/31/%E3%80%8A%E6%9C%80%E5%90%8E%E7%9A%84%E5%81%87%E6%9C%9F%E3%80%8B/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Freesia&#39;s Cinematic Journal</category>
       </categories>
   </entry>
 </search>
