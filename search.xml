@@ -828,7 +828,10 @@
 
 <p>可使用 照片 或者 <a href="https://sspai.com/link?target=http://www.favicon-generator.org/">相关网站</a> 生成同尺寸图像。</p>
 <p>本网站图标由 <a href="https://www.logosc.cn/logo/">https://www.logosc.cn/logo/</a> 生成。</p>
-<h3 id="修改个人头像"><a href="#修改个人头像" class="headerlink" title="修改个人头像"></a>修改个人头像</h3><p>将原来的 <code>\themes\next\source\images</code> 中 <code>avatar.png</code> 覆盖为自己想要的头像即可。</p>
+<h3 id="修改个人头像"><a href="#修改个人头像" class="headerlink" title="修改个人头像"></a>修改个人头像</h3><p>将原来的 <code>\themes\next\source\images</code> 下的 <code>avatar.png</code> 覆盖为自己想要的头像即可。</p>
+<h3 id="图片圆角阴影"><a href="#图片圆角阴影" class="headerlink" title="图片圆角阴影"></a>图片圆角阴影</h3><p>在 <code>\themes\next\source\css\_common\components\post</code> 下的 <code>post-body.styl</code> 中修改：</p>
+<figure class="highlight styl"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">iframe</span>, <span class="selector-tag">img</span>, <span class="selector-tag">video</span>, embed &#123;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">0px</span> <span class="number">5px</span> <span class="number">10px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h1 id="撰写博客"><a href="#撰写博客" class="headerlink" title="撰写博客"></a>撰写博客</h1><p>执行下列命令来创建一篇新页面或者新文章：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
 
