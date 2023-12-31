@@ -503,17 +503,126 @@
 </tr>
 </tbody></table>
 <p>使用 Clang++ 编译的 Microsoft SEAL 比使用 GNU G++ 编译的运行时性能要好得多。</p>
-<h3 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ cmake --version                                                            </span><br><span class="line">cmake version 3.27.9</span><br><span class="line"></span><br><span class="line">CMake suite maintained and supported by Kitware (kitware.com/cmake).</span><br></pre></td></tr></table></figure>
+<h3 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ cmake --version                                                            </span><br><span class="line">cmake version 3.27.9</span><br><span class="line"></span><br><span class="line">CMake suite maintained and supported by Kitware (kitware.com/cmake).</span><br></pre></td></tr></table></figure>
 
-<h3 id="Clang"><a href="#Clang" class="headerlink" title="Clang++"></a>Clang++</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ clang++ --version</span><br><span class="line">Debian clang version 14.0.6-2</span><br><span class="line">Target: x86_64-pc-linux-gnu</span><br><span class="line">Thread model: posix</span><br><span class="line">InstalledDir: /usr/bin</span><br></pre></td></tr></table></figure>
+<h3 id="Clang"><a href="#Clang" class="headerlink" title="Clang++"></a>Clang++</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ clang++ --version</span><br><span class="line">Debian clang version 14.0.6-2</span><br><span class="line">Target: x86_64-pc-linux-gnu</span><br><span class="line">Thread model: posix</span><br><span class="line">InstalledDir: /usr/bin</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents]</span><br><span class="line">└─$ git clone https://github.com/microsoft/SEAL</span><br><span class="line">Cloning into &#x27;SEAL&#x27;...</span><br><span class="line">remote: Enumerating objects: 17111, done.</span><br><span class="line">remote: Counting objects: 100% (17111/17111), done.</span><br><span class="line">remote: Compressing objects: 100% (3938/3938), done.</span><br><span class="line">remote: Total 17111 (delta 13022), reused 16910 (delta 12959), pack-reused 0</span><br><span class="line">Receiving objects: 100% (17111/17111), 4.92 MiB | 6.70 MiB/s, done.</span><br><span class="line">Resolving deltas: 100% (13022/13022), done.</span><br></pre></td></tr></table></figure>
+<h2 id="安装-SEAL-库"><a href="#安装-SEAL-库" class="headerlink" title="安装 SEAL 库"></a>安装 SEAL 库</h2><h3 id="git-clone-SEAL-库"><a href="#git-clone-SEAL-库" class="headerlink" title="git clone SEAL 库"></a>git clone SEAL 库</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents]</span><br><span class="line">└─$ git <span class="built_in">clone</span> https://github.com/microsoft/SEAL</span><br><span class="line">Cloning into <span class="string">&#x27;SEAL&#x27;</span>...</span><br><span class="line">remote: Enumerating objects: 17111, <span class="keyword">done</span>.</span><br><span class="line">remote: Counting objects: 100% (17111/17111), <span class="keyword">done</span>.</span><br><span class="line">remote: Compressing objects: 100% (3938/3938), <span class="keyword">done</span>.</span><br><span class="line">remote: Total 17111 (delta 13022), reused 16910 (delta 12959), pack-reused 0</span><br><span class="line">Receiving objects: 100% (17111/17111), 4.92 MiB | 6.70 MiB/s, <span class="keyword">done</span>.</span><br><span class="line">Resolving deltas: 100% (13022/13022), <span class="keyword">done</span>.</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents]</span><br><span class="line">└─$ cd SEAL</span><br></pre></td></tr></table></figure>
+<h3 id="编译和安装-SEAL-库"><a href="#编译和安装-SEAL-库" class="headerlink" title="编译和安装 SEAL 库"></a>编译和安装 SEAL 库</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents]</span><br><span class="line">└─$ <span class="built_in">cd</span> SEAL</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/SEAL]</span><br><span class="line">└─$ cmake .</span><br><span class="line">-- Build type (CMAKE_BUILD_TYPE): Release</span><br><span class="line">-- The CXX compiler identification is GNU 12.2.0</span><br><span class="line">-- The C compiler identification is GNU 12.2.0</span><br><span class="line">-- Detecting CXX compiler ABI info</span><br><span class="line">-- Detecting CXX compiler ABI info - done</span><br><span class="line">-- Check for working CXX compiler: /usr/bin/c++ - skipped</span><br><span class="line">-- Detecting CXX compile features</span><br><span class="line">-- Detecting CXX compile features - done</span><br><span class="line">-- Detecting C compiler ABI info</span><br><span class="line">-- Detecting C compiler ABI info - done</span><br><span class="line">-- Check for working C compiler: /usr/bin/cc - skipped</span><br><span class="line">-- Detecting C compile features</span><br><span class="line">-- Detecting C compile features - done</span><br><span class="line">-- Microsoft SEAL debug mode: OFF</span><br><span class="line">-- SEAL_USE_CXX17: ON</span><br><span class="line">-- SEAL_BUILD_DEPS: ON</span><br><span class="line">-- SEAL_USE_MSGSL: ON</span><br><span class="line">-- Microsoft GSL: download ...</span><br><span class="line">-- SEAL_USE_ZLIB: ON</span><br><span class="line">-- ZLIB: download ...</span><br><span class="line">CMake Deprecation Warning at thirdparty/zlib-src/CMakeLists.txt:1 (cmake_minimum_required):</span><br><span class="line">  Compatibility with CMake &lt; 3.5 will be removed from a future version of</span><br><span class="line">  CMake.</span><br><span class="line"></span><br><span class="line">  Update the VERSION argument &lt;min&gt; value or use a ...&lt;max&gt; suffix to tell</span><br><span class="line">  CMake that the project does not need compatibility with older versions.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- Looking for sys/types.h</span><br><span class="line">-- Looking for sys/types.h - found</span><br><span class="line">-- Looking for stdint.h</span><br><span class="line">-- Looking for stdint.h - found</span><br><span class="line">-- Looking for stddef.h</span><br><span class="line">-- Looking for stddef.h - found</span><br><span class="line">-- Check size of off64_t</span><br><span class="line">-- Check size of off64_t - done</span><br><span class="line">-- Looking for fseeko</span><br><span class="line">-- Looking for fseeko - found</span><br><span class="line">-- Looking for unistd.h</span><br><span class="line">-- Looking for unistd.h - found</span><br><span class="line">-- Renaming</span><br><span class="line">--     /home/kali/Documents/SEAL/thirdparty/zlib-src/zconf.h</span><br><span class="line">-- to &#x27;zconf.h.included&#x27; because this file is included with zlib</span><br><span class="line">-- but CMake generates it automatically in the build directory.</span><br><span class="line">-- SEAL_USE_ZSTD: ON</span><br><span class="line">-- Zstandard: download ...</span><br><span class="line">CMake Deprecation Warning at thirdparty/zstd-src/build/cmake/CMakeLists.txt:10 (cmake_minimum_required):</span><br><span class="line">  Compatibility with CMake &lt; 3.5 will be removed from a future version of</span><br><span class="line">  CMake.</span><br><span class="line"></span><br><span class="line">  Update the VERSION argument &lt;min&gt; value or use a ...&lt;max&gt; suffix to tell</span><br><span class="line">  CMake that the project does not need compatibility with older versions.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- ZSTD VERSION: 1.5.2</span><br><span class="line">-- Performing Test CXX_FLAG_STD_CPLUSPLUS11</span><br><span class="line">-- Performing Test CXX_FLAG_STD_CPLUSPLUS11 - Success</span><br><span class="line">-- Performing Test C_FLAG_STD_C99</span><br><span class="line">-- Performing Test C_FLAG_STD_C99 - Success</span><br><span class="line">-- Performing Test C_FLAG_WALL</span><br><span class="line">-- Performing Test C_FLAG_WALL - Success</span><br><span class="line">-- Performing Test CXX_FLAG_WALL</span><br><span class="line">-- Performing Test CXX_FLAG_WALL - Success</span><br><span class="line">-- Performing Test C_FLAG_WEXTRA</span><br><span class="line">-- Performing Test C_FLAG_WEXTRA - Success</span><br><span class="line">-- Performing Test CXX_FLAG_WEXTRA</span><br><span class="line">-- Performing Test CXX_FLAG_WEXTRA - Success</span><br><span class="line">-- Performing Test C_FLAG_WUNDEF</span><br><span class="line">-- Performing Test C_FLAG_WUNDEF - Success</span><br><span class="line">-- Performing Test CXX_FLAG_WUNDEF</span><br><span class="line">-- Performing Test CXX_FLAG_WUNDEF - Success</span><br><span class="line">-- Performing Test C_FLAG_WSHADOW</span><br><span class="line">-- Performing Test C_FLAG_WSHADOW - Success</span><br><span class="line">-- Performing Test CXX_FLAG_WSHADOW</span><br><span class="line">-- Performing Test CXX_FLAG_WSHADOW - Success</span><br><span class="line">-- Performing Test C_FLAG_WCAST_ALIGN</span><br><span class="line">-- Performing Test C_FLAG_WCAST_ALIGN - Success</span><br><span class="line">-- Performing Test CXX_FLAG_WCAST_ALIGN</span><br><span class="line">-- Performing Test CXX_FLAG_WCAST_ALIGN - Success</span><br><span class="line">-- Performing Test C_FLAG_WCAST_QUAL</span><br><span class="line">-- Performing Test C_FLAG_WCAST_QUAL - Success</span><br><span class="line">-- Performing Test CXX_FLAG_WCAST_QUAL</span><br><span class="line">-- Performing Test CXX_FLAG_WCAST_QUAL - Success</span><br><span class="line">-- Performing Test C_FLAG_WSTRICT_PROTOTYPES</span><br><span class="line">-- Performing Test C_FLAG_WSTRICT_PROTOTYPES - Success</span><br><span class="line">-- CMAKE_INSTALL_PREFIX: /usr/local</span><br><span class="line">-- CMAKE_INSTALL_LIBDIR: lib</span><br><span class="line">-- ZSTD_LEGACY_SUPPORT not defined!</span><br><span class="line">-- ZSTD_MULTITHREAD_SUPPORT is disabled</span><br><span class="line">-- The ASM compiler identification is GNU</span><br><span class="line">-- Found assembler: /usr/bin/cc</span><br><span class="line">-- SEAL_USE_INTEL_HEXL: OFF</span><br><span class="line">-- BUILD_SHARED_LIBS: OFF</span><br><span class="line">-- SEAL_THROW_ON_TRANSPARENT_CIPHERTEXT: ON</span><br><span class="line">-- SEAL_USE_GAUSSIAN_NOISE: OFF</span><br><span class="line">-- SEAL_DEFAULT_PRNG: Blake2xb</span><br><span class="line">-- SEAL_AVOID_BRANCHING: OFF</span><br><span class="line">-- x86intrin.h - found</span><br><span class="line">-- SEAL_USE_INTRIN: ON</span><br><span class="line">-- Performing Test SEAL_MEMSET_S_FOUND</span><br><span class="line">-- Performing Test SEAL_MEMSET_S_FOUND - Failed</span><br><span class="line">-- Looking for explicit_bzero</span><br><span class="line">-- Looking for explicit_bzero - found</span><br><span class="line">-- Looking for explicit_memset</span><br><span class="line">-- Looking for explicit_memset - not found</span><br><span class="line">-- SEAL_USE_MEMSET_S: OFF</span><br><span class="line">-- SEAL_USE_EXPLICIT_BZERO: ON</span><br><span class="line">-- SEAL_USE_EXPLICIT_MEMSET: OFF</span><br><span class="line">-- Performing Test CMAKE_HAVE_LIBC_PTHREAD</span><br><span class="line">-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success</span><br><span class="line">-- Found Threads: TRUE  </span><br><span class="line">-- SEAL_BUILD_SEAL_C: OFF</span><br><span class="line">-- SEAL_BUILD_EXAMPLES: OFF</span><br><span class="line">-- SEAL_BUILD_TESTS: OFF</span><br><span class="line">-- SEAL_BUILD_BENCH: OFF</span><br><span class="line">-- Configuring done (20.2s)</span><br><span class="line">-- Generating done (0.0s)</span><br><span class="line">-- Build files have been written to: /home/kali/Documents/SEAL</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/SEAL]</span><br><span class="line">└─$ cmake .</span><br><span class="line">-- Build <span class="built_in">type</span> (CMAKE_BUILD_TYPE): Release</span><br><span class="line">-- The CXX compiler identification is GNU 12.2.0</span><br><span class="line">-- The C compiler identification is GNU 12.2.0</span><br><span class="line">...</span><br><span class="line">-- Configuring <span class="keyword">done</span> (20.2s)</span><br><span class="line">-- Generating <span class="keyword">done</span> (0.0s)</span><br><span class="line">-- Build files have been written to: /home/kali/Documents/SEAL</span><br></pre></td></tr></table></figure>
 
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://en.wikipedia.org/wiki/Microsoft_SEAL">Microsoft SEAL-Wikipedia</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/SEAL]</span><br><span class="line">└─$ make</span><br><span class="line">...</span><br><span class="line">[100%] Built target seal</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>make -j</code> 在 98% 的时候卡死，查询 <a href="https://blog.csdn.net/weixin_42634645/article/details/123688311">资料</a> 得知  <code>make -j</code> 会导致 CPU 高负载和桌面无响应，使用 <code>make</code> 成功。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/SEAL]</span><br><span class="line">└─$ sudo make install</span><br><span class="line">[sudo] password <span class="keyword">for</span> kali: </span><br><span class="line">[ 35%] Built target libzstd_static</span><br><span class="line">[ 54%] Built target zlibstatic</span><br><span class="line">[100%] Built target seal</span><br><span class="line">Install the project...</span><br><span class="line">...</span><br><span class="line">-- Installing: /usr/local/include/SEAL-4.1/seal/util/uintcore.h</span><br><span class="line">-- Installing: /usr/local/include/SEAL-4.1/seal/util/ztools.h</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试-SEAL-库是否成功安装"><a href="#测试-SEAL-库是否成功安装" class="headerlink" title="测试 SEAL 库是否成功安装"></a>测试 SEAL 库是否成功安装</h3><h4 id="新建文件夹"><a href="#新建文件夹" class="headerlink" title="新建文件夹"></a>新建文件夹</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/SEAL]</span><br><span class="line">└─$ <span class="built_in">cd</span> ~</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ <span class="built_in">mkdir</span> OpenPano</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ <span class="built_in">cd</span> OpenPano</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano]</span><br><span class="line">└─$ <span class="built_in">mkdir</span> SEALDemo</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano]</span><br><span class="line">└─$ <span class="built_in">cd</span> SEALDemo</span><br></pre></td></tr></table></figure>
+
+<h4 id="新建-sealdemo-cpp"><a href="#新建-sealdemo-cpp" class="headerlink" title="新建 sealdemo.cpp"></a>新建 sealdemo.cpp</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ vim sealdemo.cpp</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ <span class="built_in">cat</span> sealdemo.cpp </span><br><span class="line"><span class="comment">#include &quot;seal/seal.h&quot;</span></span><br><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">using namespace seal;</span><br><span class="line"></span><br><span class="line">int <span class="function"><span class="title">main</span></span>()&#123;</span><br><span class="line"></span><br><span class="line">        EncryptionParameters parms(scheme_type::bfv);</span><br><span class="line">        <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="新建-CMakeLists-txt"><a href="#新建-CMakeLists-txt" class="headerlink" title="新建 CMakeLists.txt"></a>新建 CMakeLists.txt</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ <span class="built_in">touch</span> CMakeLists.txt</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ vim CMakeLists.txt</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ <span class="built_in">cat</span> CMakeLists.txt</span><br><span class="line">cmake_minimum_required(VERSION 3.10)</span><br><span class="line">project SEALDemo(VERSION 1.0)</span><br><span class="line">add_executable(sealdemo sealdemo.cpp)</span><br><span class="line">add_compile_options(-std=c++17)</span><br><span class="line"></span><br><span class="line">find_package(SEAL)</span><br><span class="line">target_link_libraries(sealdemo SEAL::seal)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="编译和运行测试-demo"><a href="#编译和运行测试-demo" class="headerlink" title="编译和运行测试 demo"></a>编译和运行测试 demo</h4><p>使用 <code>cmake</code> 编译：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ cmake .                                                                    </span><br><span class="line">CMake Error at CMakeLists.txt:2:</span><br><span class="line">  Parse error.  Expected <span class="string">&quot;(&quot;</span>, got identifier with text <span class="string">&quot;SEALDemo&quot;</span>.</span><br></pre></td></tr></table></figure>
+
+<p>结果报错，根据报错信息判断是格式错误，查找 <a href="https://blog.csdn.net/qq_46000760/article/details/125005001#SnippetTab">资料</a> 更改第2行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ <span class="built_in">cat</span> CMakeLists.txt</span><br><span class="line">cmake_minimum_required(VERSION 3.10)</span><br><span class="line">project (SEALDemo VERSION 1.0)</span><br><span class="line">add_executable(sealdemo sealdemo.cpp)</span><br><span class="line">add_compile_options(-std=c++17)</span><br><span class="line"></span><br><span class="line">find_package(SEAL)</span><br><span class="line">target_link_libraries(sealdemo SEAL::seal)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>cmake</code> 编译成功：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ cmake .           </span><br><span class="line">-- The C compiler identification is GNU 12.2.0</span><br><span class="line">-- The CXX compiler identification is GNU 12.2.0</span><br><span class="line">...</span><br><span class="line">-- Configuring <span class="keyword">done</span> (1.3s)</span><br><span class="line">-- Generating <span class="keyword">done</span> (0.0s)</span><br><span class="line">-- Build files have been written to: /home/kali/OpenPano/SEALDemo</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>make</code> 生成可执行文件：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ make</span><br><span class="line">[ 50%] Building CXX object CMakeFiles/sealdemo.dir/sealdemo.cpp.o</span><br><span class="line">[100%] Linking CXX executable sealdemo</span><br><span class="line">[100%] Built target sealdemo</span><br></pre></td></tr></table></figure>
+
+<p>执行 <code>sealdemo</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ ./sealdemo              </span><br></pre></td></tr></table></figure>
+
+<p>成功 <code>return 0</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ echo $?            </span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+
+<h2 id="学习-SEAL-Example"><a href="#学习-SEAL-Example" class="headerlink" title="学习 SEAL Example"></a>学习 SEAL Example</h2><p>SEAL 自带一些例子程序，在 <code>SEAL/native/examples</code> 文件夹下：</p>
+<img src="/2023/12/30/SEAL/sealexamples-cpp.png" class>
+
+<p>运行 <code>cmake</code> 命令编译这些例子：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/SEAL]</span><br><span class="line">└─$ <span class="built_in">cd</span> native/examples</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/SEAL/native/examples]</span><br><span class="line">└─$ cmake -S . -B build -DSEAL_ROOT=~/mylibs</span><br><span class="line">-- The CXX compiler identification is GNU 12.2.0</span><br><span class="line">...</span><br><span class="line">-- Configuring <span class="keyword">done</span> (0.4s)</span><br><span class="line">-- Generating <span class="keyword">done</span> (0.0s)</span><br><span class="line">-- Build files have been written to: /home/kali/Documents/SEAL/native/examples/build</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/SEAL/native/examples]</span><br><span class="line">└─$ cmake --build build</span><br><span class="line">...</span><br><span class="line">[100%] Built target sealexamples</span><br></pre></td></tr></table></figure>
+
+<p>编译完成之后可在 <code>SEAL/native/examples/build/bin</code> 下面找到可执行二进制文件 <code>sealexample</code>：</p>
+<img src="/2023/12/30/SEAL/sealexamples-exe.png" class>
+
+<p>接着运行该二进制文件：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/SEAL/native/examples]</span><br><span class="line">└─$ <span class="built_in">cd</span> build/bin</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/…/native/examples/build/bin]</span><br><span class="line">└─$ ./sealexamples</span><br><span class="line">Microsoft SEAL version: 4.1.1</span><br><span class="line">+---------------------------------------------------------+</span><br><span class="line">| The following examples should be executed <span class="keyword">while</span> reading |</span><br><span class="line">| comments <span class="keyword">in</span> associated files <span class="keyword">in</span> native/examples/.       |</span><br><span class="line">+---------------------------------------------------------+</span><br><span class="line">| Examples                   | Source Files               |</span><br><span class="line">+----------------------------+----------------------------+</span><br><span class="line">| 1. BFV Basics              | 1_bfv_basics.cpp           |</span><br><span class="line">| 2. Encoders                | 2_encoders.cpp             |</span><br><span class="line">| 3. Levels                  | 3_levels.cpp               |</span><br><span class="line">| 4. BGV Basics              | 4_bgv_basics.cpp           |</span><br><span class="line">| 5. CKKS Basics             | 5_ckks_basics.cpp          |</span><br><span class="line">| 6. Rotation                | 6_rotation.cpp             |</span><br><span class="line">| 7. Serialization           | 7_serialization.cpp        |</span><br><span class="line">| 8. Performance Test        | 8_performance.cpp          |</span><br><span class="line">+----------------------------+----------------------------+</span><br><span class="line">[      0 MB] Total allocation from the memory pool</span><br><span class="line"></span><br><span class="line">&gt; Run example (1 ~ 8) or <span class="built_in">exit</span> (0): </span><br></pre></td></tr></table></figure>
+
+<p>终端显示如下界面：</p>
+<img src="/2023/12/30/SEAL/sealexamples-run.png" class>
+
+<p>总共有 8 个例子：</p>
+<table>
+<thead>
+<tr>
+<th align="center">SEAL Examples</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">BFV Basics</td>
+</tr>
+<tr>
+<td align="center">Encoders</td>
+</tr>
+<tr>
+<td align="center">Levels</td>
+</tr>
+<tr>
+<td align="center">BGV Basics</td>
+</tr>
+<tr>
+<td align="center">CKKS Basics</td>
+</tr>
+<tr>
+<td align="center">Rotation</td>
+</tr>
+<tr>
+<td align="center">Serialization</td>
+</tr>
+<tr>
+<td align="center">Performance Test</td>
+</tr>
+</tbody></table>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>无序列表</p>
+<ul>
+<li>1</li>
+<li>2</li>
+</ul>
+<ul>
+<li>1</li>
+<li>2</li>
+</ul>
+<ol>
+<li>1</li>
+<li>2</li>
+</ol>
+<p><a href="https://en.wikipedia.org/wiki/Microsoft_SEAL">Microsoft SEAL-Wikipedia</a></p>
 <p><a href="https://github.com/microsoft/SEAL">Microsoft SEAL-Github</a></p>
 <p><a href="https://blog.csdn.net/ldxcsdn/category_11390861.html">SEAL-普什清决-CSDN</a></p>
 <p><a href="https://blog.csdn.net/y2y2999/article/details/120401918">Microsoft SEAL 库的安装与配置-CSDN</a></p>
@@ -522,6 +631,8 @@
 <p><a href="https://zhuanlan.zhihu.com/p/581274964">Microsoft-SEAL 库学习记录-知乎</a></p>
 <p><a href="https://blog.csdn.net/qq_46000760/article/details/121079835">Linux 安装 Microsoft SEAL-CSDN</a></p>
 <p><a href="https://zhuanlan.zhihu.com/p/578128192">全同态加密运算库 Microsoft SEAL 安装过程-知乎</a></p>
+<p><a href="https://blog.csdn.net/weixin_42634645/article/details/123688311">make -j 卡死-CSDN</a></p>
+<p><a href="https://blog.csdn.net/qq_46000760/article/details/125005001#SnippetTab">ubuntu vcpkg-CSDN</a></p>
 ]]></content>
       <categories>
         <category>Homomorphic Encryption</category>
