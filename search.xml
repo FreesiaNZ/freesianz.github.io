@@ -963,17 +963,581 @@
     <url>/2024/01/02/VScode%20%E9%85%8D%E7%BD%AE%20Java%20%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<h1 id="安装扩展"><a href="#安装扩展" class="headerlink" title="安装扩展"></a>安装扩展</h1><img src="/2024/01/02/VScode%20%E9%85%8D%E7%BD%AE%20Java%20%E7%8E%AF%E5%A2%83/01-install-extension.png" class>
 
+<span id="more"></span>
+
 <h1 id="配置-JDK"><a href="#配置-JDK" class="headerlink" title="配置 JDK"></a>配置 JDK</h1><p>…</p>
 <h1 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h1><p>Ctrl + Shift + P 唤出命令窗口，输入 Java: Create Java Project，选择 No Build Tool。</p>
+<img src="/2024/01/02/VScode%20%E9%85%8D%E7%BD%AE%20Java%20%E7%8E%AF%E5%A2%83/02-create-project.png" class>
+
+<img src="/2024/01/02/VScode%20%E9%85%8D%E7%BD%AE%20Java%20%E7%8E%AF%E5%A2%83/03-choose-nobuildtool.png" class>
+
+
 <p>选择项目地址，输入项目名称。注意项目地址和项目名称中不能包含中文。</p>
 <p>项目创建成功，打开项目中 src 中的 App.java 文件，等待出现 Run|Debug。</p>
-<p>出现 Run|Debug 后点击 Run，输出 Hellow Word！代表成功。</p>
-]]></content>
+<img src="/2024/01/02/VScode%20%E9%85%8D%E7%BD%AE%20Java%20%E7%8E%AF%E5%A2%83/04-wait-run.png" class>
+
+<p>出现 Run|Debug 后点击 Run，输出 Hellow Word! 代表成功。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Configuration</category>
       </categories>
       <tags>
         <tag>VScode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS-7 的下载、安装和配置</title>
+    <url>/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="映像下载"><a href="#映像下载" class="headerlink" title="映像下载"></a>映像下载</h1><p>首先进入 CentOS 的<a href="https://mirrors.bupt.edu.cn/centos/7.9.2009/isos/x86_64/">镜像下载站</a>，然后下载标准版。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/01-centos7-mirrors.png" class>
+
+<p>下载完毕，记住 iso 文件所在位置。</p>
+<span id="more"></span>
+
+<h1 id="虚拟机创建"><a href="#虚拟机创建" class="headerlink" title="虚拟机创建"></a>虚拟机创建</h1><p>打开 VMware Workstation，然后点击 <code>创建虚拟机</code> 。</p>
+<p>选择 <code>自定义安装</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/02-create-vm.png" class>
+
+<p>默认，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/03-hardware-function.png" class>
+
+<p>选择 <code>稍候安装操作系统</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/04-install-os.png" class>
+
+<p>选择 <code>Linux(L)</code> ，选择 <code>CentOS 7 64位</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/05-choose-os.png" class>
+
+<p>设置 <code>虚拟机名称</code> ，选择 <code>位置</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/06-name-and-location.png" class>
+
+<p>选择 <code>指定处理器数量</code> ，数量越多，性能越好，根据需要分配。然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/07-cpu-core.png" class>
+
+<p>根据需要 <code>分配内存</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/08-memory.png" class>
+
+<p>网络连接选择 NAT，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/09-network.png" class>
+
+<p>默认，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/10-SCSI.png" class>
+
+<p>默认，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/11-disk.png" class>
+
+<p>选择 <code>创建新虚拟硬盘</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/12-create-new-disk.png" class>
+
+<p>指定 <code>磁盘容量</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/13-max-disk.png" class>
+
+<p>指定 <code>磁盘文件存储</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/14-disk-location.png" class>
+
+<p>点击 <code>完成</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/15-complete.png" class>
+
+<h1 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h1><p>点击 <code>编辑虚拟机设置</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/16-edit-setting.png" class>
+
+<p>点击 <code>硬件</code> 下的 <code>CD/DVD</code> ，选择 <code>使用ISO映像文件</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/17-choose-iso.png" class>
+
+<p>点击 <code>开启此虚拟机</code> ，选择 <code>Install CentOS 7</code>，然后 <code>ENTER</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/18-start-vm.png" class>
+
+<h2 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h2><p>选择语言为 <code>中文</code> ，然后点击 <code>继续</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/19-chinese.png" class>
+
+<h2 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h2><p>点击 <code>软件安装</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/20-software.png" class>
+
+<p>选择 <code>GNOME</code> 桌面，附加选项勾选 <code>GNOME 应用程序</code> , <code>传统 X Windows 系统的兼容性</code> 和 <code>开发工具</code> ，然后点击 <code>完成</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/21-desk.png" class>
+
+<h2 id="安装位置"><a href="#安装位置" class="headerlink" title="安装位置"></a>安装位置</h2><p>点击 <code>安装位置</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/22-install-location.png" class>
+
+<p>选择 <code>我要配置分区</code> ，然后点击 <code>完成</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/23-configuration-sector.png" class>
+
+<p>设置 <code>/boot</code> ，点击 <code>+</code> 添加挂载点，挂载点选择 <code>/boot</code> ，期待容量设为 <code>1024</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/24-choose-boot.png" class>
+
+<p>设置 <code>/swap</code> ，点击 <code>+</code> 添加挂载点，挂载点选择 <code>/swap</code> ，期待容量设为 <code>2048</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/25-choose-swap.png" class>
+
+<p>设置 <code>/</code> ，点击 <code>+</code> 添加挂载点，挂载点选择 <code>/</code> ，期待容量设为 <code>17408</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/26-choose-root.png" class>
+
+<p>点击 <code>完成</code> ，点击 <code>接收更改</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/27-accept-alter.png" class>
+
+<h2 id="网络和主机名"><a href="#网络和主机名" class="headerlink" title="网络和主机名"></a>网络和主机名</h2><p>点击 <code>网络和主机名</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/28-network.png" class>
+
+<p><code>打开</code> 以太网，设置 <code>主机名</code> ，点击 <code>应用</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/29-set-network.png" class>
+
+<p>点击 <code>开始安装</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/30-install.png" class>
+
+<h2 id="ROOT-密码"><a href="#ROOT-密码" class="headerlink" title="ROOT 密码"></a>ROOT 密码</h2><p>点击 <code>ROOT 密码</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/31-password.png" class>
+
+<p>设置 <code>Root 密码</code> 以及 <code>确认</code> ，点击 <code>完成</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/32-set-password.png" class>
+
+<h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><p>点击 <code>创建用户</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/33-user.png" class>
+
+<p>设置 <code>用户名</code> 以及 <code>密码</code> ，点击 <code>完成</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/34-set-user.png" class>
+
+<h2 id="安装重启"><a href="#安装重启" class="headerlink" title="安装重启"></a>安装重启</h2><p>熬过漫长的等待。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/35-wait.png" class>
+
+<p>安装完成后，点击 <code>重启</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/36-reboot.png" class>
+
+<h2 id="接收许可"><a href="#接收许可" class="headerlink" title="接收许可"></a>接收许可</h2><p>点击 <code>LICENSE INFORMATION</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/37-license.png" class>
+
+<p>接受许可，点击 <code>完成</code> 后，点击 <code>完成配置</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/38-complete.png" class>
+
+
+<h2 id="登录账户"><a href="#登录账户" class="headerlink" title="登录账户"></a>登录账户</h2><p>点击 <code>未列出</code> ，使用 root 登录。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/39-root-login.png" class>
+
+<p>输入 <code>用户名</code> 和 <code>密码</code> 完成登录。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/40-username.png" class>
+
+<h2 id="欢迎"><a href="#欢迎" class="headerlink" title="欢迎"></a>欢迎</h2><p>出现桌面，欢迎、输入页选择 <code>汉语</code> 。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/41-chinese.png" class>
+
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/42-input.png" class>
+
+<p>隐私页 <code>关闭 </code>位置服务。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/43-location.png" class>
+
+<p>跳过在线帐号页。</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/44-skip.png" class>
+
+<p>至此，CentOS-7 下载、安装和配置完毕！</p>
+<img src="/2024/01/03/CentOS-7%20%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/45-centos-7.png" class>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://blog.csdn.net/m0_51545690/article/details/123238360">超详细的 CentOS7 的下载安装配置教程-CSDN</a></p>
+]]></content>
+      <categories>
+        <category>Installation</category>
+      </categories>
+      <tags>
+        <tag>CentOS-7</tag>
+        <tag>Virtual Machine</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS-7 安装 docker</title>
+    <url>/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20docker/</url>
+    <content><![CDATA[<h1 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h1><blockquote>
+<p>使用阿里云 yum 源安装 Docker-CE 。</p>
+</blockquote>
+<p>确保 NAT 网络，可以 ping 通百度。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping baidu.com</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20docker/01-ping-baidu.png" class>
+
+<span id="more"></span>
+
+<p>更换为阿里云 yum 源：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/yum.repos.d</span><br><span class="line">find / -name  <span class="string">&quot;*.repo&quot;</span> -<span class="built_in">exec</span> <span class="built_in">mv</span> &#123;&#125; &#123;&#125;.bak \;</span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20docker/02-command-1.png" class>
+
+<p>清除 yum 缓存，安装 yum 工具包：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum clean all</span><br><span class="line">yum -y install yum-utils</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20docker/03-command-2.png" class>
+
+<p>配置 yum 仓库：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20docker/04-command-3.png" class>
+
+<p>列出 docker-ce 版本：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum list docker-ce --showduplicates</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20docker/05-list-docker-version.png" class>
+
+<p>安装 docker-ce ：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install docker-ce -y</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20docker/06-install-docker.png" class>
+
+<p>启动 docker 服务：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl start docker.service</span><br></pre></td></tr></table></figure>
+
+<p>挂载 &#x2F;run&#x2F;docker.sock：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ll /run/docker.sock</span><br></pre></td></tr></table></figure>
+
+<p>创建用户 docker 到 docker 用户组：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">usermod -aG docker docker</span><br></pre></td></tr></table></figure>
+
+<p>配置 docker 镜像加速器：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /etc/docker</span><br><span class="line"><span class="built_in">tee</span> /etc/docker/daemon.json &lt;&lt;-<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://uvbz951q.mirror.aliyuncs.com&quot;</span>]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<p>启动 docker 服务：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br><span class="line">systemctl <span class="built_in">enable</span>  docker</span><br><span class="line">docker info</span><br></pre></td></tr></table></figure>
+
+<h1 id="命令以及应用"><a href="#命令以及应用" class="headerlink" title="命令以及应用"></a>命令以及应用</h1><h2 id="docker-命令"><a href="#docker-命令" class="headerlink" title="docker 命令"></a>docker 命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker search nginx   <span class="comment">#搜索和nginx相关的镜像</span></span><br><span class="line">docker pull nginx   <span class="comment">#拉取镜像默认版本（下载）</span></span><br><span class="line">docker pull nginx:1.13.2    <span class="comment">#拉取镜像指定版本</span></span><br><span class="line">docker run nginx       <span class="comment">#运行一个镜像(如果启动后不做任何操作，容器就会断开连接)</span></span><br><span class="line">docker run -it ubuntu  /bin/bash    <span class="comment">#获取终端/bin/bash 打开容器（让容器运行在前台）</span></span><br><span class="line">docker run -itd httpd  /bin/bash     <span class="comment">#在后台运行新镜像</span></span><br><span class="line">docker attach  <span class="built_in">id</span>号       <span class="comment">#将容器调到前台，进入up状态的容器内部</span></span><br><span class="line">docker start  <span class="built_in">id</span>号         <span class="comment">#启动停止的容器（必须在docker ps 中有）</span></span><br><span class="line">docker logs  ID号         <span class="comment">#查看输出日志</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">exit</span>            //退出容器，容器是关闭状态</span><br><span class="line">ctrl +p +q  //退出容器，并且容器是up状态</span><br><span class="line"><span class="built_in">read</span> escape  sequence  //退出容器，并且容器是up状态</span><br><span class="line"> </span><br><span class="line">docker ps -a          <span class="comment">#列出所有的容器</span></span><br><span class="line">docker ps             <span class="comment">#列出所有运行中的容器</span></span><br><span class="line">docker container <span class="built_in">ls</span>   <span class="comment">#列出所有运行中的容器</span></span><br><span class="line">docker ps -qa           <span class="comment">#仅输出所有容器的id号</span></span><br><span class="line">docker <span class="built_in">rm</span>  ID号        <span class="comment">#删除指定容器</span></span><br><span class="line">docker <span class="built_in">rm</span> -f             <span class="comment">#删除正在运行的容器</span></span><br><span class="line">docker <span class="built_in">rm</span> -f `docker ps -qa`     <span class="comment">#删除所有的容器</span></span><br><span class="line"> </span><br><span class="line">docker images          <span class="comment">#列出所有镜像</span></span><br><span class="line">docker rmi ID号        <span class="comment">#删除镜像</span></span><br><span class="line">docker save -o busy.tar busybox    <span class="comment">#备份镜像</span></span><br><span class="line">docker load -i busy.tar            <span class="comment">#导入镜像</span></span><br><span class="line"> </span><br><span class="line">容器意外中断：</span><br><span class="line">docker run --restart always       <span class="comment">#不管什么原因停止，全部自动重启</span></span><br><span class="line">docker run --<span class="built_in">help</span>                     <span class="comment">#查看帮助</span></span><br><span class="line">man docker run                <span class="comment">#查看详细帮助</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="运行命令实例"><a href="#运行命令实例" class="headerlink" title="运行命令实例"></a>运行命令实例</h2><p>eg：在容器内运行应用程序</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run ubuntu:latest /bin/echo <span class="string">&quot;Hello World&quot;</span>  运行一个容器并执行命令</span><br><span class="line">    （一个容器只运行一个服务，运行完就被杀死了）</span><br><span class="line">docker ps -a   查看</span><br></pre></td></tr></table></figure>
+
+<p>eg：运行交互式容器：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -i -t ubuntu:latest /bin/bash</span><br><span class="line">    -t：在新容器内指定一个伪终端或终端。</span><br><span class="line">    -i：允许你对容器内的标准输入 (STDIN) 进行交互。</span><br></pre></td></tr></table></figure>
+
+<p>eg：让容器运行在后台<br>    -d   在后台运行<br>    -c   指定命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d ubuntu:latest /bin/bash -c <span class="string">&quot;while true; do echo &quot;</span>666<span class="string">&quot;; sleep 1; done&quot;</span></span><br><span class="line">docker run -d  /bin/bash -c <span class="string">&quot;for i in &#123;1..100&#125;; do echo <span class="variable">$i</span>;sleep 1;done&quot;</span></span><br><span class="line">docker logs  ID号   <span class="comment">#查看输出日志</span></span><br><span class="line">docker logs -f -t --<span class="built_in">tail</span>=100 myredis    <span class="comment">#查看最后100行日志，-f：跟踪实时日志 -t:显示时间戳</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="运行容器用到的参数"><a href="#运行容器用到的参数" class="headerlink" title="运行容器用到的参数"></a>运行容器用到的参数</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run --name redis -p 6379:6379 -u root --privileged=<span class="literal">true</span> \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-itd redis</span><br></pre></td></tr></table></figure>
+
+<p>-u root      #指定以root身份运行<br>–privileged&#x3D;true    #让container内的root拥有真正的root权限<br>-v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime:ro　　#修改容器的时间，与宿主机一致</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.cnblogs.com/cfzy/p/14633166.html">CentOS7 安装搭建 docker 环境-博客园</a></p>
+]]></content>
+      <categories>
+        <category>Installation</category>
+      </categories>
+      <tags>
+        <tag>CentOS-7</tag>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS-7 安装 nginx</title>
+    <url>/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20nginx/</url>
+    <content><![CDATA[<h1 id="安装所需环境"><a href="#安装所需环境" class="headerlink" title="安装所需环境"></a>安装所需环境</h1><p>查看 <code>C++</code> 环境是否安装，未安装使用命令安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -v</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20nginx/01-gcc.png" class>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install gcc-c++</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>查看 <code>zlib</code> 是否安装，未安装使用命令安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> /usr/lib64/pkgconfig/zlib.pc</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20nginx/02-zlib.png" class>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install -y zlib zlib-devel</span><br></pre></td></tr></table></figure>
+
+<p>查看 <code>pcre</code> 是否安装，未安装使用命令安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpm -qa pcre</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20nginx/03-pcre.png" class>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install -y pcre pcre-devel</span><br></pre></td></tr></table></figure>
+
+<p>查看 <code>openssl</code> 是否安装，未安装使用命令安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpm -qa | grep openssl</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20nginx/04-openssl.png" class>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install -y pcre pcre-devel</span><br></pre></td></tr></table></figure>
+
+<h1 id="下载和配置"><a href="#下载和配置" class="headerlink" title="下载和配置"></a>下载和配置</h1><p>查看 <code>wget</code> 是否安装，未安装使用命令安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpm -qa | grep wget</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20nginx/05-wget.png" class>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install wget</span><br></pre></td></tr></table></figure>
+
+<p>新建 <code>nginx</code> 文件夹：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local</span><br><span class="line"><span class="built_in">mkdir</span> nginx</span><br><span class="line"><span class="built_in">cd</span> nginx</span><br></pre></td></tr></table></figure>
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20nginx/06-folder.png" class>
+
+<p>使用 wget 命令下载 <code>nginx</code> ：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://nginx.org/download/nginx-1.21.6.tar.gz</span><br></pre></td></tr></table></figure>
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20nginx/07-nginx.png" class>
+
+<p>解压 nginx-1.21.6.tar.gz 并进入解压后的目录：</p>
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20nginx/08-tar.png" class>
+
+<p>在解压后的目录进行配置：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module</span><br></pre></td></tr></table></figure>
+
+<p>出现报错，查找解决方法：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./configure: error: the HTTP rewrite module requires the PCRE library.</span><br><span class="line">You can either <span class="built_in">disable</span> the module by using --without-http_rewrite_module</span><br><span class="line">option, or install the PCRE library into the system, or build the PCRE library</span><br><span class="line">statically from the <span class="built_in">source</span> with nginx by using --with-pcre=&lt;path&gt; option.</span><br></pre></td></tr></table></figure>
+
+<p>缺少安装包，可能是之前的环境出现问题，重新安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum -y install pcre</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20nginx/09-no-problem.png" class>
+
+<p>没有问题，根据提示添加 –without-http_rewrite_module ：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --without-http_rewrite_module</span><br></pre></td></tr></table></figure>
+
+<p>出现报错，查找解决方法：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./configure: error: SSL modules require the OpenSSL library.</span><br><span class="line">You can either <span class="keyword">do</span> not <span class="built_in">enable</span> the modules, or install the OpenSSL library</span><br><span class="line">into the system, or build the OpenSSL library statically from the <span class="built_in">source</span></span><br><span class="line">with nginx by using --with-openssl=&lt;path&gt; option.</span><br></pre></td></tr></table></figure>
+
+<p>缺少安装包，可能是之前的环境出现问题，重新安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum -y install openssl openssl-devel</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20nginx/10-update.png" class>
+
+<p>更新完毕，再次执行配置命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --without-http_rewrite_module</span><br></pre></td></tr></table></figure>
+
+<p>配置成功！</p>
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20nginx/11-success.png" class>
+
+<h1 id="编译和安装"><a href="#编译和安装" class="headerlink" title="编译和安装"></a>编译和安装</h1><p>在解压后的目录进行编译和安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20nginx/12-make.png" class>
+
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20nginx/13-make-install.png" class>
+
+<h1 id="启动和关闭"><a href="#启动和关闭" class="headerlink" title="启动和关闭"></a>启动和关闭</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/nginx/sbin</span><br><span class="line">./nginx</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20nginx/14-start.png" class>
+
+<p>访问 <a href="http://localhost/">http://localhost:80</a> ，可以看到欢迎页面。</p>
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20nginx/15-view.png" class>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/nginx/sbin</span><br><span class="line">./nginx -s stop</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20nginx/16-stop.png" class>
+
+<p>访问 <a href="http://localhost/">http://localhost:80</a> ，连接失败。</p>
+<img src="/2024/01/03/CentOS-7%20%E5%AE%89%E8%A3%85%20nginx/17-view.png" class>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://blog.csdn.net/qq_45316925/article/details/128957728">CentOs7 安装 nginx【详细】-CSDN</a></p>
+]]></content>
+      <categories>
+        <category>Installation</category>
+      </categories>
+      <tags>
+        <tag>CentOS-7</tag>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于 Docker 构建 Prometheus + Grafana 监控集群系统</title>
+    <url>/2024/01/03/%E5%9F%BA%E4%BA%8E%20Docker%20%E6%9E%84%E5%BB%BA%20Prometheus%20+%20Grafana%20%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><table>
+<thead>
+<tr>
+<th>VM</th>
+<th>Environment</th>
+<th>IP</th>
+<th>Service</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>server</td>
+<td>docker</td>
+<td>192.168.45.133</td>
+<td>Prometheus Server, Node Exporter, cAdvisor, Grafana</td>
+</tr>
+<tr>
+<td>client</td>
+<td>docker</td>
+<td>192.168.45.132</td>
+<td>Node Exporter、cAdvisor</td>
+</tr>
+<tr>
+<td>nginx</td>
+<td>nginx</td>
+<td>192.168.45.134</td>
+<td>&#x2F;</td>
+</tr>
+</tbody></table>
+<h1 id="部署-node-exporter"><a href="#部署-node-exporter" class="headerlink" title="部署 node_exporter"></a>部署 node_exporter</h1><blockquote>
+<p>server、client.</p>
+</blockquote>
+<h2 id="server"><a href="#server" class="headerlink" title="server"></a>server</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull prom/node-exporter</span><br><span class="line">docker run --name=node-exporter -p 9100:9100 -itd prom/node-exporter</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8E%20Docker%20%E6%9E%84%E5%BB%BA%20Prometheus%20+%20Grafana%20%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/01-node.png" class>
+
+<p>访问：<a href="http://192.168.45.133:9100/">http://192.168.45.133:9100</a> 查看节点信息。</p>
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8E%20Docker%20%E6%9E%84%E5%BB%BA%20Prometheus%20+%20Grafana%20%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/02-view.png" class>
+
+<h2 id="client"><a href="#client" class="headerlink" title="client"></a>client</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull prom/node-exporter</span><br><span class="line">docker run --name=node-exporter -p 9100:9100 -itd prom/node-exporter</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8E%20Docker%20%E6%9E%84%E5%BB%BA%20Prometheus%20+%20Grafana%20%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/03-node.png" class>
+
+<p>访问：<a href="http://192.168.45.132:9100/">http://192.168.45.132:9100</a> 查看节点信息。</p>
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8E%20Docker%20%E6%9E%84%E5%BB%BA%20Prometheus%20+%20Grafana%20%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/04-view.png" class>
+
+<h1 id="安装-prometheus"><a href="#安装-prometheus" class="headerlink" title="安装 prometheus"></a>安装 prometheus</h1><blockquote>
+<p>server.</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /server/docker/prometheus/&#123;server,client&#125;</span><br><span class="line"><span class="built_in">touch</span> /server/docker/prometheus/server/rules.yml</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8E%20Docker%20%E6%9E%84%E5%BB%BA%20Prometheus%20+%20Grafana%20%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/05-add.png" class>
+
+<p>编辑 prometheus.yml 文件，添加客户端信息：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim /server/docker/prometheus/server/prometheus.yml</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8E%20Docker%20%E6%9E%84%E5%BB%BA%20Prometheus%20+%20Grafana%20%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/05-add.png" class>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">global:</span><br><span class="line">  scrape_interval:</span><br><span class="line">  external_labels:</span><br><span class="line">    monitor: <span class="string">&#x27;codelab-monitor&#x27;</span></span><br><span class="line">scrape_configs:</span><br><span class="line">  - job_name: <span class="string">&#x27;prometheus&#x27;</span></span><br><span class="line">    scrape_interval: 5s</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [<span class="string">&#x27;localhost:9090&#x27;</span>,<span class="string">&#x27;192.168.45.133:9100&#x27;</span>]</span><br><span class="line">  - job_name: <span class="string">&#x27;client-node1&#x27;</span></span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [<span class="string">&#x27;192.168.45.132:9100&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8E%20Docker%20%E6%9E%84%E5%BB%BA%20Prometheus%20+%20Grafana%20%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/06-vim.png" class>
+
+<p>docker 启动 prometheus：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull prom/prometheus</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8E%20Docker%20%E6%9E%84%E5%BB%BA%20Prometheus%20+%20Grafana%20%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/07-start.png" class>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run --name prometheus -p 9090:9090 \</span><br><span class="line">-v /server/docker/prometheus/server/prometheus.yml:/etc/prometheus/prometheus.yml \</span><br><span class="line">-v /server/docker/prometheus/server/rules.yml:/etc/prometheus/rules.yml \</span><br><span class="line">-itd prom/prometheus \</span><br><span class="line">--config.file=/etc/prometheus/prometheus.yml \</span><br><span class="line">--web.enable-lifecycle</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8E%20Docker%20%E6%9E%84%E5%BB%BA%20Prometheus%20+%20Grafana%20%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/08-run.png" class>
+
+<p>注：启动时加入 <code>--web.enable-lifecycle</code> 启用远程热加载配置文件，<code>--config.file</code> 启动时加载配置文件。</p>
+<p>访问 <a href="http://192.168.45.133:9090/">http://192.168.45.133:9090</a> 显示 Prometheus 。</p>
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8E%20Docker%20%E6%9E%84%E5%BB%BA%20Prometheus%20+%20Grafana%20%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/09-view.png" class>
+
+<h1 id="安装-Grafana"><a href="#安装-Grafana" class="headerlink" title="安装 Grafana"></a>安装 Grafana</h1><blockquote>
+<p>server.</p>
+</blockquote>
+<h2 id="先启动测试-grafana"><a href="#先启动测试-grafana" class="headerlink" title="先启动测试 grafana"></a>先启动测试 grafana</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull grafana/grafana</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8E%20Docker%20%E6%9E%84%E5%BB%BA%20Prometheus%20+%20Grafana%20%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/10-pull.png" class>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run --name=grafana -p 3000:3000 -itd grafana/grafana</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8E%20Docker%20%E6%9E%84%E5%BB%BA%20Prometheus%20+%20Grafana%20%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/11-run.png" class>
+
+<p>将配置文件复制到宿主机：</p>
+<p>docker exec -it 96f51e2d555b &#x2F;bin&#x2F;bash </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">cp</span> grafana:/etc/grafana/grafana.ini /server/docker/prometheus/grafana/ </span><br><span class="line">docker <span class="built_in">rm</span> -f grafana </span><br></pre></td></tr></table></figure>
+
+
+
+<p>修改配置文件 grafana.ini，配置 smtp 邮件报警信息。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim /server/docker/prometheus/grafana/grafana.ini</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">enabled = <span class="literal">true</span></span><br><span class="line">host = smtp.qq.com:465</span><br><span class="line">user = camellia24@qq.com</span><br><span class="line"><span class="comment"># If the password contains # or ; you ...</span></span><br><span class="line">password = uaazgtwbvimabdjb</span><br><span class="line">;cert_file =</span><br><span class="line">;key_file =</span><br><span class="line">;skip_verify = <span class="literal">false</span></span><br><span class="line">from_address = camellia24@qq.com</span><br><span class="line">;from_name = Grafana</span><br></pre></td></tr></table></figure>
+
+<p>根据实际添加上面这几条，<code>host</code> 、 <code>password</code> 可以登录邮箱查看。</p>
+<h2 id="正式启动-grafana"><a href="#正式启动-grafana" class="headerlink" title="正式启动 grafana"></a>正式启动 grafana</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -p 3000:3000 --name grafana \</span><br><span class="line">-v /server/docker/prometheus/grafana/grafana.ini:/etc/grafana/grafana.ini \</span><br><span class="line">-v /server/docker/prometheus/grafana/data:/var/lib/grafana \</span><br><span class="line">-e <span class="string">&quot;GF_SECURITY_ADMIN_PASSWORD=grafana123&quot;</span> \</span><br><span class="line">-itd grafana/grafana</span><br></pre></td></tr></table></figure>
+
+<p>注：<code>-e &quot;GF_SECURITY_ADMIN_PASSWORD=grafana123&quot;</code> 是设置 grafana 登陆页面的密码，如不添加这条，默认账号密码为 admin&#x2F;admin。</p>
+<p>访问 <a href="http://192.168.45.133:3000/">http://192.168.45.133:3000</a> ，账号密码为：admin&#x2F;grafana123。</p>
+<h2 id="nginx-实现域名访问-grafana"><a href="#nginx-实现域名访问-grafana" class="headerlink" title="nginx 实现域名访问 grafana"></a>nginx 实现域名访问 grafana</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    server_name grafana.aa.com;</span><br><span class="line">    listen 80;</span><br><span class="line">     </span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://192.168.45.133:3000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>访问 <a href="http://grafana.aa.com/">http://grafana.aa.com</a> 。</p>
+<h2 id="添加-prometheus-数据源"><a href="#添加-prometheus-数据源" class="headerlink" title="添加 prometheus 数据源"></a>添加 prometheus 数据源</h2><p>COMPLETE &gt; Add your first data source &gt; Settings .</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Name</td>
+<td>Prometheus</td>
+</tr>
+<tr>
+<td>URL</td>
+<td><a href="http://192.168.45.133:9090/">http://192.168.45.133:9090</a></td>
+</tr>
+</tbody></table>
+<h2 id="添加模板文件（监控主机信息）"><a href="#添加模板文件（监控主机信息）" class="headerlink" title="添加模板文件（监控主机信息）"></a>添加模板文件（监控主机信息）</h2><p>参考 <a href="https://www.jianshu.com/p/367d52fe1171">grafana 常用监控模板大全</a> 和 <a href="https://grafana.com/grafana/dashboards/">grafana 官网模板</a> 。根据需求下载网址中的模板，下载到本地后，导入到 grafana：</p>
+<p>MENU &gt; Manage &gt; Import &gt; Upload JSON file &gt; 输入 URL &gt; Load .</p>
+<p>也可以根据官网的模板 ID 号下载：</p>
+<p>MENU &gt; Manage &gt; Import &gt; Import via grafana.com &gt; 输入 ID &gt; Load .</p>
+<p>Options &gt; prometheus &gt; Prometheus &gt; Import.</p>
+<h1 id="安装-cAdvisor"><a href="#安装-cAdvisor" class="headerlink" title="安装 cAdvisor"></a>安装 cAdvisor</h1><blockquote>
+<p>server、client.</p>
+</blockquote>
+<h2 id="docker-安装-cAdvisor"><a href="#docker-安装-cAdvisor" class="headerlink" title="docker 安装 cAdvisor"></a>docker 安装 cAdvisor</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull google/cadvisor</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -p 8088:8080 --name cadvisor \</span><br><span class="line">-v /:/rootfs:ro \</span><br><span class="line">-v /var/run:/var/run:rw \</span><br><span class="line">-v /sys:/sys:ro \</span><br><span class="line">-v /var/lib/docker/:/var/lib/docker:ro \</span><br><span class="line">-itd google/cadvisor:latest</span><br></pre></td></tr></table></figure>
+
+<p>将 ip、端口加入到 prometheus.yml 文件，重启 prometheus 服务。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">global:</span><br><span class="line">  scrape_interval:</span><br><span class="line">  external_labels:</span><br><span class="line">    monitor: <span class="string">&#x27;codelab-monitor&#x27;</span></span><br><span class="line">scrape_configs:</span><br><span class="line">  - job_name: <span class="string">&#x27;prometheus&#x27;</span></span><br><span class="line">    scrape_interval: 5s</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [<span class="string">&#x27;localhost:9090&#x27;</span>,<span class="string">&#x27;192.168.45.133:9100&#x27;</span>,<span class="string">&#x27;192.168.45.133:8088&#x27;</span>]</span><br><span class="line">  - job_name: <span class="string">&#x27;client-node1&#x27;</span></span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [<span class="string">&#x27;192.168.45.132:9100&#x27;</span>,<span class="string">&#x27;192.168.45.132:8088&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>重启 prometheus 让配置生效</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker restart prometheus</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加模板，监控-docker-容器"><a href="#添加模板，监控-docker-容器" class="headerlink" title="添加模板，监控 docker 容器"></a>添加模板，监控 docker 容器</h2><p>自行选择模板，展示：</p>
+<h1 id="安装-blackbox-exporter-监控端口"><a href="#安装-blackbox-exporter-监控端口" class="headerlink" title="安装 blackbox_exporter 监控端口"></a>安装 blackbox_exporter 监控端口</h1><blockquote>
+<p>server.</p>
+</blockquote>
+<h2 id="docker-安装-blackbox-exporter"><a href="#docker-安装-blackbox-exporter" class="headerlink" title="docker 安装 blackbox_exporter"></a>docker 安装 blackbox_exporter</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull prom/blackbox-exporter</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run --name blackbox -p 9115:9115-itd prom/blackbox-exporter</span><br></pre></td></tr></table></figure>
+
+<p>在 prometheus.yml 文件添加监控配置：</p>
+<blockquote>
+<p>注意：格式不对 prometheus 会报错。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">  - job_name: <span class="string">&#x27;prometheus_port_status&#x27;</span></span><br><span class="line">    metrics_path: /probe</span><br><span class="line">    params:</span><br><span class="line">      module: [tcp_connect]</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [<span class="string">&#x27;192.168.1.20:8088&#x27;</span>,<span class="string">&#x27;192.168.1.20:9100&#x27;</span>,<span class="string">&#x27;192.168.1.20:8091&#x27;</span>,<span class="string">&#x27;192.168.1.30:8088&#x27;</span>,<span class="string">&#x27;192.168.1.30:9100&#x27;</span>,<span class="string">&#x27;192.168.1.30:8091&#x27;</span>]</span><br><span class="line">        labels:</span><br><span class="line">          instance: <span class="string">&#x27;port_status&#x27;</span></span><br><span class="line">          group: <span class="string">&#x27;tcp&#x27;</span></span><br><span class="line">    relabel_configs:</span><br><span class="line">      - source_labels: [__address__]</span><br><span class="line">        target_label: __param_target</span><br><span class="line">      - source_labels: [__param_target]</span><br><span class="line">        target_label: instance</span><br><span class="line">      - target_label: __address__</span><br><span class="line">        replacement: 192.168.1.20:9115</span><br><span class="line">  - job_name: <span class="string">&#x27;node_status&#x27;</span></span><br><span class="line">    metrics_path: /probe</span><br><span class="line">    params:</span><br><span class="line">      module: [icmp]</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [<span class="string">&#x27;192.168.1.20&#x27;</span>,<span class="string">&#x27;192.168.1.30&#x27;</span>]</span><br><span class="line">        labels:</span><br><span class="line">          instance: <span class="string">&#x27;node_status&#x27;</span></span><br><span class="line">          group: <span class="string">&#x27;node&#x27;</span></span><br><span class="line">    relabel_configs:</span><br><span class="line">      - source_labels: [__address__]</span><br><span class="line">        target_label: __param_target</span><br><span class="line">      - target_label: __address__</span><br><span class="line">        replacement: 192.168.1.20:9115</span><br><span class="line">  - job_name: <span class="string">&#x27;web_status&#x27;</span></span><br><span class="line">    metrics_path: /probe</span><br><span class="line">    params:</span><br><span class="line">      module: [http_2xx]</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [<span class="string">&#x27;https://www.baidu.com&#x27;</span>]</span><br><span class="line">        labels:</span><br><span class="line">          instance: <span class="string">&#x27;web_status&#x27;</span></span><br><span class="line">          group: <span class="string">&#x27;web&#x27;</span></span><br><span class="line">    relabel_configs:</span><br><span class="line">      - source_labels: [__address__]</span><br><span class="line">        target_label: __param_target</span><br><span class="line">      - target_label: __address__</span><br><span class="line">        replacement: 192.168.1.20:9115</span><br></pre></td></tr></table></figure>
+
+<p>blackbox-exporter 在 grafana 页面展示需要安装 grafana-piechart-panel 插件。</p>
+<p>下载完后，上传到 &#x2F;server&#x2F;docker&#x2F;prometheus&#x2F;grafana&#x2F;data&#x2F;plugins 。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker restart grafana</span><br><span class="line">docker <span class="built_in">exec</span> -it grafana grafana-cli plugins install grafana-piechart-panel</span><br><span class="line">docker restart grafana</span><br></pre></td></tr></table></figure>
+
+<h2 id="在-grafana-面板添加模板（模板ID：9965）"><a href="#在-grafana-面板添加模板（模板ID：9965）" class="headerlink" title="在 grafana 面板添加模板（模板ID：9965）"></a>在 grafana 面板添加模板（模板ID：9965）</h2><p>这个仪表盘监控信息不完全，目前还没找到更合适的。</p>
+<h1 id="Alert-警报"><a href="#Alert-警报" class="headerlink" title="Alert 警报"></a>Alert 警报</h1><h2 id="AlertManager-告警"><a href="#AlertManager-告警" class="headerlink" title="AlertManager 告警"></a>AlertManager 告警</h2><blockquote>
+<p>server.</p>
+</blockquote>
+<p>Alertmanager是一个独立的告警模块，接收Prometheus等客户端发来的警报。<br>Prometheus的警报分为两个部分：<br>    报警：Prometheus服务器中的警报规则将警报发送到Alertmanager。<br>    通知：该Alertmanager 管理这些警报， 通过邮件、hipchat等方式发送通知</p>
+<p>运行测试alertmanager：</p>
+<p>docker pull prom&#x2F;alertmanager</p>
+<p>docker run –name alert -p 9093:9093 -itd prom&#x2F;alertmanager</p>
+<p>docker cp alert:&#x2F;etc&#x2F;alertmanager&#x2F;alertmanager.yml &#x2F;server&#x2F;docker&#x2F;prometheus&#x2F;alert&#x2F;</p>
+<p>编写alertmanager配置文件实现邮件告警：vim &#x2F;server&#x2F;docker&#x2F;prometheus&#x2F;alert&#x2F;alertmanager.yml</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">global:</span><br><span class="line">  resolve_timeout: 5m</span><br><span class="line">  smtp_smarthost: <span class="string">&#x27;smtp.qq.com:465&#x27;</span></span><br><span class="line">  smtp_from: <span class="string">&#x27;166xxxxxxx@qq.com&#x27;</span></span><br><span class="line">  smtp_auth_username: <span class="string">&#x27;166xxxxxxx@qq.com&#x27;</span></span><br><span class="line">  smtp_auth_password: <span class="string">&#x27;bxxxxxxxxxxacdif&#x27;</span></span><br><span class="line">  smtp_require_tls: <span class="literal">true</span></span><br><span class="line">route:</span><br><span class="line">  group_by: [<span class="string">&#x27;alertname&#x27;</span>]</span><br><span class="line">  group_wait: 10s</span><br><span class="line">  group_interval: 10s</span><br><span class="line">  repeat_interval: 1h</span><br><span class="line">  receiver: <span class="string">&#x27;mail&#x27;</span></span><br><span class="line">receivers:</span><br><span class="line">- name: <span class="string">&#x27;mail&#x27;</span></span><br><span class="line">  email_configs:</span><br><span class="line">  - to: <span class="string">&#x27;136xxxxxxx@qq.com&#x27;</span></span><br><span class="line">    send_resolved: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>停止测试alertmanager，启动正式：</p>
+<p>docker rm -f alert</p>
+<p>docker run -p 9093:9093 –name alert <br>-v &#x2F;server&#x2F;docker&#x2F;prometheus&#x2F;alert&#x2F;alertmanager.yml:&#x2F;etc&#x2F;alertmanager&#x2F;alertmanager.yml <br>-itd prom&#x2F;alertmanager</p>
+<p>编写报警规则：vim &#x2F;server&#x2F;docker&#x2F;prometheus&#x2F;server&#x2F;rules.yml  （参考配置）</p>
+<p>groups:<br>    - name: test-rules<br>      rules:<br>      - alert: HttpprometheusDown<br>        expr: up &#x3D;&#x3D; 0<br>        for: 1m<br>        labels:<br>　　　     team: node<br>    annotations:<br>      summary: “: has been down”<br>      description: “: job  has been down “<br>      value: </p>
+<p>参数解释：<br>    - alert:  # 告警名称<br>    expr: # 告警的判定条件，参考Prometheus高级查询来设定（是promSQL简单改写的，参考上面CPU的,建议先做一个低数值测试,成功后改为需要的告警数值）<br>    for:  # 满足告警条件持续时间多久后，才会发送告警<br>    labels: #标签项<br>    team: node<br>    annotations: # 解析项，详细解释告警信息<br>    可以显示故障机ip端口<br>    当前的值</p>
+<p>在prometheus配置文件中引入AlertManager配置文件：</p>
+<p>global:<br>  scrape_interval:<br>  external_labels:<br>    monitor: ‘codelab-monitor’<br>rule_files:</p>
+<ul>
+<li>rules.yml</li>
+</ul>
+<h1 id="这里表示抓取对象的配置"><a href="#这里表示抓取对象的配置" class="headerlink" title="这里表示抓取对象的配置"></a>这里表示抓取对象的配置</h1><p>scrape_configs:<br>     #这个配置是表示在这个配置内的时间序例，每一条都会自动添加上这个{job_name:”prometheus”}的标签</p>
+<ul>
+<li>job_name: ‘prometheus’<br>scrape_interval: 5s #重写了全局抓取间隔时间，由15秒重写成5秒<br>static_configs:<ul>
+<li>targets: [‘localhost:9090’,’192.168.1.20:9100’,’192.168.1.20:8088’]</li>
+</ul>
+</li>
+<li>job_name: ‘node1’<br>static_configs:<ul>
+<li>targets: [‘192.168.1.30:9100’,’192.168.1.30:8088’]<br>alerting:<br>  alertmanagers:</li>
+<li>static_configs:<ul>
+<li>targets: [‘192.168.1.20:9093’]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>docker restart prometheus     　　#重启prometheus让配置生效</p>
+<p>访问：<a href="http://192.168.1.20:9093/#/alerts">http://192.168.1.20:9093/#/alerts</a>  即可查看所监控到的报警信息</p>
+<h2 id="grafana-自带-alert-告警"><a href="#grafana-自带-alert-告警" class="headerlink" title="grafana 自带 alert 告警"></a>grafana 自带 alert 告警</h2><blockquote>
+<p>在 grafana 页面配置。</p>
+</blockquote>
+<p> 设置完成，但是grafana自带的alert功能有限，太复杂的报警功能无法实现。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.cnblogs.com/cfzy/p/14750004.html">Docker 搭建 Prometheus+grafana 监控系统-博客园</a></p>
+]]></content>
+      <categories>
+        <category>Project</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>nginx</tag>
+        <tag>prometheus</tag>
+        <tag>grafana</tag>
       </tags>
   </entry>
 </search>
