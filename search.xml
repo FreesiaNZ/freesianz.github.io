@@ -1651,6 +1651,11 @@
 <h3 id="图片圆角阴影"><a href="#图片圆角阴影" class="headerlink" title="图片圆角阴影"></a>图片圆角阴影</h3><p>在 <code>\themes\next\source\css\_common\components\post</code> 下的 <code>post-body.styl</code> 中修改：</p>
 <figure class="highlight styl"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">iframe</span>, <span class="selector-tag">img</span>, <span class="selector-tag">video</span>, embed &#123;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">0px</span> <span class="number">5px</span> <span class="number">10px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h3 id="修改背景图片"><a href="#修改背景图片" class="headerlink" title="修改背景图片"></a>修改背景图片</h3><p>把想设置的背景放入.&#x2F;themes&#x2F;next&#x2F;source&#x2F;images中，命名为background.jpg。在根目录的source文件夹下新建文件夹_data与style文件source&#x2F;_data&#x2F;styles.styl，输入以下代码</p>
+<p>body {<br>    background:url(&#x2F;images&#x2F;background.jpg);<br>    background-repeat: no-repeat;<br>    background-attachment:fixed;<br>    background-position:100% 100%;<br>}</p>
+<p>background:url为图片路径，也可以直接使用链接。<br>background-repeat：若果背景图片不能全屏，那么是否平铺显示，充满屏幕<br>background-attachment：背景是否随着网页上下滚动而滚动，fixed为固定<br>background-position：图片展示大小这里设置 100%，100% 的意义为：如果背景图片不能全屏，那么是否通过拉伸的方式将背景强制拉伸至全屏显示。</p>
+<p>再在主题_config.yml文件中找到对应的custom_file_path</p>
+<p>custom_file_path:<br>  #head: source&#x2F;_data&#x2F;head.swig<br>  #header: source&#x2F;_data&#x2F;header.swig<br>  #sidebar: source&#x2F;_data&#x2F;sidebar.swig<br>  #postMeta: source&#x2F;_data&#x2F;post-meta.swig<br>  #postBodyEnd: source&#x2F;_data&#x2F;post-body-end.swig<br>  #footer: source&#x2F;_data&#x2F;footer.swig<br>  #bodyEnd: source&#x2F;_data&#x2F;body-end.swig<br>  #variable: source&#x2F;_data&#x2F;variables.styl<br>  #mixin: source&#x2F;_data&#x2F;mixins.styl<br>  #style: source&#x2F;_data&#x2F;styles.styl<br>再将对应的#去除就可以了</p>
 <h1 id="撰写博客"><a href="#撰写博客" class="headerlink" title="撰写博客"></a>撰写博客</h1><p>执行下列命令来创建一篇新页面或者新文章：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
 
@@ -1691,14 +1696,190 @@
       </tags>
   </entry>
   <entry>
-    <title>做研究是有趣的</title>
-    <url>/2023/12/30/%E5%81%9A%E7%A0%94%E7%A9%B6%E6%98%AF%E6%9C%89%E8%B6%A3%E7%9A%84/</url>
-    <content><![CDATA[]]></content>
+    <title>玩转 C 语言</title>
+    <url>/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/</url>
+    <content><![CDATA[<h1 id="周期与目标"><a href="#周期与目标" class="headerlink" title="周期与目标"></a>周期与目标</h1><p>周期：22 天。</p>
+<p>目标：可开发简单的 C 语言小程序。</p>
+<span id="more"></span>
+
+<h1 id="知识点预览"><a href="#知识点预览" class="headerlink" title="知识点预览"></a>知识点预览</h1><p>（1）C语言入门</p>
+<p>数据类型、流程控制、函数、指针、内存布局、结构体、共用体、文件操作。</p>
+<p>（2）Linux 系统编程基础</p>
+<p>Linux 操作系统介绍、Linux 目录和路径、Linux 文件权限、Linux 下常用命令、Vim 编辑器、Webserver 环境搭建。</p>
+<p>（3）C 项目 —— 电子词典</p>
+<p>指针操作、文件读写、流程控制。</p>
+<p>（4）C 语言提高</p>
+<p>指针操作、文件读写、流程控制。</p>
+<h1 id="C-语言入门"><a href="#C-语言入门" class="headerlink" title="C 语言入门"></a>C 语言入门</h1><h2 id="学习环境安装"><a href="#学习环境安装" class="headerlink" title="学习环境安装"></a>学习环境安装</h2><h3 id="CentOS"><a href="#CentOS" class="headerlink" title="CentOS"></a>CentOS</h3><h4 id="下载、安装和配置"><a href="#下载、安装和配置" class="headerlink" title="下载、安装和配置"></a>下载、安装和配置</h4><p>参考 <a href="https://freesianz.github.io/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/">CentOS-7 的下载、安装和配置</a>。</p>
+<p>开启 CentOS 后，点击网络。</p>
+<p>勾选 <code>自动连接</code> 。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/01-centos-network.png" class title="01-centos-network">
+
+<p>检查 <code>IP地址</code> 。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/02-check-ip.png" class>
+
+<h4 id="SecureCRT-连接"><a href="#SecureCRT-连接" class="headerlink" title="SecureCRT 连接"></a>SecureCRT 连接</h4><p>使用 SecureCRT 连接该虚拟机，参考 <a href="https://freesianz.github.io/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">SecureCRT 的下载、安装和使用</a> 。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/03-connect.png" class>
+
+<p>在 SecureCRT 中测试 Linux 常用命令。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/04-test.png" class>
+
+<h3 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h3><h4 id="下载、安装和配置-1"><a href="#下载、安装和配置-1" class="headerlink" title="下载、安装和配置"></a>下载、安装和配置</h4><p>参考 <a href="https://freesianz.github.io/2024/03/16/Ubuntu-12-04%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/">Ubuntu-12.04 的下载、安装和配置</a>。</p>
+<p>开启 Ubuntu 后，点击网络。</p>
+<p>勾选 <code>自动连接</code> 。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/05-ubuntu-network.png" class>
+
+<p>检查 <code>IP地址</code> 。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/06-check-ip.png" class>
+
+<p>使用如下命令安装所需要的一些包。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install vim g++ openssh-server libgl1-mesa-dev</span><br></pre></td></tr></table></figure>
+
+<p>报错，会发现没有更供安装的候选者。问题在于 <code>/etc/apt/sources.list</code> 里的源官方 <a href="http://cn.archive.ubuntu.com/">http://cn.archive.ubuntu.com</a> 已经不维护，而是重新放到 <a href="http://old-releases.ubuntu.com/ubuntu/">http://old-releases.ubuntu.com/ubuntu/</a> 。将源列表里的 <a href="http://cn.archive.ubuntu.com/">http://cn.archive.ubuntu.com</a> 修改为 <a href="http://old-releases.ubuntu.com/ubuntu/">http://old-releases.ubuntu.com/ubuntu/</a> ，即指定使用老版本的源，或者更换为国内的源。参考 <a href="https://www.zhihu.com/question/24836871">ubuntu 13.04 更新不到源，报 404 是怎么回事？</a> 。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/07-bug.png" class>
+
+<p>再继续安装包就可以成功。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/08-install.png" class>
+
+<p>在等待过程中，下载 VMware Tools 。</p>
+<p>首先点击 <code>虚拟机</code> ，点击 <code>VMware Tools 安装</code>。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/09-tools.png" class>
+
+<p>使用 <code>mount</code> 命令查看挂载。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/10-mount.png" class>
+
+<p>使用如下命令将压缩包复制到当前目录下，并解压该压缩包。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> /media/VMware\ Tools/VMwareTools-10.3.23-16594550.tar.gz .</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -zxvf VMwareTools-10.3.23-16594550.tar.gz</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/11-zxvf.png" class>
+
+<p>解压完成后，使用 <code>ls</code> 目录查看多了一个目录 <code>vmware-tools-distrib</code> ，进入该目录。使用 <code>sudo ./vmware-install.pl</code> 目录安装。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ls</span></span><br><span class="line"><span class="built_in">cd</span> vmware-tools-distrib</span><br><span class="line"><span class="built_in">ls</span></span><br><span class="line">sudo ./vmware-install.pl</span><br></pre></td></tr></table></figure>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/12-install.png" class>
+
+<p>VMware Tools 安装完毕后，检查所需要的包是否安装好。</p>
+<p>首先是 <code>vim</code> ，使用如下命令。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/13-vim.png" class>
+
+<p>然后是 <code>g++</code> 和 <code>gcc</code> ，使用如下命令。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">g++ -v</span><br><span class="line">gcc -v</span><br></pre></td></tr></table></figure>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/14-gplusplus.png" class>
+
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/15-gcc.png" class>
+
+<p>然后是 <code>openssh-server</code> ，使用如下命令。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -V</span><br></pre></td></tr></table></figure>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/15-openssh.png" class>
+
+<p>最后是 <code>libgl1-mesa-dev</code> ，使用如下命令。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">glxinfo | grep <span class="string">&quot;OpenGL version&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="安装-Qt-5-3-1"><a href="#安装-Qt-5-3-1" class="headerlink" title="安装 Qt 5.3.1"></a>安装 Qt 5.3.1</h4><p>接下来安装 Qt 5.3.1 ，下载地址在 <a href="https://download.qt.io/new_archive/qt/5.3/5.3.1/">https://download.qt.io/new_archive/qt/5.3/5.3.1/</a> 。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/17-QT-download.png" class>
+
+<p>将文件拖拽复制到桌面，使用如下命令运行。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ls</span></span><br><span class="line">ll</span><br><span class="line"><span class="built_in">chmod</span> +x qt-opensource-linux-x86-5.3.1.run</span><br><span class="line">sudo ./qt-opensource-linux-x86-5.3.1.run</span><br></pre></td></tr></table></figure>
+
+
+
+<p>使用 Qt5.3.1 设置向导，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/19-welcome.png" class>
+
+<p>默认安装目录，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/20-folder.png" class>
+
+<p>默认勾选（检查 gcc 和 Tools 是否勾选），点击 <code>下一步</code> 。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/21-tools.png" class>
+
+<p>勾选 I have read … ，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/22-accept.png" class>
+
+<p>点击 <code>安装</code> ，等待安装。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/23-install.png" class>
+
+<p>配置环境变量，打开终端。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/profile</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/24-terminal.png" class>
+
+<p>最后添加以下内容。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> QTDIR=/opt/Qt5.3.1/</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$QTDIR</span>/bin:<span class="variable">$PATH</span>:<span class="variable">$QTDIR</span>/5.3/gcc/bin</span><br><span class="line"><span class="built_in">export</span> MANPATH=<span class="variable">$QTDIR</span>/man:<span class="variable">$MANPATH</span></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$QTDIR</span>/lib:<span class="variable">$LD_LIBRARY_PATH</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/25-vim-variable.png" class>
+
+<p>使用 <code>source</code> 命令使修改生效， <code>qmake</code> 命令测试环境变量是否设置成功。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/26-source-qmake.png" class>
+
+<p>Qt 5.3.1 已经安装完成，点击 完成 退出向导。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/27-complete.png" class>
+
+<p>双击 Qt Creator ，新建项目，全部默认，点击运行按钮，若弹框说明成功。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/28-success.png" class>
+
+<h4 id="SecureCRT-连接-1"><a href="#SecureCRT-连接-1" class="headerlink" title="SecureCRT 连接"></a>SecureCRT 连接</h4><p>使用 SecureCRT 连接该虚拟机，参考 <a href="https://freesianz.github.io/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">SecureCRT 的下载、安装和使用</a> 。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/29-connect.png" class title="29-connect">
+
+<p>在 SecureCRT 中测试 Linux 常用命令。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/30-test.png" class>
+
+<h3 id="Solaris"><a href="#Solaris" class="headerlink" title="Solaris"></a>Solaris</h3><h4 id="下载、安装和配置-2"><a href="#下载、安装和配置-2" class="headerlink" title="下载、安装和配置"></a>下载、安装和配置</h4><p>参考 <a href="https://freesianz.github.io/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/">Solaris10 的下载、安装和配置</a>。</p>
+<p>成功进入系统后，接下来进行一些配置。</p>
+<p>右键，点击 <code>打开终端</code> ，打开终端。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/31-terminal.png" class>
+
+<p>运行一些 Linux 常用命令，并将 <code>shell</code> 改为 <code>bash</code> 。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/32-bash.png" class>
+
+<p>测试 <code>gcc</code> ，返回 gcc 未找到，进行配置。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/33-gcc-unfind.png" class>
+
+<p>点击 <code>本计算机</code> &gt; <code>应用程序</code> &gt; <code>编程</code> &gt; <code>程序编辑器</code> 。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/34-application.png" class>
+
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/35-program.png" class>
+
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/36-editor.png" class>
+
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/37-je.png" class>
+
+<p>将 <code>/etc/skel/local.profile</code> 文件复制到指定目录下。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/38-copy.png" class>
+
+<p>使用 程序编辑器 打开复制后的文件，添加如下图所示的内容并保持。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/39-open.png" class>
+
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/40-save.png" class>
+
+<p>使用 <code>source</code> 命令让修改生效，之后重启系统。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/41-source.png" class>
+
+<p>输入 <code>用户名</code> 和 <code>口令</code> 登入系统。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/42-user.png" class>
+
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/43-pwd.png" class>
+
+<p>测试 <code>gcc</code> 和 <code>g++</code> ，成功返回版本，配置成功。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/44-version.png" class>
+
+<p>打开 <code>程序编辑器</code> ，编写 <code>helloworld.c</code> 测试。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/45-helloworld.png" class>
+
+<p>终端编译 <code>helloworld.c</code> ，得到 <code>a.out</code> 并运行。</p>
+<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/46-complie-run.png" class>
+
+<h2 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h2><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><h2 id="内存布局"><a href="#内存布局" class="headerlink" title="内存布局"></a>内存布局</h2><h2 id="结构体-共用体"><a href="#结构体-共用体" class="headerlink" title="结构体 &amp; 共用体"></a>结构体 &amp; 共用体</h2><h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><h1 id="初识-Linux"><a href="#初识-Linux" class="headerlink" title="初识 Linux"></a>初识 Linux</h1><h2 id="Linux-操作系统介超"><a href="#Linux-操作系统介超" class="headerlink" title="Linux 操作系统介超"></a>Linux 操作系统介超</h2><h2 id="Linux-目录和路径"><a href="#Linux-目录和路径" class="headerlink" title="Linux 目录和路径"></a>Linux 目录和路径</h2><h2 id="Linux-文件权限"><a href="#Linux-文件权限" class="headerlink" title="Linux 文件权限"></a>Linux 文件权限</h2><h2 id="Linux-常用命令"><a href="#Linux-常用命令" class="headerlink" title="Linux 常用命令"></a>Linux 常用命令</h2><h2 id="Vim-编辑器"><a href="#Vim-编辑器" class="headerlink" title="Vim 编辑器"></a>Vim 编辑器</h2><h2 id="Web-Server-环境搭建"><a href="#Web-Server-环境搭建" class="headerlink" title="Web Server 环境搭建"></a>Web Server 环境搭建</h2><h1 id="C-项目：电子词典"><a href="#C-项目：电子词典" class="headerlink" title="C 项目：电子词典"></a>C 项目：电子词典</h1><h2 id="指针操作"><a href="#指针操作" class="headerlink" title="指针操作"></a>指针操作</h2><h2 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h2><h2 id="流程控制-1"><a href="#流程控制-1" class="headerlink" title="流程控制"></a>流程控制</h2><h1 id="C-语言提高"><a href="#C-语言提高" class="headerlink" title="C 语言提高"></a>C 语言提高</h1><h2 id="二级指针"><a href="#二级指针" class="headerlink" title="二级指针"></a>二级指针</h2><h2 id="结构体、文件的使用"><a href="#结构体、文件的使用" class="headerlink" title="结构体、文件的使用"></a>结构体、文件的使用</h2><h2 id="动态库封装和设计"><a href="#动态库封装和设计" class="headerlink" title="动态库封装和设计"></a>动态库封装和设计</h2><h2 id="函数指针回调函数"><a href="#函数指针回调函数" class="headerlink" title="函数指针回调函数"></a>函数指针回调函数</h2><h2 id="C-语言面试题强化"><a href="#C-语言面试题强化" class="headerlink" title="C 语言面试题强化"></a>C 语言面试题强化</h2><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://bbs.itheima.com/thread-338418-1-1.html">2017 C&#x2F;C++ 学习路线图（附全套自学视频+工具） | 倾心莫若初见</a></p>
+]]></content>
       <categories>
-        <category>Movie &amp; Read</category>
+        <category>C &amp; C plus plus</category>
       </categories>
       <tags>
-        <tag>Research</tag>
+        <tag>C</tag>
       </tags>
   </entry>
   <entry>
@@ -1873,224 +2054,6 @@
         <tag>nginx</tag>
         <tag>prometheus</tag>
         <tag>grafana</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>大话数据结构</title>
-    <url>/2024/03/15/%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
-    <content><![CDATA[<p>为什么需要数据结构？数据结构的重要性。</p>
-<span id="more"></span>
-
-<p>要谈数据结构，先谈数据。</p>
-<p>了解数据、数据元素、数据项、数据对象、数据结构以及它们之间的关系。</p>
-<p>数据结构可以分为逻辑结构和物理结构，我们是如何划分的呢？从什么角度划分的呢？</p>
-<p>逻辑结构是什么？它包含四种，分别是集合结构、线性结构、树形结构和图形结构。</p>
-<p>物理结构是什么？它包含两类，分别是顺序存储和链式存储。（应该还有两类？）</p>
-<p>更恼火的概念来了，数据类型是什么，而抽象数据类型又是什么？</p>
-]]></content>
-      <categories>
-        <category>Movie &amp; Read</category>
-      </categories>
-      <tags>
-        <tag>Data Structure</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>最后的假期</title>
-    <url>/2023/12/31/%E6%9C%80%E5%90%8E%E7%9A%84%E5%81%87%E6%9C%9F/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Movie &amp; Read</category>
-      </categories>
-      <tags>
-        <tag>Comedy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>玩转 C 语言</title>
-    <url>/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/</url>
-    <content><![CDATA[<h1 id="周期与目标"><a href="#周期与目标" class="headerlink" title="周期与目标"></a>周期与目标</h1><p>周期：22 天。</p>
-<p>目标：可开发简单的 C 语言小程序。</p>
-<span id="more"></span>
-
-<h1 id="知识点预览"><a href="#知识点预览" class="headerlink" title="知识点预览"></a>知识点预览</h1><p>（1）C语言入门</p>
-<p>数据类型、流程控制、函数、指针、内存布局、结构体、共用体、文件操作。</p>
-<p>（2）Linux 系统编程基础</p>
-<p>Linux 操作系统介绍、Linux 目录和路径、Linux 文件权限、Linux 下常用命令、Vim 编辑器、Webserver 环境搭建。</p>
-<p>（3）C 项目 —— 电子词典</p>
-<p>指针操作、文件读写、流程控制。</p>
-<p>（4）C 语言提高</p>
-<p>指针操作、文件读写、流程控制。</p>
-<h1 id="C-语言入门"><a href="#C-语言入门" class="headerlink" title="C 语言入门"></a>C 语言入门</h1><h2 id="学习环境安装"><a href="#学习环境安装" class="headerlink" title="学习环境安装"></a>学习环境安装</h2><h3 id="CentOS"><a href="#CentOS" class="headerlink" title="CentOS"></a>CentOS</h3><h4 id="下载、安装和配置"><a href="#下载、安装和配置" class="headerlink" title="下载、安装和配置"></a>下载、安装和配置</h4><p>参考 <a href="https://freesianz.github.io/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/">CentOS-7 的下载、安装和配置</a>。</p>
-<p>开启 CentOS 后，点击网络。</p>
-<p>勾选 <code>自动连接</code> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/01-centos-network.png" class>
-
-<p>检查 <code>IP地址</code> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/02-check-ip.png" class>
-
-<h4 id="SecureCRT-连接"><a href="#SecureCRT-连接" class="headerlink" title="SecureCRT 连接"></a>SecureCRT 连接</h4><p>使用 SecureCRT 连接该虚拟机，参考 <a href="https://freesianz.github.io/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">SecureCRT 的下载、安装和使用</a> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/03-connect.png" class>
-
-<p>在 SecureCRT 中测试 Linux 常用命令。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/04-test.png" class>
-
-<h3 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h3><h4 id="下载、安装和配置-1"><a href="#下载、安装和配置-1" class="headerlink" title="下载、安装和配置"></a>下载、安装和配置</h4><p>参考 <a href="https://freesianz.github.io/2024/03/16/Ubuntu-12-04%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/">Ubuntu-12.04 的下载、安装和配置</a>。</p>
-<p>开启 Ubuntu 后，点击网络。</p>
-<p>勾选 <code>自动连接</code> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/05-ubuntu-network.png" class>
-
-<p>检查 <code>IP地址</code> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/06-check-ip.png" class>
-
-<p>使用如下命令安装所需要的一些包。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install vim g++ openssh-server libgl1-mesa-dev</span><br></pre></td></tr></table></figure>
-
-<p>报错，会发现没有更供安装的候选者。问题在于 <code>/etc/apt/sources.list</code> 里的源官方 <a href="http://cn.archive.ubuntu.com/">http://cn.archive.ubuntu.com</a> 已经不维护，而是重新放到 <a href="http://old-releases.ubuntu.com/ubuntu/">http://old-releases.ubuntu.com/ubuntu/</a> 。将源列表里的 <a href="http://cn.archive.ubuntu.com/">http://cn.archive.ubuntu.com</a> 修改为 <a href="http://old-releases.ubuntu.com/ubuntu/">http://old-releases.ubuntu.com/ubuntu/</a> ，即指定使用老版本的源，或者更换为国内的源。参考 <a href="https://www.zhihu.com/question/24836871">ubuntu 13.04 更新不到源，报 404 是怎么回事？</a> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/07-bug.png" class>
-
-<p>再继续安装包就可以成功。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/08-install.png" class>
-
-<p>在等待过程中，下载 VMware Tools 。</p>
-<p>首先点击 <code>虚拟机</code> ，点击 <code>VMware Tools 安装</code>。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/09-tools.png" class>
-
-<p>使用 <code>mount</code> 命令查看挂载。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/10-mount.png" class>
-
-<p>使用如下命令将压缩包复制到当前目录下，并解压该压缩包。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> /media/VMware\ Tools/VMwareTools-10.3.23-16594550.tar.gz .</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -zxvf VMwareTools-10.3.23-16594550.tar.gz</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/11-zxvf.png" class>
-
-<p>解压完成后，使用 <code>ls</code> 目录查看多了一个目录 <code>vmware-tools-distrib</code> ，进入该目录。使用 <code>sudo ./vmware-install.pl</code> 目录安装。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ls</span></span><br><span class="line"><span class="built_in">cd</span> vmware-tools-distrib</span><br><span class="line"><span class="built_in">ls</span></span><br><span class="line">sudo ./vmware-install.pl</span><br></pre></td></tr></table></figure>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/12-install.png" class>
-
-<p>VMware Tools 安装完毕后，检查所需要的包是否安装好。</p>
-<p>首先是 <code>vim</code> ，使用如下命令。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/13-vim.png" class>
-
-<p>然后是 <code>g++</code> 和 <code>gcc</code> ，使用如下命令。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">g++ -v</span><br><span class="line">gcc -v</span><br></pre></td></tr></table></figure>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/14-gplusplus.png" class>
-
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/15-gcc.png" class>
-
-<p>然后是 <code>openssh-server</code> ，使用如下命令。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -V</span><br></pre></td></tr></table></figure>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/15-openssh.png" class>
-
-<p>最后是 <code>libgl1-mesa-dev</code> ，使用如下命令。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">glxinfo | grep <span class="string">&quot;OpenGL version&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="安装-Qt-5-3-1"><a href="#安装-Qt-5-3-1" class="headerlink" title="安装 Qt 5.3.1"></a>安装 Qt 5.3.1</h4><p>接下来安装 Qt 5.3.1 ，下载地址在 <a href="https://download.qt.io/new_archive/qt/5.3/5.3.1/">https://download.qt.io/new_archive/qt/5.3/5.3.1/</a> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/17-QT-download.png" class>
-
-<p>将文件拖拽复制到桌面，使用如下命令运行。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ls</span></span><br><span class="line">ll</span><br><span class="line"><span class="built_in">chmod</span> +x qt-opensource-linux-x86-5.3.1.run</span><br><span class="line">sudo ./qt-opensource-linux-x86-5.3.1.run</span><br></pre></td></tr></table></figure>
-
-
-
-<p>使用 Qt5.3.1 设置向导，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/19-welcome.png" class>
-
-<p>默认安装目录，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/20-folder.png" class>
-
-<p>默认勾选（检查 gcc 和 Tools 是否勾选），点击 <code>下一步</code> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/21-tools.png" class>
-
-<p>勾选 I have read … ，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/22-accept.png" class>
-
-<p>点击 <code>安装</code> ，等待安装。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/23-install.png" class>
-
-<p>配置环境变量，打开终端。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/profile</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/24-terminal.png" class>
-
-<p>最后添加以下内容。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> QTDIR=/opt/Qt5.3.1/</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$QTDIR</span>/bin:<span class="variable">$PATH</span>:<span class="variable">$QTDIR</span>/5.3/gcc/bin</span><br><span class="line"><span class="built_in">export</span> MANPATH=<span class="variable">$QTDIR</span>/man:<span class="variable">$MANPATH</span></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$QTDIR</span>/lib:<span class="variable">$LD_LIBRARY_PATH</span></span><br></pre></td></tr></table></figure>
-
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/25-vim-variable.png" class>
-
-<p>使用 <code>source</code> 命令使修改生效， <code>qmake</code> 命令测试环境变量是否设置成功。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/26-source-qmake.png" class>
-
-<p>Qt 5.3.1 已经安装完成，点击 完成 退出向导。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/27-complete.png" class>
-
-<p>双击 Qt Creator ，新建项目，全部默认，点击运行按钮，若弹框说明成功。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/28-success.png" class>
-
-<h4 id="SecureCRT-连接-1"><a href="#SecureCRT-连接-1" class="headerlink" title="SecureCRT 连接"></a>SecureCRT 连接</h4><p>使用 SecureCRT 连接该虚拟机，参考 <a href="https://freesianz.github.io/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">SecureCRT 的下载、安装和使用</a> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/29-connect.png" class>
-
-<p>在 SecureCRT 中测试 Linux 常用命令。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/30-test.png" class>
-
-<h3 id="Solaris"><a href="#Solaris" class="headerlink" title="Solaris"></a>Solaris</h3><h4 id="下载、安装和配置-2"><a href="#下载、安装和配置-2" class="headerlink" title="下载、安装和配置"></a>下载、安装和配置</h4><p>参考 <a href="https://freesianz.github.io/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/">Solaris10 的下载、安装和配置</a>。</p>
-<p>成功进入系统后，接下来进行一些配置。</p>
-<p>右键，点击 <code>打开终端</code> ，打开终端。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/31-terminal.png" class>
-
-<p>运行一些 Linux 常用命令，并将 <code>shell</code> 改为 <code>bash</code> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/32-bash.png" class>
-
-<p>测试 <code>gcc</code> ，返回 gcc 未找到，进行配置。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/33-gcc-unfind.png" class>
-
-<p>点击 <code>本计算机</code> &gt; <code>应用程序</code> &gt; <code>编程</code> &gt; <code>程序编辑器</code> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/34-application.png" class>
-
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/35-program.png" class>
-
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/36-editor.png" class>
-
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/37-je.png" class>
-
-<p>将 <code>/etc/skel/local.profile</code> 文件复制到指定目录下。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/38-copy.png" class>
-
-<p>使用 程序编辑器 打开复制后的文件，添加如下图所示的内容并保持。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/39-open.png" class>
-
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/40-save.png" class>
-
-<p>使用 <code>source</code> 命令让修改生效，之后重启系统。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/41-source.png" class>
-
-<p>输入 <code>用户名</code> 和 <code>口令</code> 登入系统。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/42-user.png" class>
-
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/43-pwd.png" class>
-
-<p>测试 <code>gcc</code> 和 <code>g++</code> ，成功返回版本，配置成功。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/44-version.png" class>
-
-<p>打开 <code>程序编辑器</code> ，编写 <code>helloworld.c</code> 测试。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/45-helloworld.png" class>
-
-<p>终端编译 <code>helloworld.c</code> ，得到 <code>a.out</code> 并运行。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/46-complie-run.png" class>
-
-<h2 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h2><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><h2 id="内存布局"><a href="#内存布局" class="headerlink" title="内存布局"></a>内存布局</h2><h2 id="结构体-共用体"><a href="#结构体-共用体" class="headerlink" title="结构体 &amp; 共用体"></a>结构体 &amp; 共用体</h2><h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><h1 id="初识-Linux"><a href="#初识-Linux" class="headerlink" title="初识 Linux"></a>初识 Linux</h1><h2 id="Linux-操作系统介超"><a href="#Linux-操作系统介超" class="headerlink" title="Linux 操作系统介超"></a>Linux 操作系统介超</h2><h2 id="Linux-目录和路径"><a href="#Linux-目录和路径" class="headerlink" title="Linux 目录和路径"></a>Linux 目录和路径</h2><h2 id="Linux-文件权限"><a href="#Linux-文件权限" class="headerlink" title="Linux 文件权限"></a>Linux 文件权限</h2><h2 id="Linux-常用命令"><a href="#Linux-常用命令" class="headerlink" title="Linux 常用命令"></a>Linux 常用命令</h2><h2 id="Vim-编辑器"><a href="#Vim-编辑器" class="headerlink" title="Vim 编辑器"></a>Vim 编辑器</h2><h2 id="Web-Server-环境搭建"><a href="#Web-Server-环境搭建" class="headerlink" title="Web Server 环境搭建"></a>Web Server 环境搭建</h2><h1 id="C-项目：电子词典"><a href="#C-项目：电子词典" class="headerlink" title="C 项目：电子词典"></a>C 项目：电子词典</h1><h2 id="指针操作"><a href="#指针操作" class="headerlink" title="指针操作"></a>指针操作</h2><h2 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h2><h2 id="流程控制-1"><a href="#流程控制-1" class="headerlink" title="流程控制"></a>流程控制</h2><h1 id="C-语言提高"><a href="#C-语言提高" class="headerlink" title="C 语言提高"></a>C 语言提高</h1><h2 id="二级指针"><a href="#二级指针" class="headerlink" title="二级指针"></a>二级指针</h2><h2 id="结构体、文件的使用"><a href="#结构体、文件的使用" class="headerlink" title="结构体、文件的使用"></a>结构体、文件的使用</h2><h2 id="动态库封装和设计"><a href="#动态库封装和设计" class="headerlink" title="动态库封装和设计"></a>动态库封装和设计</h2><h2 id="函数指针回调函数"><a href="#函数指针回调函数" class="headerlink" title="函数指针回调函数"></a>函数指针回调函数</h2><h2 id="C-语言面试题强化"><a href="#C-语言面试题强化" class="headerlink" title="C 语言面试题强化"></a>C 语言面试题强化</h2><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://bbs.itheima.com/thread-338418-1-1.html">2017 C&#x2F;C++ 学习路线图（附全套自学视频+工具） | 倾心莫若初见</a></p>
-]]></content>
-      <categories>
-        <category>C &amp; C plus plus</category>
-      </categories>
-      <tags>
-        <tag>C</tag>
       </tags>
   </entry>
 </search>
