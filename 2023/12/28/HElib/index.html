@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-1.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/black/pace-theme-bounce.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"freesianz.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="HElib 库介绍HElib(Homomorphic Encryption library)是一个用于同态加密的开源库。HElib 主要由 Shai Halevi 和 Victor Shoup 开发，在 Craig Gentry 担任 IBM 研究员后不久，最初发布于2013年5月5日。HElib 是用 C++ 编写的，并使用 NTL 数学库。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HElib">
+<meta property="og:url" content="https://freesianz.github.io/2023/12/28/HElib/index.html">
+<meta property="og:site_name" content="Freesia">
+<meta property="og:description" content="HElib 库介绍HElib(Homomorphic Encryption library)是一个用于同态加密的开源库。HElib 主要由 Shai Halevi 和 Victor Shoup 开发，在 Craig Gentry 担任 IBM 研究员后不久，最初发布于2013年5月5日。HElib 是用 C++ 编写的，并使用 NTL 数学库。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://freesianz.github.io/2023/12/28/HElib/error-make-j4.png">
+<meta property="article:published_time" content="2023-12-28T07:42:07.000Z">
+<meta property="article:modified_time" content="2024-03-15T12:22:08.006Z">
+<meta property="article:author" content="Freesia">
+<meta property="article:tag" content="Open Source Library">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://freesianz.github.io/2023/12/28/HElib/error-make-j4.png">
+
+
+<link rel="canonical" href="https://freesianz.github.io/2023/12/28/HElib/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://freesianz.github.io/2023/12/28/HElib/","path":"2023/12/28/HElib/","title":"HElib"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>HElib | Freesia</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Freesia</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">You only live once.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HElib-%E5%BA%93%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">HElib 库介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E4%B8%8E%E6%9E%84%E5%BB%BA"><span class="nav-number">2.</span> <span class="nav-text">安装与构建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E5%86%B3%E6%9D%A1%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">先决条件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E5%85%88%E5%86%B3%E6%9D%A1%E4%BB%B6"><span class="nav-number">2.1.1.</span> <span class="nav-text">一般先决条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-environment"><span class="nav-number">2.1.2.</span> <span class="nav-text">Linux environment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#macOS-environment"><span class="nav-number">2.1.3.</span> <span class="nav-text">macOS environment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#For-development"><span class="nav-number">2.1.4.</span> <span class="nav-text">For development</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E9%A1%B91-%E5%8C%85%E6%9E%84%E5%BB%BA-%E6%8E%A8%E8%8D%90"><span class="nav-number">2.2.</span> <span class="nav-text">选项1 :包构建(推荐)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HElib-%E6%9E%84%E5%BB%BA"><span class="nav-number">2.2.1.</span> <span class="nav-text">HElib 构建</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E9%A1%B92-%E5%BA%93%E6%9E%84%E5%BB%BA-%E9%AB%98%E7%BA%A7"><span class="nav-number">2.3.</span> <span class="nav-text">选项2 :库构建(高级)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HElib-%E6%9E%84%E5%BB%BA%E9%80%89%E9%A1%B9"><span class="nav-number">2.4.</span> <span class="nav-text">HElib 构建选项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E9%80%89%E9%A1%B9"><span class="nav-number">2.4.1.</span> <span class="nav-text">通用选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E9%A1%B91-%E5%8C%85%E6%9E%84%E5%BB%BA-%E7%9A%84%E7%89%B9%E5%AE%9A%E5%8F%82%E6%95%B0"><span class="nav-number">2.4.2.</span> <span class="nav-text">选项1(包构建)的特定参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E9%A1%B92-%E5%BA%93%E6%9E%84%E5%BB%BA-%E7%9A%84%E7%89%B9%E5%AE%9A%E5%8F%82%E6%95%B0"><span class="nav-number">2.4.3.</span> <span class="nav-text">选项2(库构建)的特定参数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8-HElib"><span class="nav-number">3.</span> <span class="nav-text">在项目中使用 HElib</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E6%96%B9%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">标准方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8-cmake-%E6%9E%84%E5%BB%BA%E5%8C%85"><span class="nav-number">3.2.</span> <span class="nav-text">用 cmake 构建包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90"><span class="nav-number">3.3.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Freesia"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Freesia</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/FreesiaNZ" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;FreesiaNZ" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:camellia24@qq.com" title="E-Mail → mailto:camellia24@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://freesianz.github.io/2023/12/28/HElib/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Freesia">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Freesia">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="HElib | Freesia">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HElib
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-12-28 15:42:07" itemprop="dateCreated datePublished" datetime="2023-12-28T15:42:07+08:00">2023-12-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-15 20:22:08" itemprop="dateModified" datetime="2024-03-15T20:22:08+08:00">2024-03-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Homomorphic-Encryption/" itemprop="url" rel="index"><span itemprop="name">Homomorphic Encryption</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="HElib-库介绍"><a href="#HElib-库介绍" class="headerlink" title="HElib 库介绍"></a>HElib 库介绍</h1><p>HElib(Homomorphic Encryption library)是一个用于同态加密的开源库。HElib 主要由 Shai Halevi 和 Victor Shoup 开发，在 Craig Gentry 担任 IBM 研究员后不久，最初发布于2013年5月5日。HElib 是用 C++ 编写的，并使用 NTL 数学库。</p>
+<span id="more"></span>
+
+<p>以下是 HElib 的一些主要特点和功能 :</p>
+<p>1.支持多种同态加密方案。支持多种同态加密方案，其中包括 BGV(Brakerski-Gentry-Vaikuntanathan)、BFV(Brakerski&#x2F;Fan-Vercauteren)和 CKKS(Cheon-Kim-Kim-Song)等。这些方案适用于不同的应用场景，包括整数算术、布尔电路评估和实数运算。</p>
+<p>2.高性能的同态加密操作。HElib 在上述原始方案中引入了许多优化以加速同态运算，包括 Smart-Vercauteren 密文打包技术和 Gentry-Halevi-Smart 优化，提升了算法的整体运行效率，这对于在实际应用中处理大规模数据集或复杂计算任务至关重要。</p>
+<p>3.C++实现。HElib 使用 C++ 编写，为开发人员提供了一个灵活而高效的编程框架。这使得开发人员可以轻松地集成 HElib 到他们的应用中，并实现自定义的同态计算。</p>
+<p>4.HElib 提供了一种“同态加密汇编语言”，支持 “set”、“add”、“multiply”、“shift” 等基本操作指令，此外还提供了自动噪声管理、改进的 “Bootstrapping” 方法、多线程等功能。</p>
+<p>HElib 的 Github 主页在 : <a target="_blank" rel="noopener" href="https://github.com/homenc/HElib">https://github.com/homenc/HElib</a> 。</p>
+<!--more-->
+
+<h1 id="安装与构建"><a href="#安装与构建" class="headerlink" title="安装与构建"></a>安装与构建</h1><p>HElib 构建、安装和回归测试套件已在 Ubuntu 18.04、Ubuntu 20.04、Fedora 32、Fedora 33、CentOS 7.8、CentOS 8.2、macOS Mojave &gt;&#x3D; 10.14.6 和 macOS Catalina &gt;&#x3D; 10.15.7 上构建和测试。</p>
+<p>有两种不同的方法来建造和安装 HElib。第一个将自动下载并构建 GMP 和 NTL 依赖项，并将库打包到一个可重定位的文件夹中。相反，第二种方法要求您安装依赖项，并且这些依赖项在系统中可用。</p>
+<h2 id="先决条件"><a href="#先决条件" class="headerlink" title="先决条件"></a>先决条件</h2><h3 id="一般先决条件"><a href="#一般先决条件" class="headerlink" title="一般先决条件"></a>一般先决条件</h3><p>GNU make &gt;&#x3D; 3.82</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ make -v                        </span><br><span class="line">GNU Make 4.3</span><br><span class="line">Built <span class="keyword">for</span> x86_64-pc-linux-gnu</span><br><span class="line">Copyright (C) 1988-2020 Free Software Foundation, Inc.</span><br><span class="line">License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;</span><br><span class="line">This is free software: you are free to change and redistribute it.</span><br><span class="line">There is NO WARRANTY, to the extent permitted by law.</span><br></pre></td></tr></table></figure>
+
+<p>pthreads</p>
+<p>git &gt;&#x3D; 1.8.3 (required to build and run the HElib test suite)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ git --version                                   </span><br><span class="line">git version 2.39.2</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Linux-environment"><a href="#Linux-environment" class="headerlink" title="Linux environment"></a>Linux environment</h3><p>g++ &gt;&#x3D; 7.3.1</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ g++ -v</span><br><span class="line">Using built-in specs.</span><br><span class="line">COLLECT_GCC=g++</span><br><span class="line">COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper</span><br><span class="line">OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa</span><br><span class="line">OFFLOAD_TARGET_DEFAULT=1</span><br><span class="line">Target: x86_64-linux-gnu</span><br><span class="line">Configured with: ...</span><br><span class="line">Thread model: posix</span><br><span class="line">Supported LTO compression algorithms: zlib zstd</span><br><span class="line">gcc version 12.2.0 (Debian 12.2.0-14)</span><br></pre></td></tr></table></figure>
+
+<p>cmake &gt;&#x3D; 3.10.2</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ cmake -version</span><br><span class="line">cmake version 3.27.9</span><br><span class="line"></span><br><span class="line">CMake suite maintained and supported by Kitware (kitware.com/cmake).</span><br></pre></td></tr></table></figure>
+
+<h3 id="macOS-environment"><a href="#macOS-environment" class="headerlink" title="macOS environment"></a>macOS environment</h3><p>Apple clang &gt;&#x3D; 11.0.0 (available with the latest Xcode for the tested versions of macOS)</p>
+<p>Xcode Command Line Tools (can be installed with the command xcode-select –install in a teminal)</p>
+<p>cmake &gt;&#x3D; 3.17.3 (available from CMake or MacPorts Project and Homebrew as packages)</p>
+<h3 id="For-development"><a href="#For-development" class="headerlink" title="For development"></a>For development</h3><p>clang-format &gt;&#x3D; 9.0.0 (available with your linux distribution and for macOS from MacPorts Project and Homebrew as packages)</p>
+<h2 id="选项1-包构建-推荐"><a href="#选项1-包构建-推荐" class="headerlink" title="选项1 :包构建(推荐)"></a>选项1 :包构建(推荐)</h2><p>该选项将 HElib 及其依赖项(NTL和GMP)捆绑在一个目录中，然后可以在系统中自由移动。NTL 和 GMP 将被自动获取和编译。它可以全局安装(即 <code>/usr/local</code> )，如果未指定 <code>CMAKE_INSTALL_PREFIX</code>，则该选项为默认选项，但这应谨慎进行，因为现有版本的 NTL、GMP 或 HElib 将被覆盖。在这种情况下，需要另外两个先决条件:</p>
+<p>m4 &gt;&#x3D; 1.4.16</p>
+<blockquote>
+<p>m4 是一种宏处理器，它扫描用户输入的文本并将其输出，期间如果遇到宏就将其展开后输出。宏有两种，一种是内建的，另一种是用户定义的，它们能接受任意数量的参数。除了做展开宏的工作之外，m4 内建的宏能够加载文件，执行 Shell 命令，做整数运算，操纵文本，形成递归等等。m4 可用作编译器的前端，或者单纯作为宏处理器来用。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ m4 --version</span><br><span class="line">m4 (GNU M4) 1.4.19</span><br><span class="line">Copyright (C) 2021 Free Software Foundation, Inc.</span><br><span class="line">License GPLv3+: GNU GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html&gt;.</span><br><span class="line">This is free software: you are free to change and redistribute it.</span><br><span class="line">There is NO WARRANTY, to the extent permitted by law.</span><br><span class="line"></span><br><span class="line">Written by René Seindal.</span><br></pre></td></tr></table></figure>
+
+<p>patchelf &gt;&#x3D; 0.9(如果构建在Linux上)</p>
+<p>patchelf 是一个用来修改 elf 格式的动态库和可执行程序的小工具，可以修改动态链接库的库名字，以及链接库的 RPATH。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ patchelf --version</span><br><span class="line">patchelf 0.18.0</span><br></pre></td></tr></table></figure>
+
+<p>请注意，如果从库构建更改为包构建，使用干净的构建目录会更安全。</p>
+<h3 id="HElib-构建"><a href="#HElib-构建" class="headerlink" title="HElib 构建"></a>HElib 构建</h3><p>1.下载 HElib 并解压 :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/homenc/HElib/archive/v2.1.0.tar.gz</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf v2.1.0.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>2.创建一个构建目录，通常作为 <code>src</code> 的同级:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> HElib-2.1.0/ HElib</span><br><span class="line"><span class="built_in">cd</span> HElib</span><br><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"><span class="built_in">cd</span> build</span><br></pre></td></tr></table></figure>
+
+<p>3.运行 cmake 配置步骤，指定您需要一个包构建(通过 <code>-DPACKAGE_BUILD=ON</code> )，并说明您希望安装的位置。例如，要在 <code>/home/kali/helib_install</code> 中安装 :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake -DPACKAGE_BUILD=ON -DCMAKE_INSTALL_PREFIX=/home/kali/helib_install ..</span><br></pre></td></tr></table></figure>
+
+<p>可以在这里指定额外的选项，例如 <code>-DENABLE_TEST=ON</code> 启用 HElib 测试 。</p>
+<p>4.编译，指定可选的线程数(本例中为16)。其输出将位于可重定位文件夹 helib_pack中 :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -j16</span><br></pre></td></tr></table></figure>
+
+<p><code>make -j16</code> 要求高配置，低配置服务器指定较小的进程数，如 <code>make -j4</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">──(kali㉿kali)-[~/Documents/HElib/build]</span><br><span class="line">└─$ make -j4</span><br><span class="line">[  0%] Built target setup_install_dir</span><br><span class="line">...</span><br><span class="line">Install the project...</span><br><span class="line">-- Install configuration: &quot;RelWithDebInfo&quot;</span><br><span class="line">...</span><br><span class="line">[ 79%] Completed &#x27;helib_external&#x27;</span><br><span class="line">[100%] Built target helib_external</span><br></pre></td></tr></table></figure>
+
+<p>执行该命令时，报错如下 :</p>
+<img src="/2023/12/28/HElib/error-make-j4.png" class>
+
+<p>解决方法 :</p>
+<p>在报错路径文件 <code>Context.h</code> 添加头文件 <code>#include &lt;optional&gt;</code> 。</p>
+<p>5.【可选】如果在 <code>-DENABLE_TEST=ON</code> 的情况下执行步骤2，HElib 测试可以按如下方式运行 :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctest</span><br></pre></td></tr></table></figure>
+
+<p>详细的 HElib 专用测试日志可在 <code>Testing/Temporary/LastTest.log</code> 中找到。</p>
+<p>waiting…</p>
+<p>6.【可选】运行安装步骤，将文件夹复制到(在本例中为 <code>/home/kali/helib_install</code>) :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<p>当然，如果保持默认或一些其他系统范围的路径，步骤5可能需要特权。</p>
+<h2 id="选项2-库构建-高级"><a href="#选项2-库构建-高级" class="headerlink" title="选项2 :库构建(高级)"></a>选项2 :库构建(高级)</h2><p>该方案涉及自行建造 HElib，与系统上已存在的依赖关系(NTL 和 GMP)相联系。这样，HElib 库可以四处移动，但是它的依赖项(NTL 和 GMP)不能，因为它们是绝对路径。对于此选项，您必须自己构建 GMP &gt;&#x3D;6.0.0 和 NTL &gt;&#x3D;11.4.3。</p>
+<p>…</p>
+<h2 id="HElib-构建选项"><a href="#HElib-构建选项" class="headerlink" title="HElib 构建选项"></a>HElib 构建选项</h2><h3 id="通用选项"><a href="#通用选项" class="headerlink" title="通用选项"></a>通用选项</h3><ul>
+<li><p><code>BUILD_SHARED=ON/OFF</code> (默认为 <code>OFF</code> ) :构建为共享库。</p>
+</li>
+<li><p><code>CMAKE_BUILD_TYPE</code> (默认为 <code>RelWithDebInfo</code> ) :选择构建的类型，选项有<code>Debug</code>、<code>RelWithDebInfo</code>、<code>Release</code>、<code>MinSizeRel</code>。</p>
+</li>
+<li><p><code>CMAKE_INSTALL_PREFIX</code>  :所需的 HElib 安装目录。</p>
+</li>
+<li><p><code>ENABLE_TEST=ON/OFF</code> (默认值为 <code>OFF</code> ) :启用测试构建。</p>
+</li>
+<li><p><code>ENABLE_THREADS=ON/OFF</code> (默认值为 <code>ON</code> ) :启用线程支持</p>
+</li>
+<li><p><code>PEDANTIC_BUILD=ON/OFF</code> (默认为 <code>ON</code> ) :使用 <code>-Wall -Wpedantic -Wextra -Werror</code> 在构建期间。</p>
+</li>
+<li><p><code>HELIB_DEBUG=ON/OFF</code>(默认为 <code>OFF</code> ) :在构建 HElib 时激活调试模块(通过定义 <code>HELIB_DEBUG</code> 宏)。当调试模块处于活动状态时，将生成用于调试目的的额外信息。</p>
+</li>
+</ul>
+<p>当使用 cmake 时，<code>HELIB_DEBUG</code> 将传播到使用 HElib 的程序。如果启用此选项，使用 HElib 的程序将在配置期间生成一个警告。这是为了提醒用户，如果初始化不正确，使用调试模块可能会导致问题，比如 sigsegv。</p>
+<h3 id="选项1-包构建-的特定参数"><a href="#选项1-包构建-的特定参数" class="headerlink" title="选项1(包构建)的特定参数"></a>选项1(包构建)的特定参数</h3><ul>
+<li><p><code>PACKAGE_DIR</code> :包构建将被安装到的位置。默认 <code> $&#123;CMAKE_INSTALL_PREFIX&#125;/helib_pack</code>。</p>
+</li>
+<li><p><code>FETCH_GMP</code> :是否提取和建立 GMP。默认为 <code>ON</code> 。如果设置为 <code>OFF</code> ，应该存在系统安装的 GMP 库，或者 <code>GMP_DIR</code> 应该指向有效的GMP前缀。</p>
+</li>
+<li><p><code>GMP_DIR</code> :GMP 库的前缀。如果 <code>FETCH_GMP=ON</code> ，则忽略。</p>
+</li>
+</ul>
+<h3 id="选项2-库构建-的特定参数"><a href="#选项2-库构建-的特定参数" class="headerlink" title="选项2(库构建)的特定参数"></a>选项2(库构建)的特定参数</h3><p>…</p>
+<h1 id="在项目中使用-HElib"><a href="#在项目中使用-HElib" class="headerlink" title="在项目中使用 HElib"></a>在项目中使用 HElib</h1><h2 id="标准方法"><a href="#标准方法" class="headerlink" title="标准方法"></a>标准方法</h2><p>在选项1或选项2中运行 <code>make install</code> 之后，可以在 <code>lib</code> 中找到所需的共享库文件以及 <code>include</code> 中的头文件。这些可以按照您所选择的构建系统的首选方式使用。</p>
+<h2 id="用-cmake-构建包"><a href="#用-cmake-构建包" class="headerlink" title="用 cmake 构建包"></a>用 cmake 构建包</h2><p>如果在 cmake 项目中使用 HElib，还有一种更简单的方法。</p>
+<p>1.在 <code>CMakeLists.txt</code> 中包含以下行 :</p>
+<p>2.使用 <code>-Dhelib_DIR=&lt;helib install prefix&gt;/share/cmake/helib</code> 运行 <code>cmake</code> 步骤。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>在 <code>examples</code> 目录中可以找到使用 HElib 的基于 cmake 的项目的完整工作示例。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/HElib">HElib&#x2F;Wikipedia</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/pam-sh/p/14524581.html">HElib&#x2F;PamShao&#x2F;博客园</a></p>
+<p><a target="_blank" rel="noopener" href="https://zpan-pam.oss-cn-shanghai.aliyuncs.com/video/INSTALL.pdf">Official Installation Documentation</a></p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000004104696#GNU%20M4%20%E7%AE%80%E4%BB%8B">GNU m4&#x2F;宏&#x2F;SegmentFault</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ar-cheng/p/13225342.html">rpath和patchelf&#x2F;zaliasc&#x2F;博客园</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Freesia
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://freesianz.github.io/2023/12/28/HElib/" title="HElib">https://freesianz.github.io/2023/12/28/HElib/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Open-Source-Library/" rel="tag"><i class="fa fa-tag"></i> Open Source Library</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/12/24/%E4%BD%BF%E7%94%A8Hexo%E5%92%8CGithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" rel="prev" title="使用 Hexo & Github 搭建个人博客">
+                  <i class="fa fa-angle-left"></i> 使用 Hexo & Github 搭建个人博客
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/12/30/SEAL/" rel="next" title="SEAL">
+                  SEAL <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Freesia</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">19k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:04</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">计算中...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("12/24/2023 17:00:00");//你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "Freesia's Blog 已存在 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+
+
+
+</body>
+</html>

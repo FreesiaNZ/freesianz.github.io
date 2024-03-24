@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-1.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/black/pace-theme-bounce.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"freesianz.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="PALISADE 库介绍PALISADE是一个通用的格密码库，目前包含以下格密码算法的有效实现：    全同态加密（FHE），包含如下方案：    用于整数计算的 Brakerski &#x2F; Fan-Vercauteren（BFV）方案   用于整数计算的 Brakerski-Gentry-Vaikuntanathan（BGV）方案   用于实数计算的 Cheon-Kim-Kim-Song（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PALISADE">
+<meta property="og:url" content="https://freesianz.github.io/2024/01/01/PALISADE/index.html">
+<meta property="og:site_name" content="Freesia">
+<meta property="og:description" content="PALISADE 库介绍PALISADE是一个通用的格密码库，目前包含以下格密码算法的有效实现：    全同态加密（FHE），包含如下方案：    用于整数计算的 Brakerski &#x2F; Fan-Vercauteren（BFV）方案   用于整数计算的 Brakerski-Gentry-Vaikuntanathan（BGV）方案   用于实数计算的 Cheon-Kim-Kim-Song（">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-01T02:56:55.000Z">
+<meta property="article:modified_time" content="2024-03-15T12:22:22.934Z">
+<meta property="article:author" content="Freesia">
+<meta property="article:tag" content="Open Source Library">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://freesianz.github.io/2024/01/01/PALISADE/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://freesianz.github.io/2024/01/01/PALISADE/","path":"2024/01/01/PALISADE/","title":"PALISADE"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>PALISADE | Freesia</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Freesia</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">You only live once.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PALISADE-%E5%BA%93%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">PALISADE 库介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PALISADE-%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E6%9E%84%E5%BB%BA"><span class="nav-number">2.</span> <span class="nav-text">PALISADE 库的安装与构建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Freesia"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Freesia</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/FreesiaNZ" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;FreesiaNZ" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:camellia24@qq.com" title="E-Mail → mailto:camellia24@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://freesianz.github.io/2024/01/01/PALISADE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Freesia">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Freesia">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="PALISADE | Freesia">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PALISADE
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-01-01 10:56:55" itemprop="dateCreated datePublished" datetime="2024-01-01T10:56:55+08:00">2024-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-15 20:22:22" itemprop="dateModified" datetime="2024-03-15T20:22:22+08:00">2024-03-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Homomorphic-Encryption/" itemprop="url" rel="index"><span itemprop="name">Homomorphic Encryption</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>554</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="PALISADE-库介绍"><a href="#PALISADE-库介绍" class="headerlink" title="PALISADE 库介绍"></a>PALISADE 库介绍</h1><p>PALISADE是一个通用的格密码库，目前包含以下格密码算法的有效实现：</p>
+<table>
+<thead>
+<tr>
+<th>全同态加密（FHE），包含如下方案：</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>用于整数计算的 Brakerski &#x2F; Fan-Vercauteren（BFV）方案</td>
+</tr>
+<tr>
+<td>用于整数计算的 Brakerski-Gentry-Vaikuntanathan（BGV）方案</td>
+</tr>
+<tr>
+<td>用于实数计算的 Cheon-Kim-Kim-Song（CKKS）方案</td>
+</tr>
+<tr>
+<td>用于布尔电路计算的 Ducas-Micciancio（FHEW）和Chillotti-Gama-Georgieva-Izabachene（TFHE）方案</td>
+</tr>
+<tr>
+<td>有限整数计算的 Stehle-Steinfeld 方案</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>多方全同态加密包含如下方案：</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BGV，BFV和CKKS方案的门限FHE</td>
+</tr>
+<tr>
+<td>BGV，BFV和CKKS方案的代理重加密</td>
+</tr>
+</tbody></table>
+<p>此外还实现了数字签名、基于身份的加密密文策略和基于属性的加密。</p>
+<span id="more"></span>
+
+<p>PALISADE 是支持 Linux，Windows 和 macOS 的跨平台 C++11 库。</p>
+<p>支持的编译器是 g++ v6.1 或更高版本以及 clang ++ v6.0或更高版本。</p>
+<p>该库还包括单元测试和示例应用程序演示。</p>
+<p>PALISADE 在 BSD-2 条款的许可下使用。</p>
+<table>
+<thead>
+<tr>
+<th>该库基于模块化体系结构，包含如下各层：</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数学运算层：支持一些基础计算，例如模算术，数论变换和整数采样。该层支持可移植到多种硬件计算框架下。</td>
+</tr>
+<tr>
+<td>格运算层：支持格运算，环代数和格陷门采样。</td>
+</tr>
+<tr>
+<td>加密层：包含各类格密码方案的有效实现。</td>
+</tr>
+<tr>
+<td>编码层：为各种加密方案提供多种明文编码。</td>
+</tr>
+</tbody></table>
+<p>PALISADE 的重点在于方案的可用性。例如，所有带有密文打包的 FHE 方案都使用相同的通用 API，并使用运行时多态性实现。</p>
+<p>PALISADE 有效实现了的余数系统（RNS）算法，从而大幅提高 BGV，BFV 和 CKKS 等方案的性能。PALISADE 库被用作全基因组关联研究（GWAS）解决方案的库，在 iDASH’18 比赛上获奖。</p>
+<p>默认情况下，该库的构建没有外部依赖关系。但是如果需要，可以为用户提供添加 GMP&#x2F;NTL&#x2F;tcmalloc（线程敏感内存分配）第三方库的选项。</p>
+<h1 id="PALISADE-库的安装与构建"><a href="#PALISADE-库的安装与构建" class="headerlink" title="PALISADE 库的安装与构建"></a>PALISADE 库的安装与构建</h1><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://zhigang-chen.github.io/Palisade/">PALISADE-中文维基百科</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41996851/article/details/109625434">格密码开源库 PALISADE 的使用-CSDN</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45785407/category_11384169.html">PALISADE 全同态加密开源库-CSDN</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Freesia
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://freesianz.github.io/2024/01/01/PALISADE/" title="PALISADE">https://freesianz.github.io/2024/01/01/PALISADE/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Open-Source-Library/" rel="tag"><i class="fa fa-tag"></i> Open Source Library</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/12/31/%E6%9C%80%E5%90%8E%E7%9A%84%E5%81%87%E6%9C%9F/" rel="prev" title="最后的假期">
+                  <i class="fa fa-angle-left"></i> 最后的假期
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/01/02/VScode%E9%85%8D%E7%BD%AEJava%E7%8E%AF%E5%A2%83/" rel="next" title="VScode 配置 Java 环境">
+                  VScode 配置 Java 环境 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Freesia</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">19k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:04</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">计算中...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("12/24/2023 17:00:00");//你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "Freesia's Blog 已存在 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+
+
+
+</body>
+</html>

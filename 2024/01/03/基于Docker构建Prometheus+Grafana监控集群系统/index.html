@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-1.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/black/pace-theme-bounce.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"freesianz.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="环境准备   VM Environment IP Service    server docker 192.168.45.133 Prometheus Server, Node Exporter, cAdvisor, Grafana   client docker 192.168.45.132 Node Exporter、cAdvisor   nginx nginx 192.168.45.134">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于 Docker 构建 Prometheus + Grafana 监控集群系统">
+<meta property="og:url" content="https://freesianz.github.io/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="Freesia">
+<meta property="og:description" content="环境准备   VM Environment IP Service    server docker 192.168.45.133 Prometheus Server, Node Exporter, cAdvisor, Grafana   client docker 192.168.45.132 Node Exporter、cAdvisor   nginx nginx 192.168.45.134">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://freesianz.github.io/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/01-node.png">
+<meta property="og:image" content="https://freesianz.github.io/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/02-view.png">
+<meta property="og:image" content="https://freesianz.github.io/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/03-node.png">
+<meta property="og:image" content="https://freesianz.github.io/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/04-view.png">
+<meta property="og:image" content="https://freesianz.github.io/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/05-add.png">
+<meta property="og:image" content="https://freesianz.github.io/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/05-add.png">
+<meta property="og:image" content="https://freesianz.github.io/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/06-vim.png">
+<meta property="og:image" content="https://freesianz.github.io/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/07-start.png">
+<meta property="og:image" content="https://freesianz.github.io/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/08-run.png">
+<meta property="og:image" content="https://freesianz.github.io/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/09-view.png">
+<meta property="og:image" content="https://freesianz.github.io/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/10-pull.png">
+<meta property="og:image" content="https://freesianz.github.io/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/11-run.png">
+<meta property="article:published_time" content="2024-01-03T08:06:27.000Z">
+<meta property="article:modified_time" content="2024-03-15T13:29:35.828Z">
+<meta property="article:author" content="Freesia">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="nginx">
+<meta property="article:tag" content="prometheus">
+<meta property="article:tag" content="grafana">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://freesianz.github.io/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/01-node.png">
+
+
+<link rel="canonical" href="https://freesianz.github.io/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://freesianz.github.io/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/","path":"2024/01/03/基于Docker构建Prometheus+Grafana监控集群系统/","title":"基于 Docker 构建 Prometheus + Grafana 监控集群系统"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>基于 Docker 构建 Prometheus + Grafana 监控集群系统 | Freesia</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Freesia</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">You only live once.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2-node-exporter"><span class="nav-number">2.</span> <span class="nav-text">部署 node_exporter</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#server"><span class="nav-number">2.1.</span> <span class="nav-text">server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#client"><span class="nav-number">2.2.</span> <span class="nav-text">client</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-prometheus"><span class="nav-number">3.</span> <span class="nav-text">安装 prometheus</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Grafana"><span class="nav-number">4.</span> <span class="nav-text">安装 Grafana</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E5%90%AF%E5%8A%A8%E6%B5%8B%E8%AF%95-grafana"><span class="nav-number">4.1.</span> <span class="nav-text">先启动测试 grafana</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%BC%8F%E5%90%AF%E5%8A%A8-grafana"><span class="nav-number">4.2.</span> <span class="nav-text">正式启动 grafana</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx-%E5%AE%9E%E7%8E%B0%E5%9F%9F%E5%90%8D%E8%AE%BF%E9%97%AE-grafana"><span class="nav-number">4.3.</span> <span class="nav-text">nginx 实现域名访问 grafana</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0-prometheus-%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="nav-number">4.4.</span> <span class="nav-text">添加 prometheus 数据源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6%EF%BC%88%E7%9B%91%E6%8E%A7%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%EF%BC%89"><span class="nav-number">4.5.</span> <span class="nav-text">添加模板文件（监控主机信息）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-cAdvisor"><span class="nav-number">5.</span> <span class="nav-text">安装 cAdvisor</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-%E5%AE%89%E8%A3%85-cAdvisor"><span class="nav-number">5.1.</span> <span class="nav-text">docker 安装 cAdvisor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%A8%A1%E6%9D%BF%EF%BC%8C%E7%9B%91%E6%8E%A7-docker-%E5%AE%B9%E5%99%A8"><span class="nav-number">5.2.</span> <span class="nav-text">添加模板，监控 docker 容器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-blackbox-exporter-%E7%9B%91%E6%8E%A7%E7%AB%AF%E5%8F%A3"><span class="nav-number">6.</span> <span class="nav-text">安装 blackbox_exporter 监控端口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-%E5%AE%89%E8%A3%85-blackbox-exporter"><span class="nav-number">6.1.</span> <span class="nav-text">docker 安装 blackbox_exporter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8-grafana-%E9%9D%A2%E6%9D%BF%E6%B7%BB%E5%8A%A0%E6%A8%A1%E6%9D%BF"><span class="nav-number">6.2.</span> <span class="nav-text">在 grafana 面板添加模板</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Alert-%E8%AD%A6%E6%8A%A5"><span class="nav-number">7.</span> <span class="nav-text">Alert 警报</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AlertManager-%E5%91%8A%E8%AD%A6"><span class="nav-number">7.1.</span> <span class="nav-text">AlertManager 告警</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grafana-%E8%87%AA%E5%B8%A6-alert-%E5%91%8A%E8%AD%A6"><span class="nav-number">7.2.</span> <span class="nav-text">grafana 自带 alert 告警</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Freesia"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Freesia</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/FreesiaNZ" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;FreesiaNZ" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:camellia24@qq.com" title="E-Mail → mailto:camellia24@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://freesianz.github.io/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Freesia">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Freesia">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="基于 Docker 构建 Prometheus + Grafana 监控集群系统 | Freesia">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于 Docker 构建 Prometheus + Grafana 监控集群系统
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-01-03 16:06:27" itemprop="dateCreated datePublished" datetime="2024-01-03T16:06:27+08:00">2024-01-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-15 21:29:35" itemprop="dateModified" datetime="2024-03-15T21:29:35+08:00">2024-03-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Project/" itemprop="url" rel="index"><span itemprop="name">Project</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>955</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><table>
+<thead>
+<tr>
+<th align="center">VM</th>
+<th align="center">Environment</th>
+<th align="center">IP</th>
+<th align="center">Service</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">server</td>
+<td align="center">docker</td>
+<td align="center">192.168.45.133</td>
+<td align="center">Prometheus Server, Node Exporter, cAdvisor, Grafana</td>
+</tr>
+<tr>
+<td align="center">client</td>
+<td align="center">docker</td>
+<td align="center">192.168.45.132</td>
+<td align="center">Node Exporter、cAdvisor</td>
+</tr>
+<tr>
+<td align="center">nginx</td>
+<td align="center">nginx</td>
+<td align="center">192.168.45.134</td>
+<td align="center">&#x2F;</td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+
+<h1 id="部署-node-exporter"><a href="#部署-node-exporter" class="headerlink" title="部署 node_exporter"></a>部署 node_exporter</h1><blockquote>
+<p>server、client.</p>
+</blockquote>
+<h2 id="server"><a href="#server" class="headerlink" title="server"></a>server</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull prom/node-exporter</span><br><span class="line">docker run --name=node-exporter -p 9100:9100 -itd prom/node-exporter</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/01-node.png" class>
+
+<p>访问：<a target="_blank" rel="noopener" href="http://192.168.45.133:9100/">http://192.168.45.133:9100</a> 查看节点信息。</p>
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/02-view.png" class>
+
+<h2 id="client"><a href="#client" class="headerlink" title="client"></a>client</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull prom/node-exporter</span><br><span class="line">docker run --name=node-exporter -p 9100:9100 -itd prom/node-exporter</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/03-node.png" class>
+
+<p>访问：<a target="_blank" rel="noopener" href="http://192.168.45.132:9100/">http://192.168.45.132:9100</a> 查看节点信息。</p>
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/04-view.png" class>
+
+<h1 id="安装-prometheus"><a href="#安装-prometheus" class="headerlink" title="安装 prometheus"></a>安装 prometheus</h1><blockquote>
+<p>server.</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /server/docker/prometheus/&#123;server,client&#125;</span><br><span class="line"><span class="built_in">touch</span> /server/docker/prometheus/server/rules.yml</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/05-add.png" class>
+
+<p>编辑 prometheus.yml 文件，添加客户端信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /server/docker/prometheus/server/prometheus.yml</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/05-add.png" class>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">global:</span><br><span class="line">  scrape_interval:</span><br><span class="line">  external_labels:</span><br><span class="line">    monitor: <span class="string">&#x27;codelab-monitor&#x27;</span></span><br><span class="line">scrape_configs:</span><br><span class="line">  - job_name: <span class="string">&#x27;prometheus&#x27;</span></span><br><span class="line">    scrape_interval: 5s</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [<span class="string">&#x27;localhost:9090&#x27;</span>,<span class="string">&#x27;192.168.45.133:9100&#x27;</span>]</span><br><span class="line">  - job_name: <span class="string">&#x27;client-node1&#x27;</span></span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [<span class="string">&#x27;192.168.45.132:9100&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/06-vim.png" class>
+
+<p>docker 启动 prometheus：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull prom/prometheus</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/07-start.png" class>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run --name prometheus -p 9090:9090 \</span><br><span class="line">-v /server/docker/prometheus/server/prometheus.yml:/etc/prometheus/prometheus.yml \</span><br><span class="line">-v /server/docker/prometheus/server/rules.yml:/etc/prometheus/rules.yml \</span><br><span class="line">-itd prom/prometheus \</span><br><span class="line">--config.file=/etc/prometheus/prometheus.yml \</span><br><span class="line">--web.enable-lifecycle</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/08-run.png" class>
+
+<p>注：启动时加入 <code>--web.enable-lifecycle</code> 启用远程热加载配置文件，<code>--config.file</code> 启动时加载配置文件。</p>
+<p>访问 <a target="_blank" rel="noopener" href="http://192.168.45.133:9090/">http://192.168.45.133:9090</a> 显示 Prometheus 。</p>
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/09-view.png" class>
+
+<h1 id="安装-Grafana"><a href="#安装-Grafana" class="headerlink" title="安装 Grafana"></a>安装 Grafana</h1><blockquote>
+<p>server.</p>
+</blockquote>
+<h2 id="先启动测试-grafana"><a href="#先启动测试-grafana" class="headerlink" title="先启动测试 grafana"></a>先启动测试 grafana</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull grafana/grafana</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/10-pull.png" class>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name=grafana -p 3000:3000 -itd grafana/grafana</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/11-run.png" class>
+
+<p>将配置文件复制到宿主机：</p>
+<p>docker exec -it 96f51e2d555b &#x2F;bin&#x2F;bash </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">cp</span> grafana:/etc/grafana/grafana.ini /server/docker/prometheus/grafana/ </span><br><span class="line">docker <span class="built_in">rm</span> -f grafana </span><br></pre></td></tr></table></figure>
+
+
+
+<p>修改配置文件 grafana.ini，配置 smtp 邮件报警信息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /server/docker/prometheus/grafana/grafana.ini</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">enabled = <span class="literal">true</span></span><br><span class="line">host = smtp.qq.com:465</span><br><span class="line">user = camellia24@qq.com</span><br><span class="line"><span class="comment"># If the password contains # or ; you ...</span></span><br><span class="line">password = dygawislbduqbehe</span><br><span class="line">;cert_file =</span><br><span class="line">;key_file =</span><br><span class="line">;skip_verify = <span class="literal">false</span></span><br><span class="line">from_address = camellia24@qq.com</span><br><span class="line">;from_name = Grafana</span><br></pre></td></tr></table></figure>
+
+<p>根据实际添加上面这几条，<code>host</code> 、 <code>password</code> 可以登录邮箱查看。</p>
+<h2 id="正式启动-grafana"><a href="#正式启动-grafana" class="headerlink" title="正式启动 grafana"></a>正式启动 grafana</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 3000:3000 --name grafana \</span><br><span class="line">-v /server/docker/prometheus/grafana/grafana.ini:/etc/grafana/grafana.ini \</span><br><span class="line">-v /server/docker/prometheus/grafana/data:/var/lib/grafana \</span><br><span class="line">-e <span class="string">&quot;GF_SECURITY_ADMIN_PASSWORD=grafana123&quot;</span> \</span><br><span class="line">-itd grafana/grafana</span><br></pre></td></tr></table></figure>
+
+<p>注：<code>-e &quot;GF_SECURITY_ADMIN_PASSWORD=grafana123&quot;</code> 是设置 grafana 登陆页面的密码，如不添加这条，默认账号密码为 admin&#x2F;admin。</p>
+<p>访问 <a target="_blank" rel="noopener" href="http://192.168.45.133:3000/">http://192.168.45.133:3000</a> ，账号密码为：admin&#x2F;grafana123。</p>
+<h2 id="nginx-实现域名访问-grafana"><a href="#nginx-实现域名访问-grafana" class="headerlink" title="nginx 实现域名访问 grafana"></a>nginx 实现域名访问 grafana</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    server_name grafana.aa.com;</span><br><span class="line">    listen 80;</span><br><span class="line">     </span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://192.168.45.133:3000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>访问 <a target="_blank" rel="noopener" href="http://grafana.aa.com/">http://grafana.aa.com</a> 。</p>
+<h2 id="添加-prometheus-数据源"><a href="#添加-prometheus-数据源" class="headerlink" title="添加 prometheus 数据源"></a>添加 prometheus 数据源</h2><p>COMPLETE &gt; Add your first data source &gt; Settings .</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Name</td>
+<td>Prometheus</td>
+</tr>
+<tr>
+<td>URL</td>
+<td><a target="_blank" rel="noopener" href="http://192.168.45.133:9090/">http://192.168.45.133:9090</a></td>
+</tr>
+</tbody></table>
+<h2 id="添加模板文件（监控主机信息）"><a href="#添加模板文件（监控主机信息）" class="headerlink" title="添加模板文件（监控主机信息）"></a>添加模板文件（监控主机信息）</h2><p>参考 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/367d52fe1171">grafana 常用监控模板大全</a> 和 <a target="_blank" rel="noopener" href="https://grafana.com/grafana/dashboards/">grafana 官网模板</a> 。根据需求下载网址中的模板，下载到本地后，导入到 grafana：</p>
+<p>MENU &gt; Manage &gt; Import &gt; Upload JSON file &gt; 输入 URL &gt; Load .</p>
+<p>也可以根据官网的模板 ID 号下载：</p>
+<p>MENU &gt; Manage &gt; Import &gt; Import via grafana.com &gt; 输入 ID &gt; Load .</p>
+<p>Options &gt; prometheus &gt; Prometheus &gt; Import.</p>
+<h1 id="安装-cAdvisor"><a href="#安装-cAdvisor" class="headerlink" title="安装 cAdvisor"></a>安装 cAdvisor</h1><blockquote>
+<p>server、client.</p>
+</blockquote>
+<h2 id="docker-安装-cAdvisor"><a href="#docker-安装-cAdvisor" class="headerlink" title="docker 安装 cAdvisor"></a>docker 安装 cAdvisor</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull google/cadvisor</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 8088:8080 --name cadvisor \</span><br><span class="line">-v /:/rootfs:ro \</span><br><span class="line">-v /var/run:/var/run:rw \</span><br><span class="line">-v /sys:/sys:ro \</span><br><span class="line">-v /var/lib/docker/:/var/lib/docker:ro \</span><br><span class="line">-itd google/cadvisor:latest</span><br></pre></td></tr></table></figure>
+
+<p>将 ip、端口加入到 prometheus.yml 文件，重启 prometheus 服务。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">global:</span><br><span class="line">  scrape_interval:</span><br><span class="line">  external_labels:</span><br><span class="line">    monitor: <span class="string">&#x27;codelab-monitor&#x27;</span></span><br><span class="line">scrape_configs:</span><br><span class="line">  - job_name: <span class="string">&#x27;prometheus&#x27;</span></span><br><span class="line">    scrape_interval: 5s</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [<span class="string">&#x27;localhost:9090&#x27;</span>,<span class="string">&#x27;192.168.45.133:9100&#x27;</span>,<span class="string">&#x27;192.168.45.133:8088&#x27;</span>]</span><br><span class="line">  - job_name: <span class="string">&#x27;client-node1&#x27;</span></span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [<span class="string">&#x27;192.168.45.132:9100&#x27;</span>,<span class="string">&#x27;192.168.45.132:8088&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>重启 prometheus 让配置生效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker restart prometheus</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加模板，监控-docker-容器"><a href="#添加模板，监控-docker-容器" class="headerlink" title="添加模板，监控 docker 容器"></a>添加模板，监控 docker 容器</h2><p>自行选择模板，展示：</p>
+<h1 id="安装-blackbox-exporter-监控端口"><a href="#安装-blackbox-exporter-监控端口" class="headerlink" title="安装 blackbox_exporter 监控端口"></a>安装 blackbox_exporter 监控端口</h1><blockquote>
+<p>server.</p>
+</blockquote>
+<h2 id="docker-安装-blackbox-exporter"><a href="#docker-安装-blackbox-exporter" class="headerlink" title="docker 安装 blackbox_exporter"></a>docker 安装 blackbox_exporter</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull prom/blackbox-exporter</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name blackbox -p 9115:9115-itd prom/blackbox-exporter</span><br></pre></td></tr></table></figure>
+
+<p>在 prometheus.yml 文件添加监控配置：</p>
+<blockquote>
+<p>注意：格式不对 prometheus 会报错。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  - job_name: <span class="string">&#x27;prometheus_port_status&#x27;</span></span><br><span class="line">    metrics_path: /probe</span><br><span class="line">    params:</span><br><span class="line">      module: [tcp_connect]</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [<span class="string">&#x27;192.168.1.20:8088&#x27;</span>,<span class="string">&#x27;192.168.1.20:9100&#x27;</span>,<span class="string">&#x27;192.168.1.20:8091&#x27;</span>,<span class="string">&#x27;192.168.45.132:8088&#x27;</span>,<span class="string">&#x27;192.168.45.132:9100&#x27;</span>,<span class="string">&#x27;192.168.45.132:8091&#x27;</span>]</span><br><span class="line">        labels:</span><br><span class="line">          instance: <span class="string">&#x27;port_status&#x27;</span></span><br><span class="line">          group: <span class="string">&#x27;tcp&#x27;</span></span><br><span class="line">    relabel_configs:</span><br><span class="line">      - source_labels: [__address__]</span><br><span class="line">        target_label: __param_target</span><br><span class="line">      - source_labels: [__param_target]</span><br><span class="line">        target_label: instance</span><br><span class="line">      - target_label: __address__</span><br><span class="line">        replacement: 192.168.1.20:9115</span><br><span class="line">  - job_name: <span class="string">&#x27;node_status&#x27;</span></span><br><span class="line">    metrics_path: /probe</span><br><span class="line">    params:</span><br><span class="line">      module: [icmp]</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [<span class="string">&#x27;192.168.1.20&#x27;</span>,<span class="string">&#x27;192.168.45.132&#x27;</span>]</span><br><span class="line">        labels:</span><br><span class="line">          instance: <span class="string">&#x27;node_status&#x27;</span></span><br><span class="line">          group: <span class="string">&#x27;node&#x27;</span></span><br><span class="line">    relabel_configs:</span><br><span class="line">      - source_labels: [__address__]</span><br><span class="line">        target_label: __param_target</span><br><span class="line">      - target_label: __address__</span><br><span class="line">        replacement: 192.168.1.20:9115</span><br><span class="line">  - job_name: <span class="string">&#x27;web_status&#x27;</span></span><br><span class="line">    metrics_path: /probe</span><br><span class="line">    params:</span><br><span class="line">      module: [http_2xx]</span><br><span class="line">    static_configs:</span><br><span class="line">      - targets: [<span class="string">&#x27;https://www.baidu.com&#x27;</span>]</span><br><span class="line">        labels:</span><br><span class="line">          instance: <span class="string">&#x27;web_status&#x27;</span></span><br><span class="line">          group: <span class="string">&#x27;web&#x27;</span></span><br><span class="line">    relabel_configs:</span><br><span class="line">      - source_labels: [__address__]</span><br><span class="line">        target_label: __param_target</span><br><span class="line">      - target_label: __address__</span><br><span class="line">        replacement: 192.168.1.20:9115</span><br></pre></td></tr></table></figure>
+
+<p>blackbox-exporter 在 grafana 页面展示需要安装 grafana-piechart-panel 插件。</p>
+<p>下载完后，上传到 &#x2F;server&#x2F;docker&#x2F;prometheus&#x2F;grafana&#x2F;data&#x2F;plugins 。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker restart grafana</span><br><span class="line">docker <span class="built_in">exec</span> -it grafana grafana-cli plugins install grafana-piechart-panel</span><br><span class="line">docker restart grafana</span><br></pre></td></tr></table></figure>
+
+<h2 id="在-grafana-面板添加模板"><a href="#在-grafana-面板添加模板" class="headerlink" title="在 grafana 面板添加模板"></a>在 grafana 面板添加模板</h2><h1 id="Alert-警报"><a href="#Alert-警报" class="headerlink" title="Alert 警报"></a>Alert 警报</h1><h2 id="AlertManager-告警"><a href="#AlertManager-告警" class="headerlink" title="AlertManager 告警"></a>AlertManager 告警</h2><h2 id="grafana-自带-alert-告警"><a href="#grafana-自带-alert-告警" class="headerlink" title="grafana 自带 alert 告警"></a>grafana 自带 alert 告警</h2><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cfzy/p/14750004.html">Docker 搭建 Prometheus+grafana 监控系统-博客园</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Freesia
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://freesianz.github.io/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/" title="基于 Docker 构建 Prometheus + Grafana 监控集群系统">https://freesianz.github.io/2024/01/03/基于Docker构建Prometheus+Grafana监控集群系统/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/docker/" rel="tag"><i class="fa fa-tag"></i> docker</a>
+              <a href="/tags/nginx/" rel="tag"><i class="fa fa-tag"></i> nginx</a>
+              <a href="/tags/prometheus/" rel="tag"><i class="fa fa-tag"></i> prometheus</a>
+              <a href="/tags/grafana/" rel="tag"><i class="fa fa-tag"></i> grafana</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/" rel="prev" title="CentOS-7 安装 docker">
+                  <i class="fa fa-angle-left"></i> CentOS-7 安装 docker
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/03/15/C&Cplusplus%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" rel="next" title="C & C plus plus 学习路线">
+                  C & C plus plus 学习路线 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Freesia</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">19k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:04</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">计算中...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("12/24/2023 17:00:00");//你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "Freesia's Blog 已存在 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+
+
+
+</body>
+</html>

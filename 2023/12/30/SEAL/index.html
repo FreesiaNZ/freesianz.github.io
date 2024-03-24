@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-1.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/black/pace-theme-bounce.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"freesianz.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="SEAL 库介绍简介Simple Encrypted Arithmetic Library（简单加密算术库）或 SEAL 是一个免费和开源的跨平台软件库，由微软研究院开发，实现各种形式的同态加密。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SEAL">
+<meta property="og:url" content="https://freesianz.github.io/2023/12/30/SEAL/index.html">
+<meta property="og:site_name" content="Freesia">
+<meta property="og:description" content="SEAL 库介绍简介Simple Encrypted Arithmetic Library（简单加密算术库）或 SEAL 是一个免费和开源的跨平台软件库，由微软研究院开发，实现各种形式的同态加密。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://freesianz.github.io/2023/12/30/SEAL/sealexamples-cpp.png">
+<meta property="og:image" content="https://freesianz.github.io/2023/12/30/SEAL/sealexamples-exe.png">
+<meta property="og:image" content="https://freesianz.github.io/2023/12/30/SEAL/sealexamples-run.png">
+<meta property="article:published_time" content="2023-12-30T08:20:34.000Z">
+<meta property="article:modified_time" content="2024-03-15T12:22:47.006Z">
+<meta property="article:author" content="Freesia">
+<meta property="article:tag" content="Open Source Library">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://freesianz.github.io/2023/12/30/SEAL/sealexamples-cpp.png">
+
+
+<link rel="canonical" href="https://freesianz.github.io/2023/12/30/SEAL/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://freesianz.github.io/2023/12/30/SEAL/","path":"2023/12/30/SEAL/","title":"SEAL"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>SEAL | Freesia</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Freesia</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">You only live once.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SEAL-%E5%BA%93%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">SEAL 库介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%86%E5%8F%B2"><span class="nav-number">1.2.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E5%BE%81"><span class="nav-number">1.3.</span> <span class="nav-text">特征</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95"><span class="nav-number">1.3.1.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.3.2.</span> <span class="nav-text">方案类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9"><span class="nav-number">1.3.3.</span> <span class="nav-text">压缩</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E7%94%A8%E6%80%A7"><span class="nav-number">1.4.</span> <span class="nav-text">可用性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#C"><span class="nav-number">1.4.1.</span> <span class="nav-text">C++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-F"><span class="nav-number">1.4.2.</span> <span class="nav-text">C#&#x2F;F#</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python"><span class="nav-number">1.4.3.</span> <span class="nav-text">Python</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript"><span class="nav-number">1.4.4.</span> <span class="nav-text">JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TypeScript"><span class="nav-number">1.4.5.</span> <span class="nav-text">TypeScript</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Microsoft-SEAL"><span class="nav-number">2.</span> <span class="nav-text">Microsoft SEAL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="nav-number">2.1.1.</span> <span class="nav-text">核心概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86"><span class="nav-number">2.1.2.</span> <span class="nav-text">同态加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E8%BD%AF-SEAL"><span class="nav-number">2.1.3.</span> <span class="nav-text">微软 SEAL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%BC%80%E5%A7%8B"><span class="nav-number">2.2.</span> <span class="nav-text">准备开始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E6%8B%A9%E7%9A%84%E4%BE%9D%E8%B5%96%E9%A1%B9"><span class="nav-number">2.2.1.</span> <span class="nav-text">可选择的依赖项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Intel-HEXL"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">Intel HEXL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Microsoft-GSL"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">Microsoft GSL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ZLIB-%E5%92%8C-Zstandard"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">ZLIB 和 Zstandard</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8E-NuGet-%E8%BD%AF%E4%BB%B6%E5%8C%85%E5%AE%89%E8%A3%85"><span class="nav-number">2.2.2.</span> <span class="nav-text">从 NuGet 软件包安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8E-vcpkg-%E5%AE%89%E8%A3%85"><span class="nav-number">2.2.3.</span> <span class="nav-text">从 vcpkg 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.2.4.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-EVA-%E8%BF%9B%E8%A1%8C-CKKS-%E7%BC%96%E7%A8%8B"><span class="nav-number">2.2.5.</span> <span class="nav-text">使用 EVA 进行 CKKS 编程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E6%9E%84%E5%BB%BA-Microsoft-SEAL"><span class="nav-number">2.3.</span> <span class="nav-text">手动构建 Microsoft SEAL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA-C-%E7%BB%84%E4%BB%B6"><span class="nav-number">2.3.1.</span> <span class="nav-text">构建 C++ 组件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E8%A6%81%E6%B1%82"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">安装要求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA-Microsoft-SEAL"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">构建 Microsoft SEAL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Microsoft-SEAL"><span class="nav-number">2.3.1.3.</span> <span class="nav-text">安装 Microsoft SEAL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8-Windows-%E4%B8%8A%E7%BC%96%E8%AF%91%E5%92%8C%E5%AE%89%E8%A3%85"><span class="nav-number">2.3.1.4.</span> <span class="nav-text">在 Windows 上编译和安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA-Android-%E5%92%8C-iOS-%E6%9E%84%E5%BB%BA"><span class="nav-number">2.3.1.5.</span> <span class="nav-text">为 Android 和 iOS 构建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA-WebAssembly-%E6%9E%84%E5%BB%BA"><span class="nav-number">2.3.1.6.</span> <span class="nav-text">为 WebAssembly 构建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CMake-%E5%9F%BA%E6%9C%AC%E9%80%89%E9%A1%B9"><span class="nav-number">2.3.1.7.</span> <span class="nav-text">CMake 基本选项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CMake-%E9%AB%98%E7%BA%A7%E9%80%89%E9%A1%B9"><span class="nav-number">2.3.1.8.</span> <span class="nav-text">CMake 高级选项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E8%BF%87-CMake-%E9%93%BE%E6%8E%A5-Microsoft-SEAL"><span class="nav-number">2.3.1.9.</span> <span class="nav-text">通过 CMake 链接 Microsoft SEAL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E3%80%81%E6%B5%8B%E8%AF%95%E5%92%8C%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95"><span class="nav-number">2.3.1.10.</span> <span class="nav-text">示例、测试和基准测试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA-NET-%E7%BB%84%E4%BB%B6"><span class="nav-number">2.3.2.</span> <span class="nav-text">构建 .NET 组件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows%E3%80%81Linux-%E5%92%8C-macOS"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">Windows、Linux 和 macOS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E5%8D%93%E5%92%8C-iOS"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">安卓和 iOS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-Microsoft-SEAL-for-NET"><span class="nav-number">2.3.2.3.</span> <span class="nav-text">使用 Microsoft SEAL for .NET</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84-NuGet-%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="nav-number">2.3.2.4.</span> <span class="nav-text">构建自己的 NuGet 软件包</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SEAL-%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E6%9E%84%E5%BB%BA"><span class="nav-number">3.</span> <span class="nav-text">SEAL 库的安装与构建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E6%9D%A1%E4%BB%B6"><span class="nav-number">3.1.</span> <span class="nav-text">环境条件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CMake"><span class="nav-number">3.1.1.</span> <span class="nav-text">CMake</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Clang"><span class="nav-number">3.1.2.</span> <span class="nav-text">Clang++</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-SEAL-%E5%BA%93"><span class="nav-number">3.2.</span> <span class="nav-text">安装 SEAL 库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-clone-SEAL-%E5%BA%93"><span class="nav-number">3.2.1.</span> <span class="nav-text">git clone SEAL 库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%92%8C%E5%AE%89%E8%A3%85-SEAL-%E5%BA%93"><span class="nav-number">3.2.2.</span> <span class="nav-text">编译和安装 SEAL 库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95-SEAL-%E5%BA%93%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F%E5%AE%89%E8%A3%85"><span class="nav-number">3.2.3.</span> <span class="nav-text">测试 SEAL 库是否成功安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">3.2.3.1.</span> <span class="nav-text">新建文件夹</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA-sealdemo-cpp"><span class="nav-number">3.2.3.2.</span> <span class="nav-text">新建 sealdemo.cpp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA-CMakeLists-txt"><span class="nav-number">3.2.3.3.</span> <span class="nav-text">新建 CMakeLists.txt</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%92%8C%E8%BF%90%E8%A1%8C%E6%B5%8B%E8%AF%95-demo"><span class="nav-number">3.2.3.4.</span> <span class="nav-text">编译和运行测试 demo</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0-SEAL-Example"><span class="nav-number">3.3.</span> <span class="nav-text">学习 SEAL Example</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Freesia"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Freesia</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/FreesiaNZ" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;FreesiaNZ" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:camellia24@qq.com" title="E-Mail → mailto:camellia24@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://freesianz.github.io/2023/12/30/SEAL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Freesia">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Freesia">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="SEAL | Freesia">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SEAL
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-12-30 16:20:34" itemprop="dateCreated datePublished" datetime="2023-12-30T16:20:34+08:00">2023-12-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-15 20:22:47" itemprop="dateModified" datetime="2024-03-15T20:22:47+08:00">2024-03-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Homomorphic-Encryption/" itemprop="url" rel="index"><span itemprop="name">Homomorphic Encryption</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>26 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="SEAL-库介绍"><a href="#SEAL-库介绍" class="headerlink" title="SEAL 库介绍"></a>SEAL 库介绍</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Simple Encrypted Arithmetic Library（简单加密算术库）或 SEAL 是一个免费和开源的跨平台软件库，由微软研究院开发，实现各种形式的同态加密。</p>
+<span id="more"></span>
+
+<h2 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h2><p>开发最初出自 Cryptonets 论文，证明了人工智能算法可以在同态加密的数据上运行。它是开源的（根据 MIT 许可证） ，并且是用标准 C++ 编写的，没有外部依赖关系，因此它可以跨平台编译。使用 C# 编写的官方 .NET 包装器是可用的，它使 .NET 应用程序更容易与 SEAL 交互。</p>
+<h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>Microsoft SEAL 同时支持非对称和对称（在 3.4 版中添加）加密算法。</p>
+<h3 id="方案类型"><a href="#方案类型" class="headerlink" title="方案类型"></a>方案类型</h3><p>Microsoft SEAL 提供了两种不同的同态加密方案，它们有着非常不同的属性:</p>
+<p>BFV: BFV 方案允许对加密的整数执行同余关系。对于需要精确数值的应用，BFV 方案是唯一的选择。</p>
+<p>CKKS: CKKS 方案允许对加密的实数或复数进行加法和乘法，但只能得到近似的结果。在诸如总结加密实数、评估加密数据的机器学习模型或计算加密位置的距离等应用中，CKKS 将是目前为止的最佳选择。</p>
+<h3 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h3><p>数据压缩可以通过在 Zlib 的支持下构建 SEAL 来实现。默认情况下，数据使用 DEFLATE 算法进行压缩，这种算法在序列化对象如加密参数、密文、明文和所有可用的密钥: Public、 Secret、 Relin（重线性化）和 Galois 时节省了大量的内存占用。总是可以禁用压缩。</p>
+<h2 id="可用性"><a href="#可用性" class="headerlink" title="可用性"></a>可用性</h2><h3 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h3><p><a target="_blank" rel="noopener" href="https://github.com/Microsoft/SEAL">Microsoft SEAL</a></p>
+<h3 id="C-F"><a href="#C-F" class="headerlink" title="C#&#x2F;F#"></a>C#&#x2F;F#</h3><p><a target="_blank" rel="noopener" href="https://www.nuget.org/packages/Microsoft.Research.SEALNet/">NuGet</a></p>
+<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><p><a target="_blank" rel="noopener" href="https://github.com/Lab41/PySEAL">PySEAL</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Huelse/SEAL-Python">SEAL-Python</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/tf-encrypted/tf-seal">tf-seal</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ibarrond/Pyfhel">Pyfhel</a></p>
+<h3 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h3><p><a target="_blank" rel="noopener" href="https://github.com/morfix-io/node-seal">node-seal</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/PrivateSky/sealjs">sealjs</a></p>
+<h3 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h3><p><a target="_blank" rel="noopener" href="https://github.com/morfix-io/node-seal">node-seal</a></p>
+<h1 id="Microsoft-SEAL"><a href="#Microsoft-SEAL" class="headerlink" title="Microsoft SEAL"></a>Microsoft SEAL</h1><p>SEAL 的 Github 主页在 : <a target="_blank" rel="noopener" href="https://github.com/microsoft/SEAL">https://github.com/microsoft/SEAL</a> 。</p>
+<p>以下翻译自 <a target="_blank" rel="noopener" href="https://github.com/microsoft/SEAL/blob/main/README.md">README.md</a> :</p>
+<h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><p>大多数加密方案都包含三个功能：密钥生成、加密和解密。对称密钥加密方案在加密和解密时使用相同的秘钥；公用密钥加密方案在加密和解密时分别使用公用密钥和秘钥。因此，公用密钥加密方案允许任何知道公用密钥的人加密数据，但只有知道秘密密钥的人才能解密和读取数据。对称密钥加密可用于高效加密大量数据，并实现安全的外包云端存储。公钥加密是实现当今安全在线通信的一个基本概念，但其效率通常比对称密钥加密低得多。</p>
+<p>虽然传统的对称密钥和公钥加密可用于安全存储和通信，但任何外包计算都必然要求在进行计算之前移除加密层。因此，提供外包计算功能的云服务必须能够访问密匙，并实施访问策略，防止未经授权的员工访问这些密匙。</p>
+<h3 id="同态加密"><a href="#同态加密" class="headerlink" title="同态加密"></a>同态加密</h3><p>同态加密是指允许云直接对加密数据进行计算，而无需先对数据进行解密的加密方案。这种加密计算的结果仍然是加密的，只有（数据所有者）使用秘钥才能解密。在过去的十年里，人们发明了多种具有不同功能和权衡的同态加密方案；其中大多数是公钥加密方案，尽管可能并不总是需要公钥功能。</p>
+<p>同态加密不是一种通用技术：只能对加密数据进行某些计算。同态加密技术也会带来巨大的性能开销，因此，在未加密数据上执行成本已经非常高昂的计算，在加密数据上很可能是不可行的。此外，使用同态加密技术加密的数据比未加密数据大很多倍，因此使用这种技术加密整个大型数据库等可能没有意义。相反，有意义的用例是在严格的隐私要求完全禁止未加密的云计算，但计算本身相当轻量级的情况下。</p>
+<p>通常情况下，同态加密方案只有一个密钥，由数据所有者持有。对于多个不同的私有数据所有者希望参与协作计算的场景，同态加密可能不是一个合理的解决方案。</p>
+<p>同态加密不能用来让数据科学家规避 GDPR。例如，云服务无法使用同态加密从加密的客户数据中获取见解。相反，加密计算的结果仍然是加密的，只有数据所有者（如云服务客户）才能解密。</p>
+<p>与传统加密方案相比，大多数同态加密方案提供的安全保证较弱。如果您打算使用 Microsoft SEAL 构建生产软件，请阅读 <a target="_blank" rel="noopener" href="https://github.com/microsoft/SEAL/blob/main/SECURITY.md">SECURITY.md</a>。</p>
+<h3 id="微软-SEAL"><a href="#微软-SEAL" class="headerlink" title="微软 SEAL"></a>微软 SEAL</h3><p>Microsoft SEAL 是一个同态加密库，可对加密整数或实数进行加法和乘法运算。其他操作，如加密比较、排序或正则表达式，在大多数情况下无法使用该技术对加密数据进行评估。因此，只有程序的特定隐私关键云计算部分才应使用 Microsoft SEAL 实现。</p>
+<p>将未加密计算转化为加密数据上的计算并不总是那么容易或直接，例如，无法在加密数据上进行分支计算。微软 SEAL 本身的学习曲线很陡峭，需要用户理解许多同态加密的特定概念，尽管最终的应用程序接口并不复杂。即使用户能够使用 Microsoft SEAL 编程并运行特定计算，高效和低效实现之间的差别也可能是几个数量级，新用户很难知道如何提高计算性能。</p>
+<p>Microsoft SEAL 附带两种不同的同态加密方案，它们的特性截然不同。BFV 和 BGV 方案允许对加密整数进行模块运算。CKKS 方案允许对加密的实数或复数进行加法和乘法运算，但只能得到近似结果。在对加密实数求和、评估加密数据上的机器学习模型或计算加密位置的距离等应用中，CKKS 是迄今为止最好的选择。对于需要精确值的应用，BFV 和 BGV 方案更为合适。</p>
+<h2 id="准备开始"><a href="#准备开始" class="headerlink" title="准备开始"></a>准备开始</h2><p>安装 MicrosoftSEAL 并开始使用它有多种方法。最简单的方法是使用包管理器下载、构建和安装库。例如，vcpkg 可以在大多数平台上工作，并且将与 Microsoft SEAL 的最新版本(仅限 C++ 17)保持同步。在 macOS 上你也可以使用 Homebrew。在 FreeBSD 上，你可以使用 pkg 安装密封来安装安全&#x2F;密封。那个。NET 库以多平台 NuGet 包的形式提供。最后，可以使用多平台 CMake 构建系统手动构建 MicrosoftSEAL; 有关详细信息，请参阅构建 MicrosoftSEAL 手动。</p>
+<h3 id="可选择的依赖项"><a href="#可选择的依赖项" class="headerlink" title="可选择的依赖项"></a>可选择的依赖项</h3><p>MicrosoftSEAL 没有必要的依赖项，但是在编译时支持特定的第三方库时可以启用某些可选特性。</p>
+<p>在手动构建时，可以选择让 Microsoft SEAL 构建系统下载并构建依赖项，或者在系统目录中搜索预安装的依赖项。在另一个极端，可下载的 NuGet 包根本无法配置，但是总是可以构建定制的 NuGet 包。其他包管理器为配置依赖项和其他构建选项提供了不同数量的机会。</p>
+<p>可选的依赖项及其测试版本（其他版本也可以）如下:</p>
+<table>
+<thead>
+<tr>
+<th>Optional dependency</th>
+<th>Tested version</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Intel HEXL</td>
+<td>1.2.5</td>
+<td>Acceleration of low-level kernels</td>
+</tr>
+<tr>
+<td>Microsoft GSL</td>
+<td>4.0.0</td>
+<td>API extensions</td>
+</tr>
+<tr>
+<td>ZLIB</td>
+<td>1.2.13</td>
+<td>Compressed serialization</td>
+</tr>
+<tr>
+<td>Zstandard</td>
+<td>1.5.2</td>
+<td>Compressed serialization (much faster than ZLIB)</td>
+</tr>
+<tr>
+<td>GoogleTest</td>
+<td>1.12.1</td>
+<td>For running tests</td>
+</tr>
+<tr>
+<td>GoogleBenchmark</td>
+<td>1.7.1</td>
+<td>For running benchmarks</td>
+</tr>
+</tbody></table>
+<h4 id="Intel-HEXL"><a href="#Intel-HEXL" class="headerlink" title="Intel HEXL"></a>Intel HEXL</h4><p>Intel HEXL 是一个库，可高效实现同态加密中常见的加密原语。在使用英特尔 AVX512-IFMA52 指令集的英特尔处理器上，加速效果尤为明显。</p>
+<h4 id="Microsoft-GSL"><a href="#Microsoft-GSL" class="headerlink" title="Microsoft GSL"></a>Microsoft GSL</h4><p>Microsoft GSL（Guidelines Support Library，指南支持库）是一个仅头文件的库，它实现了 gsl::span：一种视图类型，可提供对内存的安全（边界校验）数组访问。</p>
+<p>例如，如果 Microsoft GSL 可用，Microsoft SEAL 就可以允许 BatchEncoder 和 CKKSEncoder 从 gsl::span 编码并解码到 gsl::span，而不是 std::vector，这在某些情况下会带来显著的性能优势。</p>
+<h4 id="ZLIB-和-Zstandard"><a href="#ZLIB-和-Zstandard" class="headerlink" title="ZLIB 和 Zstandard"></a>ZLIB 和 Zstandard</h4><p>ZLIB 和 Zstandard 是广泛使用的压缩库。Microsoft SEAL 可以选择使用这些库来压缩序列化数据。</p>
+<p>有人可能会问，既然密文和密钥数据应该与随机数据无异，压缩又有什么用呢？在 Microsoft SEAL 中，密码文本对象由大量整数和特定素数（coeff_modulus primes）组成。特别是在使用 CKKS 方案时，这些质数可能非常小（例如 30 位），但数据仍被序列化为 64 位整数。因此，几乎一半的密码文本字节都是零的情况并不少见，而应用通用压缩算法是消除这些浪费空间的便捷方法。BFV 方案从这种技术中受益较少，因为用于 coeff_modulus 加密参数的质数往往较大，而与这些质数相乘的整数占每个 64 位字的更多空间。压缩序列化可应用于任何可序列化的 Microsoft SEAL 对象，而不仅仅是密文和密钥。</p>
+<p>如果 Microsoft SEAL 在编译时支持 ZLIB 或 Zstandard，则会自动在序列化过程中使用压缩；请参见 native&#x2F;src&#x2F;seal&#x2F;serialization.h 中的 Serialization::comp_mode_default。如果同时启用了 ZLIB 和 Zstandard 支持，则默认使用 Zstandard，因为其性能要好得多。</p>
+<p>注意：密钥的压缩率（至少在理论上）可以揭示密钥的相关信息。在 Microsoft SEAL 的大多数常见应用中，密钥的大小不会故意透露给不受信任的各方。如果有这方面的顾虑，可以随时以未压缩的形式保存密钥。</p>
+<h3 id="从-NuGet-软件包安装"><a href="#从-NuGet-软件包安装" class="headerlink" title="从 NuGet 软件包安装"></a>从 NuGet 软件包安装</h3><blockquote>
+<p>Windows、Linux、macOS、Android、iOS</p>
+</blockquote>
+<p>对于 .NET 开发人员来说，安装 Microsoft SEAL 的最简单方法是使用 NuGet.org 上的多平台 NuGet 软件包。只需将此软件包作为依赖项添加到您的 .NET 项目中，就可以开始使用了。</p>
+<p>要使用 Microsoft SEAL 和 .NET 开发 Android 和 iOS 移动应用程序，只需将此软件包添加到 Xamarin 项目中即可。与 Microsoft SEAL C++ 库不同，.NET 封装库仅适用于 64 位平台，因此仅支持 arm64-v8a&#x2F;x86_64 Android ABI 和 arm64&#x2F;x86_64 iOS 体系结构。</p>
+<h3 id="从-vcpkg-安装"><a href="#从-vcpkg-安装" class="headerlink" title="从 vcpkg 安装"></a>从 vcpkg 安装</h3><p>你可以使用 vcpkg 依赖关系管理器下载并安装 seal。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/Microsoft/vcpkg.git</span><br><span class="line">cd vcpkg</span><br><span class="line">./bootstrap-vcpkg.sh # ./bootstrap-vcpkg.bat for Windows</span><br><span class="line">./vcpkg integrate install</span><br><span class="line">./vcpkg install seal</span><br></pre></td></tr></table></figure>
+
+<p>vcpkg 中的 “seal “端口由微软团队成员和社区贡献者保持更新。如果版本过时，请在 vcpkg 代码库中创建问题或拉动请求。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>使用 Microsoft SEAL 需要用户投入一些时间学习同态加密的基本概念。代码附带了大量注释示例，旨在逐步教授这些概念，并演示 API 的大部分内容。这些示例有 C++ 和 C# 版本（且完全相同），并分为多个源文件，分别位于 <code>native/examples/</code> (C++) 和 <code>dotnet/examples/</code> (C#)，具体如下：</p>
+<table>
+<thead>
+<tr>
+<th>C++</th>
+<th>C#</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>examples.cpp</td>
+<td>Examples.cs</td>
+<td>运行程序示例</td>
+</tr>
+<tr>
+<td>1_bfv_basics.cpp</td>
+<td>1_BFV_Basics.cs</td>
+<td>使用 BFV 方案进行加密模块运算</td>
+</tr>
+<tr>
+<td>2_encoders.cpp</td>
+<td>2_Encoders.cs</td>
+<td>将更复杂的数据编码为 Microsoft SEAL 明文对象</td>
+</tr>
+<tr>
+<td>3_levels.cpp</td>
+<td>3_Levels.cs</td>
+<td>介绍级别概念；使用 CKKS 方案的前提条件</td>
+</tr>
+<tr>
+<td>4_bgv_basics.cpp</td>
+<td>4_BGV_Basics.cs</td>
+<td>使用 BGV 方案进行加密模块运算</td>
+</tr>
+<tr>
+<td>5_ckks_basics.cpp</td>
+<td>5_CKKS_Basics.cs</td>
+<td>使用 CKKS 方案进行加密实数运算</td>
+</tr>
+<tr>
+<td>6_rotation.cpp</td>
+<td>6_Rotation.cs</td>
+<td>在 BFV 和 CKKS 方案中对加密向量进行循环旋转</td>
+</tr>
+<tr>
+<td>7_serialization.cpp</td>
+<td>7_Serialization.cs</td>
+<td>在 Microsoft SEAL 中序列化对象</td>
+</tr>
+<tr>
+<td>8_performance.cpp</td>
+<td>8_Performance.cs</td>
+<td>性能测试</td>
+</tr>
+</tbody></table>
+<p>建议在运行示例时阅读注释和代码片段以及命令行打印输出。为便于导航，命令行打印输出提供了相关源文件中代码片段开始的行号。要构建示例，请参阅示例、测试和基准（C++）和构建 .NET 组件（C#）。</p>
+<p>注意：如果不学习示例 1-6，就不可能知道如何正确使用 Microsoft SEAL。这些示例旨在为读者提供有关同态加密的必要概念背景。直接重复使用示例中的代码效果不会很好，因为示例通常演示的是单个功能，而且没有对性能进行优化。如果不深入研究示例就编写 Microsoft SEAL 代码，势必会导致代码易受攻击、无法正常运行或运行速度极慢。</p>
+<h3 id="使用-EVA-进行-CKKS-编程"><a href="#使用-EVA-进行-CKKS-编程" class="headerlink" title="使用 EVA 进行 CKKS 编程"></a>使用 EVA 进行 CKKS 编程</h3><p>通过学习上述示例，我们可以清楚地看到，CKKS 方案对初学者并不友好。即使是相对简单的计算，也会因为重缩放操作的限制和不同级别缩放对齐的要求而难以进行。</p>
+<p>我们创建了一个名为 EVA 的新编译工具，在很大程度上帮助解决了这些难题。EVA 允许程序员用 Python 表达所需的加密计算。它为 Microsoft SEAL 优化计算，选择适当的加密参数，并提供方便的 Python API，用于加密输入、执行计算和解密结果。EVA 位于 GitHub.com&#x2F;Microsoft&#x2F;EVA。请试用一下，并告诉我们您的想法！</p>
+<p>注意：EVA 仅支持 CKKS 方案。目前还没有支持 BFV 或 BGV 方案的计划。</p>
+<h2 id="手动构建-Microsoft-SEAL"><a href="#手动构建-Microsoft-SEAL" class="headerlink" title="手动构建 Microsoft SEAL"></a>手动构建 Microsoft SEAL</h2><h3 id="构建-C-组件"><a href="#构建-C-组件" class="headerlink" title="构建 C++ 组件"></a>构建 C++ 组件</h3><p>在所有平台上，Microsoft SEAL 都使用 CMake 构建。我们建议使用源外编译，尽管源内编译也可以。下面我们将说明如何在全局（整个系统）或本地（单个用户）配置、构建和安装 Microsoft SEAL。全局安装需要提升（root 或管理员）权限。</p>
+<h4 id="安装要求"><a href="#安装要求" class="headerlink" title="安装要求"></a>安装要求</h4><table>
+<thead>
+<tr>
+<th>System</th>
+<th>Toolchain</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows</td>
+<td>Visual Studio 2022 with C++ CMake Tools for Windows</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>Clang++ (&gt;&#x3D; 5.0) or GNU G++ (&gt;&#x3D; 6.0), CMake (&gt;&#x3D; 3.13)</td>
+</tr>
+<tr>
+<td>macOS&#x2F;iOS</td>
+<td>Xcode toolchain (&gt;&#x3D; 9.3), CMake (&gt;&#x3D; 3.13)</td>
+</tr>
+<tr>
+<td>Android</td>
+<td>Android Studio</td>
+</tr>
+<tr>
+<td>FreeBSD</td>
+<td>CMake (&gt;&#x3D; 3.13)</td>
+</tr>
+</tbody></table>
+<p>注意：使用 Clang++ 编译的 Microsoft SEAL 比使用 GNU G++ 编译的运行时性能要好得多。</p>
+<h4 id="构建-Microsoft-SEAL"><a href="#构建-Microsoft-SEAL" class="headerlink" title="构建 Microsoft SEAL"></a>构建 Microsoft SEAL</h4><p>我们假定 Microsoft SEAL 已克隆到一个名为 SEAL 的目录中，并假定在 SEAL 目录中执行以下所有命令。</p>
+<p>您可以通过执行以下命令为您的计算机构建 Microsoft SEAL 库（源码外）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmake -S . -B build</span><br><span class="line">cmake --build build</span><br></pre></td></tr></table></figure>
+
+<p>编译完成后，可在 build&#x2F;lib&#x2F; 和 build&#x2F;bin&#x2F; 目录中找到输出二进制文件。</p>
+<p>可以指定各种配置选项并将其传递给 CMake 编译系统。这些选项将在下文的 CMake 基本选项和 CMake 高级选项部分进行介绍。</p>
+<h4 id="安装-Microsoft-SEAL"><a href="#安装-Microsoft-SEAL" class="headerlink" title="安装 Microsoft SEAL"></a>安装 Microsoft SEAL</h4><p>如果您拥有系统的 root 访问权限，您可以按如下方法全局安装 Microsoft SEAL：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cmake -S . -B build</span><br><span class="line">cmake --build build</span><br><span class="line">sudo cmake --install build</span><br></pre></td></tr></table></figure>
+
+<p>要在本地安装 Microsoft SEAL，例如安装到 ~&#x2F;mylibs&#x2F;，请执行以下操作：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cmake -S . -B build -DCMAKE_INSTALL_PREFIX=~/mylibs</span><br><span class="line">cmake --build build</span><br><span class="line">sudo cmake --install build</span><br></pre></td></tr></table></figure>
+
+<h4 id="在-Windows-上编译和安装"><a href="#在-Windows-上编译和安装" class="headerlink" title="在 Windows 上编译和安装"></a>在 Windows 上编译和安装</h4><p>在 Windows 系统中，上述脚本可在 Visual Studio 的开发人员命令提示符下使用 Ninja 或 “Visual Studio 17 2022 “生成器运行。</p>
+<p>使用 Ninja 生成器时，请根据要构建的平台使用相应的命令提示符。如果要为 x64 平台构建，请使用 x64 Native Tools Command Prompt for Visual Studio 2022 命令提示符配置和构建库。如果要为 x86 构建库，请使用 x86 Native Tools Command Prompt for Visual Studio 2022 命令提示符配置和构建库。要使用 Ninja 进行编译，请键入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmake -S . -B build -G Ninja</span><br><span class="line">cmake --build build</span><br></pre></td></tr></table></figure>
+
+<p>使用 “Visual Studio 17 2022 “生成器时，可以使用开发人员命令提示符（Developer Command Prompt for VS 2022）命令提示符来配置和构建库。默认情况下，生成的平台为 x64。你可以使用架构标志 <code>-A &lt;x64|Win32&gt;</code> 指定所需的平台，并使用 <code>--config &lt;Debug|Release&gt;</code> 指定所需的配置。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 在 Release 模式下生成并构建 x64 版本</span><br><span class="line">cmake -S . -B build -G &quot;Visual Studio 17 2022&quot; -A x64</span><br><span class="line">cmake --build build --config Release</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 在 Release 模式下生成并构建 x86 版本</span><br><span class="line">cmake -S . -B build -G &quot;Visual Studio 17 2022&quot; -A Win32</span><br><span class="line">cmake --build build --config Release</span><br></pre></td></tr></table></figure>
+
+<p>在 Windows 中安装库也同样有效。不过，你不能使用 <code>sudo</code> 命令，而需要在具有管理员权限的命令提示符下运行 <code>cmake --install build</code>。默认情况下，文件将被安装到 <code>C:/Program Files (x86)/SEAL\</code>。</p>
+<p>Visual Studio 2022 支持基于 CMake 的项目。你可以选择菜单选项 <code>File/Open/Folder...</code>（文件&#x2F;打开&#x2F;文件夹…），然后导航然后导航到 Microsoft SEAL 资源库所在的文件夹。打开文件夹后，Visual Studio 将检测到这是一个基于 CMake 的项目，并启用菜单命令 <code>Project/CMake settings for SEAL</code>。这将打开 CMake 设置编辑器，它提供了一个用户界面，可以创建不同的配置和设置不同的 CMake 选项。</p>
+<p>构建完成后，可在 <code>build\lib\</code> 或 <code>build\lib\Release\</code> 中找到输出静态库 <code>seal-&lt;version&gt;.lib</code>。在与应用程序链接时，强烈建议使用 CMake，正如在《通过 CMake 与 Microsoft SEAL 链接》中所解释的那样。或者，你需要添加 <code>native\src\</code> （完整路径）和 <code>build\native\src\</code> 作为包含目录，以找到 Microsoft SEAL 头文件。</p>
+<h4 id="为-Android-和-iOS-构建"><a href="#为-Android-和-iOS-构建" class="headerlink" title="为 Android 和 iOS 构建"></a>为 Android 和 iOS 构建</h4><p>Microsoft SEAL 可针对 Android 和 iOS 进行编译。在源代码树的 android&#x2F; 目录下，你可以找到一个 Android Studio 项目，用来编译 Android 版库。</p>
+<p>要编译 iOS 版库，请使用以下脚本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 配置 CMake</span><br><span class="line">cmake -S . -B build -GXcode -DSEAL_BUILD_SEAL_C=ON -DSEAL_BUILD_STATIC_SEAL_C=ON -DCMAKE_SYSTEM_NAME=iOS &quot;-DCMAKE_OSX_ARCHITECTURES=arm64;x86_64&quot; -C cmake/memset_s.iOS.cmake</span><br><span class="line"></span><br><span class="line"># 为 x86_64 构建 libseal*.a</span><br><span class="line">xcodebuild -project build/SEAL.xcodeproj -sdk iphonesimulator -arch x86_64 -configuration Release clean build</span><br><span class="line">mkdir -p build/lib/x86_64</span><br><span class="line">cp build/lib/Release/libseal*.a build/lib/x86_64</span><br><span class="line"></span><br><span class="line"># 为 arm64 构建 libseal*.a</span><br><span class="line">xcodebuild -project SEAL.xcodeproj -sdk iphoneos -arch arm64 -configuration Release clean build</span><br><span class="line">mkdir -p build/lib/arm64</span><br><span class="line">cp build/lib/Release/libseal*.a build/lib/arm64</span><br><span class="line"></span><br><span class="line"># 将 libseal-*.a 合并为 libseal.a，将 libsealc-*.a 合并为 libsealc.a</span><br><span class="line">lipo -create -output build/lib/libseal.a build/lib/x86_64/libseal-*.a arm64/libseal-*.a</span><br><span class="line">lipo -create -output build/lib/libsealc.a build/lib/x86_64/libsealc-*.a build/lib/arm64/libsealc-*.a</span><br></pre></td></tr></table></figure>
+
+<p>通过这些方法生成的本地库只能通过以下章节中描述的 .NET 库调用。具体来说，它们不包含任何可用于 Java（Android）或 Objective C（iOS）的封装器。</p>
+<h4 id="为-WebAssembly-构建"><a href="#为-WebAssembly-构建" class="headerlink" title="为 WebAssembly 构建"></a>为 WebAssembly 构建</h4><p>Microsoft SEAL 可在 Windows、Linux 和 macOS 上使用 emscripten 编译 JavaScript 和 WebAssembly。为 Web 构建意味着 SEAL 可在任何客户端&#x2F;服务器环境中运行，如所有主流浏览器（如 Edge、Chrome、Firefox、Safari）和 NodeJS。</p>
+<p>为 WebAssembly 构建需要安装 emscripten 工具链。配置该工具链的最简单方法是克隆 emsdk，然后按照说明操作（附带针对特定系统的注释）。例如，在 Linux 和 macOS 上，在 emsdk repo 中运行以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 安装最新的工具链</span><br><span class="line">./emsdk install latest</span><br><span class="line">./emsdk activate latest</span><br><span class="line"># 获取环境源代码</span><br><span class="line">source ./emsdk_env.sh</span><br></pre></td></tr></table></figure>
+
+<p>在 Windows 环境下，最好在 Visual Studio 的开发人员命令提示符下运行；并将 <code>./emsdk</code> 和 <code>source ./emsdk_env.sh</code> 分别替换为 <code>emsdk</code> 和 <code>emsdk_env.bat</code>。在其他环境下，必须在路径中添加 <code>cmake</code>，并在下面的配置步骤中指定 “Ninja “或 “MinGW Makefiles “作为生成器。</p>
+<p>在同一 shell 中，导航到 Microsoft SEAL 的根目录，运行以下命令来构建 WebAssembly：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"># 配置 CMake。发布版构建的示例标志</span><br><span class="line">emcmake cmake -S . -B build \</span><br><span class="line"> -dbuild_shared_libs=off \</span><br><span class="line"> -DCMAKE_BUILD_TYPE=Release \</span><br><span class="line"> -DCMAKE_CXX_FLAGS_RELEASE=&quot;-DNDEBUG -flto -O3&quot;\</span><br><span class="line"> -DCMAKE_C_FLAGS_RELEASE=&quot;-DNDEBUG -flto -O3&quot; \</span><br><span class="line"> -DSEAL_BUILD_BENCH=OFF \ # 可以为 WASM 构建基准。将其更改为 ON。</span><br><span class="line"> -dseal_build_examples=off （关闭</span><br><span class="line"> -dseal_build_tests=off （关闭</span><br><span class="line"> -dseal_use_cxx17=ON （关闭</span><br><span class="line"> -dseal_use_intrin=on （关闭</span><br><span class="line"> -dseal_use_msgsl=off （关闭</span><br><span class="line"> -dseal_use_zlib=on （关闭</span><br><span class="line"> # Make static library (shared).</span><br><span class="line"></span><br><span class="line"># 制作静态库（emscripten 不支持共享库）</span><br><span class="line">emmake make -C build -j</span><br><span class="line"></span><br><span class="line"># 构建 WebAssembly 模块</span><br><span class="line">emcc</span><br><span class="line"> -Wall \</span><br><span class="line"> -flto \</span><br><span class="line"> -O3 \</span><br><span class="line"> build/lib/libseal-4.1.a\</span><br><span class="line"> -bind（绑定</span><br><span class="line"> -o &quot;build/bin/seal_wasm.js&quot;\</span><br><span class="line"> -s WASM=1</span><br><span class="line"> -s ALLOW_MEMORY_GROWTH=1</span><br></pre></td></tr></table></figure>
+
+<p>注意：在构建 WebAssembly 模块时，有许多标志需要考虑。有关高级构建标志，请参阅 settings.js 文件。</p>
+<p>构建将在 build&#x2F;bin&#x2F; 目录下生成两个输出文件：<code>seal_wasm.js</code> 和 <code>seal_wasm.wasm</code>。工件的文件大小非常小。这是因为优化标志执行了死代码消除（DCE），因为没有生成与 JavaScript 的绑定。要从 JavaScript 域调用 WebAssembly，就必须定义这些绑定；不过，Microsoft SEAL 目前不包含任何定义。构建标记 <code>--bind</code> 希望使用 embind 语法指定绑定。</p>
+<h4 id="CMake-基本选项"><a href="#CMake-基本选项" class="headerlink" title="CMake 基本选项"></a>CMake 基本选项</h4><p>以下选项可用于 CMake 配置联编。每个选项的默认值在 “值 “一栏中以粗体表示。</p>
+<table>
+<thead>
+<tr>
+<th>CMake option</th>
+<th>Values</th>
+<th>Information</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CMAKE_BUILD_TYPE</td>
+<td>Release Debug RelWithDebInfo MinSizeRel</td>
+<td><code>Debug</code> 和 <code>MinSizeRel</code> 的运行时性能更差。调试会插入额外的断言代码。除非您正在开发 Microsoft SEAL 本身或调试某些复杂问题，否则请设置为 <code>Release</code>。</td>
+</tr>
+<tr>
+<td>SEAL_BUILD_EXAMPLES</td>
+<td>ON &#x2F; OFF</td>
+<td>在 <code>native/examples</code> 中构建 C++ 示例。</td>
+</tr>
+<tr>
+<td>SEAL_BUILD_TESTS</td>
+<td>ON &#x2F; OFF</td>
+<td>编译测试以检查 Microsoft SEAL 是否正常工作。</td>
+</tr>
+<tr>
+<td>SEAL_BUILD_BENCH</td>
+<td>ON &#x2F; OFF</td>
+<td>构建性能基准。</td>
+</tr>
+<tr>
+<td>SEAL_BUILD_DEPS</td>
+<td>ON &#x2F; OFF</td>
+<td>设置为 <code>ON</code> 可自动下载并联编可选的依赖项；否则 CMake 将尝试查找预安装的依赖项。</td>
+</tr>
+<tr>
+<td>SEAL_USE_INTEL_HEXL</td>
+<td>ON &#x2F; OFF</td>
+<td>设置为 <code>ON</code> 可为低级内核使用 Intel HEXL。</td>
+</tr>
+<tr>
+<td>SEAL_USE_MSGSL</td>
+<td>ON &#x2F; OFF</td>
+<td>使用 Microsoft GSL 支持进行联编。</td>
+</tr>
+<tr>
+<td>SEAL_USE_ZLIB</td>
+<td>ON &#x2F; OFF</td>
+<td>支持 ZLIB。</td>
+</tr>
+<tr>
+<td>SEAL_USE_ZSTD</td>
+<td>ON &#x2F; OFF</td>
+<td>支持 Zstandard。</td>
+</tr>
+<tr>
+<td>BUILD_SHARED_LIBS</td>
+<td>ON &#x2F; OFF</td>
+<td>设置为 <code>ON</code> 可构建共享库，而非静态库。Windows 中不支持。</td>
+</tr>
+<tr>
+<td>SEAL_BUILD_SEAL_C</td>
+<td>ON &#x2F; OFF</td>
+<td>构建 C 封装库 SEAL_C。它被 C# 封装程序使用，大多数用户没有理由构建它。</td>
+</tr>
+<tr>
+<td>SEAL_USE_CXX17</td>
+<td>ON &#x2F; OFF</td>
+<td>设置为 <code>ON</code> 可将 Microsoft SEAL 作为 C++17 生成，从而对性能产生积极影响。</td>
+</tr>
+<tr>
+<td>SEAL_USE_INTRIN</td>
+<td>ON &#x2F; OFF</td>
+<td>设置为 <code>ON</code> 可使用编译器本征以提高性能。CMake 会自动检测可用的内在函数，并相应地启用它们。</td>
+</tr>
+</tbody></table>
+<p>像往常一样，这些选项可以通过 <code>-D</code> 标志传递给 CMake。例如，可以运行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake -S . -B build -DSEAL_BUILD_EXAMPLES=ON</span><br></pre></td></tr></table></figure>
+
+<p>来配置 Microsoft SEAL 静态库的发布版构建，并同时构建示例。</p>
+<h4 id="CMake-高级选项"><a href="#CMake-高级选项" class="headerlink" title="CMake 高级选项"></a>CMake 高级选项</h4><p>以下选项可用于 CMake 以进一步配置联编。大多数用户无需更改这些选项，这也是它们被标记为高级选项的原因。</p>
+<table>
+<thead>
+<tr>
+<th>CMake option</th>
+<th>Values</th>
+<th>Information</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SEAL_THROW_ON_TRANSPARENT_CIPHERTEXT</td>
+<td>ON &#x2F; OFF</td>
+<td>设置为 <code>ON</code> 以在 Microsoft SEAL 生成没有密钥相关组件的加密文本时引发异常。例如，从本身减去加密文本，或者用明文零乘以加密文本，得到的加密文本等于零，这些加密文本不应被视为有效的加密文本。</td>
+</tr>
+<tr>
+<td>SEAL_BUILD_STATIC_SEAL_C</td>
+<td>ON &#x2F; OFF</td>
+<td>设置为 <code>ON</code> 以将 SEAL_C 构建为静态库而不是共享库。</td>
+</tr>
+<tr>
+<td>SEAL_DEFAULT_PRNG</td>
+<td>Blake2xb Shake256</td>
+<td>MicrosoftSEAL 支持 Blake2xb 和 Shake256XOF 生成随机字节。Blake2xb 要快得多，但它并不标准化，而 Shake256是 FIPS 标准。</td>
+</tr>
+<tr>
+<td>SEAL_USE_GAUSSIAN_NOISE</td>
+<td>ON &#x2F; OFF</td>
+<td>设置为 <code>ON</code> 可以使用非常数时间圆形的连续高斯分布来表示误差分布，否则使用中心二项分布(标准差略大)。</td>
+</tr>
+<tr>
+<td>SEAL_AVOID_BRANCHING</td>
+<td>ON &#x2F; OFF</td>
+<td>设置为 <code>ON</code> 可以在编译器恶意插入标志时消除关键函数中的分支; 否则假设使用 <code>cmov</code>。</td>
+</tr>
+<tr>
+<td>SEAL_SECURE_COMPILE_OPTIONS</td>
+<td>ON &#x2F; OFF</td>
+<td>设置为 <code>ON</code> 以编译&#x2F;链接 Control-Flow Guard (<code>/guard:cf</code>)和 Spectre 修正(<code>/Qspece</code>)。这只有在用 MSVC 编译时才有效果。</td>
+</tr>
+<tr>
+<td>SEAL_USE_ALIGNED_ALLOC</td>
+<td>ON &#x2F; OFF</td>
+<td>设置为 <code>ON</code> 以使用64字节对齐的内存分配。这可以提高性能的 AVX512原语时，英特尔 HEXL 启用。这取决于 C++ 17，在 Android 上是禁用的。</td>
+</tr>
+</tbody></table>
+<h4 id="通过-CMake-链接-Microsoft-SEAL"><a href="#通过-CMake-链接-Microsoft-SEAL" class="headerlink" title="通过 CMake 链接 Microsoft SEAL"></a>通过 CMake 链接 Microsoft SEAL</h4><p>如果使用 CMake，将自己的应用程序和库与 Microsoft SEAL 进行链接非常简单。只需在 <code>CMakeLists.txt </code>中添加以下内容即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find_package(SEAL 4.1 REQUIRED)</span><br><span class="line">target_link_libraries(&lt;your target&gt; SEAL::seal)</span><br></pre></td></tr></table></figure>
+
+<p>如果 Microsoft SEAL 已全局安装，上述 find_package 命令很可能会自动找到该库。如果要与安装在本地的 Microsoft SEAL 进行链接，例如如上所述安装在 ~&#x2F;mylibs 中，则可能需要在配置应用程序时告诉 CMake 在何处查找 Microsoft SEAL，方法如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &lt;包含 CMakeLists.txt 的目录&gt;</span><br><span class="line">cmake . -DCMAKE_PREFIX_PATH=~/mylibs</span><br></pre></td></tr></table></figure>
+<p>如果 Microsoft SEAL 是使用 vcpkg 或 Homebrew 等软件包管理器安装的，请参阅它们的文档了解如何与已安装的库链接。例如，vcpkg 要求您在配置项目时指定 vcpkg CMake 工具链文件。</p>
+<h4 id="示例、测试和基准测试"><a href="#示例、测试和基准测试" class="headerlink" title="示例、测试和基准测试"></a>示例、测试和基准测试</h4><p>在构建 Microsoft SEAL 时，可以通过设置 <code>SEAL_BUILD_EXAMPLES=ON</code>、<code>SEAL_BUILD_TESTS=ON</code> 和 <code>SEAL_BUILD_BENCH=ON</code> 来构建示例、测试和基准；请参阅 CMake 基本选项。另外，也可以通过以下命令，将示例、测试和基准作为与 Microsoft SEAL（安装在 <code>~/mylibs</code>）链接的独立 CMake 项目来构建。如果该库是全局安装的，则省略 <code>SEAL_ROOT</code> 设置。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd native/&lt;examples|tests|bench&gt;</span><br><span class="line">cmake -S . -B build -DSEAL_ROOT=~/mylibs</span><br><span class="line">cmake --build build</span><br></pre></td></tr></table></figure>
+
+<p>默认情况下，基准会针对参数和基元向量运行，这可能会提供大量信息。要执行基准案例子集，请参阅 Google 基准 README。对于高级用户，可以使用自定义参数集覆盖 native&#x2F;bench&#x2F;bench.cpp 中的 <code>bm_parms_vec</code> 变量。</p>
+<p>注意：基准代码严格用于实验目的；它允许不安全的参数，不得在实际应用中使用。请勿将基准作为示例。</p>
+<h3 id="构建-NET-组件"><a href="#构建-NET-组件" class="headerlink" title="构建 .NET 组件"></a>构建 .NET 组件</h3><p>Microsoft SEAL 提供了一个 .NET 标准库，该库封装了 Microsoft SEAL 中的功能，可用于 .NET 开发。除非打算开发 Microsoft SEAL 或构建自定义 NuGet 包，否则强烈建议使用现有的 NuGet 包。在构建 .NET 组件之前，必须在构建 C++ 组件之后构建 C 封装库 SEAL_C。SEAL_C 库仅供 .NET 库使用，最终用户不得使用。</p>
+<p>注意：SEAL_C 和 .NET 库仅支持 64 位平台。</p>
+<h4 id="Windows、Linux-和-macOS"><a href="#Windows、Linux-和-macOS" class="headerlink" title="Windows、Linux 和 macOS"></a>Windows、Linux 和 macOS</h4><p>要编译 .NET 代码，您需要安装 .NET SDK（&gt;&#x3D; 6.0）。使用 CMake 构建 SEAL_C 库将生成 .NET 封装库、示例和单元测试的项目文件。在运行 .NET 应用程序时，SEAL_C 库必须可以被发现，例如，必须与可执行文件位于同一目录下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dotnet build build/dotnet/src --configuration &lt;Debug|Release&gt; # Build .NET wrapper library</span><br><span class="line">dotnet test build/dotnet/tests # Build and run .NET unit tests</span><br><span class="line">dotnet run -p build/dotnet/examples # Build and run .NET examples</span><br></pre></td></tr></table></figure>
+
+<p>你可以使用 <code>--configuration &lt;Debug|Release&gt;</code> 来运行 <code>Debug</code> 或 <code>Release</code> 示例和单元测试。你可以使用 <code>--verbosity detailed</code> 来打印正在运行的单元测试列表。</p>
+<p>在 Windows 上，还可以使用 Microsoft Visual Studio 2022 解决方案文件，例如，<code>out/build/x64-Debug/dotnet/SEALNet.sln</code> 来构建所有三个项目。</p>
+<h4 id="安卓和-iOS"><a href="#安卓和-iOS" class="headerlink" title="安卓和 iOS"></a>安卓和 iOS</h4><p>虽然可以为 Android 或 iOS 构建自己的自定义 NuGet 包（请参阅 “为 Android 和 iOS 构建本地组件”），但这并不容易，也不推荐使用。相反，请在您的 Xamarin 项目中添加对多平台 NuGet 包的引用。</p>
+<h4 id="使用-Microsoft-SEAL-for-NET"><a href="#使用-Microsoft-SEAL-for-NET" class="headerlink" title="使用 Microsoft SEAL for .NET"></a>使用 Microsoft SEAL for .NET</h4><p>要在自己的应用程序中使用 Microsoft SEAL for .NET，您需要</p>
+<p>在项目中添加对 <code>SEALNet.dll </code>的引用；<br>确保运行应用程序时本地共享库可用。最简单的方法是将本地共享库复制到应用程序的可执行文件所在目录。</p>
+<h4 id="构建自己的-NuGet-软件包"><a href="#构建自己的-NuGet-软件包" class="headerlink" title="构建自己的 NuGet 软件包"></a>构建自己的 NuGet 软件包</h4><p>您可以按照 NUGET.md 中的说明为 Microsoft SEAL 构建自己的 NuGet 软件包。</p>
+<h1 id="SEAL-库的安装与构建"><a href="#SEAL-库的安装与构建" class="headerlink" title="SEAL 库的安装与构建"></a>SEAL 库的安装与构建</h1><h2 id="环境条件"><a href="#环境条件" class="headerlink" title="环境条件"></a>环境条件</h2><p>根据参考资料，在 Linux 系统上安装与构建 SEAL 库可能更简单。</p>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Toolchain</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Linux</td>
+<td>Clang++ (&gt;&#x3D; 5.0) or GNU G++ (&gt;&#x3D; 6.0), CMake (&gt;&#x3D; 3.13)</td>
+</tr>
+</tbody></table>
+<p>使用 Clang++ 编译的 Microsoft SEAL 比使用 GNU G++ 编译的运行时性能要好得多。</p>
+<h3 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ cmake --version                                                            </span><br><span class="line">cmake version 3.27.9</span><br><span class="line"></span><br><span class="line">CMake suite maintained and supported by Kitware (kitware.com/cmake).</span><br></pre></td></tr></table></figure>
+
+<h3 id="Clang"><a href="#Clang" class="headerlink" title="Clang++"></a>Clang++</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ clang++ --version</span><br><span class="line">Debian clang version 14.0.6-2</span><br><span class="line">Target: x86_64-pc-linux-gnu</span><br><span class="line">Thread model: posix</span><br><span class="line">InstalledDir: /usr/bin</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-SEAL-库"><a href="#安装-SEAL-库" class="headerlink" title="安装 SEAL 库"></a>安装 SEAL 库</h2><h3 id="git-clone-SEAL-库"><a href="#git-clone-SEAL-库" class="headerlink" title="git clone SEAL 库"></a>git clone SEAL 库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents]</span><br><span class="line">└─$ git <span class="built_in">clone</span> https://github.com/microsoft/SEAL</span><br><span class="line">Cloning into <span class="string">&#x27;SEAL&#x27;</span>...</span><br><span class="line">remote: Enumerating objects: 17111, <span class="keyword">done</span>.</span><br><span class="line">remote: Counting objects: 100% (17111/17111), <span class="keyword">done</span>.</span><br><span class="line">remote: Compressing objects: 100% (3938/3938), <span class="keyword">done</span>.</span><br><span class="line">remote: Total 17111 (delta 13022), reused 16910 (delta 12959), pack-reused 0</span><br><span class="line">Receiving objects: 100% (17111/17111), 4.92 MiB | 6.70 MiB/s, <span class="keyword">done</span>.</span><br><span class="line">Resolving deltas: 100% (13022/13022), <span class="keyword">done</span>.</span><br></pre></td></tr></table></figure>
+
+<h3 id="编译和安装-SEAL-库"><a href="#编译和安装-SEAL-库" class="headerlink" title="编译和安装 SEAL 库"></a>编译和安装 SEAL 库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents]</span><br><span class="line">└─$ <span class="built_in">cd</span> SEAL</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/SEAL]</span><br><span class="line">└─$ cmake .</span><br><span class="line">-- Build <span class="built_in">type</span> (CMAKE_BUILD_TYPE): Release</span><br><span class="line">-- The CXX compiler identification is GNU 12.2.0</span><br><span class="line">-- The C compiler identification is GNU 12.2.0</span><br><span class="line">...</span><br><span class="line">-- Configuring <span class="keyword">done</span> (20.2s)</span><br><span class="line">-- Generating <span class="keyword">done</span> (0.0s)</span><br><span class="line">-- Build files have been written to: /home/kali/Documents/SEAL</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/SEAL]</span><br><span class="line">└─$ make</span><br><span class="line">...</span><br><span class="line">[100%] Built target seal</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>make -j</code> 在 98% 的时候卡死，查询 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42634645/article/details/123688311">资料</a> 得知  <code>make -j</code> 会导致 CPU 高负载和桌面无响应，使用 <code>make</code> 成功。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/SEAL]</span><br><span class="line">└─$ sudo make install</span><br><span class="line">[sudo] password <span class="keyword">for</span> kali: </span><br><span class="line">[ 35%] Built target libzstd_static</span><br><span class="line">[ 54%] Built target zlibstatic</span><br><span class="line">[100%] Built target seal</span><br><span class="line">Install the project...</span><br><span class="line">...</span><br><span class="line">-- Installing: /usr/local/include/SEAL-4.1/seal/util/uintcore.h</span><br><span class="line">-- Installing: /usr/local/include/SEAL-4.1/seal/util/ztools.h</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试-SEAL-库是否成功安装"><a href="#测试-SEAL-库是否成功安装" class="headerlink" title="测试 SEAL 库是否成功安装"></a>测试 SEAL 库是否成功安装</h3><h4 id="新建文件夹"><a href="#新建文件夹" class="headerlink" title="新建文件夹"></a>新建文件夹</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/SEAL]</span><br><span class="line">└─$ <span class="built_in">cd</span> ~</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ <span class="built_in">mkdir</span> OpenPano</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ <span class="built_in">cd</span> OpenPano</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano]</span><br><span class="line">└─$ <span class="built_in">mkdir</span> SEALDemo</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano]</span><br><span class="line">└─$ <span class="built_in">cd</span> SEALDemo</span><br></pre></td></tr></table></figure>
+
+<h4 id="新建-sealdemo-cpp"><a href="#新建-sealdemo-cpp" class="headerlink" title="新建 sealdemo.cpp"></a>新建 sealdemo.cpp</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ vim sealdemo.cpp</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ <span class="built_in">cat</span> sealdemo.cpp </span><br><span class="line"><span class="comment">#include &quot;seal/seal.h&quot;</span></span><br><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">using namespace seal;</span><br><span class="line"></span><br><span class="line">int <span class="function"><span class="title">main</span></span>()&#123;</span><br><span class="line"></span><br><span class="line">        EncryptionParameters parms(scheme_type::bfv);</span><br><span class="line">        <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="新建-CMakeLists-txt"><a href="#新建-CMakeLists-txt" class="headerlink" title="新建 CMakeLists.txt"></a>新建 CMakeLists.txt</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ <span class="built_in">touch</span> CMakeLists.txt</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ vim CMakeLists.txt</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ <span class="built_in">cat</span> CMakeLists.txt</span><br><span class="line">cmake_minimum_required(VERSION 3.10)</span><br><span class="line">project SEALDemo(VERSION 1.0)</span><br><span class="line">add_executable(sealdemo sealdemo.cpp)</span><br><span class="line">add_compile_options(-std=c++17)</span><br><span class="line"></span><br><span class="line">find_package(SEAL)</span><br><span class="line">target_link_libraries(sealdemo SEAL::seal)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="编译和运行测试-demo"><a href="#编译和运行测试-demo" class="headerlink" title="编译和运行测试 demo"></a>编译和运行测试 demo</h4><p>使用 <code>cmake</code> 编译：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ cmake .                                                                    </span><br><span class="line">CMake Error at CMakeLists.txt:2:</span><br><span class="line">  Parse error.  Expected <span class="string">&quot;(&quot;</span>, got identifier with text <span class="string">&quot;SEALDemo&quot;</span>.</span><br></pre></td></tr></table></figure>
+
+<p>结果报错，根据报错信息判断是格式错误，查找 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_46000760/article/details/125005001#SnippetTab">资料</a> 更改第2行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ <span class="built_in">cat</span> CMakeLists.txt</span><br><span class="line">cmake_minimum_required(VERSION 3.10)</span><br><span class="line">project (SEALDemo VERSION 1.0)</span><br><span class="line">add_executable(sealdemo sealdemo.cpp)</span><br><span class="line">add_compile_options(-std=c++17)</span><br><span class="line"></span><br><span class="line">find_package(SEAL)</span><br><span class="line">target_link_libraries(sealdemo SEAL::seal)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>cmake</code> 编译成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ cmake .           </span><br><span class="line">-- The C compiler identification is GNU 12.2.0</span><br><span class="line">-- The CXX compiler identification is GNU 12.2.0</span><br><span class="line">...</span><br><span class="line">-- Configuring <span class="keyword">done</span> (1.3s)</span><br><span class="line">-- Generating <span class="keyword">done</span> (0.0s)</span><br><span class="line">-- Build files have been written to: /home/kali/OpenPano/SEALDemo</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>make</code> 生成可执行文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ make</span><br><span class="line">[ 50%] Building CXX object CMakeFiles/sealdemo.dir/sealdemo.cpp.o</span><br><span class="line">[100%] Linking CXX executable sealdemo</span><br><span class="line">[100%] Built target sealdemo</span><br></pre></td></tr></table></figure>
+
+<p>执行 <code>sealdemo</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ ./sealdemo              </span><br></pre></td></tr></table></figure>
+
+<p>成功 <code>return 0</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/OpenPano/SEALDemo]</span><br><span class="line">└─$ echo $?            </span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+
+<h2 id="学习-SEAL-Example"><a href="#学习-SEAL-Example" class="headerlink" title="学习 SEAL Example"></a>学习 SEAL Example</h2><p>SEAL 自带一些例子程序，在 <code>SEAL/native/examples</code> 文件夹下：</p>
+<img src="/2023/12/30/SEAL/sealexamples-cpp.png" class>
+
+<p>运行 <code>cmake</code> 命令编译这些例子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/SEAL]</span><br><span class="line">└─$ <span class="built_in">cd</span> native/examples</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/SEAL/native/examples]</span><br><span class="line">└─$ cmake -S . -B build -DSEAL_ROOT=~/mylibs</span><br><span class="line">-- The CXX compiler identification is GNU 12.2.0</span><br><span class="line">...</span><br><span class="line">-- Configuring <span class="keyword">done</span> (0.4s)</span><br><span class="line">-- Generating <span class="keyword">done</span> (0.0s)</span><br><span class="line">-- Build files have been written to: /home/kali/Documents/SEAL/native/examples/build</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/SEAL/native/examples]</span><br><span class="line">└─$ cmake --build build</span><br><span class="line">...</span><br><span class="line">[100%] Built target sealexamples</span><br></pre></td></tr></table></figure>
+
+<p>编译完成之后可在 <code>SEAL/native/examples/build/bin</code> 下面找到可执行二进制文件 <code>sealexample</code>：</p>
+<img src="/2023/12/30/SEAL/sealexamples-exe.png" class>
+
+<p>接着运行该二进制文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/SEAL/native/examples]</span><br><span class="line">└─$ <span class="built_in">cd</span> build/bin</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/…/native/examples/build/bin]</span><br><span class="line">└─$ ./sealexamples</span><br><span class="line">Microsoft SEAL version: 4.1.1</span><br><span class="line">+---------------------------------------------------------+</span><br><span class="line">| The following examples should be executed <span class="keyword">while</span> reading |</span><br><span class="line">| comments <span class="keyword">in</span> associated files <span class="keyword">in</span> native/examples/.       |</span><br><span class="line">+---------------------------------------------------------+</span><br><span class="line">| Examples                   | Source Files               |</span><br><span class="line">+----------------------------+----------------------------+</span><br><span class="line">| 1. BFV Basics              | 1_bfv_basics.cpp           |</span><br><span class="line">| 2. Encoders                | 2_encoders.cpp             |</span><br><span class="line">| 3. Levels                  | 3_levels.cpp               |</span><br><span class="line">| 4. BGV Basics              | 4_bgv_basics.cpp           |</span><br><span class="line">| 5. CKKS Basics             | 5_ckks_basics.cpp          |</span><br><span class="line">| 6. Rotation                | 6_rotation.cpp             |</span><br><span class="line">| 7. Serialization           | 7_serialization.cpp        |</span><br><span class="line">| 8. Performance Test        | 8_performance.cpp          |</span><br><span class="line">+----------------------------+----------------------------+</span><br><span class="line">[      0 MB] Total allocation from the memory pool</span><br><span class="line"></span><br><span class="line">&gt; Run example (1 ~ 8) or <span class="built_in">exit</span> (0): </span><br></pre></td></tr></table></figure>
+
+<p>终端显示如下界面：</p>
+<img src="/2023/12/30/SEAL/sealexamples-run.png" class>
+
+<p>总共有 8 个例子：</p>
+<table>
+<thead>
+<tr>
+<th align="center">SEAL Examples</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">BFV Basics</td>
+</tr>
+<tr>
+<td align="center">Encoders</td>
+</tr>
+<tr>
+<td align="center">Levels</td>
+</tr>
+<tr>
+<td align="center">BGV Basics</td>
+</tr>
+<tr>
+<td align="center">CKKS Basics</td>
+</tr>
+<tr>
+<td align="center">Rotation</td>
+</tr>
+<tr>
+<td align="center">Serialization</td>
+</tr>
+<tr>
+<td align="center">Performance Test</td>
+</tr>
+</tbody></table>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Microsoft_SEAL">Microsoft SEAL-Wikipedia</a><br><a target="_blank" rel="noopener" href="https://github.com/microsoft/SEAL">Microsoft SEAL-Github</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/ldxcsdn/category_11390861.html">SEAL-普什清决-CSDN</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/y2y2999/article/details/120401918">Microsoft SEAL 库的安装与配置-CSDN</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/83360110">微软同态加密库 SEAL 使用-知乎</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/625323032">Microsoft-SEAL 库示例运行及分析-知乎</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/581274964">Microsoft-SEAL 库学习记录-知乎</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_46000760/article/details/121079835">Linux 安装 Microsoft SEAL-CSDN</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/578128192">全同态加密运算库 Microsoft SEAL 安装过程-知乎</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42634645/article/details/123688311">make -j 卡死-CSDN</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_46000760/article/details/125005001#SnippetTab">ubuntu vcpkg-CSDN</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Freesia
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://freesianz.github.io/2023/12/30/SEAL/" title="SEAL">https://freesianz.github.io/2023/12/30/SEAL/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Open-Source-Library/" rel="tag"><i class="fa fa-tag"></i> Open Source Library</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/12/28/HElib/" rel="prev" title="HElib">
+                  <i class="fa fa-angle-left"></i> HElib
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/12/30/%E5%81%9A%E7%A0%94%E7%A9%B6%E6%98%AF%E6%9C%89%E8%B6%A3%E7%9A%84/" rel="next" title="做研究是有趣的">
+                  做研究是有趣的 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Freesia</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">19k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:04</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">计算中...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("12/24/2023 17:00:00");//你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "Freesia's Blog 已存在 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+
+
+
+</body>
+</html>
