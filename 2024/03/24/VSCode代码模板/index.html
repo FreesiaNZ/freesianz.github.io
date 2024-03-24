@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-1.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/black/pace-theme-bounce.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"freesianz.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="使用 VSCode 编写程序时，一段代码或说明会重复出现，使用模板有利于提高我们的工作效率。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VSCode 代码模板">
+<meta property="og:url" content="https://freesianz.github.io/2024/03/24/VSCode%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/index.html">
+<meta property="og:site_name" content="Freesia">
+<meta property="og:description" content="使用 VSCode 编写程序时，一段代码或说明会重复出现，使用模板有利于提高我们的工作效率。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://freesianz.github.io/2024/03/24/VSCode%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/01-way-one.png">
+<meta property="og:image" content="https://freesianz.github.io/2024/03/24/VSCode%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/02-way-two.png">
+<meta property="og:image" content="https://freesianz.github.io/2024/03/24/VSCode%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/04-use.gif">
+<meta property="article:published_time" content="2024-03-24T13:52:15.000Z">
+<meta property="article:modified_time" content="2024-03-24T14:43:05.216Z">
+<meta property="article:author" content="Freesia">
+<meta property="article:tag" content="VSCode">
+<meta property="article:tag" content="Template">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://freesianz.github.io/2024/03/24/VSCode%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/01-way-one.png">
+
+
+<link rel="canonical" href="https://freesianz.github.io/2024/03/24/VSCode%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://freesianz.github.io/2024/03/24/VSCode%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/","path":"2024/03/24/VSCode代码模板/","title":"VSCode 代码模板"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>VSCode 代码模板 | Freesia</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Freesia</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">You only live once.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF"><span class="nav-number">1.</span> <span class="nav-text">创建代码模板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF"><span class="nav-number">2.</span> <span class="nav-text">使用代码模板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Snippet-%E8%AF%AD%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">Snippet 语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tabstops"><span class="nav-number">3.1.</span> <span class="nav-text">Tabstops</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Placeholders"><span class="nav-number">3.2.</span> <span class="nav-text">Placeholders</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Choice"><span class="nav-number">3.3.</span> <span class="nav-text">Choice</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Variables"><span class="nav-number">3.4.</span> <span class="nav-text">Variables</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%8F%98%E9%87%8F"><span class="nav-number">3.4.1.</span> <span class="nav-text">常用变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4%E7%9B%B8%E5%85%B3%E5%8F%98%E9%87%8F"><span class="nav-number">3.4.2.</span> <span class="nav-text">日期和时间相关变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-number">3.4.3.</span> <span class="nav-text">变量格式化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-Snippet"><span class="nav-number">4.</span> <span class="nav-text">示例 Snippet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Freesia"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Freesia</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/FreesiaNZ" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;FreesiaNZ" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:camellia24@qq.com" title="E-Mail → mailto:camellia24@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://freesianz.github.io/2024/03/24/VSCode%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Freesia">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Freesia">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="VSCode 代码模板 | Freesia">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VSCode 代码模板
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-24 21:52:15 / 修改时间：22:43:05" itemprop="dateCreated datePublished" datetime="2024-03-24T21:52:15+08:00">2024-03-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Download-Install-Configure/" itemprop="url" rel="index"><span itemprop="name">Download & Install & Configure</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>829</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>使用 VSCode 编写程序时，一段代码或说明会重复出现，使用模板有利于提高我们的工作效率。</p>
+<span id="more"></span>
+
+<h1 id="创建代码模板"><a href="#创建代码模板" class="headerlink" title="创建代码模板"></a>创建代码模板</h1><p>通过以下两种方式找到 <code>用户代码片段</code> ：</p>
+<p>1.文件 &gt; 首选项 &gt; 配置用户代码片段。</p>
+<img src="/2024/03/24/VSCode%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/01-way-one.png" class title="01-way-one">
+
+<p>2.管理 &gt; 用户代码片段。</p>
+<img src="/2024/03/24/VSCode%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/02-way-two.png" class title="02-way-two">
+
+<p>选择对应的语言，若无该语言，安装该语言插件即可。</p>
+<blockquote>
+<p>注意 markdown 需要参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/yageeart/article/details/103097193">CSDN 博客</a> 进行设置。</p>
+</blockquote>
+
+
+<p>Snippet 的内容使用 JSON 格式定义，以下为给出的例子：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;Print to console&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;prefix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;log&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;body&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;console.log(&#x27;$1&#x27;);&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;$2&quot;</span></span><br><span class="line">        <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Log output to console&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">键</th>
+<th align="center">值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Print to console</td>
+<td align="center">Snippet 名称</td>
+</tr>
+<tr>
+<td align="center">prefix</td>
+<td align="center">代码块使用快捷方式。<br>prefix 代表键入前缀，按 Tab 键，代码块就会被使用。</td>
+</tr>
+<tr>
+<td align="center">body</td>
+<td align="center">代码块内容。<br>换行使用 <code>\\r\\n</code>。</td>
+</tr>
+<tr>
+<td align="center">description</td>
+<td align="center">VSCode 感知到前缀，显示的说明内容。</td>
+</tr>
+<tr>
+<td align="center">$1,$2,$0</td>
+<td align="center">指定代码模块生成后，编辑光标出现位置。<br>使用 Tab 键进行切换（编辑光标按$1,$2,$3…$0的顺序跳转）。<br>$0是光标最后可切换位置。</td>
+</tr>
+</tbody></table>
+<h1 id="使用代码模板"><a href="#使用代码模板" class="headerlink" title="使用代码模板"></a>使用代码模板</h1><p>测试使用给出的例子，敲出 <code>log</code> ，出现代码模块，回车成功使用模板：</p>
+<img src="/2024/03/24/VSCode%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/04-use.gif" class title="04-use">
+
+<h1 id="Snippet-语法"><a href="#Snippet-语法" class="headerlink" title="Snippet 语法"></a>Snippet 语法</h1><h2 id="Tabstops"><a href="#Tabstops" class="headerlink" title="Tabstops"></a>Tabstops</h2><p><code>$1</code> ， <code>$2</code> 指定代码块生成后，光标出现的位置；不同位置的相同 <code>$1</code> 位置同时出现光标。</p>
+<h2 id="Placeholders"><a href="#Placeholders" class="headerlink" title="Placeholders"></a>Placeholders</h2><p>给光标出现位置加上默认值；例如，<code>$&#123;1:another $&#123;2:placeholder&#125;&#125;</code>；<code>$1</code> 处位置默认值是 <code>another</code>。</p>
+<h2 id="Choice"><a href="#Choice" class="headerlink" title="Choice"></a>Choice</h2><p>光标位置设置多个值可供选择; 例如，<code>$&#123;1|one,two,three|&#125;</code>；<code>$1</code> 位置处可以选择 <code>one</code>,<code>two</code>,<code>three</code> 中一个词填充在此处。</p>
+<h2 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a>Variables</h2><h3 id="常用变量"><a href="#常用变量" class="headerlink" title="常用变量"></a>常用变量</h3><ul>
+<li><code>TM_SELECTED_TEXT</code> 当前选中内容或空字符串</li>
+<li><code>TM_CURRENT_LINE</code> 当前行内容</li>
+<li><code>TM_CURRENT_WORD</code> 光标处字符或空字符串</li>
+<li><code>TM_LINE_INDEX</code> 从0开始的行号</li>
+<li><code>TM_LINE_NUMBER</code> 从1开始的行号</li>
+<li><code>TM_FILENAME</code> 当前被编辑文档名</li>
+<li><code>TM_FILENAME_BASE</code> 当前被编辑文档名，没有后缀</li>
+<li><code>TM_DIRECTORY</code> 当前被编辑文档目录</li>
+<li><code>TM_FILEPATH</code> 当前被编辑文档全路径</li>
+<li><code>CLIPBOARD</code> 当前剪切板内容</li>
+</ul>
+<h3 id="日期和时间相关变量"><a href="#日期和时间相关变量" class="headerlink" title="日期和时间相关变量"></a>日期和时间相关变量</h3><ul>
+<li><code>CURRENT_YEAR</code> 当前年</li>
+<li><code>CURRENT_YEAR_SHORT</code> 当前年后两位</li>
+<li><code>CURRENT_MONTH</code> 月份，两位数字表示，例如02</li>
+<li><code>CURRENT_MONTH_NAME</code> 月份全称，例如 ‘July’</li>
+<li><code>CURRENT_MONTH_NAME_SHORT</code> 月份简写 ，例如’Jul</li>
+<li><code>CURRENT_DATE</code> 某天</li>
+<li><code>CURRENT_DAY_NAME</code> 星期几， 例如’Monday’)</li>
+<li><code>CURRENT_DAY_NAME_SHORT</code> 星期几的简写， ‘Mon’</li>
+<li><code>CURRENT_HOUR</code> 小时，24小时制</li>
+<li><code>CURRENT_MINUTE</code> 分钟</li>
+<li><code>CURRENT_SECOND</code> 秒数</li>
+</ul>
+<h3 id="变量格式化"><a href="#变量格式化" class="headerlink" title="变量格式化"></a>变量格式化</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$<span class="punctuation">&#123;</span>TM_FILENAME/(.*)\\..+$/$<span class="number">1</span>/<span class="punctuation">&#125;</span></span><br><span class="line">| | | |</span><br><span class="line">| | | |-&gt; no options</span><br><span class="line">| | |</span><br><span class="line">| | |-&gt; references the contents of the first</span><br><span class="line">| | capture group</span><br><span class="line">| |</span><br><span class="line">| |-&gt; regex to capture everything before</span><br><span class="line">| the final `.suffix`</span><br><span class="line">|</span><br><span class="line">|-&gt; resolves to the filename</span><br></pre></td></tr></table></figure>
+
+<h1 id="示例-Snippet"><a href="#示例-Snippet" class="headerlink" title="示例 Snippet"></a>示例 Snippet</h1><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;python template&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;prefix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pyHeader&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;body&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;#!user/bin/python&quot;</span></span><br><span class="line">        <span class="string">&quot;# _*_ coding: utf-8 _*_&quot;</span></span><br><span class="line">        <span class="string">&quot; &quot;</span></span><br><span class="line">        <span class="string">&quot;# @File : $TM_FILENAME&quot;</span></span><br><span class="line">        <span class="string">&quot;# @Version : 1.0&quot;</span></span><br><span class="line">        <span class="string">&quot;# @Author : xxxxxxx&quot;</span></span><br><span class="line">        <span class="string">&quot;# @Email : xxxxxxx&quot;</span></span><br><span class="line">        <span class="string">&quot;# @Time : $CURRENT_YEAR/$CURRENT_MONTH/$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND&quot;</span></span><br><span class="line">        <span class="string">&quot;#Description:&quot;</span></span><br><span class="line">        <span class="string">&quot; &quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="string">&quot;import datetime&quot;</span></span><br><span class="line">        <span class="string">&quot;start_time = datetime.datetime.now()&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="string">&quot;end_time = datetime.datetime.now()&quot;</span></span><br><span class="line">        <span class="string">&quot;print(end_time-start_time)&quot;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;my vue python template&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// javascript.json</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="comment">// Place your snippets for javascript here. Each snippet is defined under a snippet name and has a prefix, body and</span></span><br><span class="line">    <span class="comment">// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:</span></span><br><span class="line">    <span class="comment">// $1, $2 for tab stops, $0 for the final cursor position, and $&#123;1:label&#125;, $&#123;2:another&#125; for placeholders. Placeholders with the</span></span><br><span class="line">    <span class="comment">// same ids are connected.</span></span><br><span class="line">    <span class="comment">// Example:</span></span><br><span class="line">    <span class="attr">&quot;Print to console&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;prefix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;log|console&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;body&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;console.log(&#x27;$1&#x27;)&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;$2&quot;</span></span><br><span class="line">        <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Log output to console&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;For_Loop&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;prefix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;for&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;body&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;for (const $&#123;2:element&#125; of $&#123;1:array&#125;) &#123;&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;\t$0&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;&#125;&quot;</span></span><br><span class="line">            <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;For Loop&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;console.log&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;prefix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cl&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;body&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;console.log($1)&quot;</span></span><br><span class="line">        <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;console.log&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;notes&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;prefix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/*&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;body&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;/**&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot; * @method $1&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot; * @description $2&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot; * @param $2&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot; * @return $2&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot; */&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;notes 方法注释&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;todo&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;prefix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;todo|TODO&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;body&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;// !!!TODO $1&quot;</span></span><br><span class="line">        <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;TODO: // !!!TODO $1&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zc-lee/p/15964013.html">VSCode 代码模板 | zc-lee | 博客园</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yageeart/article/details/103097193">VSCode markdown 开启 Snippets | CSDN博客</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Freesia
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://freesianz.github.io/2024/03/24/VSCode%E4%BB%A3%E7%A0%81%E6%A8%A1%E6%9D%BF/" title="VSCode 代码模板">https://freesianz.github.io/2024/03/24/VSCode代码模板/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/VSCode/" rel="tag"><i class="fa fa-tag"></i> VSCode</a>
+              <a href="/tags/Template/" rel="tag"><i class="fa fa-tag"></i> Template</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/" rel="prev" title="Solaris 10 的下载、安装和配置">
+                  <i class="fa fa-angle-left"></i> Solaris 10 的下载、安装和配置
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2023 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Freesia</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">20k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:07</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">计算中...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("12/24/2023 17:00:00");//你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "Freesia's Blog 已存在 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 :root {
   --body-bg-color: #fff;
-  --content-bg-color: #f5f5f5;
-  --card-bg-color: #f5f5f5;
+  --content-bg-color: #f9f0f0;
+  --card-bg-color: #f9f0f0;
   --text-color: #555;
   --blockquote-color: #666;
   --link-color: #555;
@@ -9,7 +9,7 @@
   --brand-color: #222;
   --brand-hover-color: #222;
   --table-row-odd-bg-color: #f9f9f9;
-  --table-row-hover-bg-color: #f5f5f5;
+  --table-row-hover-bg-color: #f9f0f0;
   --menu-item-bg-color: #ddd;
   --theme-color: #222;
   --btn-default-bg: transparent;
@@ -1292,7 +1292,7 @@ pre code {
   border-radius: 50%;
 }
 .site-author-name {
-  color: #f5f5f5;
+  color: #f9f0f0;
   font-weight: normal;
   margin: 5px 0 0;
 }
@@ -1366,7 +1366,7 @@ pre code {
   margin-left: 10px;
 }
 .sidebar-nav li:hover {
-  color: #f5f5f5;
+  color: #f9f0f0;
 }
 .sidebar-toc-active .sidebar-nav-toc,
 .sidebar-overview-active .sidebar-nav-overview {
@@ -1807,7 +1807,7 @@ pre code {
   color: var(--link-color);
 }
 .posts-collapse .post-content::before {
-  background: #f5f5f5;
+  background: #f9f0f0;
   content: ' ';
   height: 100%;
   margin-left: -2px;
@@ -2272,7 +2272,7 @@ pre code {
   content: '\f024';
 }
 .event-list .event-past {
-  --event-background: #f5f5f5;
+  --event-background: #f9f0f0;
   --event-foreground: #999;
   --event-title: #222;
 }
@@ -2786,7 +2786,7 @@ header.header {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #149aa1;
+  background: #914429;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2835,4 +2835,18 @@ header.header {
 }
 .sub-menu .menu-item {
   display: inline-block;
+}
+body {
+  background: url("/images/background.jpg");
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-position: 100% 100%;
+}
+.main-inner {
+  margin-top: 60px;
+}
+.post-block {
+  background: rgba(255,255,255,0.8) none repeat scroll !important;
+  padding: 30px;
+  border-radius: 10px;
 }
