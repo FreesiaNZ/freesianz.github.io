@@ -735,24 +735,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Listary 的安装和使用</title>
-    <url>/2024/03/16/Listary%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><img src="https://assets-global.website-files.com/643e09c9f19df8579c420d9f/655f6daa30360d26544fd098_Listary-hero-screenshot-p-1080.png" alt="Listary"></p>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Listary 是一款强大的 Windows 文件搜索和应用启动工具。它通过只需几个快捷键就能轻松找到文件并启动应用程序，提高生产力。该软件在后台运行，但可随时从任何地方访问。Listary Pro 为需要更多功能的工作或家庭用户提供了先进的特性和命令。也有一个便携版本，可以在不安装到 Windows 的情况下，从云文件夹、外部驱动器或本地文件夹中运行。</p>
-<span id="more"></span>
-
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p><a href="https://www.listary.com/">https://www.listary.com/</a></p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p><a href="https://help.listary.com/zh-Hans/">https://help.listary.com/zh-Hans/</a></p>
-]]></content>
-      <categories>
-        <category>Download &amp; Install &amp; Configure</category>
-      </categories>
-      <tags>
-        <tag>Efficiency</tag>
-        <tag>Search</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>NexT 主题下载、配置以及美化</title>
     <url>/2023/12/24/NexT%E4%B8%BB%E9%A2%98%E4%B8%8B%E8%BD%BD%E3%80%81%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E7%BE%8E%E5%8C%96/</url>
     <content><![CDATA[<p>本博客使用的是 NexT 主题，更多主题在 <a href="https://hexo.io/themes/">https://hexo.io/themes/</a> 。</p>
@@ -901,6 +883,24 @@
       <tags>
         <tag>Hexo</tag>
         <tag>NexT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Listary 的安装和使用</title>
+    <url>/2024/03/16/Listary%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><img src="https://assets-global.website-files.com/643e09c9f19df8579c420d9f/655f6daa30360d26544fd098_Listary-hero-screenshot-p-1080.png" alt="Listary"></p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Listary 是一款强大的 Windows 文件搜索和应用启动工具。它通过只需几个快捷键就能轻松找到文件并启动应用程序，提高生产力。该软件在后台运行，但可随时从任何地方访问。Listary Pro 为需要更多功能的工作或家庭用户提供了先进的特性和命令。也有一个便携版本，可以在不安装到 Windows 的情况下，从云文件夹、外部驱动器或本地文件夹中运行。</p>
+<span id="more"></span>
+
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p><a href="https://www.listary.com/">https://www.listary.com/</a></p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p><a href="https://help.listary.com/zh-Hans/">https://help.listary.com/zh-Hans/</a></p>
+]]></content>
+      <categories>
+        <category>Download &amp; Install &amp; Configure</category>
+      </categories>
+      <tags>
+        <tag>Efficiency</tag>
+        <tag>Search</tag>
       </tags>
   </entry>
   <entry>

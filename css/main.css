@@ -2786,7 +2786,7 @@ header.header {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #81c8c1;
+  background: #ff417c;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2837,10 +2837,25 @@ header.header {
   display: inline-block;
 }
 body {
-  background: url("/images/background.jpg");
+  background: url("/images/background-pc.jpg");
   background-repeat: repeat;
   background-attachment: fixed;
   background-position: 100% 100%;
+}
+@media only screen and (max-width: 1000px) {
+  body:before {
+    content: "";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100vh;
+    background: url("/images/background-mobile.jpg") center 0 no-repeat;
+    background-size: cover;
+  }
 }
 .main-inner {
   margin-top: 60px;
