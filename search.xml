@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>C &amp; C plus plus 学习路线</title>
+    <url>/2024/03/15/C&amp;Cplusplus%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
+    <content><![CDATA[<img src="/2024/03/15/C&Cplusplus%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/01-C&Cplusplus%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF.png" class>]]></content>
+      <categories>
+        <category>C &amp; C plus plus</category>
+      </categories>
+      <tags>
+        <tag>C</tag>
+        <tag>C plus plus</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CentOS-7 安装 docker</title>
     <url>/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/</url>
     <content><![CDATA[<h1 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h1><blockquote>
@@ -75,18 +87,6 @@
       <tags>
         <tag>CentOS</tag>
         <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C &amp; C plus plus 学习路线</title>
-    <url>/2024/03/15/C&amp;Cplusplus%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
-    <content><![CDATA[<img src="/2024/03/15/C&Cplusplus%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/01-C&Cplusplus%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF.png" class>]]></content>
-      <categories>
-        <category>C &amp; C plus plus</category>
-      </categories>
-      <tags>
-        <tag>C</tag>
-        <tag>C plus plus</tag>
       </tags>
   </entry>
   <entry>
@@ -352,21 +352,262 @@
       </tags>
   </entry>
   <entry>
-    <title>Listary 的安装和使用</title>
-    <url>/2024/03/16/Listary%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><img src="https://assets-global.website-files.com/643e09c9f19df8579c420d9f/655f6daa30360d26544fd098_Listary-hero-screenshot-p-1080.png" alt="Listary"></p>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Listary 是一款强大的 Windows 文件搜索和应用启动工具。它通过只需几个快捷键就能轻松找到文件并启动应用程序，提高生产力。该软件在后台运行，但可随时从任何地方访问。Listary Pro 为需要更多功能的工作或家庭用户提供了先进的特性和命令。也有一个便携版本，可以在不安装到 Windows 的情况下，从云文件夹、外部驱动器或本地文件夹中运行。</p>
+    <title>C 语言</title>
+    <url>/2024/03/15/C%E8%AF%AD%E8%A8%80/</url>
+    <content><![CDATA[<h1 id="C-语言入门"><a href="#C-语言入门" class="headerlink" title="C 语言入门"></a>C 语言入门</h1><h2 id="C-环境设置"><a href="#C-环境设置" class="headerlink" title="C 环境设置"></a>C 环境设置</h2><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>为了在 Windows 上安装 GCC，您需要安装 MinGW。为了安装 MinGW，请访问 MinGW 的主页 mingw-w64.org，进入 MinGW 下载页面，下载最新版本的 MinGW 安装程序，命名格式为 MinGW-<version>.exe。</version></p>
+<p>当安装 MinGW 时，您至少要安装 gcc-core、gcc-g++、binutils 和 MinGW runtime，但是一般情况下都会安装更多其他的项。</p>
+<p>添加您安装的 MinGW 的 bin 子目录到您的 PATH 环境变量中，这样您就可以在命令行中通过简单的名称来指定这些工具。</p>
+<p>当完成安装时，您可以从 Windows 命令行上运行 gcc、g++、ar、ranlib、dlltool 和其他一些 GNU 工具。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">C:\Users\Username&gt;gcc --version</span><br><span class="line">gcc (x86_64-win32-seh-rev0, Built by MinGW-W64 project) 8.1.0</span><br><span class="line">Copyright (C) 2018 Free Software Foundation, Inc.</span><br><span class="line">This is free software; see the <span class="built_in">source</span> <span class="keyword">for</span> copying conditions.  There is NO</span><br><span class="line">warranty; not even <span class="keyword">for</span> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span><br></pre></td></tr></table></figure>
+
 <span id="more"></span>
 
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p><a href="https://www.listary.com/">https://www.listary.com/</a></p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p><a href="https://help.listary.com/zh-Hans/">https://help.listary.com/zh-Hans/</a></p>
+<h3 id="CentOS"><a href="#CentOS" class="headerlink" title="CentOS"></a>CentOS</h3><h4 id="下载、安装和配置"><a href="#下载、安装和配置" class="headerlink" title="下载、安装和配置"></a>下载、安装和配置</h4><p>参考 <a href="https://freesianz.github.io/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/">CentOS-7 的下载、安装和配置</a>。</p>
+<p>开启 CentOS 后，点击网络。</p>
+<p>勾选 <code>自动连接</code> 。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/01-centos-network.png" class title="01-centos-network">
+
+<p>检查 <code>IP地址</code> 。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/02-check-ip.png" class title="02-check-ip">
+
+<h4 id="SecureCRT-连接"><a href="#SecureCRT-连接" class="headerlink" title="SecureCRT 连接"></a>SecureCRT 连接</h4><p>使用 SecureCRT 连接该虚拟机，参考 <a href="https://freesianz.github.io/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">SecureCRT 的下载、安装和使用</a> 。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/03-connect.png" class title="03-connect">
+
+<p>在 SecureCRT 中测试 Linux 常用命令。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/04-test.png" class title="04-test">
+
+<h3 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h3><h4 id="下载、安装和配置-1"><a href="#下载、安装和配置-1" class="headerlink" title="下载、安装和配置"></a>下载、安装和配置</h4><p>参考 <a href="https://freesianz.github.io/2024/03/16/Ubuntu-12-04%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/">Ubuntu-12.04 的下载、安装和配置</a>。</p>
+<p>开启 Ubuntu 后，点击网络。</p>
+<p>勾选 <code>自动连接</code> 。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/05-ubuntu-network.png" class title="05-ubuntu-network">
+
+<p>检查 <code>IP地址</code> 。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/06-check-ip.png" class title="06-check-ip">
+
+<p>使用如下命令安装所需要的一些包。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install vim g++ openssh-server libgl1-mesa-dev</span><br></pre></td></tr></table></figure>
+
+<p>报错，会发现没有更供安装的候选者。问题在于 <code>/etc/apt/sources.list</code> 里的源官方 <a href="http://cn.archive.ubuntu.com/">http://cn.archive.ubuntu.com</a> 已经不维护，而是重新放到 <a href="http://old-releases.ubuntu.com/ubuntu/">http://old-releases.ubuntu.com/ubuntu/</a> 。将源列表里的 <a href="http://cn.archive.ubuntu.com/">http://cn.archive.ubuntu.com</a> 修改为 <a href="http://old-releases.ubuntu.com/ubuntu/">http://old-releases.ubuntu.com/ubuntu/</a> ，即指定使用老版本的源，或者更换为国内的源。参考 <a href="https://www.zhihu.com/question/24836871">ubuntu 13.04 更新不到源，报 404 是怎么回事？</a> 。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/07-bug.png" class title="07-bug">
+
+<p>再继续安装包就可以成功。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/08-install.png" class title="08-install">
+
+<p>在等待过程中，下载 VMware Tools 。</p>
+<p>首先点击 <code>虚拟机</code> ，点击 <code>VMware Tools 安装</code>。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/09-tools.png" class title="09-tools">
+
+<p>使用 <code>mount</code> 命令查看挂载。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/10-mount.png" class title="10-mount">
+
+<p>使用如下命令将压缩包复制到当前目录下，并解压该压缩包。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> /media/VMware\ Tools/VMwareTools-10.3.23-16594550.tar.gz .</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -zxvf VMwareTools-10.3.23-16594550.tar.gz</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/11-zxvf.png" class title="11-zxvf">
+
+<p>解压完成后，使用 <code>ls</code> 目录查看多了一个目录 <code>vmware-tools-distrib</code> ，进入该目录。使用 <code>sudo ./vmware-install.pl</code> 目录安装。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ls</span></span><br><span class="line"><span class="built_in">cd</span> vmware-tools-distrib</span><br><span class="line"><span class="built_in">ls</span></span><br><span class="line">sudo ./vmware-install.pl</span><br></pre></td></tr></table></figure>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/12-install.png" class title="12-install">
+
+<p>VMware Tools 安装完毕后，检查所需要的包是否安装好。</p>
+<p>首先是 <code>vim</code> ，使用如下命令。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/13-vim.png" class title="13-vim">
+
+<p>然后是 <code>g++</code> 和 <code>gcc</code> ，使用如下命令。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">g++ -v</span><br><span class="line">gcc -v</span><br></pre></td></tr></table></figure>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/14-gplusplus.png" class title="14-gplusplus">
+
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/15-gcc.png" class title="15-gcc">
+
+<p>然后是 <code>openssh-server</code> ，使用如下命令。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -V</span><br></pre></td></tr></table></figure>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/15-openssh.png" class title="15-openssh">
+
+<p>最后是 <code>libgl1-mesa-dev</code> ，使用如下命令。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">glxinfo | grep <span class="string">&quot;OpenGL version&quot;</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/16-opengl.png.png" class title="16-opengl">
+
+<h4 id="安装-Qt-5-3-1"><a href="#安装-Qt-5-3-1" class="headerlink" title="安装 Qt 5.3.1"></a>安装 Qt 5.3.1</h4><p>接下来安装 Qt 5.3.1 ，下载地址在 <a href="https://download.qt.io/new_archive/qt/5.3/5.3.1/">https://download.qt.io/new_archive/qt/5.3/5.3.1/</a> 。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/17-QT-download.png" class title="17-QT-download">
+
+<p>将文件拖拽复制到桌面，使用如下命令运行。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ls</span></span><br><span class="line">ll</span><br><span class="line"><span class="built_in">chmod</span> +x qt-opensource-linux-x86-5.3.1.run</span><br><span class="line">sudo ./qt-opensource-linux-x86-5.3.1.run</span><br></pre></td></tr></table></figure>
+
+<p><img src="/C%E8%AF%AD%E8%A8%80/" alt="18-copy-to-desktop"></p>
+<p>使用 Qt5.3.1 设置向导，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/19-welcome.png" class title="19-welcome">
+
+<p>默认安装目录，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/20-folder.png" class title="20-folder">
+
+<p>默认勾选（检查 gcc 和 Tools 是否勾选），点击 <code>下一步</code> 。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/21-tools.png" class title="21-tools">
+
+<p>勾选 I have read … ，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/22-accept.png" class title="22-accept">
+
+<p>点击 <code>安装</code> ，等待安装。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/23-install.png" class title="23-install">
+
+<p>配置环境变量，打开终端。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/profile</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/24-terminal.png" class title="24-terminal">
+
+<p>最后添加以下内容。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> QTDIR=/opt/Qt5.3.1/</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$QTDIR</span>/bin:<span class="variable">$PATH</span>:<span class="variable">$QTDIR</span>/5.3/gcc/bin</span><br><span class="line"><span class="built_in">export</span> MANPATH=<span class="variable">$QTDIR</span>/man:<span class="variable">$MANPATH</span></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$QTDIR</span>/lib:<span class="variable">$LD_LIBRARY_PATH</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/25-vim-variable.png" class title="25-vim-variable">
+
+<p>使用 <code>source</code> 命令使修改生效， <code>qmake</code> 命令测试环境变量是否设置成功。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/26-source-qmake.png" class title="26-source-qmake">
+
+<p>Qt 5.3.1 已经安装完成，点击 完成 退出向导。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/27-complete.png" class title="27-complete">
+
+<p>双击 Qt Creator ，新建项目，全部默认，点击运行按钮，若弹框说明成功。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/28-success.png" class title="28-success">
+
+<h4 id="SecureCRT-连接-1"><a href="#SecureCRT-连接-1" class="headerlink" title="SecureCRT 连接"></a>SecureCRT 连接</h4><p>使用 SecureCRT 连接该虚拟机，参考 <a href="https://freesianz.github.io/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">SecureCRT 的下载、安装和使用</a> 。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/29-connect.png" class title="29-connect">
+
+<p>在 SecureCRT 中测试 Linux 常用命令。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/30-test.png" class title="30-test">
+
+<h3 id="Solaris"><a href="#Solaris" class="headerlink" title="Solaris"></a>Solaris</h3><h4 id="下载、安装和配置-2"><a href="#下载、安装和配置-2" class="headerlink" title="下载、安装和配置"></a>下载、安装和配置</h4><p>参考 <a href="https://freesianz.github.io/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/">Solaris10 的下载、安装和配置</a>。</p>
+<p>成功进入系统后，接下来进行一些配置。</p>
+<p>右键，点击 <code>打开终端</code> ，打开终端。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/31-terminal.png" class title="31-terminal">
+
+<p>运行一些 Linux 常用命令，并将 <code>shell</code> 改为 <code>bash</code> 。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/32-bash.png" class title="32-bash">
+
+<p>测试 <code>gcc</code> ，返回 gcc 未找到，进行配置。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/33-gcc-unfind.png" class title="33-gcc-unfind">
+
+<p>点击 <code>本计算机</code> &gt; <code>应用程序</code> &gt; <code>编程</code> &gt; <code>程序编辑器</code> 。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/34-application.png" class title="34-application">
+
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/35-program.png" class title="35-program">
+
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/36-editor.png" class title="36-editor">
+
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/37-je.png" class title="37-je">
+
+<p>将 <code>/etc/skel/local.profile</code> 文件复制到指定目录下。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/38-copy.png" class title="38-copy">
+
+<p>使用 程序编辑器 打开复制后的文件，添加如下图所示的内容并保持。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/39-open.png" class title="39-open">
+
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/40-save.png" class title="40-save">
+
+<p>使用 <code>source</code> 命令让修改生效，之后重启系统。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/41-source.png" class title="41-source">
+
+<p>输入 <code>用户名</code> 和 <code>口令</code> 登入系统。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/42-user.png" class title="42-user">
+
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/43-pwd.png" class title="43-pwd">
+
+<p>测试 <code>gcc</code> 和 <code>g++</code> ，成功返回版本，配置成功。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/44-version.png" class title="44-version">
+
+<p>打开 <code>程序编辑器</code> ，编写 <code>helloworld.c</code> 测试。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/45-helloworld.png" class title="45-helloworld">
+
+<p>终端编译 <code>helloworld.c</code> ，得到 <code>a.out</code> 并运行。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/46-complie-run.png" class title="46-complie-run">
+
+<h2 id="C-程序结构"><a href="#C-程序结构" class="headerlink" title="C 程序结构"></a>C 程序结构</h2><h3 id="C-Hello-World-实例"><a href="#C-Hello-World-实例" class="headerlink" title="C Hello World 实例"></a>C Hello World 实例</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Hello World\n&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>C 程序主要包括以下部分：预处理器指令、函数、变量、语句 &amp; 表达式和注释。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p><code>#include &lt;stdio.h&gt;</code> 是预处理器指令，告诉 C 编译器在实际编译之前要包含 stdio.h 文件。要使用某个库函数，就要提前包含对应的头文件，比如要使用 <code>printf</code> 库函数，就要包含 <code>stdio.h</code> 头文件。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>int main()</code> 是主函数，程序从这里开始执行。一个 C 程序必须有且仅有一个主函数。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Hello World\n&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>printf()</code> 是 C 中另一个可用的函数，向标准输出设备输出信息。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>return 0;</code> 表示终止 <code>main()</code> 函数，并返回值 0。<code>return</code> 是 C 语言的一个关键字。</p>
+<h3 id="编译-执行-C-程序"><a href="#编译-执行-C-程序" class="headerlink" title="编译 &amp; 执行 C 程序"></a>编译 &amp; 执行 C 程序</h3><p>1.打开一个文本编辑器，添加上述代码。<br>2.保存文件为 HelloWorld.c。<br>3.打开命令提示符，进入到保存文件所在的目录。<br>4.键入 gcc HelloWorld.c，输入回车，编译代码。<br>5.如果代码中没有错误，命令提示符会跳到下一行，并生成 a.out（Windows 生成 a.exe） 可执行文件。<br>6.现在，键入 a.out 来执行程序。<br>7.您可以看到屏幕上显示 “Hello World”。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">C:\Users\Username&gt;gcc HelloWorld.c</span><br><span class="line"></span><br><span class="line">C:\Users\Username&gt;a.exe</span><br><span class="line">Hello World</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="C-基本语法"><a href="#C-基本语法" class="headerlink" title="C 基本语法"></a>C 基本语法</h2><h3 id="分号"><a href="#分号" class="headerlink" title="分号"></a>分号</h3><p>在 C 程序中，分号是语句结束符。</p>
+<p>每个语句必须以分号结束，它表明一个逻辑实体的结束。</p>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>C 语言有两种注释方式：</p>
+<p>1.以 <code>//</code> 开始的单行注释，这种注释可以单独占一行。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 单行注释</span></span><br></pre></td></tr></table></figure>
+
+<p>2.这种格式的注释 <code>/* */</code> 可以单行或多行。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 单行注释 */</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> 多行注释</span></span><br><span class="line"><span class="comment"> 多行注释</span></span><br><span class="line"><span class="comment"> 多行注释</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<p>1.不能在注释内嵌套注释。</p>
+<p>2.注释不能出现在字符串或字符值中。</p>
+<h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3><p>C 标识符是用来标识变量、函数，或任何其他用户自定义项目的名称。</p>
+<p>一个标识符的组成：<br>1.字母 <code>A-Z</code> 或 <code>a-z</code> 或下划线 <code>_</code> 开始；<br>2.后跟零个或多个字母、下划线和数字（0-9）。</p>
+<p>C 标识符内不允许出现标点字符，比如 @、$ 和 %。</p>
+<p>C 是区分大小写的编程语言，因此在 C 中，Manpower 和 manpower 是两个不同的标识符。</p>
+<h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><p><a href="https://blog.csdn.net/weixin_42528287/article/details/126863647">下表</a> 列出了 C 中的保留字。</p>
+<p>这些保留字不能作为常量名、变量名或其他标识符名称。</p>
+<p>1989 年，ANSI 发布了第一个完整的 C 语言标准 —— ANSI X3.159—1989，简称 C89 ，人们也习惯称其为 ANSI C 。</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/47-C89.png" class title="46-C89">
+
+<p>1999 年，在做了一些必要的修正和完善后，ISO 发布了新的 C 语言标准，命名为 ISO&#x2F;IEC 9899：1999，简称 C99 。（新增 5 个关键字）</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/48-C99.png" class title="48-C99">
+
+<p>2011 年 12 月 8 日，ISO 又正式发布了新的标准，称为 ISO&#x2F;IEC9899: 2011，简称为 C11 。（C11 新增 7 个关键字）</p>
+<img src="/2024/03/15/C%E8%AF%AD%E8%A8%80/49-C11.png" class title="49-C11">
+
+<p>所以最新的 C11 标准 C 语言关键字总共有 44 个。</p>
+<h3 id="空格"><a href="#空格" class="headerlink" title="空格"></a>空格</h3><p>只包含空格的行，被称为空白行，C 编译器会完全忽略它。</p>
+<p>在 C 中，空格用于描述空白符、制表符、换行符和注释。</p>
+<p>空格分隔语句的各个部分，让编译器能识别语句中的某个元素（比如 int）在哪里结束，下一个元素在哪里开始。</p>
+<h2 id="System-系统调用"><a href="#System-系统调用" class="headerlink" title="System 系统调用"></a>System 系统调用</h2><p><code>system()</code> 是一个 C 库函数，作用是执行操作系统的命令或者运行指定的程序。要使用 <code>system()</code> 库函数，要包含 <code>stdlib.h</code> 头文件</p>
+<h3 id="Windows-Command"><a href="#Windows-Command" class="headerlink" title="Windows Command"></a>Windows Command</h3><p>Windows 下，比如：</p>
+<p>使用 <code>notepad</code> 命令可以打开记事本；<br>使用 <code>control</code> 命令可以打开控制面板；<br>使用 <code>type</code> 命令可以显示文本文件的内容；<br>使用 <code>msdt</code> 命令可以打开微软支持诊断工具；<br>使用 <code>tasklist</code> 命令可以显示当前正在运行的进程的列表。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">C:\Users\Username&gt;notepad</span><br><span class="line"></span><br><span class="line">C:\Users\Username&gt;control</span><br><span class="line"></span><br><span class="line">C:\Users\Username&gt;<span class="built_in">type</span> a.c</span><br><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"></span><br><span class="line">int <span class="function"><span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello World\n&quot;</span>);</span><br><span class="line">    <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">C:\Users\Username&gt;msdt</span><br><span class="line"></span><br><span class="line">C:\Users\Username&gt;tasklist</span><br><span class="line"></span><br><span class="line">映像名称                       PID 会话名              会话<span class="comment">#       内存使用</span></span><br><span class="line">========================= ======== ================ =========== ============</span><br><span class="line">System Idle Process              0 Services                   0          8 K</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>下载 <a href="https://download.microsoft.com/download/5/8/9/58911986-D4AD-4695-BF63-F734CD4DF8F2/ws-commands.pdf">官方文档 《Windows Command Reference》</a> 查看更多命令。</p>
+<h3 id="Windows-VS-Unix"><a href="#Windows-VS-Unix" class="headerlink" title="Windows VS Unix"></a>Windows VS Unix</h3><h4 id="Windows-1"><a href="#Windows-1" class="headerlink" title="Windows"></a>Windows</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	system(<span class="string">&quot;notepad&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Windows 下打开一个文本编辑器，添加上述代码。编译并执行该 C 程序，记事本被打开。如果第 5 行代码为 <code>system(&quot;calc&quot;);</code>，那么计算器被打开。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">	    system(<span class="string">&quot;calc&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Windows 下打开一个文本编辑器，添加上述代码。编译并执行该 C 程序，计算器被打开，关闭后再次被打开，一直循环直到程序奔溃。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">	    system(<span class="string">&quot;calc&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Windows 下打开一个文本编辑器，添加上述代码。编译并执行该 C 程序，计算器被打开 10 次（个）。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Hello World\n&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line">    i = system(<span class="string">&quot;HelloWorld&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;i = %d\n&quot;</span>,i);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">C:\Users\Username&gt;HelloWorld</span><br><span class="line">Hello World</span><br><span class="line"></span><br><span class="line">C:\Users\Username&gt;System</span><br><span class="line">Hello World</span><br><span class="line">i = 0</span><br></pre></td></tr></table></figure>
+
+<h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	system(<span class="string">&quot;ls -l&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Linux 下使用 <code>vi</code> 新建文件，添加上述代码。编译并执行该 C 程序，该目录下的文件被列出。如果第 5 行代码为 <code>system(&quot;ps -aux&quot;);</code>，那么显示当前正在运行的进程的列表。</p>
+<p>waiting…</p>
+<h3 id="POSIX-说明"><a href="#POSIX-说明" class="headerlink" title="POSIX 说明"></a>POSIX 说明</h3><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.runoob.com/cprogramming/c-program-structure.html">C 程序结构 | 菜鸟教程</a></p>
+<p><a href="https://bbs.itheima.com/thread-338418-1-1.html">2017 C&#x2F;C++ 学习路线图（附全套自学视频+工具） | 倾心莫若初见</a></p>
+<p><a href="https://blog.csdn.net/weixin_42528287/article/details/126863647">C语言关键字之 C89、C99、C11 关键字 | CSDN博客</a></p>
 ]]></content>
       <categories>
-        <category>Download &amp; Install &amp; Configure</category>
+        <category>C &amp; C plus plus</category>
       </categories>
       <tags>
-        <tag>Efficiency</tag>
-        <tag>Search</tag>
+        <tag>C</tag>
       </tags>
   </entry>
   <entry>
@@ -491,6 +732,24 @@
       </categories>
       <tags>
         <tag>Open Source Library</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Listary 的安装和使用</title>
+    <url>/2024/03/16/Listary%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><img src="https://assets-global.website-files.com/643e09c9f19df8579c420d9f/655f6daa30360d26544fd098_Listary-hero-screenshot-p-1080.png" alt="Listary"></p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Listary 是一款强大的 Windows 文件搜索和应用启动工具。它通过只需几个快捷键就能轻松找到文件并启动应用程序，提高生产力。该软件在后台运行，但可随时从任何地方访问。Listary Pro 为需要更多功能的工作或家庭用户提供了先进的特性和命令。也有一个便携版本，可以在不安装到 Windows 的情况下，从云文件夹、外部驱动器或本地文件夹中运行。</p>
+<span id="more"></span>
+
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p><a href="https://www.listary.com/">https://www.listary.com/</a></p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p><a href="https://help.listary.com/zh-Hans/">https://help.listary.com/zh-Hans/</a></p>
+]]></content>
+      <categories>
+        <category>Download &amp; Install &amp; Configure</category>
+      </categories>
+      <tags>
+        <tag>Efficiency</tag>
+        <tag>Search</tag>
       </tags>
   </entry>
   <entry>
@@ -1676,6 +1935,34 @@
       </tags>
   </entry>
   <entry>
+    <title>VScode 配置 Java 环境</title>
+    <url>/2024/01/02/VSCode%E9%85%8D%E7%BD%AEJava%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<h1 id="安装扩展"><a href="#安装扩展" class="headerlink" title="安装扩展"></a>安装扩展</h1><img src="/2024/01/02/VSCode%E9%85%8D%E7%BD%AEJava%E7%8E%AF%E5%A2%83/01-install-extension.png" class>
+
+<span id="more"></span>
+
+<h1 id="配置-JDK"><a href="#配置-JDK" class="headerlink" title="配置 JDK"></a>配置 JDK</h1><p>…</p>
+<h1 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h1><p>Ctrl + Shift + P 唤出命令窗口，输入 Java: Create Java Project，选择 No Build Tool。</p>
+<img src="/2024/01/02/VSCode%E9%85%8D%E7%BD%AEJava%E7%8E%AF%E5%A2%83/02-create-project.png" class>
+
+<img src="/2024/01/02/VSCode%E9%85%8D%E7%BD%AEJava%E7%8E%AF%E5%A2%83/03-choose-nobuildtool.png" class>
+
+
+<p>选择项目地址，输入项目名称。注意项目地址和项目名称中不能包含中文。</p>
+<p>项目创建成功，打开项目中 src 中的 App.java 文件，等待出现 Run|Debug。</p>
+<img src="/2024/01/02/VSCode%E9%85%8D%E7%BD%AEJava%E7%8E%AF%E5%A2%83/04-wait-run.png" class>
+
+<p>出现 Run|Debug 后点击 Run，输出 Hellow Word! 代表成功。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Download &amp; Install &amp; Configure</category>
+      </categories>
+      <tags>
+        <tag>VSCode</tag>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2023/12/22/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -1782,34 +2069,6 @@
       <tags>
         <tag>Hexo</tag>
         <tag>Github</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VScode 配置 Java 环境</title>
-    <url>/2024/01/02/VSCode%E9%85%8D%E7%BD%AEJava%E7%8E%AF%E5%A2%83/</url>
-    <content><![CDATA[<h1 id="安装扩展"><a href="#安装扩展" class="headerlink" title="安装扩展"></a>安装扩展</h1><img src="/2024/01/02/VSCode%E9%85%8D%E7%BD%AEJava%E7%8E%AF%E5%A2%83/01-install-extension.png" class>
-
-<span id="more"></span>
-
-<h1 id="配置-JDK"><a href="#配置-JDK" class="headerlink" title="配置 JDK"></a>配置 JDK</h1><p>…</p>
-<h1 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h1><p>Ctrl + Shift + P 唤出命令窗口，输入 Java: Create Java Project，选择 No Build Tool。</p>
-<img src="/2024/01/02/VSCode%E9%85%8D%E7%BD%AEJava%E7%8E%AF%E5%A2%83/02-create-project.png" class>
-
-<img src="/2024/01/02/VSCode%E9%85%8D%E7%BD%AEJava%E7%8E%AF%E5%A2%83/03-choose-nobuildtool.png" class>
-
-
-<p>选择项目地址，输入项目名称。注意项目地址和项目名称中不能包含中文。</p>
-<p>项目创建成功，打开项目中 src 中的 App.java 文件，等待出现 Run|Debug。</p>
-<img src="/2024/01/02/VSCode%E9%85%8D%E7%BD%AEJava%E7%8E%AF%E5%A2%83/04-wait-run.png" class>
-
-<p>出现 Run|Debug 后点击 Run，输出 Hellow Word! 代表成功。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Download &amp; Install &amp; Configure</category>
-      </categories>
-      <tags>
-        <tag>VSCode</tag>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -1984,193 +2243,6 @@
         <tag>nginx</tag>
         <tag>prometheus</tag>
         <tag>grafana</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>玩转 C 语言</title>
-    <url>/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/</url>
-    <content><![CDATA[<h1 id="周期与目标"><a href="#周期与目标" class="headerlink" title="周期与目标"></a>周期与目标</h1><p>周期：22 天。</p>
-<p>目标：可开发简单的 C 语言小程序。</p>
-<span id="more"></span>
-
-<h1 id="知识点预览"><a href="#知识点预览" class="headerlink" title="知识点预览"></a>知识点预览</h1><p>（1）C语言入门</p>
-<p>数据类型、流程控制、函数、指针、内存布局、结构体、共用体、文件操作。</p>
-<p>（2）Linux 系统编程基础</p>
-<p>Linux 操作系统介绍、Linux 目录和路径、Linux 文件权限、Linux 下常用命令、Vim 编辑器、Webserver 环境搭建。</p>
-<p>（3）C 项目 —— 电子词典</p>
-<p>指针操作、文件读写、流程控制。</p>
-<p>（4）C 语言提高</p>
-<p>指针操作、文件读写、流程控制。</p>
-<h1 id="C-语言入门"><a href="#C-语言入门" class="headerlink" title="C 语言入门"></a>C 语言入门</h1><h2 id="学习环境安装"><a href="#学习环境安装" class="headerlink" title="学习环境安装"></a>学习环境安装</h2><h3 id="CentOS"><a href="#CentOS" class="headerlink" title="CentOS"></a>CentOS</h3><h4 id="下载、安装和配置"><a href="#下载、安装和配置" class="headerlink" title="下载、安装和配置"></a>下载、安装和配置</h4><p>参考 <a href="https://freesianz.github.io/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/">CentOS-7 的下载、安装和配置</a>。</p>
-<p>开启 CentOS 后，点击网络。</p>
-<p>勾选 <code>自动连接</code> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/01-centos-network.png" class title="01-centos-network">
-
-<p>检查 <code>IP地址</code> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/02-check-ip.png" class>
-
-<h4 id="SecureCRT-连接"><a href="#SecureCRT-连接" class="headerlink" title="SecureCRT 连接"></a>SecureCRT 连接</h4><p>使用 SecureCRT 连接该虚拟机，参考 <a href="https://freesianz.github.io/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">SecureCRT 的下载、安装和使用</a> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/03-connect.png" class>
-
-<p>在 SecureCRT 中测试 Linux 常用命令。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/04-test.png" class>
-
-<h3 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h3><h4 id="下载、安装和配置-1"><a href="#下载、安装和配置-1" class="headerlink" title="下载、安装和配置"></a>下载、安装和配置</h4><p>参考 <a href="https://freesianz.github.io/2024/03/16/Ubuntu-12-04%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/">Ubuntu-12.04 的下载、安装和配置</a>。</p>
-<p>开启 Ubuntu 后，点击网络。</p>
-<p>勾选 <code>自动连接</code> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/05-ubuntu-network.png" class>
-
-<p>检查 <code>IP地址</code> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/06-check-ip.png" class>
-
-<p>使用如下命令安装所需要的一些包。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install vim g++ openssh-server libgl1-mesa-dev</span><br></pre></td></tr></table></figure>
-
-<p>报错，会发现没有更供安装的候选者。问题在于 <code>/etc/apt/sources.list</code> 里的源官方 <a href="http://cn.archive.ubuntu.com/">http://cn.archive.ubuntu.com</a> 已经不维护，而是重新放到 <a href="http://old-releases.ubuntu.com/ubuntu/">http://old-releases.ubuntu.com/ubuntu/</a> 。将源列表里的 <a href="http://cn.archive.ubuntu.com/">http://cn.archive.ubuntu.com</a> 修改为 <a href="http://old-releases.ubuntu.com/ubuntu/">http://old-releases.ubuntu.com/ubuntu/</a> ，即指定使用老版本的源，或者更换为国内的源。参考 <a href="https://www.zhihu.com/question/24836871">ubuntu 13.04 更新不到源，报 404 是怎么回事？</a> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/07-bug.png" class>
-
-<p>再继续安装包就可以成功。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/08-install.png" class>
-
-<p>在等待过程中，下载 VMware Tools 。</p>
-<p>首先点击 <code>虚拟机</code> ，点击 <code>VMware Tools 安装</code>。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/09-tools.png" class>
-
-<p>使用 <code>mount</code> 命令查看挂载。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/10-mount.png" class>
-
-<p>使用如下命令将压缩包复制到当前目录下，并解压该压缩包。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> /media/VMware\ Tools/VMwareTools-10.3.23-16594550.tar.gz .</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -zxvf VMwareTools-10.3.23-16594550.tar.gz</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/11-zxvf.png" class>
-
-<p>解压完成后，使用 <code>ls</code> 目录查看多了一个目录 <code>vmware-tools-distrib</code> ，进入该目录。使用 <code>sudo ./vmware-install.pl</code> 目录安装。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ls</span></span><br><span class="line"><span class="built_in">cd</span> vmware-tools-distrib</span><br><span class="line"><span class="built_in">ls</span></span><br><span class="line">sudo ./vmware-install.pl</span><br></pre></td></tr></table></figure>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/12-install.png" class>
-
-<p>VMware Tools 安装完毕后，检查所需要的包是否安装好。</p>
-<p>首先是 <code>vim</code> ，使用如下命令。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/13-vim.png" class>
-
-<p>然后是 <code>g++</code> 和 <code>gcc</code> ，使用如下命令。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">g++ -v</span><br><span class="line">gcc -v</span><br></pre></td></tr></table></figure>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/14-gplusplus.png" class>
-
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/15-gcc.png" class>
-
-<p>然后是 <code>openssh-server</code> ，使用如下命令。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -V</span><br></pre></td></tr></table></figure>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/15-openssh.png" class>
-
-<p>最后是 <code>libgl1-mesa-dev</code> ，使用如下命令。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">glxinfo | grep <span class="string">&quot;OpenGL version&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="安装-Qt-5-3-1"><a href="#安装-Qt-5-3-1" class="headerlink" title="安装 Qt 5.3.1"></a>安装 Qt 5.3.1</h4><p>接下来安装 Qt 5.3.1 ，下载地址在 <a href="https://download.qt.io/new_archive/qt/5.3/5.3.1/">https://download.qt.io/new_archive/qt/5.3/5.3.1/</a> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/17-QT-download.png" class>
-
-<p>将文件拖拽复制到桌面，使用如下命令运行。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ls</span></span><br><span class="line">ll</span><br><span class="line"><span class="built_in">chmod</span> +x qt-opensource-linux-x86-5.3.1.run</span><br><span class="line">sudo ./qt-opensource-linux-x86-5.3.1.run</span><br></pre></td></tr></table></figure>
-
-
-
-<p>使用 Qt5.3.1 设置向导，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/19-welcome.png" class>
-
-<p>默认安装目录，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/20-folder.png" class>
-
-<p>默认勾选（检查 gcc 和 Tools 是否勾选），点击 <code>下一步</code> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/21-tools.png" class>
-
-<p>勾选 I have read … ，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/22-accept.png" class>
-
-<p>点击 <code>安装</code> ，等待安装。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/23-install.png" class>
-
-<p>配置环境变量，打开终端。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/profile</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/24-terminal.png" class>
-
-<p>最后添加以下内容。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> QTDIR=/opt/Qt5.3.1/</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$QTDIR</span>/bin:<span class="variable">$PATH</span>:<span class="variable">$QTDIR</span>/5.3/gcc/bin</span><br><span class="line"><span class="built_in">export</span> MANPATH=<span class="variable">$QTDIR</span>/man:<span class="variable">$MANPATH</span></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$QTDIR</span>/lib:<span class="variable">$LD_LIBRARY_PATH</span></span><br></pre></td></tr></table></figure>
-
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/25-vim-variable.png" class>
-
-<p>使用 <code>source</code> 命令使修改生效， <code>qmake</code> 命令测试环境变量是否设置成功。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/26-source-qmake.png" class>
-
-<p>Qt 5.3.1 已经安装完成，点击 完成 退出向导。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/27-complete.png" class>
-
-<p>双击 Qt Creator ，新建项目，全部默认，点击运行按钮，若弹框说明成功。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/28-success.png" class>
-
-<h4 id="SecureCRT-连接-1"><a href="#SecureCRT-连接-1" class="headerlink" title="SecureCRT 连接"></a>SecureCRT 连接</h4><p>使用 SecureCRT 连接该虚拟机，参考 <a href="https://freesianz.github.io/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">SecureCRT 的下载、安装和使用</a> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/29-connect.png" class title="29-connect">
-
-<p>在 SecureCRT 中测试 Linux 常用命令。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/30-test.png" class>
-
-<h3 id="Solaris"><a href="#Solaris" class="headerlink" title="Solaris"></a>Solaris</h3><h4 id="下载、安装和配置-2"><a href="#下载、安装和配置-2" class="headerlink" title="下载、安装和配置"></a>下载、安装和配置</h4><p>参考 <a href="https://freesianz.github.io/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/">Solaris10 的下载、安装和配置</a>。</p>
-<p>成功进入系统后，接下来进行一些配置。</p>
-<p>右键，点击 <code>打开终端</code> ，打开终端。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/31-terminal.png" class>
-
-<p>运行一些 Linux 常用命令，并将 <code>shell</code> 改为 <code>bash</code> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/32-bash.png" class>
-
-<p>测试 <code>gcc</code> ，返回 gcc 未找到，进行配置。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/33-gcc-unfind.png" class>
-
-<p>点击 <code>本计算机</code> &gt; <code>应用程序</code> &gt; <code>编程</code> &gt; <code>程序编辑器</code> 。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/34-application.png" class>
-
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/35-program.png" class>
-
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/36-editor.png" class>
-
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/37-je.png" class>
-
-<p>将 <code>/etc/skel/local.profile</code> 文件复制到指定目录下。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/38-copy.png" class>
-
-<p>使用 程序编辑器 打开复制后的文件，添加如下图所示的内容并保持。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/39-open.png" class>
-
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/40-save.png" class>
-
-<p>使用 <code>source</code> 命令让修改生效，之后重启系统。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/41-source.png" class>
-
-<p>输入 <code>用户名</code> 和 <code>口令</code> 登入系统。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/42-user.png" class>
-
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/43-pwd.png" class>
-
-<p>测试 <code>gcc</code> 和 <code>g++</code> ，成功返回版本，配置成功。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/44-version.png" class>
-
-<p>打开 <code>程序编辑器</code> ，编写 <code>helloworld.c</code> 测试。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/45-helloworld.png" class>
-
-<p>终端编译 <code>helloworld.c</code> ，得到 <code>a.out</code> 并运行。</p>
-<img src="/2024/03/15/%E7%8E%A9%E8%BD%ACC%E8%AF%AD%E8%A8%80/46-complie-run.png" class>
-
-<h2 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h2><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><h2 id="内存布局"><a href="#内存布局" class="headerlink" title="内存布局"></a>内存布局</h2><h2 id="结构体-共用体"><a href="#结构体-共用体" class="headerlink" title="结构体 &amp; 共用体"></a>结构体 &amp; 共用体</h2><h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><h1 id="初识-Linux"><a href="#初识-Linux" class="headerlink" title="初识 Linux"></a>初识 Linux</h1><h2 id="Linux-操作系统介超"><a href="#Linux-操作系统介超" class="headerlink" title="Linux 操作系统介超"></a>Linux 操作系统介超</h2><h2 id="Linux-目录和路径"><a href="#Linux-目录和路径" class="headerlink" title="Linux 目录和路径"></a>Linux 目录和路径</h2><h2 id="Linux-文件权限"><a href="#Linux-文件权限" class="headerlink" title="Linux 文件权限"></a>Linux 文件权限</h2><h2 id="Linux-常用命令"><a href="#Linux-常用命令" class="headerlink" title="Linux 常用命令"></a>Linux 常用命令</h2><h2 id="Vim-编辑器"><a href="#Vim-编辑器" class="headerlink" title="Vim 编辑器"></a>Vim 编辑器</h2><h2 id="Web-Server-环境搭建"><a href="#Web-Server-环境搭建" class="headerlink" title="Web Server 环境搭建"></a>Web Server 环境搭建</h2><h1 id="C-项目：电子词典"><a href="#C-项目：电子词典" class="headerlink" title="C 项目：电子词典"></a>C 项目：电子词典</h1><h2 id="指针操作"><a href="#指针操作" class="headerlink" title="指针操作"></a>指针操作</h2><h2 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h2><h2 id="流程控制-1"><a href="#流程控制-1" class="headerlink" title="流程控制"></a>流程控制</h2><h1 id="C-语言提高"><a href="#C-语言提高" class="headerlink" title="C 语言提高"></a>C 语言提高</h1><h2 id="二级指针"><a href="#二级指针" class="headerlink" title="二级指针"></a>二级指针</h2><h2 id="结构体、文件的使用"><a href="#结构体、文件的使用" class="headerlink" title="结构体、文件的使用"></a>结构体、文件的使用</h2><h2 id="动态库封装和设计"><a href="#动态库封装和设计" class="headerlink" title="动态库封装和设计"></a>动态库封装和设计</h2><h2 id="函数指针回调函数"><a href="#函数指针回调函数" class="headerlink" title="函数指针回调函数"></a>函数指针回调函数</h2><h2 id="C-语言面试题强化"><a href="#C-语言面试题强化" class="headerlink" title="C 语言面试题强化"></a>C 语言面试题强化</h2><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://bbs.itheima.com/thread-338418-1-1.html">2017 C&#x2F;C++ 学习路线图（附全套自学视频+工具） | 倾心莫若初见</a></p>
-]]></content>
-      <categories>
-        <category>C &amp; C plus plus</category>
-      </categories>
-      <tags>
-        <tag>C</tag>
       </tags>
   </entry>
 </search>
