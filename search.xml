@@ -981,6 +981,90 @@
       </tags>
   </entry>
   <entry>
+    <title>SecureCRT 的下载、安装和使用</title>
+    <url>/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>SecureCRT 是一个终端仿真应用程序，为计算专业人员提供安全的远程访问、文件传输和数据隧道。</p>
+<span id="more"></span>
+
+<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>从官方网站下载资源：<a href="https://www.vandyke.com/cgi-bin/releases.php?product=securecrt">https://www.vandyke.com/cgi-bin/releases.php?product=securecrt</a> 。</p>
+<p>从百度网盘下载资源。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>双击 <code>scrt_sfx833-x64.exe</code> 运行安装程序。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/01-run.png" class>
+
+<p>点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/02-next.png" class>
+
+<p>勾选 <code>I accept ...</code> ，点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/03-accept.png" class>
+
+<p>勾选 <code>Common profile</code> ，点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/04-common.png" class>
+
+<p>选择 <code>Custom</code> ，点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/05-custom.png" class>
+
+<p>点击 <code>Choose</code> 选择自定义安装目录，点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/06-folder.png" class>
+
+<p>默认勾选，点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/07-next.png" class>
+
+<p>点击 <code>Install</code> ，开始安装。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/08-install.png" class>
+
+<p>安装完毕，点击 <code>Finish</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/09-finish.png" class>
+
+<p>激活方式参考 <a href="https://zhuanlan.zhihu.com/p/163089404">SecureCRT 的下载、安装、激活 | 知乎 | ytrunning</a> 。</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="SecureCRT"><a href="#SecureCRT" class="headerlink" title="SecureCRT"></a>SecureCRT</h2><p>打开以后进入主界面，点击 File ，有三种连接：<code>Connect...</code> 、<code>Quick Connect</code> 和 <code>Local Connect</code>，分别是已存储的连接、快速连接和本地连接。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/10-three-type.png" class>
+
+<p>点击 <code>Quick Connect</code> ，默认是 <code>SSH2</code> ，其中 <code>Hostname</code> 填写虚拟机 IP 地址， <code>Username</code> 填写虚拟机用户名，若是密钥登录，勾选 <code>PublicKey</code> ；若是密码登录，勾选 <code>Password</code> 。填写、勾选完毕后，点击 <code>Connect</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/11-fill-up.png" class>
+
+<p>接下来填写并确认密码，勾选 <code>Save password</code> 保存密码，点击 <code>OK</code> 进行连接。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/12-password.png" class>
+
+<p>连接成功！</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/13-success.png" class>
+
+<h2 id="SecureFX"><a href="#SecureFX" class="headerlink" title="SecureFX"></a>SecureFX</h2><p>SecureFX 有两种打开方式：</p>
+<p>1.如果已经打开 SecureCRT ，点击 <code>SecureFX</code> 图标即可打开。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/14-SecureFX.png" class>
+
+<p>2.如果没有打开 SecureCRT，打开 SecureFX 应用。</p>
+<p>打开 SerureFX 后：</p>
+<p>1.如果已经登录过 SecureCRT ， <code>Sessions</code> 有已连接过的 IP ，点击 <code>Connect</code> 直接连接。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/15-had-connected.png" class>
+
+<p>2.如果没有登录过 SecureCRT ，进行与 SecureCRT 中相似的操作进行连接。</p>
+<p>连接成功后，进入管理页面。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/16-success-file.png" class>
+
+<p>可直接手动拖动文件，文件传输成功后，会显示 <code>Finished</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/17-finished.png" class>
+
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="更改终端外观"><a href="#更改终端外观" class="headerlink" title="更改终端外观"></a>更改终端外观</h2><p>点击 <code>Options</code> ，选择 <code>Session Options...</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/18-options.png" class>
+
+<p>选中 <code>Appearance</code> ，设置 <code>Current color scheme</code> 为 <code>White/Black</code> ，点击 <code>Font...</code> 调整字体和大小。 </p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/19-scheme-font.png" class>
+
+<p>更改终端外观成功！</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/20-change-success.png" class>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/qq_39052513/article/details/100272502">SecureCRT 的下载、安装 | CSDN | 超Ren专属</a></p>
+<p><a href="https://blog.csdn.net/qq_39052513/article/details/104692026">SecureCRT 的使用教程 | CSDN | 超Ren专属</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/163089404">SecureCRT 的下载、安装、激活 | 知乎 | ytrunning</a> </p>
+]]></content>
+      <categories>
+        <category>Download &amp; Install &amp; Configure</category>
+      </categories>
+      <tags>
+        <tag>SSH</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SEAL</title>
     <url>/2023/12/30/SEAL/</url>
     <content><![CDATA[<h1 id="SEAL-库介绍"><a href="#SEAL-库介绍" class="headerlink" title="SEAL 库介绍"></a>SEAL 库介绍</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Simple Encrypted Arithmetic Library（简单加密算术库）或 SEAL 是一个免费和开源的跨平台软件库，由微软研究院开发，实现各种形式的同态加密。</p>
@@ -1474,90 +1558,6 @@
       </categories>
       <tags>
         <tag>Open Source Library</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SecureCRT 的下载、安装和使用</title>
-    <url>/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>SecureCRT 是一个终端仿真应用程序，为计算专业人员提供安全的远程访问、文件传输和数据隧道。</p>
-<span id="more"></span>
-
-<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>从官方网站下载资源：<a href="https://www.vandyke.com/cgi-bin/releases.php?product=securecrt">https://www.vandyke.com/cgi-bin/releases.php?product=securecrt</a> 。</p>
-<p>从百度网盘下载资源。</p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>双击 <code>scrt_sfx833-x64.exe</code> 运行安装程序。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/01-run.png" class>
-
-<p>点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/02-next.png" class>
-
-<p>勾选 <code>I accept ...</code> ，点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/03-accept.png" class>
-
-<p>勾选 <code>Common profile</code> ，点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/04-common.png" class>
-
-<p>选择 <code>Custom</code> ，点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/05-custom.png" class>
-
-<p>点击 <code>Choose</code> 选择自定义安装目录，点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/06-folder.png" class>
-
-<p>默认勾选，点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/07-next.png" class>
-
-<p>点击 <code>Install</code> ，开始安装。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/08-install.png" class>
-
-<p>安装完毕，点击 <code>Finish</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/09-finish.png" class>
-
-<p>激活方式参考 <a href="https://zhuanlan.zhihu.com/p/163089404">SecureCRT 的下载、安装、激活 | 知乎 | ytrunning</a> 。</p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="SecureCRT"><a href="#SecureCRT" class="headerlink" title="SecureCRT"></a>SecureCRT</h2><p>打开以后进入主界面，点击 File ，有三种连接：<code>Connect...</code> 、<code>Quick Connect</code> 和 <code>Local Connect</code>，分别是已存储的连接、快速连接和本地连接。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/10-three-type.png" class>
-
-<p>点击 <code>Quick Connect</code> ，默认是 <code>SSH2</code> ，其中 <code>Hostname</code> 填写虚拟机 IP 地址， <code>Username</code> 填写虚拟机用户名，若是密钥登录，勾选 <code>PublicKey</code> ；若是密码登录，勾选 <code>Password</code> 。填写、勾选完毕后，点击 <code>Connect</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/11-fill-up.png" class>
-
-<p>接下来填写并确认密码，勾选 <code>Save password</code> 保存密码，点击 <code>OK</code> 进行连接。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/12-password.png" class>
-
-<p>连接成功！</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/13-success.png" class>
-
-<h2 id="SecureFX"><a href="#SecureFX" class="headerlink" title="SecureFX"></a>SecureFX</h2><p>SecureFX 有两种打开方式：</p>
-<p>1.如果已经打开 SecureCRT ，点击 <code>SecureFX</code> 图标即可打开。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/14-SecureFX.png" class>
-
-<p>2.如果没有打开 SecureCRT，打开 SecureFX 应用。</p>
-<p>打开 SerureFX 后：</p>
-<p>1.如果已经登录过 SecureCRT ， <code>Sessions</code> 有已连接过的 IP ，点击 <code>Connect</code> 直接连接。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/15-had-connected.png" class>
-
-<p>2.如果没有登录过 SecureCRT ，进行与 SecureCRT 中相似的操作进行连接。</p>
-<p>连接成功后，进入管理页面。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/16-success-file.png" class>
-
-<p>可直接手动拖动文件，文件传输成功后，会显示 <code>Finished</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/17-finished.png" class>
-
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="更改终端外观"><a href="#更改终端外观" class="headerlink" title="更改终端外观"></a>更改终端外观</h2><p>点击 <code>Options</code> ，选择 <code>Session Options...</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/18-options.png" class>
-
-<p>选中 <code>Appearance</code> ，设置 <code>Current color scheme</code> 为 <code>White/Black</code> ，点击 <code>Font...</code> 调整字体和大小。 </p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/19-scheme-font.png" class>
-
-<p>更改终端外观成功！</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/20-change-success.png" class>
-
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/qq_39052513/article/details/100272502">SecureCRT 的下载、安装 | CSDN | 超Ren专属</a></p>
-<p><a href="https://blog.csdn.net/qq_39052513/article/details/104692026">SecureCRT 的使用教程 | CSDN | 超Ren专属</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/163089404">SecureCRT 的下载、安装、激活 | 知乎 | ytrunning</a> </p>
-]]></content>
-      <categories>
-        <category>Download &amp; Install &amp; Configure</category>
-      </categories>
-      <tags>
-        <tag>SSH</tag>
       </tags>
   </entry>
   <entry>
@@ -2069,6 +2069,42 @@
       <tags>
         <tag>Hexo</tag>
         <tag>Github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 Utterances 为 Hexo + NexT 博客添加评论</title>
+    <url>/2024/03/26/%E4%BD%BF%E7%94%A8Utterances%E4%B8%BAHexo-NexT%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/</url>
+    <content><![CDATA[<p>Utterances 是一个基于 Github issues 构建的轻量级评论插件，只有使用 Github 账号登录后才能评论。NexT 7.0.0 版本已经集成了 Utterances ，故非常方便使用 Utterances 来为 Hexo + NexT 博客添加评论。</p>
+<p>Utterances：<a href="https://utteranc.es/">https://utteranc.es/</a></p>
+<p>Github：<a href="https://github.com/utterance/utterances">https://github.com/utterance/utterances</a></p>
+<span id="more"></span>
+
+<h1 id="新建-Github-仓库"><a href="#新建-Github-仓库" class="headerlink" title="新建 Github 仓库"></a>新建 Github 仓库</h1><p>由于是基于 Github issues，我们需要一个仓库来存储评论，所以我们需要在 Github 上创建一个空库，并且必须是 pulbic 的，这样用户才可以查看并发布评论。</p>
+<p><img src="/"></p>
+<h1 id="安装-Github-App"><a href="#安装-Github-App" class="headerlink" title="安装 Github App"></a>安装 Github App</h1><p>地址：<a href="https://github.com/apps/utterances">https://github.com/apps/utterances</a></p>
+<p>访问安装地址，进入安装页面，单击 <code>Install</code> 按钮。</p>
+<p><img src="/"></p>
+<p>选择关联的仓库，我们选择刚刚建好的仓库。</p>
+<p><img src="/"></p>
+<p>至此，Github 端配置完成，接下来在网页或博客中配置使用 Utterances 。</p>
+<h1 id="在-Hexo-NexT-中使用"><a href="#在-Hexo-NexT-中使用" class="headerlink" title="在 Hexo NexT 中使用"></a>在 Hexo NexT 中使用</h1><p>编辑 Hexo 主题配置文件 <code>_config.yml</code>，添加以下配置：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Utterances</span></span><br><span class="line"><span class="comment"># For more information: https://utteranc.es</span></span><br><span class="line"><span class="attr">utterances:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">FreesiaNZ/freesianz.comments</span> <span class="comment"># Github repository owner and name</span></span><br><span class="line">  <span class="comment"># Available values: pathname | url | title | og:title</span></span><br><span class="line">  <span class="attr">issue_term:</span> <span class="string">pathname</span></span><br><span class="line">  <span class="comment"># Available values: github-light | github-dark | preferred-color-scheme | github-dark-orange | icy-dark | dark-blue | photon-dark | boxy-light</span></span><br><span class="line">  <span class="attr">theme:</span> <span class="string">github-light</span></span><br></pre></td></tr></table></figure>
+
+<p>为了更好地匹配我的自定义主题，修改文件：<br><code>themes\next\source\css\_common\components\third-party\utterances.styl</code> 。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">if</span> <span class="string">(hexo-config(&#x27;utterances.enable&#x27;))</span> &#123;</span><br><span class="line">  <span class="string">.utterances</span> &#123;</span><br><span class="line">    <span class="attr">max-width:</span> <span class="string">unset;</span></span><br><span class="line">    <span class="attr">background:</span> <span class="string">rgba(255</span>,<span class="number">255</span>,<span class="number">255</span>,<span class="number">0.8</span><span class="string">)</span> <span class="string">none</span> <span class="string">repeat</span> <span class="string">scroll</span> <span class="type">!important;</span></span><br><span class="line">    <span class="attr">border-radius:</span> <span class="string">10px;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最终评论的效果：</p>
+<p><img src="/"></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://blog.lanweihong.com/posts/24011/">Hexo NexT 主题使用 utterances 搭建评论系统 | 蓝伟洪的博客</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/76237379">Hexo+NexT使用utterances评论插件 | 知乎</a></p>
+]]></content>
+      <categories>
+        <category>How to Start a Personal Blog</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>NexT</tag>
+        <tag>Utterances</tag>
       </tags>
   </entry>
   <entry>
