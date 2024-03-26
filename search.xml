@@ -981,268 +981,6 @@
       </tags>
   </entry>
   <entry>
-    <title>SecureCRT 的下载、安装和使用</title>
-    <url>/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>SecureCRT 是一个终端仿真应用程序，为计算专业人员提供安全的远程访问、文件传输和数据隧道。</p>
-<span id="more"></span>
-
-<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>从官方网站下载资源：<a href="https://www.vandyke.com/cgi-bin/releases.php?product=securecrt">https://www.vandyke.com/cgi-bin/releases.php?product=securecrt</a> 。</p>
-<p>从百度网盘下载资源。</p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>双击 <code>scrt_sfx833-x64.exe</code> 运行安装程序。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/01-run.png" class>
-
-<p>点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/02-next.png" class>
-
-<p>勾选 <code>I accept ...</code> ，点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/03-accept.png" class>
-
-<p>勾选 <code>Common profile</code> ，点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/04-common.png" class>
-
-<p>选择 <code>Custom</code> ，点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/05-custom.png" class>
-
-<p>点击 <code>Choose</code> 选择自定义安装目录，点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/06-folder.png" class>
-
-<p>默认勾选，点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/07-next.png" class>
-
-<p>点击 <code>Install</code> ，开始安装。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/08-install.png" class>
-
-<p>安装完毕，点击 <code>Finish</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/09-finish.png" class>
-
-<p>激活方式参考 <a href="https://zhuanlan.zhihu.com/p/163089404">SecureCRT 的下载、安装、激活 | 知乎 | ytrunning</a> 。</p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="SecureCRT"><a href="#SecureCRT" class="headerlink" title="SecureCRT"></a>SecureCRT</h2><p>打开以后进入主界面，点击 File ，有三种连接：<code>Connect...</code> 、<code>Quick Connect</code> 和 <code>Local Connect</code>，分别是已存储的连接、快速连接和本地连接。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/10-three-type.png" class>
-
-<p>点击 <code>Quick Connect</code> ，默认是 <code>SSH2</code> ，其中 <code>Hostname</code> 填写虚拟机 IP 地址， <code>Username</code> 填写虚拟机用户名，若是密钥登录，勾选 <code>PublicKey</code> ；若是密码登录，勾选 <code>Password</code> 。填写、勾选完毕后，点击 <code>Connect</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/11-fill-up.png" class>
-
-<p>接下来填写并确认密码，勾选 <code>Save password</code> 保存密码，点击 <code>OK</code> 进行连接。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/12-password.png" class>
-
-<p>连接成功！</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/13-success.png" class>
-
-<h2 id="SecureFX"><a href="#SecureFX" class="headerlink" title="SecureFX"></a>SecureFX</h2><p>SecureFX 有两种打开方式：</p>
-<p>1.如果已经打开 SecureCRT ，点击 <code>SecureFX</code> 图标即可打开。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/14-SecureFX.png" class>
-
-<p>2.如果没有打开 SecureCRT，打开 SecureFX 应用。</p>
-<p>打开 SerureFX 后：</p>
-<p>1.如果已经登录过 SecureCRT ， <code>Sessions</code> 有已连接过的 IP ，点击 <code>Connect</code> 直接连接。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/15-had-connected.png" class>
-
-<p>2.如果没有登录过 SecureCRT ，进行与 SecureCRT 中相似的操作进行连接。</p>
-<p>连接成功后，进入管理页面。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/16-success-file.png" class>
-
-<p>可直接手动拖动文件，文件传输成功后，会显示 <code>Finished</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/17-finished.png" class>
-
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="更改终端外观"><a href="#更改终端外观" class="headerlink" title="更改终端外观"></a>更改终端外观</h2><p>点击 <code>Options</code> ，选择 <code>Session Options...</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/18-options.png" class>
-
-<p>选中 <code>Appearance</code> ，设置 <code>Current color scheme</code> 为 <code>White/Black</code> ，点击 <code>Font...</code> 调整字体和大小。 </p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/19-scheme-font.png" class>
-
-<p>更改终端外观成功！</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/20-change-success.png" class>
-
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/qq_39052513/article/details/100272502">SecureCRT 的下载、安装 | CSDN | 超Ren专属</a></p>
-<p><a href="https://blog.csdn.net/qq_39052513/article/details/104692026">SecureCRT 的使用教程 | CSDN | 超Ren专属</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/163089404">SecureCRT 的下载、安装、激活 | 知乎 | ytrunning</a> </p>
-]]></content>
-      <categories>
-        <category>Download &amp; Install &amp; Configure</category>
-      </categories>
-      <tags>
-        <tag>SSH</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Solaris 10 的下载、安装和配置</title>
-    <url>/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="映像下载"><a href="#映像下载" class="headerlink" title="映像下载"></a>映像下载</h1><p>使用的是 <a href="https://www.cnblogs.com/shrec/p/4257353.html">在 VirtualBox 上安装 Solaris 10 全教程（包括下载） </a> 提供的资源。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/01-iso.png" class>
-
-<p>下载完毕，记住 iso 文件所在位置。</p>
-<span id="more"></span>
-
-<h1 id="虚拟机创建"><a href="#虚拟机创建" class="headerlink" title="虚拟机创建"></a>虚拟机创建</h1><p>打开 VMware Workstation，然后点击 <code>创建虚拟机</code> 。</p>
-<p>选择 <code>自定义安装</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/02-create-vm.png" class>
-
-<p>默认，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/03-hardware-function.png" class>
-
-<p>选择 <code>稍候安装操作系统</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/04-install-os.png" class>
-
-<p>选择 <code>Linux(L)</code> ，选择 <code>Solaris 10</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/05-choose-os.png" class>
-
-<p>设置 <code>虚拟机名称</code> ，选择 <code>位置</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/06-name-and-location.png" class>
-
-<p>选择 <code>指定处理器数量</code> ，数量越多，性能越好，根据需要分配。然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/07-cpu-core.png" class>
-
-<p>根据需要 <code>分配内存</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/08-memory.png" class>
-
-<p>网络连接选择 NAT，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/09-network.png" class>
-
-<p>默认，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/10-LSI.png" class>
-
-<p>默认，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/11-disk.png" class>
-
-<p>选择 <code>创建新虚拟硬盘</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/12-create-new-disk.png" class>
-
-<p>指定 <code>磁盘容量</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/13-max-disk.png" class>
-
-<p>指定 <code>磁盘文件存储</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/14-disk-location.png" class>
-
-<p>点击 <code>完成</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/15-complete.png" class>
-
-<h1 id="使用映像文件"><a href="#使用映像文件" class="headerlink" title="使用映像文件"></a>使用映像文件</h1><p>点击 <code>编辑虚拟机设置</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/16-edit-setting.png" class>
-
-<p>点击 <code>硬件</code> 下的 <code>CD/DVD</code> ，选择 <code>使用ISO映像文件</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/17-choose-iso.png" class>
-
-<p>点击 <code>开启此虚拟机</code> 。</p>
-<h1 id="配置选项"><a href="#配置选项" class="headerlink" title="配置选项"></a>配置选项</h1><h2 id="配置类型"><a href="#配置类型" class="headerlink" title="配置类型"></a>配置类型</h2><p>选择 <code>1.Solaris Interactive(default)</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/18-choose-1.png" class>
-
-<h2 id="键盘布局"><a href="#键盘布局" class="headerlink" title="键盘布局"></a>键盘布局</h2><p>选择 <code>US-English</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/19-choose-US.png" class>
-
-<h2 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h2><p>选择 <code>6.Simplified Chinese</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/20-choose-SC.png" class>
-
-<h2 id="网络连接"><a href="#网络连接" class="headerlink" title="网络连接"></a>网络连接</h2><p>选择 <code>联网的</code> ，点击 <code>下一步</code>。（注意：图文不符）</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/21-choose-network.png" class>
-
-<h2 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h2><p>默认 <code>是</code> ，点击 <code>下一步</code>。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/21-choose-DHCP.png" class>
-
-<h2 id="Kerberos"><a href="#Kerberos" class="headerlink" title="Kerberos"></a>Kerberos</h2><p>默认 <code>否</code> ，点击 <code>下一步</code>。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/22-choose-Kerberos.png" class>
-
-<h2 id="名称服务"><a href="#名称服务" class="headerlink" title="名称服务"></a>名称服务</h2><p>默认 <code>无</code> ，点击 <code>下一步</code>。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/23-choose-name.png" class>
-
-<h2 id="NFSv4-域名"><a href="#NFSv4-域名" class="headerlink" title="NFSv4 域名"></a>NFSv4 域名</h2><p>默认 <code>使用系统派生的 NFSv4 域</code> ，点击 <code>下一步</code>。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/24-choose-NFSv4.png" class>
-
-<h2 id="时区"><a href="#时区" class="headerlink" title="时区"></a>时区</h2><p>默认 <code>地域性的洲/国家/地区</code> ，点击 <code>下一步</code>。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/25-choose-timezone.png" class>
-
-<h2 id="洲与国家"><a href="#洲与国家" class="headerlink" title="洲与国家"></a>洲与国家</h2><p>选择 <code>亚洲-中国</code> ，点击 <code>下一步</code>。</p>
-
-
-<h2 id="日期和时间"><a href="#日期和时间" class="headerlink" title="日期和时间"></a>日期和时间</h2><p>默认即可，点击 <code>下一步</code>。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/27-date-time.png" class>
-
-<h2 id="root-口令"><a href="#root-口令" class="headerlink" title="root 口令"></a>root 口令</h2><p>输入超级用户（root）口令，点击 <code>下一步</code>。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/28-root-pwd.png" class>
-
-<p>请记住，稍后登录需要。</p>
-<h2 id="远程服务"><a href="#远程服务" class="headerlink" title="远程服务"></a>远程服务</h2><p>默认 <code>是</code> ，点击 <code>下一步</code>。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/29-remote.png" class>
-
-<h2 id="确认信息"><a href="#确认信息" class="headerlink" title="确认信息"></a>确认信息</h2><p>确认信息正确后，点击 <code>确认</code>。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/30-complete.png" class>
-
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/31-wait.png" class>
-
-<h1 id="安装选项"><a href="#安装选项" class="headerlink" title="安装选项"></a>安装选项</h1><h2 id="欢迎"><a href="#欢迎" class="headerlink" title="欢迎"></a>欢迎</h2><p>配置结束，开始安装，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/32-welcome.png" class>
-
-<h2 id="安装选项-1"><a href="#安装选项-1" class="headerlink" title="安装选项"></a>安装选项</h2><p>默认 <code>是</code> ，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/33-install.png" class>
-
-<h2 id="指定媒体"><a href="#指定媒体" class="headerlink" title="指定媒体"></a>指定媒体</h2><p>默认 <code>CD/DVD</code> ，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/34-media.png" class>
-
-<h2 id="许可证"><a href="#许可证" class="headerlink" title="许可证"></a>许可证</h2><p>勾选 <code>接收</code> ，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/35-accept.png" class>
-
-<h2 id="安装类型"><a href="#安装类型" class="headerlink" title="安装类型"></a>安装类型</h2><p>选择 <code>自定义安装</code> ，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/36-install-type.png" class>
-
-<h2 id="软件语言"><a href="#软件语言" class="headerlink" title="软件语言"></a>软件语言</h2><p>勾选 <code>中文(zh)</code> 和 <code>中文(UTF-8)</code> ，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/37-software-language.png" class>
-
-<h2 id="系统语言"><a href="#系统语言" class="headerlink" title="系统语言"></a>系统语言</h2><p>选择 <code>中文(UFT-8)</code> ，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/38-system-language.png" class>
-
-<h2 id="附加产品"><a href="#附加产品" class="headerlink" title="附加产品"></a>附加产品</h2><p>默认 <code>无</code> ，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/39-attach.png" class>
-
-<h2 id="Solaris-软件组"><a href="#Solaris-软件组" class="headerlink" title="Solaris 软件组"></a>Solaris 软件组</h2><p>默认即可，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/40-group.png" class>
-
-<h2 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h2><p>默认即可，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/41-disk.png" class>
-
-<h2 id="磁盘分区"><a href="#磁盘分区" class="headerlink" title="磁盘分区"></a>磁盘分区</h2><p>默认即可，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/42-disk-sector.png" class>
-
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/43-disk-sector.png" class>
-
-<h2 id="分布文件系统"><a href="#分布文件系统" class="headerlink" title="分布文件系统"></a>分布文件系统</h2><p>默认即可，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/44-file-system.png" class>
-
-<h2 id="准备安装"><a href="#准备安装" class="headerlink" title="准备安装"></a>准备安装</h2><p>确认信息正确后，点击 <code>立即安装</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/45-install.png" class>
-
-<p>等待安装。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/46-wait.png" class>
-
-<p>最后弹出多次对话框，均点击 <code>继续</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/47-continue-1.png" class>
-
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/48-continue-2.png" class>
-
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/49-continue-3.png" class>
-
-<h1 id="登录系统"><a href="#登录系统" class="headerlink" title="登录系统"></a>登录系统</h1><h2 id="输入用户名"><a href="#输入用户名" class="headerlink" title="输入用户名"></a>输入用户名</h2><p>输入用户名为超级用户（root）。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/50-user.png" class>
-
-<h2 id="输入口令并确认"><a href="#输入口令并确认" class="headerlink" title="输入口令并确认"></a>输入口令并确认</h2><p>输入口令为之前已经设置的 root 口令。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/28-root-pwd.png" class>
-
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/51-password.png" class>
-
-<h2 id="选择桌面"><a href="#选择桌面" class="headerlink" title="选择桌面"></a>选择桌面</h2><p>默认 <code>Java 桌面系统（版本3）</code> ，点击 <code>确定</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/52-desktop.png" class>
-
-<h2 id="进入系统"><a href="#进入系统" class="headerlink" title="进入系统"></a>进入系统</h2><img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/53-enter.png" class>
-
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.cnblogs.com/shrec/p/4257353.html">在 VirtualBox 上安装 Solaris 10 全教程（包括下载） </a></p>
-]]></content>
-      <categories>
-        <category>Download &amp; Install &amp; Configure</category>
-      </categories>
-      <tags>
-        <tag>Virtual Machine</tag>
-        <tag>Solaris</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SEAL</title>
     <url>/2023/12/30/SEAL/</url>
     <content><![CDATA[<h1 id="SEAL-库介绍"><a href="#SEAL-库介绍" class="headerlink" title="SEAL 库介绍"></a>SEAL 库介绍</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Simple Encrypted Arithmetic Library（简单加密算术库）或 SEAL 是一个免费和开源的跨平台软件库，由微软研究院开发，实现各种形式的同态加密。</p>
@@ -1736,6 +1474,268 @@
       </categories>
       <tags>
         <tag>Open Source Library</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SecureCRT 的下载、安装和使用</title>
+    <url>/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>SecureCRT 是一个终端仿真应用程序，为计算专业人员提供安全的远程访问、文件传输和数据隧道。</p>
+<span id="more"></span>
+
+<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>从官方网站下载资源：<a href="https://www.vandyke.com/cgi-bin/releases.php?product=securecrt">https://www.vandyke.com/cgi-bin/releases.php?product=securecrt</a> 。</p>
+<p>从百度网盘下载资源。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>双击 <code>scrt_sfx833-x64.exe</code> 运行安装程序。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/01-run.png" class>
+
+<p>点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/02-next.png" class>
+
+<p>勾选 <code>I accept ...</code> ，点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/03-accept.png" class>
+
+<p>勾选 <code>Common profile</code> ，点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/04-common.png" class>
+
+<p>选择 <code>Custom</code> ，点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/05-custom.png" class>
+
+<p>点击 <code>Choose</code> 选择自定义安装目录，点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/06-folder.png" class>
+
+<p>默认勾选，点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/07-next.png" class>
+
+<p>点击 <code>Install</code> ，开始安装。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/08-install.png" class>
+
+<p>安装完毕，点击 <code>Finish</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/09-finish.png" class>
+
+<p>激活方式参考 <a href="https://zhuanlan.zhihu.com/p/163089404">SecureCRT 的下载、安装、激活 | 知乎 | ytrunning</a> 。</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="SecureCRT"><a href="#SecureCRT" class="headerlink" title="SecureCRT"></a>SecureCRT</h2><p>打开以后进入主界面，点击 File ，有三种连接：<code>Connect...</code> 、<code>Quick Connect</code> 和 <code>Local Connect</code>，分别是已存储的连接、快速连接和本地连接。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/10-three-type.png" class>
+
+<p>点击 <code>Quick Connect</code> ，默认是 <code>SSH2</code> ，其中 <code>Hostname</code> 填写虚拟机 IP 地址， <code>Username</code> 填写虚拟机用户名，若是密钥登录，勾选 <code>PublicKey</code> ；若是密码登录，勾选 <code>Password</code> 。填写、勾选完毕后，点击 <code>Connect</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/11-fill-up.png" class>
+
+<p>接下来填写并确认密码，勾选 <code>Save password</code> 保存密码，点击 <code>OK</code> 进行连接。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/12-password.png" class>
+
+<p>连接成功！</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/13-success.png" class>
+
+<h2 id="SecureFX"><a href="#SecureFX" class="headerlink" title="SecureFX"></a>SecureFX</h2><p>SecureFX 有两种打开方式：</p>
+<p>1.如果已经打开 SecureCRT ，点击 <code>SecureFX</code> 图标即可打开。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/14-SecureFX.png" class>
+
+<p>2.如果没有打开 SecureCRT，打开 SecureFX 应用。</p>
+<p>打开 SerureFX 后：</p>
+<p>1.如果已经登录过 SecureCRT ， <code>Sessions</code> 有已连接过的 IP ，点击 <code>Connect</code> 直接连接。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/15-had-connected.png" class>
+
+<p>2.如果没有登录过 SecureCRT ，进行与 SecureCRT 中相似的操作进行连接。</p>
+<p>连接成功后，进入管理页面。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/16-success-file.png" class>
+
+<p>可直接手动拖动文件，文件传输成功后，会显示 <code>Finished</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/17-finished.png" class>
+
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="更改终端外观"><a href="#更改终端外观" class="headerlink" title="更改终端外观"></a>更改终端外观</h2><p>点击 <code>Options</code> ，选择 <code>Session Options...</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/18-options.png" class>
+
+<p>选中 <code>Appearance</code> ，设置 <code>Current color scheme</code> 为 <code>White/Black</code> ，点击 <code>Font...</code> 调整字体和大小。 </p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/19-scheme-font.png" class>
+
+<p>更改终端外观成功！</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/20-change-success.png" class>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/qq_39052513/article/details/100272502">SecureCRT 的下载、安装 | CSDN | 超Ren专属</a></p>
+<p><a href="https://blog.csdn.net/qq_39052513/article/details/104692026">SecureCRT 的使用教程 | CSDN | 超Ren专属</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/163089404">SecureCRT 的下载、安装、激活 | 知乎 | ytrunning</a> </p>
+]]></content>
+      <categories>
+        <category>Download &amp; Install &amp; Configure</category>
+      </categories>
+      <tags>
+        <tag>SSH</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Solaris 10 的下载、安装和配置</title>
+    <url>/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="映像下载"><a href="#映像下载" class="headerlink" title="映像下载"></a>映像下载</h1><p>使用的是 <a href="https://www.cnblogs.com/shrec/p/4257353.html">在 VirtualBox 上安装 Solaris 10 全教程（包括下载） </a> 提供的资源。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/01-iso.png" class>
+
+<p>下载完毕，记住 iso 文件所在位置。</p>
+<span id="more"></span>
+
+<h1 id="虚拟机创建"><a href="#虚拟机创建" class="headerlink" title="虚拟机创建"></a>虚拟机创建</h1><p>打开 VMware Workstation，然后点击 <code>创建虚拟机</code> 。</p>
+<p>选择 <code>自定义安装</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/02-create-vm.png" class>
+
+<p>默认，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/03-hardware-function.png" class>
+
+<p>选择 <code>稍候安装操作系统</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/04-install-os.png" class>
+
+<p>选择 <code>Linux(L)</code> ，选择 <code>Solaris 10</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/05-choose-os.png" class>
+
+<p>设置 <code>虚拟机名称</code> ，选择 <code>位置</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/06-name-and-location.png" class>
+
+<p>选择 <code>指定处理器数量</code> ，数量越多，性能越好，根据需要分配。然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/07-cpu-core.png" class>
+
+<p>根据需要 <code>分配内存</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/08-memory.png" class>
+
+<p>网络连接选择 NAT，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/09-network.png" class>
+
+<p>默认，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/10-LSI.png" class>
+
+<p>默认，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/11-disk.png" class>
+
+<p>选择 <code>创建新虚拟硬盘</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/12-create-new-disk.png" class>
+
+<p>指定 <code>磁盘容量</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/13-max-disk.png" class>
+
+<p>指定 <code>磁盘文件存储</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/14-disk-location.png" class>
+
+<p>点击 <code>完成</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/15-complete.png" class>
+
+<h1 id="使用映像文件"><a href="#使用映像文件" class="headerlink" title="使用映像文件"></a>使用映像文件</h1><p>点击 <code>编辑虚拟机设置</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/16-edit-setting.png" class>
+
+<p>点击 <code>硬件</code> 下的 <code>CD/DVD</code> ，选择 <code>使用ISO映像文件</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/17-choose-iso.png" class>
+
+<p>点击 <code>开启此虚拟机</code> 。</p>
+<h1 id="配置选项"><a href="#配置选项" class="headerlink" title="配置选项"></a>配置选项</h1><h2 id="配置类型"><a href="#配置类型" class="headerlink" title="配置类型"></a>配置类型</h2><p>选择 <code>1.Solaris Interactive(default)</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/18-choose-1.png" class>
+
+<h2 id="键盘布局"><a href="#键盘布局" class="headerlink" title="键盘布局"></a>键盘布局</h2><p>选择 <code>US-English</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/19-choose-US.png" class>
+
+<h2 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h2><p>选择 <code>6.Simplified Chinese</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/20-choose-SC.png" class>
+
+<h2 id="网络连接"><a href="#网络连接" class="headerlink" title="网络连接"></a>网络连接</h2><p>选择 <code>联网的</code> ，点击 <code>下一步</code>。（注意：图文不符）</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/21-choose-network.png" class>
+
+<h2 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h2><p>默认 <code>是</code> ，点击 <code>下一步</code>。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/21-choose-DHCP.png" class>
+
+<h2 id="Kerberos"><a href="#Kerberos" class="headerlink" title="Kerberos"></a>Kerberos</h2><p>默认 <code>否</code> ，点击 <code>下一步</code>。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/22-choose-Kerberos.png" class>
+
+<h2 id="名称服务"><a href="#名称服务" class="headerlink" title="名称服务"></a>名称服务</h2><p>默认 <code>无</code> ，点击 <code>下一步</code>。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/23-choose-name.png" class>
+
+<h2 id="NFSv4-域名"><a href="#NFSv4-域名" class="headerlink" title="NFSv4 域名"></a>NFSv4 域名</h2><p>默认 <code>使用系统派生的 NFSv4 域</code> ，点击 <code>下一步</code>。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/24-choose-NFSv4.png" class>
+
+<h2 id="时区"><a href="#时区" class="headerlink" title="时区"></a>时区</h2><p>默认 <code>地域性的洲/国家/地区</code> ，点击 <code>下一步</code>。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/25-choose-timezone.png" class>
+
+<h2 id="洲与国家"><a href="#洲与国家" class="headerlink" title="洲与国家"></a>洲与国家</h2><p>选择 <code>亚洲-中国</code> ，点击 <code>下一步</code>。</p>
+
+
+<h2 id="日期和时间"><a href="#日期和时间" class="headerlink" title="日期和时间"></a>日期和时间</h2><p>默认即可，点击 <code>下一步</code>。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/27-date-time.png" class>
+
+<h2 id="root-口令"><a href="#root-口令" class="headerlink" title="root 口令"></a>root 口令</h2><p>输入超级用户（root）口令，点击 <code>下一步</code>。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/28-root-pwd.png" class>
+
+<p>请记住，稍后登录需要。</p>
+<h2 id="远程服务"><a href="#远程服务" class="headerlink" title="远程服务"></a>远程服务</h2><p>默认 <code>是</code> ，点击 <code>下一步</code>。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/29-remote.png" class>
+
+<h2 id="确认信息"><a href="#确认信息" class="headerlink" title="确认信息"></a>确认信息</h2><p>确认信息正确后，点击 <code>确认</code>。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/30-complete.png" class>
+
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/31-wait.png" class>
+
+<h1 id="安装选项"><a href="#安装选项" class="headerlink" title="安装选项"></a>安装选项</h1><h2 id="欢迎"><a href="#欢迎" class="headerlink" title="欢迎"></a>欢迎</h2><p>配置结束，开始安装，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/32-welcome.png" class>
+
+<h2 id="安装选项-1"><a href="#安装选项-1" class="headerlink" title="安装选项"></a>安装选项</h2><p>默认 <code>是</code> ，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/33-install.png" class>
+
+<h2 id="指定媒体"><a href="#指定媒体" class="headerlink" title="指定媒体"></a>指定媒体</h2><p>默认 <code>CD/DVD</code> ，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/34-media.png" class>
+
+<h2 id="许可证"><a href="#许可证" class="headerlink" title="许可证"></a>许可证</h2><p>勾选 <code>接收</code> ，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/35-accept.png" class>
+
+<h2 id="安装类型"><a href="#安装类型" class="headerlink" title="安装类型"></a>安装类型</h2><p>选择 <code>自定义安装</code> ，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/36-install-type.png" class>
+
+<h2 id="软件语言"><a href="#软件语言" class="headerlink" title="软件语言"></a>软件语言</h2><p>勾选 <code>中文(zh)</code> 和 <code>中文(UTF-8)</code> ，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/37-software-language.png" class>
+
+<h2 id="系统语言"><a href="#系统语言" class="headerlink" title="系统语言"></a>系统语言</h2><p>选择 <code>中文(UFT-8)</code> ，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/38-system-language.png" class>
+
+<h2 id="附加产品"><a href="#附加产品" class="headerlink" title="附加产品"></a>附加产品</h2><p>默认 <code>无</code> ，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/39-attach.png" class>
+
+<h2 id="Solaris-软件组"><a href="#Solaris-软件组" class="headerlink" title="Solaris 软件组"></a>Solaris 软件组</h2><p>默认即可，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/40-group.png" class>
+
+<h2 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h2><p>默认即可，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/41-disk.png" class>
+
+<h2 id="磁盘分区"><a href="#磁盘分区" class="headerlink" title="磁盘分区"></a>磁盘分区</h2><p>默认即可，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/42-disk-sector.png" class>
+
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/43-disk-sector.png" class>
+
+<h2 id="分布文件系统"><a href="#分布文件系统" class="headerlink" title="分布文件系统"></a>分布文件系统</h2><p>默认即可，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/44-file-system.png" class>
+
+<h2 id="准备安装"><a href="#准备安装" class="headerlink" title="准备安装"></a>准备安装</h2><p>确认信息正确后，点击 <code>立即安装</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/45-install.png" class>
+
+<p>等待安装。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/46-wait.png" class>
+
+<p>最后弹出多次对话框，均点击 <code>继续</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/47-continue-1.png" class>
+
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/48-continue-2.png" class>
+
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/49-continue-3.png" class>
+
+<h1 id="登录系统"><a href="#登录系统" class="headerlink" title="登录系统"></a>登录系统</h1><h2 id="输入用户名"><a href="#输入用户名" class="headerlink" title="输入用户名"></a>输入用户名</h2><p>输入用户名为超级用户（root）。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/50-user.png" class>
+
+<h2 id="输入口令并确认"><a href="#输入口令并确认" class="headerlink" title="输入口令并确认"></a>输入口令并确认</h2><p>输入口令为之前已经设置的 root 口令。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/28-root-pwd.png" class>
+
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/51-password.png" class>
+
+<h2 id="选择桌面"><a href="#选择桌面" class="headerlink" title="选择桌面"></a>选择桌面</h2><p>默认 <code>Java 桌面系统（版本3）</code> ，点击 <code>确定</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/52-desktop.png" class>
+
+<h2 id="进入系统"><a href="#进入系统" class="headerlink" title="进入系统"></a>进入系统</h2><img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/53-enter.png" class>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.cnblogs.com/shrec/p/4257353.html">在 VirtualBox 上安装 Solaris 10 全教程（包括下载） </a></p>
+]]></content>
+      <categories>
+        <category>Download &amp; Install &amp; Configure</category>
+      </categories>
+      <tags>
+        <tag>Virtual Machine</tag>
+        <tag>Solaris</tag>
       </tags>
   </entry>
   <entry>
