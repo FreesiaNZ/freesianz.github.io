@@ -13,83 +13,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CentOS-7 安装 docker</title>
-    <url>/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/</url>
-    <content><![CDATA[<h1 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h1><blockquote>
-<p>使用阿里云 yum 源安装 Docker-CE 。</p>
-</blockquote>
-<p>确保 NAT 网络，可以 ping 通百度。</p>
-<span id="more"></span>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping baidu.com</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/01-ping-baidu.png" class>
-
-<p>更换为阿里云 yum 源：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/yum.repos.d</span><br><span class="line">find / -name  <span class="string">&quot;*.repo&quot;</span> -<span class="built_in">exec</span> <span class="built_in">mv</span> &#123;&#125; &#123;&#125;.bak \;</span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/02-command-1.png" class>
-
-<p>清除 yum 缓存，安装 yum 工具包：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum clean all</span><br><span class="line">yum -y install yum-utils</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/03-command-2.png" class>
-
-<p>配置 yum 仓库：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/04-command-3.png" class>
-
-<p>列出 docker-ce 版本：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum list docker-ce --showduplicates</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/05-list-docker-version.png" class>
-
-<p>安装 docker-ce ：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install docker-ce -y</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/06-install-docker.png" class>
-
-<p>启动 docker 服务：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl start docker.service</span><br></pre></td></tr></table></figure>
-
-<p>挂载 &#x2F;run&#x2F;docker.sock：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ll /run/docker.sock</span><br></pre></td></tr></table></figure>
-
-<p>创建用户 docker 到 docker 用户组：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">usermod -aG docker docker</span><br></pre></td></tr></table></figure>
-
-<p>配置 docker 镜像加速器：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /etc/docker</span><br><span class="line"><span class="built_in">tee</span> /etc/docker/daemon.json &lt;&lt;-<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://uvbz951q.mirror.aliyuncs.com&quot;</span>]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
-
-<p>启动 docker 服务：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br><span class="line">systemctl <span class="built_in">enable</span>  docker</span><br><span class="line">docker info</span><br></pre></td></tr></table></figure>
-
-<h1 id="命令以及应用"><a href="#命令以及应用" class="headerlink" title="命令以及应用"></a>命令以及应用</h1><h2 id="docker-命令"><a href="#docker-命令" class="headerlink" title="docker 命令"></a>docker 命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker search nginx   <span class="comment">#搜索和nginx相关的镜像</span></span><br><span class="line">docker pull nginx   <span class="comment">#拉取镜像默认版本（下载）</span></span><br><span class="line">docker pull nginx:1.13.2    <span class="comment">#拉取镜像指定版本</span></span><br><span class="line">docker run nginx       <span class="comment">#运行一个镜像(如果启动后不做任何操作，容器就会断开连接)</span></span><br><span class="line">docker run -it ubuntu  /bin/bash    <span class="comment">#获取终端/bin/bash 打开容器（让容器运行在前台）</span></span><br><span class="line">docker run -itd httpd  /bin/bash     <span class="comment">#在后台运行新镜像</span></span><br><span class="line">docker attach  <span class="built_in">id</span>号       <span class="comment">#将容器调到前台，进入up状态的容器内部</span></span><br><span class="line">docker start  <span class="built_in">id</span>号         <span class="comment">#启动停止的容器（必须在docker ps 中有）</span></span><br><span class="line">docker logs  ID号         <span class="comment">#查看输出日志</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">exit</span>            //退出容器，容器是关闭状态</span><br><span class="line">ctrl +p +q  //退出容器，并且容器是up状态</span><br><span class="line"><span class="built_in">read</span> escape  sequence  //退出容器，并且容器是up状态</span><br><span class="line"> </span><br><span class="line">docker ps -a          <span class="comment">#列出所有的容器</span></span><br><span class="line">docker ps             <span class="comment">#列出所有运行中的容器</span></span><br><span class="line">docker container <span class="built_in">ls</span>   <span class="comment">#列出所有运行中的容器</span></span><br><span class="line">docker ps -qa           <span class="comment">#仅输出所有容器的id号</span></span><br><span class="line">docker <span class="built_in">rm</span>  ID号        <span class="comment">#删除指定容器</span></span><br><span class="line">docker <span class="built_in">rm</span> -f             <span class="comment">#删除正在运行的容器</span></span><br><span class="line">docker <span class="built_in">rm</span> -f `docker ps -qa`     <span class="comment">#删除所有的容器</span></span><br><span class="line"> </span><br><span class="line">docker images          <span class="comment">#列出所有镜像</span></span><br><span class="line">docker rmi ID号        <span class="comment">#删除镜像</span></span><br><span class="line">docker save -o busy.tar busybox    <span class="comment">#备份镜像</span></span><br><span class="line">docker load -i busy.tar            <span class="comment">#导入镜像</span></span><br><span class="line"> </span><br><span class="line">容器意外中断：</span><br><span class="line">docker run --restart always       <span class="comment">#不管什么原因停止，全部自动重启</span></span><br><span class="line">docker run --<span class="built_in">help</span>                     <span class="comment">#查看帮助</span></span><br><span class="line">man docker run                <span class="comment">#查看详细帮助</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="运行命令实例"><a href="#运行命令实例" class="headerlink" title="运行命令实例"></a>运行命令实例</h2><p>eg：在容器内运行应用程序</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run ubuntu:latest /bin/echo <span class="string">&quot;Hello World&quot;</span>  运行一个容器并执行命令</span><br><span class="line">    （一个容器只运行一个服务，运行完就被杀死了）</span><br><span class="line">docker ps -a   查看</span><br></pre></td></tr></table></figure>
-
-<p>eg：运行交互式容器：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -i -t ubuntu:latest /bin/bash</span><br><span class="line">    -t：在新容器内指定一个伪终端或终端。</span><br><span class="line">    -i：允许你对容器内的标准输入 (STDIN) 进行交互。</span><br></pre></td></tr></table></figure>
-
-<p>eg：让容器运行在后台<br>    -d   在后台运行<br>    -c   指定命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d ubuntu:latest /bin/bash -c <span class="string">&quot;while true; do echo &quot;</span>666<span class="string">&quot;; sleep 1; done&quot;</span></span><br><span class="line">docker run -d  /bin/bash -c <span class="string">&quot;for i in &#123;1..100&#125;; do echo <span class="variable">$i</span>;sleep 1;done&quot;</span></span><br><span class="line">docker logs  ID号   <span class="comment">#查看输出日志</span></span><br><span class="line">docker logs -f -t --<span class="built_in">tail</span>=100 myredis    <span class="comment">#查看最后100行日志，-f：跟踪实时日志 -t:显示时间戳</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="运行容器用到的参数"><a href="#运行容器用到的参数" class="headerlink" title="运行容器用到的参数"></a>运行容器用到的参数</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run --name redis -p 6379:6379 -u root --privileged=<span class="literal">true</span> \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-itd redis</span><br></pre></td></tr></table></figure>
-
-<p>-u root      #指定以root身份运行<br>–privileged&#x3D;true    #让container内的root拥有真正的root权限<br>-v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime:ro　　#修改容器的时间，与宿主机一致</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.cnblogs.com/cfzy/p/14633166.html">CentOS7 安装搭建 docker 环境-博客园</a></p>
-]]></content>
-      <categories>
-        <category>Download &amp; Install &amp; Configure</category>
-      </categories>
-      <tags>
-        <tag>CentOS</tag>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CentOS-7 安装 nginx</title>
     <url>/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85nginx/</url>
     <content><![CDATA[<h1 id="安装所需环境"><a href="#安装所需环境" class="headerlink" title="安装所需环境"></a>安装所需环境</h1><p>查看 <code>C++</code> 环境是否安装，未安装使用命令安装：</p>
@@ -197,6 +120,83 @@
       <tags>
         <tag>CentOS</tag>
         <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS-7 安装 docker</title>
+    <url>/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/</url>
+    <content><![CDATA[<h1 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h1><blockquote>
+<p>使用阿里云 yum 源安装 Docker-CE 。</p>
+</blockquote>
+<p>确保 NAT 网络，可以 ping 通百度。</p>
+<span id="more"></span>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping baidu.com</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/01-ping-baidu.png" class>
+
+<p>更换为阿里云 yum 源：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/yum.repos.d</span><br><span class="line">find / -name  <span class="string">&quot;*.repo&quot;</span> -<span class="built_in">exec</span> <span class="built_in">mv</span> &#123;&#125; &#123;&#125;.bak \;</span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/02-command-1.png" class>
+
+<p>清除 yum 缓存，安装 yum 工具包：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum clean all</span><br><span class="line">yum -y install yum-utils</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/03-command-2.png" class>
+
+<p>配置 yum 仓库：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/04-command-3.png" class>
+
+<p>列出 docker-ce 版本：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum list docker-ce --showduplicates</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/05-list-docker-version.png" class>
+
+<p>安装 docker-ce ：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install docker-ce -y</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/06-install-docker.png" class>
+
+<p>启动 docker 服务：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl start docker.service</span><br></pre></td></tr></table></figure>
+
+<p>挂载 &#x2F;run&#x2F;docker.sock：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ll /run/docker.sock</span><br></pre></td></tr></table></figure>
+
+<p>创建用户 docker 到 docker 用户组：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">usermod -aG docker docker</span><br></pre></td></tr></table></figure>
+
+<p>配置 docker 镜像加速器：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /etc/docker</span><br><span class="line"><span class="built_in">tee</span> /etc/docker/daemon.json &lt;&lt;-<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://uvbz951q.mirror.aliyuncs.com&quot;</span>]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<p>启动 docker 服务：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br><span class="line">systemctl <span class="built_in">enable</span>  docker</span><br><span class="line">docker info</span><br></pre></td></tr></table></figure>
+
+<h1 id="命令以及应用"><a href="#命令以及应用" class="headerlink" title="命令以及应用"></a>命令以及应用</h1><h2 id="docker-命令"><a href="#docker-命令" class="headerlink" title="docker 命令"></a>docker 命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker search nginx   <span class="comment">#搜索和nginx相关的镜像</span></span><br><span class="line">docker pull nginx   <span class="comment">#拉取镜像默认版本（下载）</span></span><br><span class="line">docker pull nginx:1.13.2    <span class="comment">#拉取镜像指定版本</span></span><br><span class="line">docker run nginx       <span class="comment">#运行一个镜像(如果启动后不做任何操作，容器就会断开连接)</span></span><br><span class="line">docker run -it ubuntu  /bin/bash    <span class="comment">#获取终端/bin/bash 打开容器（让容器运行在前台）</span></span><br><span class="line">docker run -itd httpd  /bin/bash     <span class="comment">#在后台运行新镜像</span></span><br><span class="line">docker attach  <span class="built_in">id</span>号       <span class="comment">#将容器调到前台，进入up状态的容器内部</span></span><br><span class="line">docker start  <span class="built_in">id</span>号         <span class="comment">#启动停止的容器（必须在docker ps 中有）</span></span><br><span class="line">docker logs  ID号         <span class="comment">#查看输出日志</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">exit</span>            //退出容器，容器是关闭状态</span><br><span class="line">ctrl +p +q  //退出容器，并且容器是up状态</span><br><span class="line"><span class="built_in">read</span> escape  sequence  //退出容器，并且容器是up状态</span><br><span class="line"> </span><br><span class="line">docker ps -a          <span class="comment">#列出所有的容器</span></span><br><span class="line">docker ps             <span class="comment">#列出所有运行中的容器</span></span><br><span class="line">docker container <span class="built_in">ls</span>   <span class="comment">#列出所有运行中的容器</span></span><br><span class="line">docker ps -qa           <span class="comment">#仅输出所有容器的id号</span></span><br><span class="line">docker <span class="built_in">rm</span>  ID号        <span class="comment">#删除指定容器</span></span><br><span class="line">docker <span class="built_in">rm</span> -f             <span class="comment">#删除正在运行的容器</span></span><br><span class="line">docker <span class="built_in">rm</span> -f `docker ps -qa`     <span class="comment">#删除所有的容器</span></span><br><span class="line"> </span><br><span class="line">docker images          <span class="comment">#列出所有镜像</span></span><br><span class="line">docker rmi ID号        <span class="comment">#删除镜像</span></span><br><span class="line">docker save -o busy.tar busybox    <span class="comment">#备份镜像</span></span><br><span class="line">docker load -i busy.tar            <span class="comment">#导入镜像</span></span><br><span class="line"> </span><br><span class="line">容器意外中断：</span><br><span class="line">docker run --restart always       <span class="comment">#不管什么原因停止，全部自动重启</span></span><br><span class="line">docker run --<span class="built_in">help</span>                     <span class="comment">#查看帮助</span></span><br><span class="line">man docker run                <span class="comment">#查看详细帮助</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="运行命令实例"><a href="#运行命令实例" class="headerlink" title="运行命令实例"></a>运行命令实例</h2><p>eg：在容器内运行应用程序</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run ubuntu:latest /bin/echo <span class="string">&quot;Hello World&quot;</span>  运行一个容器并执行命令</span><br><span class="line">    （一个容器只运行一个服务，运行完就被杀死了）</span><br><span class="line">docker ps -a   查看</span><br></pre></td></tr></table></figure>
+
+<p>eg：运行交互式容器：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -i -t ubuntu:latest /bin/bash</span><br><span class="line">    -t：在新容器内指定一个伪终端或终端。</span><br><span class="line">    -i：允许你对容器内的标准输入 (STDIN) 进行交互。</span><br></pre></td></tr></table></figure>
+
+<p>eg：让容器运行在后台<br>    -d   在后台运行<br>    -c   指定命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d ubuntu:latest /bin/bash -c <span class="string">&quot;while true; do echo &quot;</span>666<span class="string">&quot;; sleep 1; done&quot;</span></span><br><span class="line">docker run -d  /bin/bash -c <span class="string">&quot;for i in &#123;1..100&#125;; do echo <span class="variable">$i</span>;sleep 1;done&quot;</span></span><br><span class="line">docker logs  ID号   <span class="comment">#查看输出日志</span></span><br><span class="line">docker logs -f -t --<span class="built_in">tail</span>=100 myredis    <span class="comment">#查看最后100行日志，-f：跟踪实时日志 -t:显示时间戳</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="运行容器用到的参数"><a href="#运行容器用到的参数" class="headerlink" title="运行容器用到的参数"></a>运行容器用到的参数</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run --name redis -p 6379:6379 -u root --privileged=<span class="literal">true</span> \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-itd redis</span><br></pre></td></tr></table></figure>
+
+<p>-u root      #指定以root身份运行<br>–privileged&#x3D;true    #让container内的root拥有真正的root权限<br>-v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime:ro　　#修改容器的时间，与宿主机一致</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.cnblogs.com/cfzy/p/14633166.html">CentOS7 安装搭建 docker 环境-博客园</a></p>
+]]></content>
+      <categories>
+        <category>Download &amp; Install &amp; Configure</category>
+      </categories>
+      <tags>
+        <tag>CentOS</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -735,6 +735,24 @@
       </tags>
   </entry>
   <entry>
+    <title>Listary 的安装和使用</title>
+    <url>/2024/03/16/Listary%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><img src="https://assets-global.website-files.com/643e09c9f19df8579c420d9f/655f6daa30360d26544fd098_Listary-hero-screenshot-p-1080.png" alt="Listary"></p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Listary 是一款强大的 Windows 文件搜索和应用启动工具。它通过只需几个快捷键就能轻松找到文件并启动应用程序，提高生产力。该软件在后台运行，但可随时从任何地方访问。Listary Pro 为需要更多功能的工作或家庭用户提供了先进的特性和命令。也有一个便携版本，可以在不安装到 Windows 的情况下，从云文件夹、外部驱动器或本地文件夹中运行。</p>
+<span id="more"></span>
+
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p><a href="https://www.listary.com/">https://www.listary.com/</a></p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p><a href="https://help.listary.com/zh-Hans/">https://help.listary.com/zh-Hans/</a></p>
+]]></content>
+      <categories>
+        <category>Download &amp; Install &amp; Configure</category>
+      </categories>
+      <tags>
+        <tag>Efficiency</tag>
+        <tag>Search</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>NexT 主题下载、配置以及美化</title>
     <url>/2023/12/24/NexT%E4%B8%BB%E9%A2%98%E4%B8%8B%E8%BD%BD%E3%80%81%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E7%BE%8E%E5%8C%96/</url>
     <content><![CDATA[<p>本博客使用的是 NexT 主题，更多主题在 <a href="https://hexo.io/themes/">https://hexo.io/themes/</a> 。</p>
@@ -883,24 +901,6 @@
       <tags>
         <tag>Hexo</tag>
         <tag>NexT</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Listary 的安装和使用</title>
-    <url>/2024/03/16/Listary%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><img src="https://assets-global.website-files.com/643e09c9f19df8579c420d9f/655f6daa30360d26544fd098_Listary-hero-screenshot-p-1080.png" alt="Listary"></p>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Listary 是一款强大的 Windows 文件搜索和应用启动工具。它通过只需几个快捷键就能轻松找到文件并启动应用程序，提高生产力。该软件在后台运行，但可随时从任何地方访问。Listary Pro 为需要更多功能的工作或家庭用户提供了先进的特性和命令。也有一个便携版本，可以在不安装到 Windows 的情况下，从云文件夹、外部驱动器或本地文件夹中运行。</p>
-<span id="more"></span>
-
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p><a href="https://www.listary.com/">https://www.listary.com/</a></p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p><a href="https://help.listary.com/zh-Hans/">https://help.listary.com/zh-Hans/</a></p>
-]]></content>
-      <categories>
-        <category>Download &amp; Install &amp; Configure</category>
-      </categories>
-      <tags>
-        <tag>Efficiency</tag>
-        <tag>Search</tag>
       </tags>
   </entry>
   <entry>
@@ -2239,8 +2239,8 @@
         <category>Project</category>
       </categories>
       <tags>
-        <tag>docker</tag>
         <tag>nginx</tag>
+        <tag>docker</tag>
         <tag>prometheus</tag>
         <tag>grafana</tag>
       </tags>
