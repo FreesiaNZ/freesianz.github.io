@@ -13,6 +13,83 @@
       </tags>
   </entry>
   <entry>
+    <title>CentOS-7 安装 docker</title>
+    <url>/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/</url>
+    <content><![CDATA[<h1 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h1><blockquote>
+<p>使用阿里云 yum 源安装 Docker-CE 。</p>
+</blockquote>
+<p>确保 NAT 网络，可以 ping 通百度。</p>
+<span id="more"></span>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping baidu.com</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/01-ping-baidu.png" class>
+
+<p>更换为阿里云 yum 源：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/yum.repos.d</span><br><span class="line">find / -name  <span class="string">&quot;*.repo&quot;</span> -<span class="built_in">exec</span> <span class="built_in">mv</span> &#123;&#125; &#123;&#125;.bak \;</span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/02-command-1.png" class>
+
+<p>清除 yum 缓存，安装 yum 工具包：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum clean all</span><br><span class="line">yum -y install yum-utils</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/03-command-2.png" class>
+
+<p>配置 yum 仓库：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/04-command-3.png" class>
+
+<p>列出 docker-ce 版本：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum list docker-ce --showduplicates</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/05-list-docker-version.png" class>
+
+<p>安装 docker-ce ：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install docker-ce -y</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/06-install-docker.png" class>
+
+<p>启动 docker 服务：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl start docker.service</span><br></pre></td></tr></table></figure>
+
+<p>挂载 &#x2F;run&#x2F;docker.sock：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ll /run/docker.sock</span><br></pre></td></tr></table></figure>
+
+<p>创建用户 docker 到 docker 用户组：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">usermod -aG docker docker</span><br></pre></td></tr></table></figure>
+
+<p>配置 docker 镜像加速器：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /etc/docker</span><br><span class="line"><span class="built_in">tee</span> /etc/docker/daemon.json &lt;&lt;-<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://uvbz951q.mirror.aliyuncs.com&quot;</span>]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<p>启动 docker 服务：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br><span class="line">systemctl <span class="built_in">enable</span>  docker</span><br><span class="line">docker info</span><br></pre></td></tr></table></figure>
+
+<h1 id="命令以及应用"><a href="#命令以及应用" class="headerlink" title="命令以及应用"></a>命令以及应用</h1><h2 id="docker-命令"><a href="#docker-命令" class="headerlink" title="docker 命令"></a>docker 命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker search nginx   <span class="comment">#搜索和nginx相关的镜像</span></span><br><span class="line">docker pull nginx   <span class="comment">#拉取镜像默认版本（下载）</span></span><br><span class="line">docker pull nginx:1.13.2    <span class="comment">#拉取镜像指定版本</span></span><br><span class="line">docker run nginx       <span class="comment">#运行一个镜像(如果启动后不做任何操作，容器就会断开连接)</span></span><br><span class="line">docker run -it ubuntu  /bin/bash    <span class="comment">#获取终端/bin/bash 打开容器（让容器运行在前台）</span></span><br><span class="line">docker run -itd httpd  /bin/bash     <span class="comment">#在后台运行新镜像</span></span><br><span class="line">docker attach  <span class="built_in">id</span>号       <span class="comment">#将容器调到前台，进入up状态的容器内部</span></span><br><span class="line">docker start  <span class="built_in">id</span>号         <span class="comment">#启动停止的容器（必须在docker ps 中有）</span></span><br><span class="line">docker logs  ID号         <span class="comment">#查看输出日志</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">exit</span>            //退出容器，容器是关闭状态</span><br><span class="line">ctrl +p +q  //退出容器，并且容器是up状态</span><br><span class="line"><span class="built_in">read</span> escape  sequence  //退出容器，并且容器是up状态</span><br><span class="line"> </span><br><span class="line">docker ps -a          <span class="comment">#列出所有的容器</span></span><br><span class="line">docker ps             <span class="comment">#列出所有运行中的容器</span></span><br><span class="line">docker container <span class="built_in">ls</span>   <span class="comment">#列出所有运行中的容器</span></span><br><span class="line">docker ps -qa           <span class="comment">#仅输出所有容器的id号</span></span><br><span class="line">docker <span class="built_in">rm</span>  ID号        <span class="comment">#删除指定容器</span></span><br><span class="line">docker <span class="built_in">rm</span> -f             <span class="comment">#删除正在运行的容器</span></span><br><span class="line">docker <span class="built_in">rm</span> -f `docker ps -qa`     <span class="comment">#删除所有的容器</span></span><br><span class="line"> </span><br><span class="line">docker images          <span class="comment">#列出所有镜像</span></span><br><span class="line">docker rmi ID号        <span class="comment">#删除镜像</span></span><br><span class="line">docker save -o busy.tar busybox    <span class="comment">#备份镜像</span></span><br><span class="line">docker load -i busy.tar            <span class="comment">#导入镜像</span></span><br><span class="line"> </span><br><span class="line">容器意外中断：</span><br><span class="line">docker run --restart always       <span class="comment">#不管什么原因停止，全部自动重启</span></span><br><span class="line">docker run --<span class="built_in">help</span>                     <span class="comment">#查看帮助</span></span><br><span class="line">man docker run                <span class="comment">#查看详细帮助</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="运行命令实例"><a href="#运行命令实例" class="headerlink" title="运行命令实例"></a>运行命令实例</h2><p>eg：在容器内运行应用程序</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run ubuntu:latest /bin/echo <span class="string">&quot;Hello World&quot;</span>  运行一个容器并执行命令</span><br><span class="line">    （一个容器只运行一个服务，运行完就被杀死了）</span><br><span class="line">docker ps -a   查看</span><br></pre></td></tr></table></figure>
+
+<p>eg：运行交互式容器：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -i -t ubuntu:latest /bin/bash</span><br><span class="line">    -t：在新容器内指定一个伪终端或终端。</span><br><span class="line">    -i：允许你对容器内的标准输入 (STDIN) 进行交互。</span><br></pre></td></tr></table></figure>
+
+<p>eg：让容器运行在后台<br>    -d   在后台运行<br>    -c   指定命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d ubuntu:latest /bin/bash -c <span class="string">&quot;while true; do echo &quot;</span>666<span class="string">&quot;; sleep 1; done&quot;</span></span><br><span class="line">docker run -d  /bin/bash -c <span class="string">&quot;for i in &#123;1..100&#125;; do echo <span class="variable">$i</span>;sleep 1;done&quot;</span></span><br><span class="line">docker logs  ID号   <span class="comment">#查看输出日志</span></span><br><span class="line">docker logs -f -t --<span class="built_in">tail</span>=100 myredis    <span class="comment">#查看最后100行日志，-f：跟踪实时日志 -t:显示时间戳</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="运行容器用到的参数"><a href="#运行容器用到的参数" class="headerlink" title="运行容器用到的参数"></a>运行容器用到的参数</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run --name redis -p 6379:6379 -u root --privileged=<span class="literal">true</span> \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-itd redis</span><br></pre></td></tr></table></figure>
+
+<p>-u root      #指定以root身份运行<br>–privileged&#x3D;true    #让container内的root拥有真正的root权限<br>-v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime:ro　　#修改容器的时间，与宿主机一致</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.cnblogs.com/cfzy/p/14633166.html">CentOS7 安装搭建 docker 环境-博客园</a></p>
+]]></content>
+      <categories>
+        <category>Download &amp; Install &amp; Configure</category>
+      </categories>
+      <tags>
+        <tag>CentOS</tag>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CentOS-7 安装 nginx</title>
     <url>/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85nginx/</url>
     <content><![CDATA[<h1 id="安装所需环境"><a href="#安装所需环境" class="headerlink" title="安装所需环境"></a>安装所需环境</h1><p>查看 <code>C++</code> 环境是否安装，未安装使用命令安装：</p>
@@ -120,83 +197,6 @@
       <tags>
         <tag>CentOS</tag>
         <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CentOS-7 安装 docker</title>
-    <url>/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/</url>
-    <content><![CDATA[<h1 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h1><blockquote>
-<p>使用阿里云 yum 源安装 Docker-CE 。</p>
-</blockquote>
-<p>确保 NAT 网络，可以 ping 通百度。</p>
-<span id="more"></span>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping baidu.com</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/01-ping-baidu.png" class>
-
-<p>更换为阿里云 yum 源：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/yum.repos.d</span><br><span class="line">find / -name  <span class="string">&quot;*.repo&quot;</span> -<span class="built_in">exec</span> <span class="built_in">mv</span> &#123;&#125; &#123;&#125;.bak \;</span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/02-command-1.png" class>
-
-<p>清除 yum 缓存，安装 yum 工具包：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum clean all</span><br><span class="line">yum -y install yum-utils</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/03-command-2.png" class>
-
-<p>配置 yum 仓库：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/04-command-3.png" class>
-
-<p>列出 docker-ce 版本：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum list docker-ce --showduplicates</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/05-list-docker-version.png" class>
-
-<p>安装 docker-ce ：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install docker-ce -y</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/06-install-docker.png" class>
-
-<p>启动 docker 服务：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl start docker.service</span><br></pre></td></tr></table></figure>
-
-<p>挂载 &#x2F;run&#x2F;docker.sock：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ll /run/docker.sock</span><br></pre></td></tr></table></figure>
-
-<p>创建用户 docker 到 docker 用户组：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">usermod -aG docker docker</span><br></pre></td></tr></table></figure>
-
-<p>配置 docker 镜像加速器：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /etc/docker</span><br><span class="line"><span class="built_in">tee</span> /etc/docker/daemon.json &lt;&lt;-<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://uvbz951q.mirror.aliyuncs.com&quot;</span>]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
-
-<p>启动 docker 服务：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br><span class="line">systemctl <span class="built_in">enable</span>  docker</span><br><span class="line">docker info</span><br></pre></td></tr></table></figure>
-
-<h1 id="命令以及应用"><a href="#命令以及应用" class="headerlink" title="命令以及应用"></a>命令以及应用</h1><h2 id="docker-命令"><a href="#docker-命令" class="headerlink" title="docker 命令"></a>docker 命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker search nginx   <span class="comment">#搜索和nginx相关的镜像</span></span><br><span class="line">docker pull nginx   <span class="comment">#拉取镜像默认版本（下载）</span></span><br><span class="line">docker pull nginx:1.13.2    <span class="comment">#拉取镜像指定版本</span></span><br><span class="line">docker run nginx       <span class="comment">#运行一个镜像(如果启动后不做任何操作，容器就会断开连接)</span></span><br><span class="line">docker run -it ubuntu  /bin/bash    <span class="comment">#获取终端/bin/bash 打开容器（让容器运行在前台）</span></span><br><span class="line">docker run -itd httpd  /bin/bash     <span class="comment">#在后台运行新镜像</span></span><br><span class="line">docker attach  <span class="built_in">id</span>号       <span class="comment">#将容器调到前台，进入up状态的容器内部</span></span><br><span class="line">docker start  <span class="built_in">id</span>号         <span class="comment">#启动停止的容器（必须在docker ps 中有）</span></span><br><span class="line">docker logs  ID号         <span class="comment">#查看输出日志</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">exit</span>            //退出容器，容器是关闭状态</span><br><span class="line">ctrl +p +q  //退出容器，并且容器是up状态</span><br><span class="line"><span class="built_in">read</span> escape  sequence  //退出容器，并且容器是up状态</span><br><span class="line"> </span><br><span class="line">docker ps -a          <span class="comment">#列出所有的容器</span></span><br><span class="line">docker ps             <span class="comment">#列出所有运行中的容器</span></span><br><span class="line">docker container <span class="built_in">ls</span>   <span class="comment">#列出所有运行中的容器</span></span><br><span class="line">docker ps -qa           <span class="comment">#仅输出所有容器的id号</span></span><br><span class="line">docker <span class="built_in">rm</span>  ID号        <span class="comment">#删除指定容器</span></span><br><span class="line">docker <span class="built_in">rm</span> -f             <span class="comment">#删除正在运行的容器</span></span><br><span class="line">docker <span class="built_in">rm</span> -f `docker ps -qa`     <span class="comment">#删除所有的容器</span></span><br><span class="line"> </span><br><span class="line">docker images          <span class="comment">#列出所有镜像</span></span><br><span class="line">docker rmi ID号        <span class="comment">#删除镜像</span></span><br><span class="line">docker save -o busy.tar busybox    <span class="comment">#备份镜像</span></span><br><span class="line">docker load -i busy.tar            <span class="comment">#导入镜像</span></span><br><span class="line"> </span><br><span class="line">容器意外中断：</span><br><span class="line">docker run --restart always       <span class="comment">#不管什么原因停止，全部自动重启</span></span><br><span class="line">docker run --<span class="built_in">help</span>                     <span class="comment">#查看帮助</span></span><br><span class="line">man docker run                <span class="comment">#查看详细帮助</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="运行命令实例"><a href="#运行命令实例" class="headerlink" title="运行命令实例"></a>运行命令实例</h2><p>eg：在容器内运行应用程序</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run ubuntu:latest /bin/echo <span class="string">&quot;Hello World&quot;</span>  运行一个容器并执行命令</span><br><span class="line">    （一个容器只运行一个服务，运行完就被杀死了）</span><br><span class="line">docker ps -a   查看</span><br></pre></td></tr></table></figure>
-
-<p>eg：运行交互式容器：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -i -t ubuntu:latest /bin/bash</span><br><span class="line">    -t：在新容器内指定一个伪终端或终端。</span><br><span class="line">    -i：允许你对容器内的标准输入 (STDIN) 进行交互。</span><br></pre></td></tr></table></figure>
-
-<p>eg：让容器运行在后台<br>    -d   在后台运行<br>    -c   指定命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d ubuntu:latest /bin/bash -c <span class="string">&quot;while true; do echo &quot;</span>666<span class="string">&quot;; sleep 1; done&quot;</span></span><br><span class="line">docker run -d  /bin/bash -c <span class="string">&quot;for i in &#123;1..100&#125;; do echo <span class="variable">$i</span>;sleep 1;done&quot;</span></span><br><span class="line">docker logs  ID号   <span class="comment">#查看输出日志</span></span><br><span class="line">docker logs -f -t --<span class="built_in">tail</span>=100 myredis    <span class="comment">#查看最后100行日志，-f：跟踪实时日志 -t:显示时间戳</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="运行容器用到的参数"><a href="#运行容器用到的参数" class="headerlink" title="运行容器用到的参数"></a>运行容器用到的参数</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run --name redis -p 6379:6379 -u root --privileged=<span class="literal">true</span> \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-itd redis</span><br></pre></td></tr></table></figure>
-
-<p>-u root      #指定以root身份运行<br>–privileged&#x3D;true    #让container内的root拥有真正的root权限<br>-v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime:ro　　#修改容器的时间，与宿主机一致</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.cnblogs.com/cfzy/p/14633166.html">CentOS7 安装搭建 docker 环境-博客园</a></p>
-]]></content>
-      <categories>
-        <category>Download &amp; Install &amp; Configure</category>
-      </categories>
-      <tags>
-        <tag>CentOS</tag>
-        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -981,6 +981,268 @@
       </tags>
   </entry>
   <entry>
+    <title>SecureCRT 的下载、安装和使用</title>
+    <url>/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>SecureCRT 是一个终端仿真应用程序，为计算专业人员提供安全的远程访问、文件传输和数据隧道。</p>
+<span id="more"></span>
+
+<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>从官方网站下载资源：<a href="https://www.vandyke.com/cgi-bin/releases.php?product=securecrt">https://www.vandyke.com/cgi-bin/releases.php?product=securecrt</a> 。</p>
+<p>从百度网盘下载资源。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>双击 <code>scrt_sfx833-x64.exe</code> 运行安装程序。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/01-run.png" class>
+
+<p>点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/02-next.png" class>
+
+<p>勾选 <code>I accept ...</code> ，点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/03-accept.png" class>
+
+<p>勾选 <code>Common profile</code> ，点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/04-common.png" class>
+
+<p>选择 <code>Custom</code> ，点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/05-custom.png" class>
+
+<p>点击 <code>Choose</code> 选择自定义安装目录，点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/06-folder.png" class>
+
+<p>默认勾选，点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/07-next.png" class>
+
+<p>点击 <code>Install</code> ，开始安装。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/08-install.png" class>
+
+<p>安装完毕，点击 <code>Finish</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/09-finish.png" class>
+
+<p>激活方式参考 <a href="https://zhuanlan.zhihu.com/p/163089404">SecureCRT 的下载、安装、激活 | 知乎 | ytrunning</a> 。</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="SecureCRT"><a href="#SecureCRT" class="headerlink" title="SecureCRT"></a>SecureCRT</h2><p>打开以后进入主界面，点击 File ，有三种连接：<code>Connect...</code> 、<code>Quick Connect</code> 和 <code>Local Connect</code>，分别是已存储的连接、快速连接和本地连接。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/10-three-type.png" class>
+
+<p>点击 <code>Quick Connect</code> ，默认是 <code>SSH2</code> ，其中 <code>Hostname</code> 填写虚拟机 IP 地址， <code>Username</code> 填写虚拟机用户名，若是密钥登录，勾选 <code>PublicKey</code> ；若是密码登录，勾选 <code>Password</code> 。填写、勾选完毕后，点击 <code>Connect</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/11-fill-up.png" class>
+
+<p>接下来填写并确认密码，勾选 <code>Save password</code> 保存密码，点击 <code>OK</code> 进行连接。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/12-password.png" class>
+
+<p>连接成功！</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/13-success.png" class>
+
+<h2 id="SecureFX"><a href="#SecureFX" class="headerlink" title="SecureFX"></a>SecureFX</h2><p>SecureFX 有两种打开方式：</p>
+<p>1.如果已经打开 SecureCRT ，点击 <code>SecureFX</code> 图标即可打开。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/14-SecureFX.png" class>
+
+<p>2.如果没有打开 SecureCRT，打开 SecureFX 应用。</p>
+<p>打开 SerureFX 后：</p>
+<p>1.如果已经登录过 SecureCRT ， <code>Sessions</code> 有已连接过的 IP ，点击 <code>Connect</code> 直接连接。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/15-had-connected.png" class>
+
+<p>2.如果没有登录过 SecureCRT ，进行与 SecureCRT 中相似的操作进行连接。</p>
+<p>连接成功后，进入管理页面。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/16-success-file.png" class>
+
+<p>可直接手动拖动文件，文件传输成功后，会显示 <code>Finished</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/17-finished.png" class>
+
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="更改终端外观"><a href="#更改终端外观" class="headerlink" title="更改终端外观"></a>更改终端外观</h2><p>点击 <code>Options</code> ，选择 <code>Session Options...</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/18-options.png" class>
+
+<p>选中 <code>Appearance</code> ，设置 <code>Current color scheme</code> 为 <code>White/Black</code> ，点击 <code>Font...</code> 调整字体和大小。 </p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/19-scheme-font.png" class>
+
+<p>更改终端外观成功！</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/20-change-success.png" class>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/qq_39052513/article/details/100272502">SecureCRT 的下载、安装 | CSDN | 超Ren专属</a></p>
+<p><a href="https://blog.csdn.net/qq_39052513/article/details/104692026">SecureCRT 的使用教程 | CSDN | 超Ren专属</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/163089404">SecureCRT 的下载、安装、激活 | 知乎 | ytrunning</a> </p>
+]]></content>
+      <categories>
+        <category>Download &amp; Install &amp; Configure</category>
+      </categories>
+      <tags>
+        <tag>SSH</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Solaris 10 的下载、安装和配置</title>
+    <url>/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="映像下载"><a href="#映像下载" class="headerlink" title="映像下载"></a>映像下载</h1><p>使用的是 <a href="https://www.cnblogs.com/shrec/p/4257353.html">在 VirtualBox 上安装 Solaris 10 全教程（包括下载） </a> 提供的资源。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/01-iso.png" class>
+
+<p>下载完毕，记住 iso 文件所在位置。</p>
+<span id="more"></span>
+
+<h1 id="虚拟机创建"><a href="#虚拟机创建" class="headerlink" title="虚拟机创建"></a>虚拟机创建</h1><p>打开 VMware Workstation，然后点击 <code>创建虚拟机</code> 。</p>
+<p>选择 <code>自定义安装</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/02-create-vm.png" class>
+
+<p>默认，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/03-hardware-function.png" class>
+
+<p>选择 <code>稍候安装操作系统</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/04-install-os.png" class>
+
+<p>选择 <code>Linux(L)</code> ，选择 <code>Solaris 10</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/05-choose-os.png" class>
+
+<p>设置 <code>虚拟机名称</code> ，选择 <code>位置</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/06-name-and-location.png" class>
+
+<p>选择 <code>指定处理器数量</code> ，数量越多，性能越好，根据需要分配。然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/07-cpu-core.png" class>
+
+<p>根据需要 <code>分配内存</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/08-memory.png" class>
+
+<p>网络连接选择 NAT，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/09-network.png" class>
+
+<p>默认，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/10-LSI.png" class>
+
+<p>默认，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/11-disk.png" class>
+
+<p>选择 <code>创建新虚拟硬盘</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/12-create-new-disk.png" class>
+
+<p>指定 <code>磁盘容量</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/13-max-disk.png" class>
+
+<p>指定 <code>磁盘文件存储</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/14-disk-location.png" class>
+
+<p>点击 <code>完成</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/15-complete.png" class>
+
+<h1 id="使用映像文件"><a href="#使用映像文件" class="headerlink" title="使用映像文件"></a>使用映像文件</h1><p>点击 <code>编辑虚拟机设置</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/16-edit-setting.png" class>
+
+<p>点击 <code>硬件</code> 下的 <code>CD/DVD</code> ，选择 <code>使用ISO映像文件</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/17-choose-iso.png" class>
+
+<p>点击 <code>开启此虚拟机</code> 。</p>
+<h1 id="配置选项"><a href="#配置选项" class="headerlink" title="配置选项"></a>配置选项</h1><h2 id="配置类型"><a href="#配置类型" class="headerlink" title="配置类型"></a>配置类型</h2><p>选择 <code>1.Solaris Interactive(default)</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/18-choose-1.png" class>
+
+<h2 id="键盘布局"><a href="#键盘布局" class="headerlink" title="键盘布局"></a>键盘布局</h2><p>选择 <code>US-English</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/19-choose-US.png" class>
+
+<h2 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h2><p>选择 <code>6.Simplified Chinese</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/20-choose-SC.png" class>
+
+<h2 id="网络连接"><a href="#网络连接" class="headerlink" title="网络连接"></a>网络连接</h2><p>选择 <code>联网的</code> ，点击 <code>下一步</code>。（注意：图文不符）</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/21-choose-network.png" class>
+
+<h2 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h2><p>默认 <code>是</code> ，点击 <code>下一步</code>。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/21-choose-DHCP.png" class>
+
+<h2 id="Kerberos"><a href="#Kerberos" class="headerlink" title="Kerberos"></a>Kerberos</h2><p>默认 <code>否</code> ，点击 <code>下一步</code>。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/22-choose-Kerberos.png" class>
+
+<h2 id="名称服务"><a href="#名称服务" class="headerlink" title="名称服务"></a>名称服务</h2><p>默认 <code>无</code> ，点击 <code>下一步</code>。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/23-choose-name.png" class>
+
+<h2 id="NFSv4-域名"><a href="#NFSv4-域名" class="headerlink" title="NFSv4 域名"></a>NFSv4 域名</h2><p>默认 <code>使用系统派生的 NFSv4 域</code> ，点击 <code>下一步</code>。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/24-choose-NFSv4.png" class>
+
+<h2 id="时区"><a href="#时区" class="headerlink" title="时区"></a>时区</h2><p>默认 <code>地域性的洲/国家/地区</code> ，点击 <code>下一步</code>。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/25-choose-timezone.png" class>
+
+<h2 id="洲与国家"><a href="#洲与国家" class="headerlink" title="洲与国家"></a>洲与国家</h2><p>选择 <code>亚洲-中国</code> ，点击 <code>下一步</code>。</p>
+
+
+<h2 id="日期和时间"><a href="#日期和时间" class="headerlink" title="日期和时间"></a>日期和时间</h2><p>默认即可，点击 <code>下一步</code>。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/27-date-time.png" class>
+
+<h2 id="root-口令"><a href="#root-口令" class="headerlink" title="root 口令"></a>root 口令</h2><p>输入超级用户（root）口令，点击 <code>下一步</code>。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/28-root-pwd.png" class>
+
+<p>请记住，稍后登录需要。</p>
+<h2 id="远程服务"><a href="#远程服务" class="headerlink" title="远程服务"></a>远程服务</h2><p>默认 <code>是</code> ，点击 <code>下一步</code>。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/29-remote.png" class>
+
+<h2 id="确认信息"><a href="#确认信息" class="headerlink" title="确认信息"></a>确认信息</h2><p>确认信息正确后，点击 <code>确认</code>。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/30-complete.png" class>
+
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/31-wait.png" class>
+
+<h1 id="安装选项"><a href="#安装选项" class="headerlink" title="安装选项"></a>安装选项</h1><h2 id="欢迎"><a href="#欢迎" class="headerlink" title="欢迎"></a>欢迎</h2><p>配置结束，开始安装，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/32-welcome.png" class>
+
+<h2 id="安装选项-1"><a href="#安装选项-1" class="headerlink" title="安装选项"></a>安装选项</h2><p>默认 <code>是</code> ，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/33-install.png" class>
+
+<h2 id="指定媒体"><a href="#指定媒体" class="headerlink" title="指定媒体"></a>指定媒体</h2><p>默认 <code>CD/DVD</code> ，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/34-media.png" class>
+
+<h2 id="许可证"><a href="#许可证" class="headerlink" title="许可证"></a>许可证</h2><p>勾选 <code>接收</code> ，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/35-accept.png" class>
+
+<h2 id="安装类型"><a href="#安装类型" class="headerlink" title="安装类型"></a>安装类型</h2><p>选择 <code>自定义安装</code> ，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/36-install-type.png" class>
+
+<h2 id="软件语言"><a href="#软件语言" class="headerlink" title="软件语言"></a>软件语言</h2><p>勾选 <code>中文(zh)</code> 和 <code>中文(UTF-8)</code> ，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/37-software-language.png" class>
+
+<h2 id="系统语言"><a href="#系统语言" class="headerlink" title="系统语言"></a>系统语言</h2><p>选择 <code>中文(UFT-8)</code> ，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/38-system-language.png" class>
+
+<h2 id="附加产品"><a href="#附加产品" class="headerlink" title="附加产品"></a>附加产品</h2><p>默认 <code>无</code> ，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/39-attach.png" class>
+
+<h2 id="Solaris-软件组"><a href="#Solaris-软件组" class="headerlink" title="Solaris 软件组"></a>Solaris 软件组</h2><p>默认即可，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/40-group.png" class>
+
+<h2 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h2><p>默认即可，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/41-disk.png" class>
+
+<h2 id="磁盘分区"><a href="#磁盘分区" class="headerlink" title="磁盘分区"></a>磁盘分区</h2><p>默认即可，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/42-disk-sector.png" class>
+
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/43-disk-sector.png" class>
+
+<h2 id="分布文件系统"><a href="#分布文件系统" class="headerlink" title="分布文件系统"></a>分布文件系统</h2><p>默认即可，点击 <code>下一步</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/44-file-system.png" class>
+
+<h2 id="准备安装"><a href="#准备安装" class="headerlink" title="准备安装"></a>准备安装</h2><p>确认信息正确后，点击 <code>立即安装</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/45-install.png" class>
+
+<p>等待安装。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/46-wait.png" class>
+
+<p>最后弹出多次对话框，均点击 <code>继续</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/47-continue-1.png" class>
+
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/48-continue-2.png" class>
+
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/49-continue-3.png" class>
+
+<h1 id="登录系统"><a href="#登录系统" class="headerlink" title="登录系统"></a>登录系统</h1><h2 id="输入用户名"><a href="#输入用户名" class="headerlink" title="输入用户名"></a>输入用户名</h2><p>输入用户名为超级用户（root）。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/50-user.png" class>
+
+<h2 id="输入口令并确认"><a href="#输入口令并确认" class="headerlink" title="输入口令并确认"></a>输入口令并确认</h2><p>输入口令为之前已经设置的 root 口令。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/28-root-pwd.png" class>
+
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/51-password.png" class>
+
+<h2 id="选择桌面"><a href="#选择桌面" class="headerlink" title="选择桌面"></a>选择桌面</h2><p>默认 <code>Java 桌面系统（版本3）</code> ，点击 <code>确定</code> 。</p>
+<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/52-desktop.png" class>
+
+<h2 id="进入系统"><a href="#进入系统" class="headerlink" title="进入系统"></a>进入系统</h2><img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/53-enter.png" class>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.cnblogs.com/shrec/p/4257353.html">在 VirtualBox 上安装 Solaris 10 全教程（包括下载） </a></p>
+]]></content>
+      <categories>
+        <category>Download &amp; Install &amp; Configure</category>
+      </categories>
+      <tags>
+        <tag>Virtual Machine</tag>
+        <tag>Solaris</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SEAL</title>
     <url>/2023/12/30/SEAL/</url>
     <content><![CDATA[<h1 id="SEAL-库介绍"><a href="#SEAL-库介绍" class="headerlink" title="SEAL 库介绍"></a>SEAL 库介绍</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Simple Encrypted Arithmetic Library（简单加密算术库）或 SEAL 是一个免费和开源的跨平台软件库，由微软研究院开发，实现各种形式的同态加密。</p>
@@ -1474,268 +1736,6 @@
       </categories>
       <tags>
         <tag>Open Source Library</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SecureCRT 的下载、安装和使用</title>
-    <url>/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>SecureCRT 是一个终端仿真应用程序，为计算专业人员提供安全的远程访问、文件传输和数据隧道。</p>
-<span id="more"></span>
-
-<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>从官方网站下载资源：<a href="https://www.vandyke.com/cgi-bin/releases.php?product=securecrt">https://www.vandyke.com/cgi-bin/releases.php?product=securecrt</a> 。</p>
-<p>从百度网盘下载资源。</p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>双击 <code>scrt_sfx833-x64.exe</code> 运行安装程序。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/01-run.png" class>
-
-<p>点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/02-next.png" class>
-
-<p>勾选 <code>I accept ...</code> ，点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/03-accept.png" class>
-
-<p>勾选 <code>Common profile</code> ，点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/04-common.png" class>
-
-<p>选择 <code>Custom</code> ，点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/05-custom.png" class>
-
-<p>点击 <code>Choose</code> 选择自定义安装目录，点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/06-folder.png" class>
-
-<p>默认勾选，点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/07-next.png" class>
-
-<p>点击 <code>Install</code> ，开始安装。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/08-install.png" class>
-
-<p>安装完毕，点击 <code>Finish</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/09-finish.png" class>
-
-<p>激活方式参考 <a href="https://zhuanlan.zhihu.com/p/163089404">SecureCRT 的下载、安装、激活 | 知乎 | ytrunning</a> 。</p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="SecureCRT"><a href="#SecureCRT" class="headerlink" title="SecureCRT"></a>SecureCRT</h2><p>打开以后进入主界面，点击 File ，有三种连接：<code>Connect...</code> 、<code>Quick Connect</code> 和 <code>Local Connect</code>，分别是已存储的连接、快速连接和本地连接。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/10-three-type.png" class>
-
-<p>点击 <code>Quick Connect</code> ，默认是 <code>SSH2</code> ，其中 <code>Hostname</code> 填写虚拟机 IP 地址， <code>Username</code> 填写虚拟机用户名，若是密钥登录，勾选 <code>PublicKey</code> ；若是密码登录，勾选 <code>Password</code> 。填写、勾选完毕后，点击 <code>Connect</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/11-fill-up.png" class>
-
-<p>接下来填写并确认密码，勾选 <code>Save password</code> 保存密码，点击 <code>OK</code> 进行连接。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/12-password.png" class>
-
-<p>连接成功！</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/13-success.png" class>
-
-<h2 id="SecureFX"><a href="#SecureFX" class="headerlink" title="SecureFX"></a>SecureFX</h2><p>SecureFX 有两种打开方式：</p>
-<p>1.如果已经打开 SecureCRT ，点击 <code>SecureFX</code> 图标即可打开。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/14-SecureFX.png" class>
-
-<p>2.如果没有打开 SecureCRT，打开 SecureFX 应用。</p>
-<p>打开 SerureFX 后：</p>
-<p>1.如果已经登录过 SecureCRT ， <code>Sessions</code> 有已连接过的 IP ，点击 <code>Connect</code> 直接连接。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/15-had-connected.png" class>
-
-<p>2.如果没有登录过 SecureCRT ，进行与 SecureCRT 中相似的操作进行连接。</p>
-<p>连接成功后，进入管理页面。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/16-success-file.png" class>
-
-<p>可直接手动拖动文件，文件传输成功后，会显示 <code>Finished</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/17-finished.png" class>
-
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="更改终端外观"><a href="#更改终端外观" class="headerlink" title="更改终端外观"></a>更改终端外观</h2><p>点击 <code>Options</code> ，选择 <code>Session Options...</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/18-options.png" class>
-
-<p>选中 <code>Appearance</code> ，设置 <code>Current color scheme</code> 为 <code>White/Black</code> ，点击 <code>Font...</code> 调整字体和大小。 </p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/19-scheme-font.png" class>
-
-<p>更改终端外观成功！</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/20-change-success.png" class>
-
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/qq_39052513/article/details/100272502">SecureCRT 的下载、安装 | CSDN | 超Ren专属</a></p>
-<p><a href="https://blog.csdn.net/qq_39052513/article/details/104692026">SecureCRT 的使用教程 | CSDN | 超Ren专属</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/163089404">SecureCRT 的下载、安装、激活 | 知乎 | ytrunning</a> </p>
-]]></content>
-      <categories>
-        <category>Download &amp; Install &amp; Configure</category>
-      </categories>
-      <tags>
-        <tag>SSH</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Solaris 10 的下载、安装和配置</title>
-    <url>/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="映像下载"><a href="#映像下载" class="headerlink" title="映像下载"></a>映像下载</h1><p>使用的是 <a href="https://www.cnblogs.com/shrec/p/4257353.html">在 VirtualBox 上安装 Solaris 10 全教程（包括下载） </a> 提供的资源。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/01-iso.png" class>
-
-<p>下载完毕，记住 iso 文件所在位置。</p>
-<span id="more"></span>
-
-<h1 id="虚拟机创建"><a href="#虚拟机创建" class="headerlink" title="虚拟机创建"></a>虚拟机创建</h1><p>打开 VMware Workstation，然后点击 <code>创建虚拟机</code> 。</p>
-<p>选择 <code>自定义安装</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/02-create-vm.png" class>
-
-<p>默认，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/03-hardware-function.png" class>
-
-<p>选择 <code>稍候安装操作系统</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/04-install-os.png" class>
-
-<p>选择 <code>Linux(L)</code> ，选择 <code>Solaris 10</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/05-choose-os.png" class>
-
-<p>设置 <code>虚拟机名称</code> ，选择 <code>位置</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/06-name-and-location.png" class>
-
-<p>选择 <code>指定处理器数量</code> ，数量越多，性能越好，根据需要分配。然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/07-cpu-core.png" class>
-
-<p>根据需要 <code>分配内存</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/08-memory.png" class>
-
-<p>网络连接选择 NAT，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/09-network.png" class>
-
-<p>默认，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/10-LSI.png" class>
-
-<p>默认，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/11-disk.png" class>
-
-<p>选择 <code>创建新虚拟硬盘</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/12-create-new-disk.png" class>
-
-<p>指定 <code>磁盘容量</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/13-max-disk.png" class>
-
-<p>指定 <code>磁盘文件存储</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/14-disk-location.png" class>
-
-<p>点击 <code>完成</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/15-complete.png" class>
-
-<h1 id="使用映像文件"><a href="#使用映像文件" class="headerlink" title="使用映像文件"></a>使用映像文件</h1><p>点击 <code>编辑虚拟机设置</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/16-edit-setting.png" class>
-
-<p>点击 <code>硬件</code> 下的 <code>CD/DVD</code> ，选择 <code>使用ISO映像文件</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/17-choose-iso.png" class>
-
-<p>点击 <code>开启此虚拟机</code> 。</p>
-<h1 id="配置选项"><a href="#配置选项" class="headerlink" title="配置选项"></a>配置选项</h1><h2 id="配置类型"><a href="#配置类型" class="headerlink" title="配置类型"></a>配置类型</h2><p>选择 <code>1.Solaris Interactive(default)</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/18-choose-1.png" class>
-
-<h2 id="键盘布局"><a href="#键盘布局" class="headerlink" title="键盘布局"></a>键盘布局</h2><p>选择 <code>US-English</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/19-choose-US.png" class>
-
-<h2 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h2><p>选择 <code>6.Simplified Chinese</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/20-choose-SC.png" class>
-
-<h2 id="网络连接"><a href="#网络连接" class="headerlink" title="网络连接"></a>网络连接</h2><p>选择 <code>联网的</code> ，点击 <code>下一步</code>。（注意：图文不符）</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/21-choose-network.png" class>
-
-<h2 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h2><p>默认 <code>是</code> ，点击 <code>下一步</code>。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/21-choose-DHCP.png" class>
-
-<h2 id="Kerberos"><a href="#Kerberos" class="headerlink" title="Kerberos"></a>Kerberos</h2><p>默认 <code>否</code> ，点击 <code>下一步</code>。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/22-choose-Kerberos.png" class>
-
-<h2 id="名称服务"><a href="#名称服务" class="headerlink" title="名称服务"></a>名称服务</h2><p>默认 <code>无</code> ，点击 <code>下一步</code>。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/23-choose-name.png" class>
-
-<h2 id="NFSv4-域名"><a href="#NFSv4-域名" class="headerlink" title="NFSv4 域名"></a>NFSv4 域名</h2><p>默认 <code>使用系统派生的 NFSv4 域</code> ，点击 <code>下一步</code>。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/24-choose-NFSv4.png" class>
-
-<h2 id="时区"><a href="#时区" class="headerlink" title="时区"></a>时区</h2><p>默认 <code>地域性的洲/国家/地区</code> ，点击 <code>下一步</code>。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/25-choose-timezone.png" class>
-
-<h2 id="洲与国家"><a href="#洲与国家" class="headerlink" title="洲与国家"></a>洲与国家</h2><p>选择 <code>亚洲-中国</code> ，点击 <code>下一步</code>。</p>
-
-
-<h2 id="日期和时间"><a href="#日期和时间" class="headerlink" title="日期和时间"></a>日期和时间</h2><p>默认即可，点击 <code>下一步</code>。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/27-date-time.png" class>
-
-<h2 id="root-口令"><a href="#root-口令" class="headerlink" title="root 口令"></a>root 口令</h2><p>输入超级用户（root）口令，点击 <code>下一步</code>。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/28-root-pwd.png" class>
-
-<p>请记住，稍后登录需要。</p>
-<h2 id="远程服务"><a href="#远程服务" class="headerlink" title="远程服务"></a>远程服务</h2><p>默认 <code>是</code> ，点击 <code>下一步</code>。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/29-remote.png" class>
-
-<h2 id="确认信息"><a href="#确认信息" class="headerlink" title="确认信息"></a>确认信息</h2><p>确认信息正确后，点击 <code>确认</code>。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/30-complete.png" class>
-
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/31-wait.png" class>
-
-<h1 id="安装选项"><a href="#安装选项" class="headerlink" title="安装选项"></a>安装选项</h1><h2 id="欢迎"><a href="#欢迎" class="headerlink" title="欢迎"></a>欢迎</h2><p>配置结束，开始安装，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/32-welcome.png" class>
-
-<h2 id="安装选项-1"><a href="#安装选项-1" class="headerlink" title="安装选项"></a>安装选项</h2><p>默认 <code>是</code> ，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/33-install.png" class>
-
-<h2 id="指定媒体"><a href="#指定媒体" class="headerlink" title="指定媒体"></a>指定媒体</h2><p>默认 <code>CD/DVD</code> ，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/34-media.png" class>
-
-<h2 id="许可证"><a href="#许可证" class="headerlink" title="许可证"></a>许可证</h2><p>勾选 <code>接收</code> ，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/35-accept.png" class>
-
-<h2 id="安装类型"><a href="#安装类型" class="headerlink" title="安装类型"></a>安装类型</h2><p>选择 <code>自定义安装</code> ，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/36-install-type.png" class>
-
-<h2 id="软件语言"><a href="#软件语言" class="headerlink" title="软件语言"></a>软件语言</h2><p>勾选 <code>中文(zh)</code> 和 <code>中文(UTF-8)</code> ，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/37-software-language.png" class>
-
-<h2 id="系统语言"><a href="#系统语言" class="headerlink" title="系统语言"></a>系统语言</h2><p>选择 <code>中文(UFT-8)</code> ，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/38-system-language.png" class>
-
-<h2 id="附加产品"><a href="#附加产品" class="headerlink" title="附加产品"></a>附加产品</h2><p>默认 <code>无</code> ，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/39-attach.png" class>
-
-<h2 id="Solaris-软件组"><a href="#Solaris-软件组" class="headerlink" title="Solaris 软件组"></a>Solaris 软件组</h2><p>默认即可，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/40-group.png" class>
-
-<h2 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h2><p>默认即可，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/41-disk.png" class>
-
-<h2 id="磁盘分区"><a href="#磁盘分区" class="headerlink" title="磁盘分区"></a>磁盘分区</h2><p>默认即可，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/42-disk-sector.png" class>
-
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/43-disk-sector.png" class>
-
-<h2 id="分布文件系统"><a href="#分布文件系统" class="headerlink" title="分布文件系统"></a>分布文件系统</h2><p>默认即可，点击 <code>下一步</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/44-file-system.png" class>
-
-<h2 id="准备安装"><a href="#准备安装" class="headerlink" title="准备安装"></a>准备安装</h2><p>确认信息正确后，点击 <code>立即安装</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/45-install.png" class>
-
-<p>等待安装。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/46-wait.png" class>
-
-<p>最后弹出多次对话框，均点击 <code>继续</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/47-continue-1.png" class>
-
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/48-continue-2.png" class>
-
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/49-continue-3.png" class>
-
-<h1 id="登录系统"><a href="#登录系统" class="headerlink" title="登录系统"></a>登录系统</h1><h2 id="输入用户名"><a href="#输入用户名" class="headerlink" title="输入用户名"></a>输入用户名</h2><p>输入用户名为超级用户（root）。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/50-user.png" class>
-
-<h2 id="输入口令并确认"><a href="#输入口令并确认" class="headerlink" title="输入口令并确认"></a>输入口令并确认</h2><p>输入口令为之前已经设置的 root 口令。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/28-root-pwd.png" class>
-
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/51-password.png" class>
-
-<h2 id="选择桌面"><a href="#选择桌面" class="headerlink" title="选择桌面"></a>选择桌面</h2><p>默认 <code>Java 桌面系统（版本3）</code> ，点击 <code>确定</code> 。</p>
-<img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/52-desktop.png" class>
-
-<h2 id="进入系统"><a href="#进入系统" class="headerlink" title="进入系统"></a>进入系统</h2><img src="/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/53-enter.png" class>
-
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.cnblogs.com/shrec/p/4257353.html">在 VirtualBox 上安装 Solaris 10 全教程（包括下载） </a></p>
-]]></content>
-      <categories>
-        <category>Download &amp; Install &amp; Configure</category>
-      </categories>
-      <tags>
-        <tag>Virtual Machine</tag>
-        <tag>Solaris</tag>
       </tags>
   </entry>
   <entry>
@@ -2239,8 +2239,8 @@
         <category>Project</category>
       </categories>
       <tags>
-        <tag>nginx</tag>
         <tag>docker</tag>
+        <tag>nginx</tag>
         <tag>prometheus</tag>
         <tag>grafana</tag>
       </tags>
