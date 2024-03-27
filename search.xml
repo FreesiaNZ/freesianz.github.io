@@ -200,158 +200,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CentOS-7 的下载、安装和配置</title>
-    <url>/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="映像下载"><a href="#映像下载" class="headerlink" title="映像下载"></a>映像下载</h1><p>首先进入 CentOS 的<a href="https://mirrors.bupt.edu.cn/centos/7.9.2009/isos/x86_64/">镜像下载站</a>，然后下载标准版。</p>
-<span id="more"></span>
-
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/01-centos7-mirrors.png" class>
-
-<p>下载完毕，记住 iso 文件所在位置。</p>
-<h1 id="虚拟机创建"><a href="#虚拟机创建" class="headerlink" title="虚拟机创建"></a>虚拟机创建</h1><p>打开 VMware Workstation，然后点击 <code>创建虚拟机</code> 。</p>
-<p>选择 <code>自定义安装</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/02-create-vm.png" class>
-
-<p>默认，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/03-hardware-function.png" class>
-
-<p>选择 <code>稍候安装操作系统</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/04-install-os.png" class>
-
-<p>选择 <code>Linux(L)</code> ，选择 <code>CentOS 7 64位</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/05-choose-os.png" class>
-
-<p>设置 <code>虚拟机名称</code> ，选择 <code>位置</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/06-name-and-location.png" class>
-
-<p>选择 <code>指定处理器数量</code> ，数量越多，性能越好，根据需要分配。然后点击 <code>下一步</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/07-cpu-core.png" class>
-
-<p>根据需要 <code>分配内存</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/08-memory.png" class>
-
-<p>网络连接选择 NAT，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/09-network.png" class>
-
-<p>默认，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/10-SCSI.png" class>
-
-<p>默认，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/11-disk.png" class>
-
-<p>选择 <code>创建新虚拟硬盘</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/12-create-new-disk.png" class>
-
-<p>指定 <code>磁盘容量</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/13-max-disk.png" class>
-
-<p>指定 <code>磁盘文件存储</code> ，然后点击 <code>下一步</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/14-disk-location.png" class>
-
-<p>点击 <code>完成</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/15-complete.png" class>
-
-<h1 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h1><p>点击 <code>编辑虚拟机设置</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/16-edit-setting.png" class>
-
-<p>点击 <code>硬件</code> 下的 <code>CD/DVD</code> ，选择 <code>使用ISO映像文件</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/17-choose-iso.png" class>
-
-<p>点击 <code>开启此虚拟机</code> ，选择 <code>Install CentOS 7</code>，然后 <code>ENTER</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/18-start-vm.png" class>
-
-<h2 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h2><p>选择语言为 <code>中文</code> ，然后点击 <code>继续</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/19-chinese.png" class>
-
-<h2 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h2><p>点击 <code>软件安装</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/20-software.png" class>
-
-<p>选择 <code>GNOME</code> 桌面，附加选项勾选 <code>GNOME 应用程序</code> , <code>传统 X Windows 系统的兼容性</code> 和 <code>开发工具</code> ，然后点击 <code>完成</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/21-desk.png" class>
-
-<h2 id="安装位置"><a href="#安装位置" class="headerlink" title="安装位置"></a>安装位置</h2><p>点击 <code>安装位置</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/22-install-location.png" class>
-
-<p>选择 <code>我要配置分区</code> ，然后点击 <code>完成</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/23-configuration-sector.png" class>
-
-<p>设置 <code>/boot</code> ，点击 <code>+</code> 添加挂载点，挂载点选择 <code>/boot</code> ，期待容量设为 <code>1024</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/24-choose-boot.png" class>
-
-<p>设置 <code>/swap</code> ，点击 <code>+</code> 添加挂载点，挂载点选择 <code>/swap</code> ，期待容量设为 <code>2048</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/25-choose-swap.png" class>
-
-<p>设置 <code>/</code> ，点击 <code>+</code> 添加挂载点，挂载点选择 <code>/</code> ，期待容量设为 <code>17408</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/26-choose-root.png" class>
-
-<p>点击 <code>完成</code> ，点击 <code>接收更改</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/27-accept-alter.png" class>
-
-<h2 id="网络和主机名"><a href="#网络和主机名" class="headerlink" title="网络和主机名"></a>网络和主机名</h2><p>点击 <code>网络和主机名</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/28-network.png" class>
-
-<p><code>打开</code> 以太网，设置 <code>主机名</code> ，点击 <code>应用</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/29-set-network.png" class>
-
-<p>点击 <code>开始安装</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/30-install.png" class>
-
-<h2 id="ROOT-密码"><a href="#ROOT-密码" class="headerlink" title="ROOT 密码"></a>ROOT 密码</h2><p>点击 <code>ROOT 密码</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/31-password.png" class>
-
-<p>设置 <code>Root 密码</code> 以及 <code>确认</code> ，点击 <code>完成</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/32-set-password.png" class>
-
-<h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><p>点击 <code>创建用户</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/33-user.png" class>
-
-<p>设置 <code>用户名</code> 以及 <code>密码</code> ，点击 <code>完成</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/34-set-user.png" class>
-
-<h2 id="安装重启"><a href="#安装重启" class="headerlink" title="安装重启"></a>安装重启</h2><p>熬过漫长的等待。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/35-wait.png" class>
-
-<p>安装完成后，点击 <code>重启</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/36-reboot.png" class>
-
-<h2 id="接收许可"><a href="#接收许可" class="headerlink" title="接收许可"></a>接收许可</h2><p>点击 <code>LICENSE INFORMATION</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/37-license.png" class>
-
-<p>接受许可，点击 <code>完成</code> 后，点击 <code>完成配置</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/38-complete.png" class>
-
-
-<h2 id="登录账户"><a href="#登录账户" class="headerlink" title="登录账户"></a>登录账户</h2><p>点击 <code>未列出</code> ，使用 root 登录。</p>
-
-
-<p>输入 <code>用户名</code> 和 <code>密码</code> 完成登录。</p>
-
-
-<h2 id="欢迎"><a href="#欢迎" class="headerlink" title="欢迎"></a>欢迎</h2><p>出现桌面，欢迎、输入页选择 <code>汉语</code> 。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/41-chinese.png" class>
-
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/42-input.png" class>
-
-<p>隐私页 <code>关闭 </code>位置服务。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/43-location.png" class>
-
-<p>跳过在线帐号页。</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/44-skip.png" class>
-
-<p>至此，CentOS-7 下载、安装和配置完毕！</p>
-<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/45-centos-7.png" class>
-
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/m0_51545690/article/details/123238360">超详细的 CentOS7 的下载安装配置教程-CSDN</a></p>
-]]></content>
-      <categories>
-        <category>Download &amp; Install &amp; Configure</category>
-      </categories>
-      <tags>
-        <tag>CentOS</tag>
-        <tag>Virtual Machine</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C 语言</title>
     <url>/2024/03/15/C%E8%AF%AD%E8%A8%80/</url>
     <content><![CDATA[<h1 id="C-语言入门"><a href="#C-语言入门" class="headerlink" title="C 语言入门"></a>C 语言入门</h1><h2 id="C-环境设置"><a href="#C-环境设置" class="headerlink" title="C 环境设置"></a>C 环境设置</h2><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>为了在 Windows 上安装 GCC，您需要安装 MinGW。为了安装 MinGW，请访问 MinGW 的主页 mingw-w64.org，进入 MinGW 下载页面，下载最新版本的 MinGW 安装程序，命名格式为 MinGW-<version>.exe。</version></p>
@@ -611,6 +459,158 @@
       </tags>
   </entry>
   <entry>
+    <title>CentOS-7 的下载、安装和配置</title>
+    <url>/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="映像下载"><a href="#映像下载" class="headerlink" title="映像下载"></a>映像下载</h1><p>首先进入 CentOS 的<a href="https://mirrors.bupt.edu.cn/centos/7.9.2009/isos/x86_64/">镜像下载站</a>，然后下载标准版。</p>
+<span id="more"></span>
+
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/01-centos7-mirrors.png" class>
+
+<p>下载完毕，记住 iso 文件所在位置。</p>
+<h1 id="虚拟机创建"><a href="#虚拟机创建" class="headerlink" title="虚拟机创建"></a>虚拟机创建</h1><p>打开 VMware Workstation，然后点击 <code>创建虚拟机</code> 。</p>
+<p>选择 <code>自定义安装</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/02-create-vm.png" class>
+
+<p>默认，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/03-hardware-function.png" class>
+
+<p>选择 <code>稍候安装操作系统</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/04-install-os.png" class>
+
+<p>选择 <code>Linux(L)</code> ，选择 <code>CentOS 7 64位</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/05-choose-os.png" class>
+
+<p>设置 <code>虚拟机名称</code> ，选择 <code>位置</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/06-name-and-location.png" class>
+
+<p>选择 <code>指定处理器数量</code> ，数量越多，性能越好，根据需要分配。然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/07-cpu-core.png" class>
+
+<p>根据需要 <code>分配内存</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/08-memory.png" class>
+
+<p>网络连接选择 NAT，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/09-network.png" class>
+
+<p>默认，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/10-SCSI.png" class>
+
+<p>默认，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/11-disk.png" class>
+
+<p>选择 <code>创建新虚拟硬盘</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/12-create-new-disk.png" class>
+
+<p>指定 <code>磁盘容量</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/13-max-disk.png" class>
+
+<p>指定 <code>磁盘文件存储</code> ，然后点击 <code>下一步</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/14-disk-location.png" class>
+
+<p>点击 <code>完成</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/15-complete.png" class>
+
+<h1 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h1><p>点击 <code>编辑虚拟机设置</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/16-edit-setting.png" class>
+
+<p>点击 <code>硬件</code> 下的 <code>CD/DVD</code> ，选择 <code>使用ISO映像文件</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/17-choose-iso.png" class>
+
+<p>点击 <code>开启此虚拟机</code> ，选择 <code>Install CentOS 7</code>，然后 <code>ENTER</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/18-start-vm.png" class>
+
+<h2 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h2><p>选择语言为 <code>中文</code> ，然后点击 <code>继续</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/19-chinese.png" class>
+
+<h2 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h2><p>点击 <code>软件安装</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/20-software.png" class>
+
+<p>选择 <code>GNOME</code> 桌面，附加选项勾选 <code>GNOME 应用程序</code> , <code>传统 X Windows 系统的兼容性</code> 和 <code>开发工具</code> ，然后点击 <code>完成</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/21-desk.png" class>
+
+<h2 id="安装位置"><a href="#安装位置" class="headerlink" title="安装位置"></a>安装位置</h2><p>点击 <code>安装位置</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/22-install-location.png" class>
+
+<p>选择 <code>我要配置分区</code> ，然后点击 <code>完成</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/23-configuration-sector.png" class>
+
+<p>设置 <code>/boot</code> ，点击 <code>+</code> 添加挂载点，挂载点选择 <code>/boot</code> ，期待容量设为 <code>1024</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/24-choose-boot.png" class>
+
+<p>设置 <code>/swap</code> ，点击 <code>+</code> 添加挂载点，挂载点选择 <code>/swap</code> ，期待容量设为 <code>2048</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/25-choose-swap.png" class>
+
+<p>设置 <code>/</code> ，点击 <code>+</code> 添加挂载点，挂载点选择 <code>/</code> ，期待容量设为 <code>17408</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/26-choose-root.png" class>
+
+<p>点击 <code>完成</code> ，点击 <code>接收更改</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/27-accept-alter.png" class>
+
+<h2 id="网络和主机名"><a href="#网络和主机名" class="headerlink" title="网络和主机名"></a>网络和主机名</h2><p>点击 <code>网络和主机名</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/28-network.png" class>
+
+<p><code>打开</code> 以太网，设置 <code>主机名</code> ，点击 <code>应用</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/29-set-network.png" class>
+
+<p>点击 <code>开始安装</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/30-install.png" class>
+
+<h2 id="ROOT-密码"><a href="#ROOT-密码" class="headerlink" title="ROOT 密码"></a>ROOT 密码</h2><p>点击 <code>ROOT 密码</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/31-password.png" class>
+
+<p>设置 <code>Root 密码</code> 以及 <code>确认</code> ，点击 <code>完成</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/32-set-password.png" class>
+
+<h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><p>点击 <code>创建用户</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/33-user.png" class>
+
+<p>设置 <code>用户名</code> 以及 <code>密码</code> ，点击 <code>完成</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/34-set-user.png" class>
+
+<h2 id="安装重启"><a href="#安装重启" class="headerlink" title="安装重启"></a>安装重启</h2><p>熬过漫长的等待。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/35-wait.png" class>
+
+<p>安装完成后，点击 <code>重启</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/36-reboot.png" class>
+
+<h2 id="接收许可"><a href="#接收许可" class="headerlink" title="接收许可"></a>接收许可</h2><p>点击 <code>LICENSE INFORMATION</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/37-license.png" class>
+
+<p>接受许可，点击 <code>完成</code> 后，点击 <code>完成配置</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/38-complete.png" class>
+
+
+<h2 id="登录账户"><a href="#登录账户" class="headerlink" title="登录账户"></a>登录账户</h2><p>点击 <code>未列出</code> ，使用 root 登录。</p>
+
+
+<p>输入 <code>用户名</code> 和 <code>密码</code> 完成登录。</p>
+
+
+<h2 id="欢迎"><a href="#欢迎" class="headerlink" title="欢迎"></a>欢迎</h2><p>出现桌面，欢迎、输入页选择 <code>汉语</code> 。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/41-chinese.png" class>
+
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/42-input.png" class>
+
+<p>隐私页 <code>关闭 </code>位置服务。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/43-location.png" class>
+
+<p>跳过在线帐号页。</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/44-skip.png" class>
+
+<p>至此，CentOS-7 下载、安装和配置完毕！</p>
+<img src="/2024/01/03/CentOS-7%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/45-centos-7.png" class>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/m0_51545690/article/details/123238360">超详细的 CentOS7 的下载安装配置教程-CSDN</a></p>
+]]></content>
+      <categories>
+        <category>Download &amp; Install &amp; Configure</category>
+      </categories>
+      <tags>
+        <tag>CentOS</tag>
+        <tag>Virtual Machine</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HElib</title>
     <url>/2023/12/28/HElib/</url>
     <content><![CDATA[<h1 id="HElib-库介绍"><a href="#HElib-库介绍" class="headerlink" title="HElib 库介绍"></a>HElib 库介绍</h1><p>HElib(Homomorphic Encryption library)是一个用于同态加密的开源库。HElib 主要由 Shai Halevi 和 Victor Shoup 开发，在 Craig Gentry 担任 IBM 研究员后不久，最初发布于2013年5月5日。HElib 是用 C++ 编写的，并使用 NTL 数学库。</p>
@@ -732,24 +732,6 @@
       </categories>
       <tags>
         <tag>Open Source Library</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Listary 的安装和使用</title>
-    <url>/2024/03/16/Listary%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><img src="https://assets-global.website-files.com/643e09c9f19df8579c420d9f/655f6daa30360d26544fd098_Listary-hero-screenshot-p-1080.png" alt="Listary"></p>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Listary 是一款强大的 Windows 文件搜索和应用启动工具。它通过只需几个快捷键就能轻松找到文件并启动应用程序，提高生产力。该软件在后台运行，但可随时从任何地方访问。Listary Pro 为需要更多功能的工作或家庭用户提供了先进的特性和命令。也有一个便携版本，可以在不安装到 Windows 的情况下，从云文件夹、外部驱动器或本地文件夹中运行。</p>
-<span id="more"></span>
-
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p><a href="https://www.listary.com/">https://www.listary.com/</a></p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p><a href="https://help.listary.com/zh-Hans/">https://help.listary.com/zh-Hans/</a></p>
-]]></content>
-      <categories>
-        <category>Download &amp; Install &amp; Configure</category>
-      </categories>
-      <tags>
-        <tag>Efficiency</tag>
-        <tag>Search</tag>
       </tags>
   </entry>
   <entry>
@@ -926,6 +908,24 @@
       <tags>
         <tag>Hexo</tag>
         <tag>NexT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Listary 的安装和使用</title>
+    <url>/2024/03/16/Listary%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><img src="https://assets-global.website-files.com/643e09c9f19df8579c420d9f/655f6daa30360d26544fd098_Listary-hero-screenshot-p-1080.png" alt="Listary"></p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Listary 是一款强大的 Windows 文件搜索和应用启动工具。它通过只需几个快捷键就能轻松找到文件并启动应用程序，提高生产力。该软件在后台运行，但可随时从任何地方访问。Listary Pro 为需要更多功能的工作或家庭用户提供了先进的特性和命令。也有一个便携版本，可以在不安装到 Windows 的情况下，从云文件夹、外部驱动器或本地文件夹中运行。</p>
+<span id="more"></span>
+
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p><a href="https://www.listary.com/">https://www.listary.com/</a></p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p><a href="https://help.listary.com/zh-Hans/">https://help.listary.com/zh-Hans/</a></p>
+]]></content>
+      <categories>
+        <category>Download &amp; Install &amp; Configure</category>
+      </categories>
+      <tags>
+        <tag>Efficiency</tag>
+        <tag>Search</tag>
       </tags>
   </entry>
   <entry>
@@ -2006,6 +2006,155 @@
       </tags>
   </entry>
   <entry>
+    <title>使用 Hexo &amp; Github 搭建个人博客</title>
+    <url>/2023/12/24/%E4%BD%BF%E7%94%A8Hexo%E5%92%8CGithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h1 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h1><h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git --version</span><br><span class="line">git version 2.35.1.windows.2</span><br></pre></td></tr></table></figure>
+
+<h2 id="npm-node-js"><a href="#npm-node-js" class="headerlink" title="npm &amp; node.js"></a>npm &amp; node.js</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm version</span><br><span class="line">&#123;</span><br><span class="line">  npm: <span class="string">&#x27;9.1.2&#x27;</span>,</span><br><span class="line">  node: <span class="string">&#x27;16.15.1&#x27;</span>,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h1 id="生成-SSH-key"><a href="#生成-SSH-key" class="headerlink" title="生成 SSH key"></a>生成 SSH key</h1><p>如果你的 SSH key 未安装，执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;@example.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>@example.com</code> 是 Github 账户的注册邮箱。</p>
+<p>执行命令后，ENTER 三次后出现 key path。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">C:\...\.ssh\id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<p>使用记事本打开 <code>id_rsa.pub</code> 文件并复制内容。</p>
+<h1 id="Github-创建仓库"><a href="#Github-创建仓库" class="headerlink" title="Github 创建仓库"></a>Github 创建仓库</h1><p>创建名为 <code>Username.github.io</code> 的新仓库，<code>Username</code> 为 Github 账户名。</p>
+<p>输入仓库名的界面应该显示为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Username / Username.github.io</span><br></pre></td></tr></table></figure>
+
+<h1 id="Github-新建-SSH-key"><a href="#Github-新建-SSH-key" class="headerlink" title="Github 新建 SSH key"></a>Github 新建 SSH key</h1><p>打开 Github <code>Settings</code> 中的 <code>SSH and GPG keys</code>，点击新建一个 SSH key：</p>
+<p>其中 <code>Title</code> 随意, <code>Key</code> 是 <code>id_rsa.pub</code> 文件的内容。</p>
+<p>使用以下命令来测试 SSH 连接是否成功：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<p>出现以下信息代表成功：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Hi Username! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h1><p>执行以下命令安装 Hexo：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
+
+<p>如果失败执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h1 id="Hexo-初始化"><a href="#Hexo-初始化" class="headerlink" title="Hexo 初始化"></a>Hexo 初始化</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init FileName</span><br><span class="line"><span class="built_in">cd</span> FileName</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p><code>FileName</code> 为你的博客文件夹。</p>
+<h1 id="部署-Hexo"><a href="#部署-Hexo" class="headerlink" title="部署 Hexo"></a>部署 Hexo</h1><p>复制 Github 仓库下 <code>Clone with SSH</code> 的内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git@github.com:Username/username.github.io.git</span><br></pre></td></tr></table></figure>
+
+<p>打开 <code>Filename</code> 文件夹下的 <code>_config.yml</code> 文件，repo 后复制上一步的内容：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:Username/username.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+
+<p>注意 repo 后的空格。</p>
+<h1 id="发布-Hexo"><a href="#发布-Hexo" class="headerlink" title="发布 Hexo"></a>发布 Hexo</h1><p><code>Filename</code> 文件夹下执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g <span class="comment"># generate</span></span><br><span class="line">hexo s <span class="comment"># server</span></span><br></pre></td></tr></table></figure>
+
+<p>访问 <a href="http://localhost:4000/">http://localhost:4000</a> 来预览，端口默认 4000 可以自定义。</p>
+<p>执行以下命令上传至 Github 仓库：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d <span class="comment"># upload</span></span><br></pre></td></tr></table></figure>
+
+<p>访问 <a href="https://username.github.io/">https://username.github.io</a> 即可。</p>
+<h1 id="撰写博客"><a href="#撰写博客" class="headerlink" title="撰写博客"></a>撰写博客</h1><p>执行下列命令来创建一篇新页面或者新文章：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Hexo 有 3 种默认 layout：<code>post</code>、<code>page</code> 和 <code>draft</code>。</p>
+<p>首先手动创建 <code>about</code> 、<code>categories</code> 和 <code>tags</code> 页面，并添加 layout 属性：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page about</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 关于</span><br><span class="line">date: 2023-12-24 17:00:00</span><br><span class="line">layout: about</span><br><span class="line">---​</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 分类</span><br><span class="line">date: 2023-12-24 17:00:00</span><br><span class="line">layout: categories</span><br><span class="line">---​</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">date: 2023-12-24 17:00:00</span><br><span class="line">layout: tags</span><br><span class="line">---​</span><br></pre></td></tr></table></figure>
+
+<p>如果我们想写一篇名为 <code>test</code> 的文章，在 <code>A</code> 分类，标签为 <code>B</code> 和 <code>C</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new post <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: test</span><br><span class="line">date: 2023-12-24 17:00:00</span><br><span class="line">categories: </span><br><span class="line"><span class="bullet">-</span> A</span><br><span class="line">tags: </span><br><span class="line"><span class="bullet">-</span> B</span><br><span class="line"><span class="section">- C</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+
+<p>写完之后执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s </span><br><span class="line">hexo d </span><br></pre></td></tr></table></figure>
+
+<p>执行 <code>hexo s</code> 即可打开 <a href="http://localhost:4000/">http://localhost:4000</a> 预览文章效果。 </p>
+<p>执行 <code>hexo d</code> 上传至 Github，等待片刻 <a href="https://username.github.io/">https://username.github.io</a> 查看博客。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://zhuanlan.zhihu.com/p/655349835">手把手教你使用 Hexo+GitHub 搭建个人博客并发布文章-知乎</a><br><a href="https://zhuanlan.zhihu.com/p/376366002">Hexo+Github 搭建博客-知乎</a><br><a href="https://www.yunyoujun.cn/posts/how-to-build-your-site#%E4%BD%BF%E7%94%A8-hexo-%E4%B8%BB%E9%A2%98">教你如何从零开始搭建一个属于自己的网站-云游君的小站</a><br><a href="https://zhuanlan.zhihu.com/p/251363116#:~:text=%E6%B5%8B%E8%AF%95hexo%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F%EF%BC%9A%20%24%20hexo%20new%20test%20%24%20hexo%20g,test%E8%A1%A8%E7%A4%BA%E6%96%B0%E5%BB%BA%E4%B8%80%E7%AF%87%E5%90%8D%E4%B8%BAtest%E7%9A%84%E5%8D%9A%E6%96%87%EF%BC%8Chexo%20g%E8%A1%A8%E7%A4%BA%E7%94%9F%E6%88%90%EF%BC%8C%E6%98%AFhexo%20generate%E7%9A%84%E7%AE%80%E5%86%99%EF%BC%8Chexo%20s%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8Chexo%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E6%98%AFhexo%20server%E7%9A%84%E7%AE%80%E5%86%99%E3%80%82%20%E6%88%90%E5%8A%9F%E5%90%8E%E4%BC%9A%E6%9C%89%E5%A6%82%E4%B8%8B%E6%8F%90%E7%A4%BA%EF%BC%8C%E8%BF%9B%E5%85%A5%20http%3A%2F%2Flocalhost%3A4000%20%E5%8D%B3%E5%8F%AF%E7%9C%8B%E5%88%B0%E5%88%9A%E5%88%9A%E7%94%9F%E6%88%90%E7%9A%84%E7%BD%91%E9%A1%B5%E3%80%82">hexo 基本安装及配置-知乎</a></p>
+<p><a href="https://hexo.io/zh-cn/docs/writing.html">写作-Hexo</a><br><a href="https://zhuanlan.zhihu.com/p/132823826">使用 Hexo 新建、编辑并预览文章-知乎</a></p>
+]]></content>
+      <categories>
+        <category>How to Start a Personal Blog</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 Utterances 为 Hexo + NexT 博客添加评论</title>
+    <url>/2024/03/26/%E4%BD%BF%E7%94%A8Utterances%E4%B8%BAHexo-NexT%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/</url>
+    <content><![CDATA[<p>Utterances 是一个基于 Github issues 构建的轻量级评论插件，只有使用 Github 账号登录后才能评论。NexT 7.0.0 版本已经集成了 Utterances ，故非常方便使用 Utterances 来为 Hexo + NexT 博客添加评论。</p>
+<p>Offical：<a href="https://utteranc.es/">https://utteranc.es/</a> 。</p>
+<p>Github：<a href="https://github.com/utterance/utterances">https://github.com/utterance/utterances</a> 。</p>
+<span id="more"></span>
+
+<h1 id="新建-Github-仓库"><a href="#新建-Github-仓库" class="headerlink" title="新建 Github 仓库"></a>新建 Github 仓库</h1><p>由于是基于 Github issues，我们需要一个仓库来存储评论。</p>
+<p>在 <a href="https://github.com/">Github</a> 上创建一个空库，并且必须是 public 的，这样用户才可以查看并发布评论。</p>
+<img src="/2024/03/26/%E4%BD%BF%E7%94%A8Utterances%E4%B8%BAHexo-NexT%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/01-create-repository.png" class title="01-create-repository">
+
+<h1 id="安装-Github-App"><a href="#安装-Github-App" class="headerlink" title="安装 Github App"></a>安装 Github App</h1><p>安装地址：<a href="https://github.com/apps/utterances">https://github.com/apps/utterances</a> 。</p>
+<p>访问安装地址，进入安装页面，单击 <code>Install</code> 按钮。</p>
+<img src="/2024/03/26/%E4%BD%BF%E7%94%A8Utterances%E4%B8%BAHexo-NexT%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/02-install-app.png" class title="02-install-app">
+
+<p>选择关联的仓库，我们选择刚刚建好的仓库。</p>
+<p>至此，Github 端配置完成，接下来在网页或博客中配置使用 Utterances 。</p>
+<h1 id="Hexo-NexT-使用"><a href="#Hexo-NexT-使用" class="headerlink" title="Hexo NexT 使用"></a>Hexo NexT 使用</h1><p>编辑 Hexo 主题配置文件 <code>_config.yml</code>，添加以下配置即可：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Utterances</span></span><br><span class="line"><span class="comment"># For more information: https://utteranc.es</span></span><br><span class="line"><span class="attr">utterances:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">FreesiaNZ/freesianz.comments</span> <span class="comment"># Github repository owner and name</span></span><br><span class="line">  <span class="comment"># Available values: pathname | url | title | og:title</span></span><br><span class="line">  <span class="attr">issue_term:</span> <span class="string">pathname</span></span><br><span class="line">  <span class="comment"># Available values: github-light | github-dark | preferred-color-scheme | github-dark-orange | icy-dark | dark-blue | photon-dark | boxy-light</span></span><br><span class="line">  <span class="attr">theme:</span> <span class="string">github-light</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="美化-Utterances"><a href="#美化-Utterances" class="headerlink" title="美化 Utterances"></a>美化 Utterances</h1><p>为了更好地匹配我的自定义主题，决定修改部分样式。</p>
+<p>查找到 <code>\themes\next\source\js\third-party\comments\utterances.js</code> ：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* global NexT, CONFIG */</span></span><br><span class="line"></span><br><span class="line">document.addEventListener(&#x27;page<span class="punctuation">:</span>loaded&#x27;<span class="punctuation">,</span> () =&gt; <span class="punctuation">&#123;</span></span><br><span class="line">  if (!CONFIG.page.comments) return;</span><br><span class="line"></span><br><span class="line">  NexT.utils.loadComments(&#x27;.utterances-container&#x27;)</span><br><span class="line">    .then(() =&gt; NexT.utils.getScript(&#x27;https<span class="punctuation">:</span><span class="comment">//utteranc.es/client.js&#x27;, &#123;</span></span><br><span class="line">      attributes<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        async       <span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">        crossOrigin <span class="punctuation">:</span> &#x27;anonymous&#x27;<span class="punctuation">,</span></span><br><span class="line">        &#x27;repo&#x27;      <span class="punctuation">:</span> CONFIG.utterances.repo<span class="punctuation">,</span></span><br><span class="line">        &#x27;issue-term&#x27;<span class="punctuation">:</span> CONFIG.utterances.issue_term<span class="punctuation">,</span></span><br><span class="line">        &#x27;theme&#x27;     <span class="punctuation">:</span> CONFIG.utterances.theme</span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      parentNode<span class="punctuation">:</span> document.querySelector(&#x27;.utterances-container&#x27;)</span><br><span class="line">    <span class="punctuation">&#125;</span>));</span><br><span class="line"><span class="punctuation">&#125;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>查看 <a href="https://utteranc.es/client.js">https://utteranc.es/client.js</a> 内容，可以使用 <a href="https://www.wetools.com/js-formatter">在线 JS 代码美化工具</a> 进行解析：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">(() =&gt; <span class="punctuation">&#123;</span></span><br><span class="line">	const e = window.matchMedia(<span class="string">&quot;(prefers-color-scheme: dark)&quot;</span>)</span><br><span class="line">		.matches ? <span class="attr">&quot;github-dark&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;github-light&quot;</span><span class="punctuation">,</span></span><br><span class="line">		t = new URL(location.href)<span class="punctuation">,</span></span><br><span class="line">		n = t.searchParams.get(<span class="string">&quot;utterances&quot;</span>);</span><br><span class="line">	n &amp;&amp; (localStorage.setItem(<span class="string">&quot;utterances-session&quot;</span><span class="punctuation">,</span> n)<span class="punctuation">,</span> t.searchParams.delete(<span class="string">&quot;utterances&quot;</span>)<span class="punctuation">,</span> history.replaceState(void <span class="number">0</span><span class="punctuation">,</span> document.title<span class="punctuation">,</span> t.href));</span><br><span class="line">	let r = document.currentScript;</span><br><span class="line">	void <span class="number">0</span> === r &amp;&amp; (r = document.querySelector(&#x27;script<span class="punctuation">[</span>src^=<span class="string">&quot;https://utteranc.es/client.js&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span>script<span class="punctuation">[</span>src^=<span class="string">&quot;http://localhost:4000/client.js&quot;</span><span class="punctuation">]</span>&#x27;));</span><br><span class="line">	const i = <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span>;</span><br><span class="line">	for (let e = <span class="number">0</span>; e &lt; r.attributes.length; e++) <span class="punctuation">&#123;</span></span><br><span class="line">		const t = r.attributes.item(e);</span><br><span class="line">		i<span class="punctuation">[</span>t.name.replace(/^data-/<span class="punctuation">,</span> <span class="string">&quot;&quot;</span>)<span class="punctuation">]</span> = t.value</span><br><span class="line">	<span class="punctuation">&#125;</span></span><br><span class="line">	<span class="string">&quot;preferred-color-scheme&quot;</span> === i.theme &amp;&amp; (i.theme = e);</span><br><span class="line">	const a = document.querySelector(<span class="string">&quot;link[rel=&#x27;canonical&#x27;]&quot;</span>);</span><br><span class="line">	i.url = a ? a.href <span class="punctuation">:</span> t.origin + t.pathname + t.search<span class="punctuation">,</span> i.origin = t.origin<span class="punctuation">,</span> i.pathname = t.pathname.length &lt; <span class="number">2</span> ? <span class="attr">&quot;index&quot;</span> <span class="punctuation">:</span> t.pathname.substr(<span class="number">1</span>)</span><br><span class="line">		.replace(/\.\w+$/<span class="punctuation">,</span> <span class="string">&quot;&quot;</span>)<span class="punctuation">,</span> i.title = document.title;</span><br><span class="line">	const s = document.querySelector(<span class="string">&quot;meta[name=&#x27;description&#x27;]&quot;</span>);</span><br><span class="line">	i.description = s ? s.content <span class="punctuation">:</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">	const o = encodeURIComponent(i.description)</span><br><span class="line">		.length;</span><br><span class="line">	o &gt; <span class="number">1e3</span> &amp;&amp; (i.description = i.description.substr(<span class="number">0</span><span class="punctuation">,</span> Math.floor(<span class="number">1e3</span> * i.description.length / o)));</span><br><span class="line">	const c = document.querySelector(<span class="string">&quot;meta[property=&#x27;og:title&#x27;],meta[name=&#x27;og:title&#x27;]&quot;</span>);</span><br><span class="line">	i<span class="punctuation">[</span><span class="string">&quot;og:title&quot;</span><span class="punctuation">]</span> = c ? c.content <span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span> i.session = n || localStorage.getItem(<span class="string">&quot;utterances-session&quot;</span>) || <span class="string">&quot;&quot;</span><span class="punctuation">,</span> document.head.insertAdjacentHTML(<span class="string">&quot;afterbegin&quot;</span><span class="punctuation">,</span> <span class="string">&quot;&lt;style&gt;\n    .utterances &#123;\n      position: relative;\n      box-sizing: border-box;\n      width: 100%;\n      max-width: 760px;\n      margin-left: auto;\n      margin-right: auto;\n    &#125;\n    .utterances-frame &#123;\n      color-scheme: light;\n      position: absolute;\n      left: 0;\n      right: 0;\n      width: 1px;\n      min-width: 100%;\n      max-width: 100%;\n      height: 100%;\n      border: 0;\n    &#125;\n  &lt;/style&gt;&quot;</span>);</span><br><span class="line">	const l = r.src.match(/^https<span class="punctuation">:</span>\/\/utteranc\.es|http<span class="punctuation">:</span>\/\/localhost<span class="punctuation">:</span>\d+/)<span class="punctuation">[</span><span class="number">0</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">		h = `$<span class="punctuation">&#123;</span>l<span class="punctuation">&#125;</span>/utterances.html`;</span><br><span class="line">	r.insertAdjacentHTML(<span class="string">&quot;afterend&quot;</span><span class="punctuation">,</span> `&lt;div class=<span class="string">&quot;utterances&quot;</span>&gt;\n    &lt;iframe class=<span class="string">&quot;utterances-frame&quot;</span> title=<span class="string">&quot;Comments&quot;</span> scrolling=<span class="string">&quot;no&quot;</span> src=<span class="string">&quot;$&#123;h&#125;?$&#123;new URLSearchParams(i)&#125;&quot;</span> loading=<span class="string">&quot;lazy&quot;</span>&gt;&lt;/iframe&gt;\n  &lt;/div&gt;`);</span><br><span class="line">	const m = r.nextElementSibling;</span><br><span class="line">	r.parentElement.removeChild(r)<span class="punctuation">,</span> addEventListener(<span class="string">&quot;message&quot;</span><span class="punctuation">,</span> (e =&gt; <span class="punctuation">&#123;</span></span><br><span class="line">		if (e.origin !== l) return;</span><br><span class="line">		const t = e.data;</span><br><span class="line">		t &amp;&amp; <span class="string">&quot;resize&quot;</span> === t.type &amp;&amp; t.height &amp;&amp; (m.style.height = `$<span class="punctuation">&#123;</span>t.height<span class="punctuation">&#125;</span>px`)</span><br><span class="line">	<span class="punctuation">&#125;</span>))</span><br><span class="line"><span class="punctuation">&#125;</span>)();</span><br><span class="line"><span class="comment">//# sourceMappingURL=client.js.map</span></span><br></pre></td></tr></table></figure>
+
+<p>提取其中的 CSS 进行观察：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.utterances</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">760px</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>: auto;</span><br><span class="line">  <span class="attribute">margin-right</span>: auto;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.utterances-frame</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>-scheme: light;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">1px</span>;</span><br><span class="line">  <span class="attribute">min-width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>查找到 <code>themes\next\source\css\_common\components\third-party\utterances.styl</code> ：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">if (hexo-config(&#x27;utterances<span class="selector-class">.enable</span>&#x27;)) &#123;</span><br><span class="line">  <span class="selector-class">.utterances</span> &#123;</span><br><span class="line">    <span class="attribute">max-width</span>: unset;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参考提取出的 CSS ，根据需求修改 <code>utterances.styl</code> 文件为： 。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">if (hexo-config(&#x27;utterances<span class="selector-class">.enable</span>&#x27;)) &#123;</span><br><span class="line">  <span class="selector-class">.utterances</span> &#123;</span><br><span class="line">    <span class="attribute">max-width</span>: unset;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.8</span>) none repeat scroll <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.utterances-frame</span> &#123;</span><br><span class="line">    <span class="attribute">min-width</span>: <span class="number">90%</span> <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">max-width</span>: <span class="number">90%</span> <span class="meta">!important</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改之前的效果：</p>
+<img src="/2024/03/26/%E4%BD%BF%E7%94%A8Utterances%E4%B8%BAHexo-NexT%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/03-before.png" class title="03-before">
+
+<p>修改之后的效果：</p>
+<img src="/2024/03/26/%E4%BD%BF%E7%94%A8Utterances%E4%B8%BAHexo-NexT%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/04-after.png" class title="04-after">
+
+<p>最终评论的效果：</p>
+<img src="/2024/03/26/%E4%BD%BF%E7%94%A8Utterances%E4%B8%BAHexo-NexT%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/05-comment.png" class title="05-comment">
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://blog.lanweihong.com/posts/24011/">Hexo NexT 主题使用 utterances 搭建评论系统 | 蓝伟洪的博客</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/76237379">Hexo + NexT 使用 utterances 评论插件 | 知乎</a></p>
+]]></content>
+      <categories>
+        <category>How to Start a Personal Blog</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>NexT</tag>
+        <tag>Utterances</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>基于 Docker 构建 Prometheus + Grafana 监控集群系统</title>
     <url>/2024/01/03/%E5%9F%BA%E4%BA%8EDocker%E6%9E%84%E5%BB%BAPrometheus+Grafana%E7%9B%91%E6%8E%A7%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><table>
@@ -2177,155 +2326,6 @@
         <tag>docker</tag>
         <tag>prometheus</tag>
         <tag>grafana</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 Hexo &amp; Github 搭建个人博客</title>
-    <url>/2023/12/24/%E4%BD%BF%E7%94%A8Hexo%E5%92%8CGithub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h1 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h1><h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git --version</span><br><span class="line">git version 2.35.1.windows.2</span><br></pre></td></tr></table></figure>
-
-<h2 id="npm-node-js"><a href="#npm-node-js" class="headerlink" title="npm &amp; node.js"></a>npm &amp; node.js</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm version</span><br><span class="line">&#123;</span><br><span class="line">  npm: <span class="string">&#x27;9.1.2&#x27;</span>,</span><br><span class="line">  node: <span class="string">&#x27;16.15.1&#x27;</span>,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<h1 id="生成-SSH-key"><a href="#生成-SSH-key" class="headerlink" title="生成 SSH key"></a>生成 SSH key</h1><p>如果你的 SSH key 未安装，执行以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;@example.com&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p><code>@example.com</code> 是 Github 账户的注册邮箱。</p>
-<p>执行命令后，ENTER 三次后出现 key path。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">C:\...\.ssh\id_rsa.pub</span><br></pre></td></tr></table></figure>
-
-<p>使用记事本打开 <code>id_rsa.pub</code> 文件并复制内容。</p>
-<h1 id="Github-创建仓库"><a href="#Github-创建仓库" class="headerlink" title="Github 创建仓库"></a>Github 创建仓库</h1><p>创建名为 <code>Username.github.io</code> 的新仓库，<code>Username</code> 为 Github 账户名。</p>
-<p>输入仓库名的界面应该显示为：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Username / Username.github.io</span><br></pre></td></tr></table></figure>
-
-<h1 id="Github-新建-SSH-key"><a href="#Github-新建-SSH-key" class="headerlink" title="Github 新建 SSH key"></a>Github 新建 SSH key</h1><p>打开 Github <code>Settings</code> 中的 <code>SSH and GPG keys</code>，点击新建一个 SSH key：</p>
-<p>其中 <code>Title</code> 随意, <code>Key</code> 是 <code>id_rsa.pub</code> 文件的内容。</p>
-<p>使用以下命令来测试 SSH 连接是否成功：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-
-<p>出现以下信息代表成功：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Hi Username! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h1><p>执行以下命令安装 Hexo：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
-
-<p>如果失败执行以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
-<h1 id="Hexo-初始化"><a href="#Hexo-初始化" class="headerlink" title="Hexo 初始化"></a>Hexo 初始化</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init FileName</span><br><span class="line"><span class="built_in">cd</span> FileName</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-
-<p><code>FileName</code> 为你的博客文件夹。</p>
-<h1 id="部署-Hexo"><a href="#部署-Hexo" class="headerlink" title="部署 Hexo"></a>部署 Hexo</h1><p>复制 Github 仓库下 <code>Clone with SSH</code> 的内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git@github.com:Username/username.github.io.git</span><br></pre></td></tr></table></figure>
-
-<p>打开 <code>Filename</code> 文件夹下的 <code>_config.yml</code> 文件，repo 后复制上一步的内容：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:Username/username.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-
-<p>注意 repo 后的空格。</p>
-<h1 id="发布-Hexo"><a href="#发布-Hexo" class="headerlink" title="发布 Hexo"></a>发布 Hexo</h1><p><code>Filename</code> 文件夹下执行以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g <span class="comment"># generate</span></span><br><span class="line">hexo s <span class="comment"># server</span></span><br></pre></td></tr></table></figure>
-
-<p>访问 <a href="http://localhost:4000/">http://localhost:4000</a> 来预览，端口默认 4000 可以自定义。</p>
-<p>执行以下命令上传至 Github 仓库：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d <span class="comment"># upload</span></span><br></pre></td></tr></table></figure>
-
-<p>访问 <a href="https://username.github.io/">https://username.github.io</a> 即可。</p>
-<h1 id="撰写博客"><a href="#撰写博客" class="headerlink" title="撰写博客"></a>撰写博客</h1><p>执行下列命令来创建一篇新页面或者新文章：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Hexo 有 3 种默认 layout：<code>post</code>、<code>page</code> 和 <code>draft</code>。</p>
-<p>首先手动创建 <code>about</code> 、<code>categories</code> 和 <code>tags</code> 页面，并添加 layout 属性：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page about</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 关于</span><br><span class="line">date: 2023-12-24 17:00:00</span><br><span class="line">layout: about</span><br><span class="line">---​</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 分类</span><br><span class="line">date: 2023-12-24 17:00:00</span><br><span class="line">layout: categories</span><br><span class="line">---​</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">date: 2023-12-24 17:00:00</span><br><span class="line">layout: tags</span><br><span class="line">---​</span><br></pre></td></tr></table></figure>
-
-<p>如果我们想写一篇名为 <code>test</code> 的文章，在 <code>A</code> 分类，标签为 <code>B</code> 和 <code>C</code>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new post <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: test</span><br><span class="line">date: 2023-12-24 17:00:00</span><br><span class="line">categories: </span><br><span class="line"><span class="bullet">-</span> A</span><br><span class="line">tags: </span><br><span class="line"><span class="bullet">-</span> B</span><br><span class="line"><span class="section">- C</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
-
-<p>写完之后执行以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s </span><br><span class="line">hexo d </span><br></pre></td></tr></table></figure>
-
-<p>执行 <code>hexo s</code> 即可打开 <a href="http://localhost:4000/">http://localhost:4000</a> 预览文章效果。 </p>
-<p>执行 <code>hexo d</code> 上传至 Github，等待片刻 <a href="https://username.github.io/">https://username.github.io</a> 查看博客。</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://zhuanlan.zhihu.com/p/655349835">手把手教你使用 Hexo+GitHub 搭建个人博客并发布文章-知乎</a><br><a href="https://zhuanlan.zhihu.com/p/376366002">Hexo+Github 搭建博客-知乎</a><br><a href="https://www.yunyoujun.cn/posts/how-to-build-your-site#%E4%BD%BF%E7%94%A8-hexo-%E4%B8%BB%E9%A2%98">教你如何从零开始搭建一个属于自己的网站-云游君的小站</a><br><a href="https://zhuanlan.zhihu.com/p/251363116#:~:text=%E6%B5%8B%E8%AF%95hexo%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F%EF%BC%9A%20%24%20hexo%20new%20test%20%24%20hexo%20g,test%E8%A1%A8%E7%A4%BA%E6%96%B0%E5%BB%BA%E4%B8%80%E7%AF%87%E5%90%8D%E4%B8%BAtest%E7%9A%84%E5%8D%9A%E6%96%87%EF%BC%8Chexo%20g%E8%A1%A8%E7%A4%BA%E7%94%9F%E6%88%90%EF%BC%8C%E6%98%AFhexo%20generate%E7%9A%84%E7%AE%80%E5%86%99%EF%BC%8Chexo%20s%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8Chexo%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E6%98%AFhexo%20server%E7%9A%84%E7%AE%80%E5%86%99%E3%80%82%20%E6%88%90%E5%8A%9F%E5%90%8E%E4%BC%9A%E6%9C%89%E5%A6%82%E4%B8%8B%E6%8F%90%E7%A4%BA%EF%BC%8C%E8%BF%9B%E5%85%A5%20http%3A%2F%2Flocalhost%3A4000%20%E5%8D%B3%E5%8F%AF%E7%9C%8B%E5%88%B0%E5%88%9A%E5%88%9A%E7%94%9F%E6%88%90%E7%9A%84%E7%BD%91%E9%A1%B5%E3%80%82">hexo 基本安装及配置-知乎</a></p>
-<p><a href="https://hexo.io/zh-cn/docs/writing.html">写作-Hexo</a><br><a href="https://zhuanlan.zhihu.com/p/132823826">使用 Hexo 新建、编辑并预览文章-知乎</a></p>
-]]></content>
-      <categories>
-        <category>How to Start a Personal Blog</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Github</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 Utterances 为 Hexo + NexT 博客添加评论</title>
-    <url>/2024/03/26/%E4%BD%BF%E7%94%A8Utterances%E4%B8%BAHexo-NexT%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/</url>
-    <content><![CDATA[<p>Utterances 是一个基于 Github issues 构建的轻量级评论插件，只有使用 Github 账号登录后才能评论。NexT 7.0.0 版本已经集成了 Utterances ，故非常方便使用 Utterances 来为 Hexo + NexT 博客添加评论。</p>
-<p>Offical：<a href="https://utteranc.es/">https://utteranc.es/</a> 。</p>
-<p>Github：<a href="https://github.com/utterance/utterances">https://github.com/utterance/utterances</a> 。</p>
-<span id="more"></span>
-
-<h1 id="新建-Github-仓库"><a href="#新建-Github-仓库" class="headerlink" title="新建 Github 仓库"></a>新建 Github 仓库</h1><p>由于是基于 Github issues，我们需要一个仓库来存储评论。</p>
-<p>在 <a href="https://github.com/">Github</a> 上创建一个空库，并且必须是 public 的，这样用户才可以查看并发布评论。</p>
-<img src="/2024/03/26/%E4%BD%BF%E7%94%A8Utterances%E4%B8%BAHexo-NexT%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/01-create-repository.png" class title="01-create-repository">
-
-<h1 id="安装-Github-App"><a href="#安装-Github-App" class="headerlink" title="安装 Github App"></a>安装 Github App</h1><p>安装地址：<a href="https://github.com/apps/utterances">https://github.com/apps/utterances</a> 。</p>
-<p>访问安装地址，进入安装页面，单击 <code>Install</code> 按钮。</p>
-<img src="/2024/03/26/%E4%BD%BF%E7%94%A8Utterances%E4%B8%BAHexo-NexT%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/02-install-app.png" class title="02-install-app">
-
-<p>选择关联的仓库，我们选择刚刚建好的仓库。</p>
-<p>至此，Github 端配置完成，接下来在网页或博客中配置使用 Utterances 。</p>
-<h1 id="Hexo-NexT-使用"><a href="#Hexo-NexT-使用" class="headerlink" title="Hexo NexT 使用"></a>Hexo NexT 使用</h1><p>编辑 Hexo 主题配置文件 <code>_config.yml</code>，添加以下配置即可：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Utterances</span></span><br><span class="line"><span class="comment"># For more information: https://utteranc.es</span></span><br><span class="line"><span class="attr">utterances:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">FreesiaNZ/freesianz.comments</span> <span class="comment"># Github repository owner and name</span></span><br><span class="line">  <span class="comment"># Available values: pathname | url | title | og:title</span></span><br><span class="line">  <span class="attr">issue_term:</span> <span class="string">pathname</span></span><br><span class="line">  <span class="comment"># Available values: github-light | github-dark | preferred-color-scheme | github-dark-orange | icy-dark | dark-blue | photon-dark | boxy-light</span></span><br><span class="line">  <span class="attr">theme:</span> <span class="string">github-light</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="美化-Utterances"><a href="#美化-Utterances" class="headerlink" title="美化 Utterances"></a>美化 Utterances</h1><p>为了更好地匹配我的自定义主题，决定修改部分样式。</p>
-<p>查找到 <code>\themes\next\source\js\third-party\comments\utterances.js</code> ：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* global NexT, CONFIG */</span></span><br><span class="line"></span><br><span class="line">document.addEventListener(&#x27;page<span class="punctuation">:</span>loaded&#x27;<span class="punctuation">,</span> () =&gt; <span class="punctuation">&#123;</span></span><br><span class="line">  if (!CONFIG.page.comments) return;</span><br><span class="line"></span><br><span class="line">  NexT.utils.loadComments(&#x27;.utterances-container&#x27;)</span><br><span class="line">    .then(() =&gt; NexT.utils.getScript(&#x27;https<span class="punctuation">:</span><span class="comment">//utteranc.es/client.js&#x27;, &#123;</span></span><br><span class="line">      attributes<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        async       <span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">        crossOrigin <span class="punctuation">:</span> &#x27;anonymous&#x27;<span class="punctuation">,</span></span><br><span class="line">        &#x27;repo&#x27;      <span class="punctuation">:</span> CONFIG.utterances.repo<span class="punctuation">,</span></span><br><span class="line">        &#x27;issue-term&#x27;<span class="punctuation">:</span> CONFIG.utterances.issue_term<span class="punctuation">,</span></span><br><span class="line">        &#x27;theme&#x27;     <span class="punctuation">:</span> CONFIG.utterances.theme</span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      parentNode<span class="punctuation">:</span> document.querySelector(&#x27;.utterances-container&#x27;)</span><br><span class="line">    <span class="punctuation">&#125;</span>));</span><br><span class="line"><span class="punctuation">&#125;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>查看 <a href="https://utteranc.es/client.js">https://utteranc.es/client.js</a> 内容，可以使用 <a href="https://www.wetools.com/js-formatter">在线 JS 代码美化工具</a> 进行解析：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">(() =&gt; <span class="punctuation">&#123;</span></span><br><span class="line">	const e = window.matchMedia(<span class="string">&quot;(prefers-color-scheme: dark)&quot;</span>)</span><br><span class="line">		.matches ? <span class="attr">&quot;github-dark&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;github-light&quot;</span><span class="punctuation">,</span></span><br><span class="line">		t = new URL(location.href)<span class="punctuation">,</span></span><br><span class="line">		n = t.searchParams.get(<span class="string">&quot;utterances&quot;</span>);</span><br><span class="line">	n &amp;&amp; (localStorage.setItem(<span class="string">&quot;utterances-session&quot;</span><span class="punctuation">,</span> n)<span class="punctuation">,</span> t.searchParams.delete(<span class="string">&quot;utterances&quot;</span>)<span class="punctuation">,</span> history.replaceState(void <span class="number">0</span><span class="punctuation">,</span> document.title<span class="punctuation">,</span> t.href));</span><br><span class="line">	let r = document.currentScript;</span><br><span class="line">	void <span class="number">0</span> === r &amp;&amp; (r = document.querySelector(&#x27;script<span class="punctuation">[</span>src^=<span class="string">&quot;https://utteranc.es/client.js&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span>script<span class="punctuation">[</span>src^=<span class="string">&quot;http://localhost:4000/client.js&quot;</span><span class="punctuation">]</span>&#x27;));</span><br><span class="line">	const i = <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span>;</span><br><span class="line">	for (let e = <span class="number">0</span>; e &lt; r.attributes.length; e++) <span class="punctuation">&#123;</span></span><br><span class="line">		const t = r.attributes.item(e);</span><br><span class="line">		i<span class="punctuation">[</span>t.name.replace(/^data-/<span class="punctuation">,</span> <span class="string">&quot;&quot;</span>)<span class="punctuation">]</span> = t.value</span><br><span class="line">	<span class="punctuation">&#125;</span></span><br><span class="line">	<span class="string">&quot;preferred-color-scheme&quot;</span> === i.theme &amp;&amp; (i.theme = e);</span><br><span class="line">	const a = document.querySelector(<span class="string">&quot;link[rel=&#x27;canonical&#x27;]&quot;</span>);</span><br><span class="line">	i.url = a ? a.href <span class="punctuation">:</span> t.origin + t.pathname + t.search<span class="punctuation">,</span> i.origin = t.origin<span class="punctuation">,</span> i.pathname = t.pathname.length &lt; <span class="number">2</span> ? <span class="attr">&quot;index&quot;</span> <span class="punctuation">:</span> t.pathname.substr(<span class="number">1</span>)</span><br><span class="line">		.replace(/\.\w+$/<span class="punctuation">,</span> <span class="string">&quot;&quot;</span>)<span class="punctuation">,</span> i.title = document.title;</span><br><span class="line">	const s = document.querySelector(<span class="string">&quot;meta[name=&#x27;description&#x27;]&quot;</span>);</span><br><span class="line">	i.description = s ? s.content <span class="punctuation">:</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">	const o = encodeURIComponent(i.description)</span><br><span class="line">		.length;</span><br><span class="line">	o &gt; <span class="number">1e3</span> &amp;&amp; (i.description = i.description.substr(<span class="number">0</span><span class="punctuation">,</span> Math.floor(<span class="number">1e3</span> * i.description.length / o)));</span><br><span class="line">	const c = document.querySelector(<span class="string">&quot;meta[property=&#x27;og:title&#x27;],meta[name=&#x27;og:title&#x27;]&quot;</span>);</span><br><span class="line">	i<span class="punctuation">[</span><span class="string">&quot;og:title&quot;</span><span class="punctuation">]</span> = c ? c.content <span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span> i.session = n || localStorage.getItem(<span class="string">&quot;utterances-session&quot;</span>) || <span class="string">&quot;&quot;</span><span class="punctuation">,</span> document.head.insertAdjacentHTML(<span class="string">&quot;afterbegin&quot;</span><span class="punctuation">,</span> <span class="string">&quot;&lt;style&gt;\n    .utterances &#123;\n      position: relative;\n      box-sizing: border-box;\n      width: 100%;\n      max-width: 760px;\n      margin-left: auto;\n      margin-right: auto;\n    &#125;\n    .utterances-frame &#123;\n      color-scheme: light;\n      position: absolute;\n      left: 0;\n      right: 0;\n      width: 1px;\n      min-width: 100%;\n      max-width: 100%;\n      height: 100%;\n      border: 0;\n    &#125;\n  &lt;/style&gt;&quot;</span>);</span><br><span class="line">	const l = r.src.match(/^https<span class="punctuation">:</span>\/\/utteranc\.es|http<span class="punctuation">:</span>\/\/localhost<span class="punctuation">:</span>\d+/)<span class="punctuation">[</span><span class="number">0</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">		h = `$<span class="punctuation">&#123;</span>l<span class="punctuation">&#125;</span>/utterances.html`;</span><br><span class="line">	r.insertAdjacentHTML(<span class="string">&quot;afterend&quot;</span><span class="punctuation">,</span> `&lt;div class=<span class="string">&quot;utterances&quot;</span>&gt;\n    &lt;iframe class=<span class="string">&quot;utterances-frame&quot;</span> title=<span class="string">&quot;Comments&quot;</span> scrolling=<span class="string">&quot;no&quot;</span> src=<span class="string">&quot;$&#123;h&#125;?$&#123;new URLSearchParams(i)&#125;&quot;</span> loading=<span class="string">&quot;lazy&quot;</span>&gt;&lt;/iframe&gt;\n  &lt;/div&gt;`);</span><br><span class="line">	const m = r.nextElementSibling;</span><br><span class="line">	r.parentElement.removeChild(r)<span class="punctuation">,</span> addEventListener(<span class="string">&quot;message&quot;</span><span class="punctuation">,</span> (e =&gt; <span class="punctuation">&#123;</span></span><br><span class="line">		if (e.origin !== l) return;</span><br><span class="line">		const t = e.data;</span><br><span class="line">		t &amp;&amp; <span class="string">&quot;resize&quot;</span> === t.type &amp;&amp; t.height &amp;&amp; (m.style.height = `$<span class="punctuation">&#123;</span>t.height<span class="punctuation">&#125;</span>px`)</span><br><span class="line">	<span class="punctuation">&#125;</span>))</span><br><span class="line"><span class="punctuation">&#125;</span>)();</span><br><span class="line"><span class="comment">//# sourceMappingURL=client.js.map</span></span><br></pre></td></tr></table></figure>
-
-<p>提取其中的 CSS 进行观察：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.utterances</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">760px</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>: auto;</span><br><span class="line">  <span class="attribute">margin-right</span>: auto;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.utterances-frame</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>-scheme: light;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">1px</span>;</span><br><span class="line">  <span class="attribute">min-width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>查找到 <code>themes\next\source\css\_common\components\third-party\utterances.styl</code> ：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">if (hexo-config(&#x27;utterances<span class="selector-class">.enable</span>&#x27;)) &#123;</span><br><span class="line">  <span class="selector-class">.utterances</span> &#123;</span><br><span class="line">    <span class="attribute">max-width</span>: unset;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>参考提取出的 CSS ，根据需求修改 <code>utterances.styl</code> 文件为： 。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">if (hexo-config(&#x27;utterances<span class="selector-class">.enable</span>&#x27;)) &#123;</span><br><span class="line">  <span class="selector-class">.utterances</span> &#123;</span><br><span class="line">    <span class="attribute">max-width</span>: unset;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.8</span>) none repeat scroll <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.utterances-frame</span> &#123;</span><br><span class="line">    <span class="attribute">min-width</span>: <span class="number">90%</span> <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">max-width</span>: <span class="number">90%</span> <span class="meta">!important</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>修改之前的效果：</p>
-<img src="/2024/03/26/%E4%BD%BF%E7%94%A8Utterances%E4%B8%BAHexo-NexT%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/03-before.png" class title="03-before">
-
-<p>修改之后的效果：</p>
-<img src="/2024/03/26/%E4%BD%BF%E7%94%A8Utterances%E4%B8%BAHexo-NexT%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/04-after.png" class title="04-after">
-
-<p>最终评论的效果：</p>
-<img src="/2024/03/26/%E4%BD%BF%E7%94%A8Utterances%E4%B8%BAHexo-NexT%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/05-comment.png" class title="05-comment">
-
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://blog.lanweihong.com/posts/24011/">Hexo NexT 主题使用 utterances 搭建评论系统 | 蓝伟洪的博客</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/76237379">Hexo + NexT 使用 utterances 评论插件 | 知乎</a></p>
-]]></content>
-      <categories>
-        <category>How to Start a Personal Blog</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>NexT</tag>
-        <tag>Utterances</tag>
       </tags>
   </entry>
 </search>
