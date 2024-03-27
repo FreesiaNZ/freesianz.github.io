@@ -2403,6 +2403,12 @@ ul.breadcrumb li:last-child {
 }
 .utterances {
   max-width: unset;
+  background: rgba(255,255,255,0.8) none repeat scroll !important;
+  border-radius: 10px;
+}
+.utterances-frame {
+  min-width: 95% !important;
+  max-width: 95% !important;
 }
 .search-active {
   overflow: hidden;
@@ -2789,7 +2795,7 @@ header.header {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #77ff5e;
+  background: #5dffaa;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
