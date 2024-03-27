@@ -2403,8 +2403,6 @@ ul.breadcrumb li:last-child {
 }
 .utterances {
   max-width: unset;
-  background: rgba(255,255,255,0.8) none repeat scroll !important;
-  border-radius: 10px;
 }
 .search-active {
   overflow: hidden;
@@ -2791,7 +2789,7 @@ header.header {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #73d9c4;
+  background: #ffcbd9;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);

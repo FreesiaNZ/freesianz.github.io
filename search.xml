@@ -13,83 +13,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CentOS-7 安装 docker</title>
-    <url>/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/</url>
-    <content><![CDATA[<h1 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h1><blockquote>
-<p>使用阿里云 yum 源安装 Docker-CE 。</p>
-</blockquote>
-<p>确保 NAT 网络，可以 ping 通百度。</p>
-<span id="more"></span>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping baidu.com</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/01-ping-baidu.png" class>
-
-<p>更换为阿里云 yum 源：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/yum.repos.d</span><br><span class="line">find / -name  <span class="string">&quot;*.repo&quot;</span> -<span class="built_in">exec</span> <span class="built_in">mv</span> &#123;&#125; &#123;&#125;.bak \;</span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/02-command-1.png" class>
-
-<p>清除 yum 缓存，安装 yum 工具包：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum clean all</span><br><span class="line">yum -y install yum-utils</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/03-command-2.png" class>
-
-<p>配置 yum 仓库：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/04-command-3.png" class>
-
-<p>列出 docker-ce 版本：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum list docker-ce --showduplicates</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/05-list-docker-version.png" class>
-
-<p>安装 docker-ce ：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install docker-ce -y</span><br></pre></td></tr></table></figure>
-
-<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/06-install-docker.png" class>
-
-<p>启动 docker 服务：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl start docker.service</span><br></pre></td></tr></table></figure>
-
-<p>挂载 &#x2F;run&#x2F;docker.sock：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ll /run/docker.sock</span><br></pre></td></tr></table></figure>
-
-<p>创建用户 docker 到 docker 用户组：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">usermod -aG docker docker</span><br></pre></td></tr></table></figure>
-
-<p>配置 docker 镜像加速器：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /etc/docker</span><br><span class="line"><span class="built_in">tee</span> /etc/docker/daemon.json &lt;&lt;-<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://uvbz951q.mirror.aliyuncs.com&quot;</span>]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
-
-<p>启动 docker 服务：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br><span class="line">systemctl <span class="built_in">enable</span>  docker</span><br><span class="line">docker info</span><br></pre></td></tr></table></figure>
-
-<h1 id="命令以及应用"><a href="#命令以及应用" class="headerlink" title="命令以及应用"></a>命令以及应用</h1><h2 id="docker-命令"><a href="#docker-命令" class="headerlink" title="docker 命令"></a>docker 命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker search nginx   <span class="comment">#搜索和nginx相关的镜像</span></span><br><span class="line">docker pull nginx   <span class="comment">#拉取镜像默认版本（下载）</span></span><br><span class="line">docker pull nginx:1.13.2    <span class="comment">#拉取镜像指定版本</span></span><br><span class="line">docker run nginx       <span class="comment">#运行一个镜像(如果启动后不做任何操作，容器就会断开连接)</span></span><br><span class="line">docker run -it ubuntu  /bin/bash    <span class="comment">#获取终端/bin/bash 打开容器（让容器运行在前台）</span></span><br><span class="line">docker run -itd httpd  /bin/bash     <span class="comment">#在后台运行新镜像</span></span><br><span class="line">docker attach  <span class="built_in">id</span>号       <span class="comment">#将容器调到前台，进入up状态的容器内部</span></span><br><span class="line">docker start  <span class="built_in">id</span>号         <span class="comment">#启动停止的容器（必须在docker ps 中有）</span></span><br><span class="line">docker logs  ID号         <span class="comment">#查看输出日志</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">exit</span>            //退出容器，容器是关闭状态</span><br><span class="line">ctrl +p +q  //退出容器，并且容器是up状态</span><br><span class="line"><span class="built_in">read</span> escape  sequence  //退出容器，并且容器是up状态</span><br><span class="line"> </span><br><span class="line">docker ps -a          <span class="comment">#列出所有的容器</span></span><br><span class="line">docker ps             <span class="comment">#列出所有运行中的容器</span></span><br><span class="line">docker container <span class="built_in">ls</span>   <span class="comment">#列出所有运行中的容器</span></span><br><span class="line">docker ps -qa           <span class="comment">#仅输出所有容器的id号</span></span><br><span class="line">docker <span class="built_in">rm</span>  ID号        <span class="comment">#删除指定容器</span></span><br><span class="line">docker <span class="built_in">rm</span> -f             <span class="comment">#删除正在运行的容器</span></span><br><span class="line">docker <span class="built_in">rm</span> -f `docker ps -qa`     <span class="comment">#删除所有的容器</span></span><br><span class="line"> </span><br><span class="line">docker images          <span class="comment">#列出所有镜像</span></span><br><span class="line">docker rmi ID号        <span class="comment">#删除镜像</span></span><br><span class="line">docker save -o busy.tar busybox    <span class="comment">#备份镜像</span></span><br><span class="line">docker load -i busy.tar            <span class="comment">#导入镜像</span></span><br><span class="line"> </span><br><span class="line">容器意外中断：</span><br><span class="line">docker run --restart always       <span class="comment">#不管什么原因停止，全部自动重启</span></span><br><span class="line">docker run --<span class="built_in">help</span>                     <span class="comment">#查看帮助</span></span><br><span class="line">man docker run                <span class="comment">#查看详细帮助</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="运行命令实例"><a href="#运行命令实例" class="headerlink" title="运行命令实例"></a>运行命令实例</h2><p>eg：在容器内运行应用程序</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run ubuntu:latest /bin/echo <span class="string">&quot;Hello World&quot;</span>  运行一个容器并执行命令</span><br><span class="line">    （一个容器只运行一个服务，运行完就被杀死了）</span><br><span class="line">docker ps -a   查看</span><br></pre></td></tr></table></figure>
-
-<p>eg：运行交互式容器：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -i -t ubuntu:latest /bin/bash</span><br><span class="line">    -t：在新容器内指定一个伪终端或终端。</span><br><span class="line">    -i：允许你对容器内的标准输入 (STDIN) 进行交互。</span><br></pre></td></tr></table></figure>
-
-<p>eg：让容器运行在后台<br>    -d   在后台运行<br>    -c   指定命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d ubuntu:latest /bin/bash -c <span class="string">&quot;while true; do echo &quot;</span>666<span class="string">&quot;; sleep 1; done&quot;</span></span><br><span class="line">docker run -d  /bin/bash -c <span class="string">&quot;for i in &#123;1..100&#125;; do echo <span class="variable">$i</span>;sleep 1;done&quot;</span></span><br><span class="line">docker logs  ID号   <span class="comment">#查看输出日志</span></span><br><span class="line">docker logs -f -t --<span class="built_in">tail</span>=100 myredis    <span class="comment">#查看最后100行日志，-f：跟踪实时日志 -t:显示时间戳</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="运行容器用到的参数"><a href="#运行容器用到的参数" class="headerlink" title="运行容器用到的参数"></a>运行容器用到的参数</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run --name redis -p 6379:6379 -u root --privileged=<span class="literal">true</span> \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-itd redis</span><br></pre></td></tr></table></figure>
-
-<p>-u root      #指定以root身份运行<br>–privileged&#x3D;true    #让container内的root拥有真正的root权限<br>-v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime:ro　　#修改容器的时间，与宿主机一致</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.cnblogs.com/cfzy/p/14633166.html">CentOS7 安装搭建 docker 环境-博客园</a></p>
-]]></content>
-      <categories>
-        <category>Download &amp; Install &amp; Configure</category>
-      </categories>
-      <tags>
-        <tag>CentOS</tag>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CentOS-7 安装 nginx</title>
     <url>/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85nginx/</url>
     <content><![CDATA[<h1 id="安装所需环境"><a href="#安装所需环境" class="headerlink" title="安装所需环境"></a>安装所需环境</h1><p>查看 <code>C++</code> 环境是否安装，未安装使用命令安装：</p>
@@ -352,6 +275,225 @@
       </tags>
   </entry>
   <entry>
+    <title>CentOS-7 安装 docker</title>
+    <url>/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/</url>
+    <content><![CDATA[<h1 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h1><blockquote>
+<p>使用阿里云 yum 源安装 Docker-CE 。</p>
+</blockquote>
+<p>确保 NAT 网络，可以 ping 通百度。</p>
+<span id="more"></span>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping baidu.com</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/01-ping-baidu.png" class>
+
+<p>更换为阿里云 yum 源：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/yum.repos.d</span><br><span class="line">find / -name  <span class="string">&quot;*.repo&quot;</span> -<span class="built_in">exec</span> <span class="built_in">mv</span> &#123;&#125; &#123;&#125;.bak \;</span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/02-command-1.png" class>
+
+<p>清除 yum 缓存，安装 yum 工具包：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum clean all</span><br><span class="line">yum -y install yum-utils</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/03-command-2.png" class>
+
+<p>配置 yum 仓库：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/04-command-3.png" class>
+
+<p>列出 docker-ce 版本：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum list docker-ce --showduplicates</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/05-list-docker-version.png" class>
+
+<p>安装 docker-ce ：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install docker-ce -y</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/01/03/CentOS-7%E5%AE%89%E8%A3%85docker/06-install-docker.png" class>
+
+<p>启动 docker 服务：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl start docker.service</span><br></pre></td></tr></table></figure>
+
+<p>挂载 &#x2F;run&#x2F;docker.sock：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ll /run/docker.sock</span><br></pre></td></tr></table></figure>
+
+<p>创建用户 docker 到 docker 用户组：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">usermod -aG docker docker</span><br></pre></td></tr></table></figure>
+
+<p>配置 docker 镜像加速器：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /etc/docker</span><br><span class="line"><span class="built_in">tee</span> /etc/docker/daemon.json &lt;&lt;-<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://uvbz951q.mirror.aliyuncs.com&quot;</span>]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<p>启动 docker 服务：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br><span class="line">systemctl <span class="built_in">enable</span>  docker</span><br><span class="line">docker info</span><br></pre></td></tr></table></figure>
+
+<h1 id="命令以及应用"><a href="#命令以及应用" class="headerlink" title="命令以及应用"></a>命令以及应用</h1><h2 id="docker-命令"><a href="#docker-命令" class="headerlink" title="docker 命令"></a>docker 命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker search nginx   <span class="comment">#搜索和nginx相关的镜像</span></span><br><span class="line">docker pull nginx   <span class="comment">#拉取镜像默认版本（下载）</span></span><br><span class="line">docker pull nginx:1.13.2    <span class="comment">#拉取镜像指定版本</span></span><br><span class="line">docker run nginx       <span class="comment">#运行一个镜像(如果启动后不做任何操作，容器就会断开连接)</span></span><br><span class="line">docker run -it ubuntu  /bin/bash    <span class="comment">#获取终端/bin/bash 打开容器（让容器运行在前台）</span></span><br><span class="line">docker run -itd httpd  /bin/bash     <span class="comment">#在后台运行新镜像</span></span><br><span class="line">docker attach  <span class="built_in">id</span>号       <span class="comment">#将容器调到前台，进入up状态的容器内部</span></span><br><span class="line">docker start  <span class="built_in">id</span>号         <span class="comment">#启动停止的容器（必须在docker ps 中有）</span></span><br><span class="line">docker logs  ID号         <span class="comment">#查看输出日志</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">exit</span>            //退出容器，容器是关闭状态</span><br><span class="line">ctrl +p +q  //退出容器，并且容器是up状态</span><br><span class="line"><span class="built_in">read</span> escape  sequence  //退出容器，并且容器是up状态</span><br><span class="line"> </span><br><span class="line">docker ps -a          <span class="comment">#列出所有的容器</span></span><br><span class="line">docker ps             <span class="comment">#列出所有运行中的容器</span></span><br><span class="line">docker container <span class="built_in">ls</span>   <span class="comment">#列出所有运行中的容器</span></span><br><span class="line">docker ps -qa           <span class="comment">#仅输出所有容器的id号</span></span><br><span class="line">docker <span class="built_in">rm</span>  ID号        <span class="comment">#删除指定容器</span></span><br><span class="line">docker <span class="built_in">rm</span> -f             <span class="comment">#删除正在运行的容器</span></span><br><span class="line">docker <span class="built_in">rm</span> -f `docker ps -qa`     <span class="comment">#删除所有的容器</span></span><br><span class="line"> </span><br><span class="line">docker images          <span class="comment">#列出所有镜像</span></span><br><span class="line">docker rmi ID号        <span class="comment">#删除镜像</span></span><br><span class="line">docker save -o busy.tar busybox    <span class="comment">#备份镜像</span></span><br><span class="line">docker load -i busy.tar            <span class="comment">#导入镜像</span></span><br><span class="line"> </span><br><span class="line">容器意外中断：</span><br><span class="line">docker run --restart always       <span class="comment">#不管什么原因停止，全部自动重启</span></span><br><span class="line">docker run --<span class="built_in">help</span>                     <span class="comment">#查看帮助</span></span><br><span class="line">man docker run                <span class="comment">#查看详细帮助</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="运行命令实例"><a href="#运行命令实例" class="headerlink" title="运行命令实例"></a>运行命令实例</h2><p>eg：在容器内运行应用程序</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run ubuntu:latest /bin/echo <span class="string">&quot;Hello World&quot;</span>  运行一个容器并执行命令</span><br><span class="line">    （一个容器只运行一个服务，运行完就被杀死了）</span><br><span class="line">docker ps -a   查看</span><br></pre></td></tr></table></figure>
+
+<p>eg：运行交互式容器：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -i -t ubuntu:latest /bin/bash</span><br><span class="line">    -t：在新容器内指定一个伪终端或终端。</span><br><span class="line">    -i：允许你对容器内的标准输入 (STDIN) 进行交互。</span><br></pre></td></tr></table></figure>
+
+<p>eg：让容器运行在后台<br>    -d   在后台运行<br>    -c   指定命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d ubuntu:latest /bin/bash -c <span class="string">&quot;while true; do echo &quot;</span>666<span class="string">&quot;; sleep 1; done&quot;</span></span><br><span class="line">docker run -d  /bin/bash -c <span class="string">&quot;for i in &#123;1..100&#125;; do echo <span class="variable">$i</span>;sleep 1;done&quot;</span></span><br><span class="line">docker logs  ID号   <span class="comment">#查看输出日志</span></span><br><span class="line">docker logs -f -t --<span class="built_in">tail</span>=100 myredis    <span class="comment">#查看最后100行日志，-f：跟踪实时日志 -t:显示时间戳</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="运行容器用到的参数"><a href="#运行容器用到的参数" class="headerlink" title="运行容器用到的参数"></a>运行容器用到的参数</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run --name redis -p 6379:6379 -u root --privileged=<span class="literal">true</span> \</span><br><span class="line">-v /etc/localtime:/etc/localtime \</span><br><span class="line">-itd redis</span><br></pre></td></tr></table></figure>
+
+<p>-u root      #指定以root身份运行<br>–privileged&#x3D;true    #让container内的root拥有真正的root权限<br>-v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime:ro　　#修改容器的时间，与宿主机一致</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.cnblogs.com/cfzy/p/14633166.html">CentOS7 安装搭建 docker 环境-博客园</a></p>
+]]></content>
+      <categories>
+        <category>Download &amp; Install &amp; Configure</category>
+      </categories>
+      <tags>
+        <tag>CentOS</tag>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HElib</title>
+    <url>/2023/12/28/HElib/</url>
+    <content><![CDATA[<h1 id="HElib-库介绍"><a href="#HElib-库介绍" class="headerlink" title="HElib 库介绍"></a>HElib 库介绍</h1><p>HElib(Homomorphic Encryption library)是一个用于同态加密的开源库。HElib 主要由 Shai Halevi 和 Victor Shoup 开发，在 Craig Gentry 担任 IBM 研究员后不久，最初发布于2013年5月5日。HElib 是用 C++ 编写的，并使用 NTL 数学库。</p>
+<span id="more"></span>
+
+<p>以下是 HElib 的一些主要特点和功能 :</p>
+<p>1.支持多种同态加密方案。支持多种同态加密方案，其中包括 BGV(Brakerski-Gentry-Vaikuntanathan)、BFV(Brakerski&#x2F;Fan-Vercauteren)和 CKKS(Cheon-Kim-Kim-Song)等。这些方案适用于不同的应用场景，包括整数算术、布尔电路评估和实数运算。</p>
+<p>2.高性能的同态加密操作。HElib 在上述原始方案中引入了许多优化以加速同态运算，包括 Smart-Vercauteren 密文打包技术和 Gentry-Halevi-Smart 优化，提升了算法的整体运行效率，这对于在实际应用中处理大规模数据集或复杂计算任务至关重要。</p>
+<p>3.C++实现。HElib 使用 C++ 编写，为开发人员提供了一个灵活而高效的编程框架。这使得开发人员可以轻松地集成 HElib 到他们的应用中，并实现自定义的同态计算。</p>
+<p>4.HElib 提供了一种“同态加密汇编语言”，支持 “set”、“add”、“multiply”、“shift” 等基本操作指令，此外还提供了自动噪声管理、改进的 “Bootstrapping” 方法、多线程等功能。</p>
+<p>HElib 的 Github 主页在 : <a href="https://github.com/homenc/HElib">https://github.com/homenc/HElib</a> 。</p>
+<!--more-->
+
+<h1 id="安装与构建"><a href="#安装与构建" class="headerlink" title="安装与构建"></a>安装与构建</h1><p>HElib 构建、安装和回归测试套件已在 Ubuntu 18.04、Ubuntu 20.04、Fedora 32、Fedora 33、CentOS 7.8、CentOS 8.2、macOS Mojave &gt;&#x3D; 10.14.6 和 macOS Catalina &gt;&#x3D; 10.15.7 上构建和测试。</p>
+<p>有两种不同的方法来建造和安装 HElib。第一个将自动下载并构建 GMP 和 NTL 依赖项，并将库打包到一个可重定位的文件夹中。相反，第二种方法要求您安装依赖项，并且这些依赖项在系统中可用。</p>
+<h2 id="先决条件"><a href="#先决条件" class="headerlink" title="先决条件"></a>先决条件</h2><h3 id="一般先决条件"><a href="#一般先决条件" class="headerlink" title="一般先决条件"></a>一般先决条件</h3><p>GNU make &gt;&#x3D; 3.82</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ make -v                        </span><br><span class="line">GNU Make 4.3</span><br><span class="line">Built <span class="keyword">for</span> x86_64-pc-linux-gnu</span><br><span class="line">Copyright (C) 1988-2020 Free Software Foundation, Inc.</span><br><span class="line">License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;</span><br><span class="line">This is free software: you are free to change and redistribute it.</span><br><span class="line">There is NO WARRANTY, to the extent permitted by law.</span><br></pre></td></tr></table></figure>
+
+<p>pthreads</p>
+<p>git &gt;&#x3D; 1.8.3 (required to build and run the HElib test suite)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ git --version                                   </span><br><span class="line">git version 2.39.2</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Linux-environment"><a href="#Linux-environment" class="headerlink" title="Linux environment"></a>Linux environment</h3><p>g++ &gt;&#x3D; 7.3.1</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ g++ -v</span><br><span class="line">Using built-in specs.</span><br><span class="line">COLLECT_GCC=g++</span><br><span class="line">COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper</span><br><span class="line">OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa</span><br><span class="line">OFFLOAD_TARGET_DEFAULT=1</span><br><span class="line">Target: x86_64-linux-gnu</span><br><span class="line">Configured with: ...</span><br><span class="line">Thread model: posix</span><br><span class="line">Supported LTO compression algorithms: zlib zstd</span><br><span class="line">gcc version 12.2.0 (Debian 12.2.0-14)</span><br></pre></td></tr></table></figure>
+
+<p>cmake &gt;&#x3D; 3.10.2</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ cmake -version</span><br><span class="line">cmake version 3.27.9</span><br><span class="line"></span><br><span class="line">CMake suite maintained and supported by Kitware (kitware.com/cmake).</span><br></pre></td></tr></table></figure>
+
+<h3 id="macOS-environment"><a href="#macOS-environment" class="headerlink" title="macOS environment"></a>macOS environment</h3><p>Apple clang &gt;&#x3D; 11.0.0 (available with the latest Xcode for the tested versions of macOS)</p>
+<p>Xcode Command Line Tools (can be installed with the command xcode-select –install in a teminal)</p>
+<p>cmake &gt;&#x3D; 3.17.3 (available from CMake or MacPorts Project and Homebrew as packages)</p>
+<h3 id="For-development"><a href="#For-development" class="headerlink" title="For development"></a>For development</h3><p>clang-format &gt;&#x3D; 9.0.0 (available with your linux distribution and for macOS from MacPorts Project and Homebrew as packages)</p>
+<h2 id="选项1-包构建-推荐"><a href="#选项1-包构建-推荐" class="headerlink" title="选项1 :包构建(推荐)"></a>选项1 :包构建(推荐)</h2><p>该选项将 HElib 及其依赖项(NTL和GMP)捆绑在一个目录中，然后可以在系统中自由移动。NTL 和 GMP 将被自动获取和编译。它可以全局安装(即 <code>/usr/local</code> )，如果未指定 <code>CMAKE_INSTALL_PREFIX</code>，则该选项为默认选项，但这应谨慎进行，因为现有版本的 NTL、GMP 或 HElib 将被覆盖。在这种情况下，需要另外两个先决条件:</p>
+<p>m4 &gt;&#x3D; 1.4.16</p>
+<blockquote>
+<p>m4 是一种宏处理器，它扫描用户输入的文本并将其输出，期间如果遇到宏就将其展开后输出。宏有两种，一种是内建的，另一种是用户定义的，它们能接受任意数量的参数。除了做展开宏的工作之外，m4 内建的宏能够加载文件，执行 Shell 命令，做整数运算，操纵文本，形成递归等等。m4 可用作编译器的前端，或者单纯作为宏处理器来用。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ m4 --version</span><br><span class="line">m4 (GNU M4) 1.4.19</span><br><span class="line">Copyright (C) 2021 Free Software Foundation, Inc.</span><br><span class="line">License GPLv3+: GNU GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html&gt;.</span><br><span class="line">This is free software: you are free to change and redistribute it.</span><br><span class="line">There is NO WARRANTY, to the extent permitted by law.</span><br><span class="line"></span><br><span class="line">Written by René Seindal.</span><br></pre></td></tr></table></figure>
+
+<p>patchelf &gt;&#x3D; 0.9(如果构建在Linux上)</p>
+<p>patchelf 是一个用来修改 elf 格式的动态库和可执行程序的小工具，可以修改动态链接库的库名字，以及链接库的 RPATH。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ patchelf --version</span><br><span class="line">patchelf 0.18.0</span><br></pre></td></tr></table></figure>
+
+<p>请注意，如果从库构建更改为包构建，使用干净的构建目录会更安全。</p>
+<h3 id="HElib-构建"><a href="#HElib-构建" class="headerlink" title="HElib 构建"></a>HElib 构建</h3><p>1.下载 HElib 并解压 :</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://github.com/homenc/HElib/archive/v2.1.0.tar.gz</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -zxvf v2.1.0.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>2.创建一个构建目录，通常作为 <code>src</code> 的同级:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mv</span> HElib-2.1.0/ HElib</span><br><span class="line"><span class="built_in">cd</span> HElib</span><br><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"><span class="built_in">cd</span> build</span><br></pre></td></tr></table></figure>
+
+<p>3.运行 cmake 配置步骤，指定您需要一个包构建(通过 <code>-DPACKAGE_BUILD=ON</code> )，并说明您希望安装的位置。例如，要在 <code>/home/kali/helib_install</code> 中安装 :</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cmake -DPACKAGE_BUILD=ON -DCMAKE_INSTALL_PREFIX=/home/kali/helib_install ..</span><br></pre></td></tr></table></figure>
+
+<p>可以在这里指定额外的选项，例如 <code>-DENABLE_TEST=ON</code> 启用 HElib 测试 。</p>
+<p>4.编译，指定可选的线程数(本例中为16)。其输出将位于可重定位文件夹 helib_pack中 :</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make -j16</span><br></pre></td></tr></table></figure>
+
+<p><code>make -j16</code> 要求高配置，低配置服务器指定较小的进程数，如 <code>make -j4</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">──(kali㉿kali)-[~/Documents/HElib/build]</span><br><span class="line">└─$ make -j4</span><br><span class="line">[  0%] Built target setup_install_dir</span><br><span class="line">...</span><br><span class="line">Install the project...</span><br><span class="line">-- Install configuration: &quot;RelWithDebInfo&quot;</span><br><span class="line">...</span><br><span class="line">[ 79%] Completed &#x27;helib_external&#x27;</span><br><span class="line">[100%] Built target helib_external</span><br></pre></td></tr></table></figure>
+
+<p>执行该命令时，报错如下 :</p>
+<img src="/2023/12/28/HElib/error-make-j4.png" class>
+
+<p>解决方法 :</p>
+<p>在报错路径文件 <code>Context.h</code> 添加头文件 <code>#include &lt;optional&gt;</code> 。</p>
+<p>5.【可选】如果在 <code>-DENABLE_TEST=ON</code> 的情况下执行步骤2，HElib 测试可以按如下方式运行 :</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ctest</span><br></pre></td></tr></table></figure>
+
+<p>详细的 HElib 专用测试日志可在 <code>Testing/Temporary/LastTest.log</code> 中找到。</p>
+<p>waiting…</p>
+<p>6.【可选】运行安装步骤，将文件夹复制到(在本例中为 <code>/home/kali/helib_install</code>) :</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<p>当然，如果保持默认或一些其他系统范围的路径，步骤5可能需要特权。</p>
+<h2 id="选项2-库构建-高级"><a href="#选项2-库构建-高级" class="headerlink" title="选项2 :库构建(高级)"></a>选项2 :库构建(高级)</h2><p>该方案涉及自行建造 HElib，与系统上已存在的依赖关系(NTL 和 GMP)相联系。这样，HElib 库可以四处移动，但是它的依赖项(NTL 和 GMP)不能，因为它们是绝对路径。对于此选项，您必须自己构建 GMP &gt;&#x3D;6.0.0 和 NTL &gt;&#x3D;11.4.3。</p>
+<p>…</p>
+<h2 id="HElib-构建选项"><a href="#HElib-构建选项" class="headerlink" title="HElib 构建选项"></a>HElib 构建选项</h2><h3 id="通用选项"><a href="#通用选项" class="headerlink" title="通用选项"></a>通用选项</h3><ul>
+<li><p><code>BUILD_SHARED=ON/OFF</code> (默认为 <code>OFF</code> ) :构建为共享库。</p>
+</li>
+<li><p><code>CMAKE_BUILD_TYPE</code> (默认为 <code>RelWithDebInfo</code> ) :选择构建的类型，选项有<code>Debug</code>、<code>RelWithDebInfo</code>、<code>Release</code>、<code>MinSizeRel</code>。</p>
+</li>
+<li><p><code>CMAKE_INSTALL_PREFIX</code>  :所需的 HElib 安装目录。</p>
+</li>
+<li><p><code>ENABLE_TEST=ON/OFF</code> (默认值为 <code>OFF</code> ) :启用测试构建。</p>
+</li>
+<li><p><code>ENABLE_THREADS=ON/OFF</code> (默认值为 <code>ON</code> ) :启用线程支持</p>
+</li>
+<li><p><code>PEDANTIC_BUILD=ON/OFF</code> (默认为 <code>ON</code> ) :使用 <code>-Wall -Wpedantic -Wextra -Werror</code> 在构建期间。</p>
+</li>
+<li><p><code>HELIB_DEBUG=ON/OFF</code>(默认为 <code>OFF</code> ) :在构建 HElib 时激活调试模块(通过定义 <code>HELIB_DEBUG</code> 宏)。当调试模块处于活动状态时，将生成用于调试目的的额外信息。</p>
+</li>
+</ul>
+<p>当使用 cmake 时，<code>HELIB_DEBUG</code> 将传播到使用 HElib 的程序。如果启用此选项，使用 HElib 的程序将在配置期间生成一个警告。这是为了提醒用户，如果初始化不正确，使用调试模块可能会导致问题，比如 sigsegv。</p>
+<h3 id="选项1-包构建-的特定参数"><a href="#选项1-包构建-的特定参数" class="headerlink" title="选项1(包构建)的特定参数"></a>选项1(包构建)的特定参数</h3><ul>
+<li><p><code>PACKAGE_DIR</code> :包构建将被安装到的位置。默认 <code> $&#123;CMAKE_INSTALL_PREFIX&#125;/helib_pack</code>。</p>
+</li>
+<li><p><code>FETCH_GMP</code> :是否提取和建立 GMP。默认为 <code>ON</code> 。如果设置为 <code>OFF</code> ，应该存在系统安装的 GMP 库，或者 <code>GMP_DIR</code> 应该指向有效的GMP前缀。</p>
+</li>
+<li><p><code>GMP_DIR</code> :GMP 库的前缀。如果 <code>FETCH_GMP=ON</code> ，则忽略。</p>
+</li>
+</ul>
+<h3 id="选项2-库构建-的特定参数"><a href="#选项2-库构建-的特定参数" class="headerlink" title="选项2(库构建)的特定参数"></a>选项2(库构建)的特定参数</h3><p>…</p>
+<h1 id="在项目中使用-HElib"><a href="#在项目中使用-HElib" class="headerlink" title="在项目中使用 HElib"></a>在项目中使用 HElib</h1><h2 id="标准方法"><a href="#标准方法" class="headerlink" title="标准方法"></a>标准方法</h2><p>在选项1或选项2中运行 <code>make install</code> 之后，可以在 <code>lib</code> 中找到所需的共享库文件以及 <code>include</code> 中的头文件。这些可以按照您所选择的构建系统的首选方式使用。</p>
+<h2 id="用-cmake-构建包"><a href="#用-cmake-构建包" class="headerlink" title="用 cmake 构建包"></a>用 cmake 构建包</h2><p>如果在 cmake 项目中使用 HElib，还有一种更简单的方法。</p>
+<p>1.在 <code>CMakeLists.txt</code> 中包含以下行 :</p>
+<p>2.使用 <code>-Dhelib_DIR=&lt;helib install prefix&gt;/share/cmake/helib</code> 运行 <code>cmake</code> 步骤。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>在 <code>examples</code> 目录中可以找到使用 HElib 的基于 cmake 的项目的完整工作示例。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://en.wikipedia.org/wiki/HElib">HElib&#x2F;Wikipedia</a></p>
+<p><a href="https://www.cnblogs.com/pam-sh/p/14524581.html">HElib&#x2F;PamShao&#x2F;博客园</a></p>
+<p><a href="https://zpan-pam.oss-cn-shanghai.aliyuncs.com/video/INSTALL.pdf">Official Installation Documentation</a></p>
+<p><a href="https://segmentfault.com/a/1190000004104696#GNU%20M4%20%E7%AE%80%E4%BB%8B">GNU m4&#x2F;宏&#x2F;SegmentFault</a></p>
+<p><a href="https://www.cnblogs.com/ar-cheng/p/13225342.html">rpath和patchelf&#x2F;zaliasc&#x2F;博客园</a></p>
+]]></content>
+      <categories>
+        <category>Homomorphic Encryption</category>
+      </categories>
+      <tags>
+        <tag>Open Source Library</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Listary 的安装和使用</title>
+    <url>/2024/03/16/Listary%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><img src="https://assets-global.website-files.com/643e09c9f19df8579c420d9f/655f6daa30360d26544fd098_Listary-hero-screenshot-p-1080.png" alt="Listary"></p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Listary 是一款强大的 Windows 文件搜索和应用启动工具。它通过只需几个快捷键就能轻松找到文件并启动应用程序，提高生产力。该软件在后台运行，但可随时从任何地方访问。Listary Pro 为需要更多功能的工作或家庭用户提供了先进的特性和命令。也有一个便携版本，可以在不安装到 Windows 的情况下，从云文件夹、外部驱动器或本地文件夹中运行。</p>
+<span id="more"></span>
+
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p><a href="https://www.listary.com/">https://www.listary.com/</a></p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p><a href="https://help.listary.com/zh-Hans/">https://help.listary.com/zh-Hans/</a></p>
+]]></content>
+      <categories>
+        <category>Download &amp; Install &amp; Configure</category>
+      </categories>
+      <tags>
+        <tag>Efficiency</tag>
+        <tag>Search</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C 语言</title>
     <url>/2024/03/15/C%E8%AF%AD%E8%A8%80/</url>
     <content><![CDATA[<h1 id="C-语言入门"><a href="#C-语言入门" class="headerlink" title="C 语言入门"></a>C 语言入门</h1><h2 id="C-环境设置"><a href="#C-环境设置" class="headerlink" title="C 环境设置"></a>C 环境设置</h2><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>为了在 Windows 上安装 GCC，您需要安装 MinGW。为了安装 MinGW，请访问 MinGW 的主页 mingw-w64.org，进入 MinGW 下载页面，下载最新版本的 MinGW 安装程序，命名格式为 MinGW-<version>.exe。</version></p>
@@ -611,148 +753,6 @@
       </tags>
   </entry>
   <entry>
-    <title>HElib</title>
-    <url>/2023/12/28/HElib/</url>
-    <content><![CDATA[<h1 id="HElib-库介绍"><a href="#HElib-库介绍" class="headerlink" title="HElib 库介绍"></a>HElib 库介绍</h1><p>HElib(Homomorphic Encryption library)是一个用于同态加密的开源库。HElib 主要由 Shai Halevi 和 Victor Shoup 开发，在 Craig Gentry 担任 IBM 研究员后不久，最初发布于2013年5月5日。HElib 是用 C++ 编写的，并使用 NTL 数学库。</p>
-<span id="more"></span>
-
-<p>以下是 HElib 的一些主要特点和功能 :</p>
-<p>1.支持多种同态加密方案。支持多种同态加密方案，其中包括 BGV(Brakerski-Gentry-Vaikuntanathan)、BFV(Brakerski&#x2F;Fan-Vercauteren)和 CKKS(Cheon-Kim-Kim-Song)等。这些方案适用于不同的应用场景，包括整数算术、布尔电路评估和实数运算。</p>
-<p>2.高性能的同态加密操作。HElib 在上述原始方案中引入了许多优化以加速同态运算，包括 Smart-Vercauteren 密文打包技术和 Gentry-Halevi-Smart 优化，提升了算法的整体运行效率，这对于在实际应用中处理大规模数据集或复杂计算任务至关重要。</p>
-<p>3.C++实现。HElib 使用 C++ 编写，为开发人员提供了一个灵活而高效的编程框架。这使得开发人员可以轻松地集成 HElib 到他们的应用中，并实现自定义的同态计算。</p>
-<p>4.HElib 提供了一种“同态加密汇编语言”，支持 “set”、“add”、“multiply”、“shift” 等基本操作指令，此外还提供了自动噪声管理、改进的 “Bootstrapping” 方法、多线程等功能。</p>
-<p>HElib 的 Github 主页在 : <a href="https://github.com/homenc/HElib">https://github.com/homenc/HElib</a> 。</p>
-<!--more-->
-
-<h1 id="安装与构建"><a href="#安装与构建" class="headerlink" title="安装与构建"></a>安装与构建</h1><p>HElib 构建、安装和回归测试套件已在 Ubuntu 18.04、Ubuntu 20.04、Fedora 32、Fedora 33、CentOS 7.8、CentOS 8.2、macOS Mojave &gt;&#x3D; 10.14.6 和 macOS Catalina &gt;&#x3D; 10.15.7 上构建和测试。</p>
-<p>有两种不同的方法来建造和安装 HElib。第一个将自动下载并构建 GMP 和 NTL 依赖项，并将库打包到一个可重定位的文件夹中。相反，第二种方法要求您安装依赖项，并且这些依赖项在系统中可用。</p>
-<h2 id="先决条件"><a href="#先决条件" class="headerlink" title="先决条件"></a>先决条件</h2><h3 id="一般先决条件"><a href="#一般先决条件" class="headerlink" title="一般先决条件"></a>一般先决条件</h3><p>GNU make &gt;&#x3D; 3.82</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ make -v                        </span><br><span class="line">GNU Make 4.3</span><br><span class="line">Built <span class="keyword">for</span> x86_64-pc-linux-gnu</span><br><span class="line">Copyright (C) 1988-2020 Free Software Foundation, Inc.</span><br><span class="line">License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;</span><br><span class="line">This is free software: you are free to change and redistribute it.</span><br><span class="line">There is NO WARRANTY, to the extent permitted by law.</span><br></pre></td></tr></table></figure>
-
-<p>pthreads</p>
-<p>git &gt;&#x3D; 1.8.3 (required to build and run the HElib test suite)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ git --version                                   </span><br><span class="line">git version 2.39.2</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="Linux-environment"><a href="#Linux-environment" class="headerlink" title="Linux environment"></a>Linux environment</h3><p>g++ &gt;&#x3D; 7.3.1</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ g++ -v</span><br><span class="line">Using built-in specs.</span><br><span class="line">COLLECT_GCC=g++</span><br><span class="line">COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper</span><br><span class="line">OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa</span><br><span class="line">OFFLOAD_TARGET_DEFAULT=1</span><br><span class="line">Target: x86_64-linux-gnu</span><br><span class="line">Configured with: ...</span><br><span class="line">Thread model: posix</span><br><span class="line">Supported LTO compression algorithms: zlib zstd</span><br><span class="line">gcc version 12.2.0 (Debian 12.2.0-14)</span><br></pre></td></tr></table></figure>
-
-<p>cmake &gt;&#x3D; 3.10.2</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ cmake -version</span><br><span class="line">cmake version 3.27.9</span><br><span class="line"></span><br><span class="line">CMake suite maintained and supported by Kitware (kitware.com/cmake).</span><br></pre></td></tr></table></figure>
-
-<h3 id="macOS-environment"><a href="#macOS-environment" class="headerlink" title="macOS environment"></a>macOS environment</h3><p>Apple clang &gt;&#x3D; 11.0.0 (available with the latest Xcode for the tested versions of macOS)</p>
-<p>Xcode Command Line Tools (can be installed with the command xcode-select –install in a teminal)</p>
-<p>cmake &gt;&#x3D; 3.17.3 (available from CMake or MacPorts Project and Homebrew as packages)</p>
-<h3 id="For-development"><a href="#For-development" class="headerlink" title="For development"></a>For development</h3><p>clang-format &gt;&#x3D; 9.0.0 (available with your linux distribution and for macOS from MacPorts Project and Homebrew as packages)</p>
-<h2 id="选项1-包构建-推荐"><a href="#选项1-包构建-推荐" class="headerlink" title="选项1 :包构建(推荐)"></a>选项1 :包构建(推荐)</h2><p>该选项将 HElib 及其依赖项(NTL和GMP)捆绑在一个目录中，然后可以在系统中自由移动。NTL 和 GMP 将被自动获取和编译。它可以全局安装(即 <code>/usr/local</code> )，如果未指定 <code>CMAKE_INSTALL_PREFIX</code>，则该选项为默认选项，但这应谨慎进行，因为现有版本的 NTL、GMP 或 HElib 将被覆盖。在这种情况下，需要另外两个先决条件:</p>
-<p>m4 &gt;&#x3D; 1.4.16</p>
-<blockquote>
-<p>m4 是一种宏处理器，它扫描用户输入的文本并将其输出，期间如果遇到宏就将其展开后输出。宏有两种，一种是内建的，另一种是用户定义的，它们能接受任意数量的参数。除了做展开宏的工作之外，m4 内建的宏能够加载文件，执行 Shell 命令，做整数运算，操纵文本，形成递归等等。m4 可用作编译器的前端，或者单纯作为宏处理器来用。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ m4 --version</span><br><span class="line">m4 (GNU M4) 1.4.19</span><br><span class="line">Copyright (C) 2021 Free Software Foundation, Inc.</span><br><span class="line">License GPLv3+: GNU GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html&gt;.</span><br><span class="line">This is free software: you are free to change and redistribute it.</span><br><span class="line">There is NO WARRANTY, to the extent permitted by law.</span><br><span class="line"></span><br><span class="line">Written by René Seindal.</span><br></pre></td></tr></table></figure>
-
-<p>patchelf &gt;&#x3D; 0.9(如果构建在Linux上)</p>
-<p>patchelf 是一个用来修改 elf 格式的动态库和可执行程序的小工具，可以修改动态链接库的库名字，以及链接库的 RPATH。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~]</span><br><span class="line">└─$ patchelf --version</span><br><span class="line">patchelf 0.18.0</span><br></pre></td></tr></table></figure>
-
-<p>请注意，如果从库构建更改为包构建，使用干净的构建目录会更安全。</p>
-<h3 id="HElib-构建"><a href="#HElib-构建" class="headerlink" title="HElib 构建"></a>HElib 构建</h3><p>1.下载 HElib 并解压 :</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://github.com/homenc/HElib/archive/v2.1.0.tar.gz</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -zxvf v2.1.0.tar.gz</span><br></pre></td></tr></table></figure>
-
-<p>2.创建一个构建目录，通常作为 <code>src</code> 的同级:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mv</span> HElib-2.1.0/ HElib</span><br><span class="line"><span class="built_in">cd</span> HElib</span><br><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"><span class="built_in">cd</span> build</span><br></pre></td></tr></table></figure>
-
-<p>3.运行 cmake 配置步骤，指定您需要一个包构建(通过 <code>-DPACKAGE_BUILD=ON</code> )，并说明您希望安装的位置。例如，要在 <code>/home/kali/helib_install</code> 中安装 :</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cmake -DPACKAGE_BUILD=ON -DCMAKE_INSTALL_PREFIX=/home/kali/helib_install ..</span><br></pre></td></tr></table></figure>
-
-<p>可以在这里指定额外的选项，例如 <code>-DENABLE_TEST=ON</code> 启用 HElib 测试 。</p>
-<p>4.编译，指定可选的线程数(本例中为16)。其输出将位于可重定位文件夹 helib_pack中 :</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make -j16</span><br></pre></td></tr></table></figure>
-
-<p><code>make -j16</code> 要求高配置，低配置服务器指定较小的进程数，如 <code>make -j4</code>。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">──(kali㉿kali)-[~/Documents/HElib/build]</span><br><span class="line">└─$ make -j4</span><br><span class="line">[  0%] Built target setup_install_dir</span><br><span class="line">...</span><br><span class="line">Install the project...</span><br><span class="line">-- Install configuration: &quot;RelWithDebInfo&quot;</span><br><span class="line">...</span><br><span class="line">[ 79%] Completed &#x27;helib_external&#x27;</span><br><span class="line">[100%] Built target helib_external</span><br></pre></td></tr></table></figure>
-
-<p>执行该命令时，报错如下 :</p>
-<img src="/2023/12/28/HElib/error-make-j4.png" class>
-
-<p>解决方法 :</p>
-<p>在报错路径文件 <code>Context.h</code> 添加头文件 <code>#include &lt;optional&gt;</code> 。</p>
-<p>5.【可选】如果在 <code>-DENABLE_TEST=ON</code> 的情况下执行步骤2，HElib 测试可以按如下方式运行 :</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ctest</span><br></pre></td></tr></table></figure>
-
-<p>详细的 HElib 专用测试日志可在 <code>Testing/Temporary/LastTest.log</code> 中找到。</p>
-<p>waiting…</p>
-<p>6.【可选】运行安装步骤，将文件夹复制到(在本例中为 <code>/home/kali/helib_install</code>) :</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure>
-
-<p>当然，如果保持默认或一些其他系统范围的路径，步骤5可能需要特权。</p>
-<h2 id="选项2-库构建-高级"><a href="#选项2-库构建-高级" class="headerlink" title="选项2 :库构建(高级)"></a>选项2 :库构建(高级)</h2><p>该方案涉及自行建造 HElib，与系统上已存在的依赖关系(NTL 和 GMP)相联系。这样，HElib 库可以四处移动，但是它的依赖项(NTL 和 GMP)不能，因为它们是绝对路径。对于此选项，您必须自己构建 GMP &gt;&#x3D;6.0.0 和 NTL &gt;&#x3D;11.4.3。</p>
-<p>…</p>
-<h2 id="HElib-构建选项"><a href="#HElib-构建选项" class="headerlink" title="HElib 构建选项"></a>HElib 构建选项</h2><h3 id="通用选项"><a href="#通用选项" class="headerlink" title="通用选项"></a>通用选项</h3><ul>
-<li><p><code>BUILD_SHARED=ON/OFF</code> (默认为 <code>OFF</code> ) :构建为共享库。</p>
-</li>
-<li><p><code>CMAKE_BUILD_TYPE</code> (默认为 <code>RelWithDebInfo</code> ) :选择构建的类型，选项有<code>Debug</code>、<code>RelWithDebInfo</code>、<code>Release</code>、<code>MinSizeRel</code>。</p>
-</li>
-<li><p><code>CMAKE_INSTALL_PREFIX</code>  :所需的 HElib 安装目录。</p>
-</li>
-<li><p><code>ENABLE_TEST=ON/OFF</code> (默认值为 <code>OFF</code> ) :启用测试构建。</p>
-</li>
-<li><p><code>ENABLE_THREADS=ON/OFF</code> (默认值为 <code>ON</code> ) :启用线程支持</p>
-</li>
-<li><p><code>PEDANTIC_BUILD=ON/OFF</code> (默认为 <code>ON</code> ) :使用 <code>-Wall -Wpedantic -Wextra -Werror</code> 在构建期间。</p>
-</li>
-<li><p><code>HELIB_DEBUG=ON/OFF</code>(默认为 <code>OFF</code> ) :在构建 HElib 时激活调试模块(通过定义 <code>HELIB_DEBUG</code> 宏)。当调试模块处于活动状态时，将生成用于调试目的的额外信息。</p>
-</li>
-</ul>
-<p>当使用 cmake 时，<code>HELIB_DEBUG</code> 将传播到使用 HElib 的程序。如果启用此选项，使用 HElib 的程序将在配置期间生成一个警告。这是为了提醒用户，如果初始化不正确，使用调试模块可能会导致问题，比如 sigsegv。</p>
-<h3 id="选项1-包构建-的特定参数"><a href="#选项1-包构建-的特定参数" class="headerlink" title="选项1(包构建)的特定参数"></a>选项1(包构建)的特定参数</h3><ul>
-<li><p><code>PACKAGE_DIR</code> :包构建将被安装到的位置。默认 <code> $&#123;CMAKE_INSTALL_PREFIX&#125;/helib_pack</code>。</p>
-</li>
-<li><p><code>FETCH_GMP</code> :是否提取和建立 GMP。默认为 <code>ON</code> 。如果设置为 <code>OFF</code> ，应该存在系统安装的 GMP 库，或者 <code>GMP_DIR</code> 应该指向有效的GMP前缀。</p>
-</li>
-<li><p><code>GMP_DIR</code> :GMP 库的前缀。如果 <code>FETCH_GMP=ON</code> ，则忽略。</p>
-</li>
-</ul>
-<h3 id="选项2-库构建-的特定参数"><a href="#选项2-库构建-的特定参数" class="headerlink" title="选项2(库构建)的特定参数"></a>选项2(库构建)的特定参数</h3><p>…</p>
-<h1 id="在项目中使用-HElib"><a href="#在项目中使用-HElib" class="headerlink" title="在项目中使用 HElib"></a>在项目中使用 HElib</h1><h2 id="标准方法"><a href="#标准方法" class="headerlink" title="标准方法"></a>标准方法</h2><p>在选项1或选项2中运行 <code>make install</code> 之后，可以在 <code>lib</code> 中找到所需的共享库文件以及 <code>include</code> 中的头文件。这些可以按照您所选择的构建系统的首选方式使用。</p>
-<h2 id="用-cmake-构建包"><a href="#用-cmake-构建包" class="headerlink" title="用 cmake 构建包"></a>用 cmake 构建包</h2><p>如果在 cmake 项目中使用 HElib，还有一种更简单的方法。</p>
-<p>1.在 <code>CMakeLists.txt</code> 中包含以下行 :</p>
-<p>2.使用 <code>-Dhelib_DIR=&lt;helib install prefix&gt;/share/cmake/helib</code> 运行 <code>cmake</code> 步骤。</p>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>在 <code>examples</code> 目录中可以找到使用 HElib 的基于 cmake 的项目的完整工作示例。</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://en.wikipedia.org/wiki/HElib">HElib&#x2F;Wikipedia</a></p>
-<p><a href="https://www.cnblogs.com/pam-sh/p/14524581.html">HElib&#x2F;PamShao&#x2F;博客园</a></p>
-<p><a href="https://zpan-pam.oss-cn-shanghai.aliyuncs.com/video/INSTALL.pdf">Official Installation Documentation</a></p>
-<p><a href="https://segmentfault.com/a/1190000004104696#GNU%20M4%20%E7%AE%80%E4%BB%8B">GNU m4&#x2F;宏&#x2F;SegmentFault</a></p>
-<p><a href="https://www.cnblogs.com/ar-cheng/p/13225342.html">rpath和patchelf&#x2F;zaliasc&#x2F;博客园</a></p>
-]]></content>
-      <categories>
-        <category>Homomorphic Encryption</category>
-      </categories>
-      <tags>
-        <tag>Open Source Library</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Listary 的安装和使用</title>
-    <url>/2024/03/16/Listary%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><img src="https://assets-global.website-files.com/643e09c9f19df8579c420d9f/655f6daa30360d26544fd098_Listary-hero-screenshot-p-1080.png" alt="Listary"></p>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Listary 是一款强大的 Windows 文件搜索和应用启动工具。它通过只需几个快捷键就能轻松找到文件并启动应用程序，提高生产力。该软件在后台运行，但可随时从任何地方访问。Listary Pro 为需要更多功能的工作或家庭用户提供了先进的特性和命令。也有一个便携版本，可以在不安装到 Windows 的情况下，从云文件夹、外部驱动器或本地文件夹中运行。</p>
-<span id="more"></span>
-
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p><a href="https://www.listary.com/">https://www.listary.com/</a></p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p><a href="https://help.listary.com/zh-Hans/">https://help.listary.com/zh-Hans/</a></p>
-]]></content>
-      <categories>
-        <category>Download &amp; Install &amp; Configure</category>
-      </categories>
-      <tags>
-        <tag>Efficiency</tag>
-        <tag>Search</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>NexT 主题下载、配置以及美化</title>
     <url>/2023/12/24/NexT%E4%B8%BB%E9%A2%98%E4%B8%8B%E8%BD%BD%E3%80%81%E9%85%8D%E7%BD%AE%E4%BB%A5%E5%8F%8A%E7%BE%8E%E5%8C%96/</url>
     <content><![CDATA[<p>本博客使用的是 NexT 主题，更多主题在 <a href="https://hexo.io/themes/">https://hexo.io/themes/</a> 。</p>
@@ -763,7 +763,7 @@
 
 <h1 id="配置-Hexo"><a href="#配置-Hexo" class="headerlink" title="配置 Hexo"></a>配置 Hexo</h1><p>Hexo 配置文件：<code>_config.yml</code> 。</p>
 <blockquote>
-<p>配置时注意 <code>: </code> 冒号后的空格。</p>
+<p>配置时注意冒号 <code>:</code> 后的空格 <code> </code> 。</p>
 </blockquote>
 <p>配置可参考官方文档：<a href="https://hexo.io/docs/configuration.html%E3%80%82">https://hexo.io/docs/configuration.html。</a></p>
 <h2 id="Site-配置"><a href="#Site-配置" class="headerlink" title="Site 配置"></a>Site 配置</h2><table>
@@ -878,15 +878,19 @@
 <h2 id="修改-Tag-图标"><a href="#修改-Tag-图标" class="headerlink" title="修改 Tag 图标"></a>修改 Tag 图标</h2><p>Next 配置文件：<code>_config.yml</code> 。</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Icon between year and copyright info.</span></span><br><span class="line"><span class="attr">icon:</span></span><br><span class="line">  <span class="comment"># Icon name in Font Awesome. See: https://fontawesome.com/icons</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">fa</span> <span class="string">fa-heart</span></span><br><span class="line">  <span class="comment"># If you want to animate the icon, set it to true.</span></span><br><span class="line">  <span class="attr">animated:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Change the color of icon, using Hex Code.</span></span><br><span class="line">  <span class="attr">color:</span> <span class="string">&quot;#ff0000&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p><a href="https://fontawesome.com/icons">https://fontawesome.com/icons</a></p>
+<p>到 <a href="https://fontawesome.com/icons">https://fontawesome.com/icons</a> 中找到合适的图标，复制代码贴到需要的地方或者更换原来的图标。</p>
+<p>Tag 标签图标配置在 <code>\themes\next\layout\_macro\post.njk</code> 文件。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;%- <span class="keyword">if</span> post.<span class="property">tags</span> and post.<span class="property">tags</span>.<span class="property">length</span> %&#125;</span><br><span class="line">  &#123;%- set tag_indicate = <span class="string">&#x27;&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;&#x27;</span> <span class="keyword">if</span> theme.<span class="property">tag_icon</span> <span class="keyword">else</span> <span class="string">&#x27;#&#x27;</span> %&#125;</span><br><span class="line">  &lt;div <span class="keyword">class</span>=<span class="string">&quot;post-tags&quot;</span>&gt;</span><br><span class="line">    &#123;%- <span class="keyword">for</span> tag <span class="keyword">in</span> post.<span class="property">tags</span>.<span class="title function_">toArray</span>() %&#125;</span><br><span class="line">      &lt;a href=<span class="string">&quot;&#123;&#123; url_for(tag.path) &#125;&#125;&quot;</span> rel=<span class="string">&quot;tag&quot;</span>&gt;<span class="language-xml"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;fa fa-tag&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span> &#123;&#123; tag.<span class="property">name</span> &#125;&#125;&lt;/a&gt;</span><br><span class="line">    &#123;%- endfor %&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>&lt;a href=&quot;&#123;&#123; url_for(tag.path) &#125;&#125;&quot; rel=&quot;tag&quot;&gt;</code> 和 <code>&#123;&#123; tag.name &#125;&#125;&lt;/a&gt;</code> 直接按照需求增加空格、图标、符号或者其他均可。</p>
 <h2 id="修改网站图标"><a href="#修改网站图标" class="headerlink" title="修改网站图标"></a>修改网站图标</h2><p>Next 配置文件：<code>_config.yml</code> 。</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">favicon:</span></span><br><span class="line">  <span class="attr">small:</span> <span class="string">/_uploads/favicon-16x16.png</span></span><br><span class="line">  <span class="attr">medium:</span> <span class="string">/_uploads/favicon-32x32.png</span></span><br><span class="line">  <span class="attr">apple_touch_icon:</span> <span class="string">/_uploads/apple-touch-icon.png</span></span><br><span class="line">  <span class="attr">safari_pinned_tab:</span> <span class="string">/_uploads/logo.svg</span></span><br><span class="line">  <span class="comment">#android_manifest: /manifest.json</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">favicon:</span></span><br><span class="line">  <span class="attr">small:</span> <span class="string">/_uploads/favicon-16x16.png</span></span><br><span class="line">  <span class="attr">medium:</span> <span class="string">/_uploads/favicon-32x32.png</span></span><br><span class="line">  <span class="attr">apple_touch_icon:</span> <span class="string">/_uploads/apple-touch-icon.png</span></span><br><span class="line">  <span class="attr">safari_pinned_tab:</span> <span class="string">/_uploads/logo.svg</span></span><br><span class="line">  <span class="comment">#android_manifest: /manifest.json</span></span><br></pre></td></tr></table></figure>
 
 <p>可使用 照片 或者 <a href="https://sspai.com/link?target=http://www.favicon-generator.org/">相关网站</a> 生成同尺寸图像。</p>
 <p>本网站图标由 <a href="https://www.logosc.cn/logo/">https://www.logosc.cn/logo/</a> 生成。</p>
 <h2 id="修改个人头像"><a href="#修改个人头像" class="headerlink" title="修改个人头像"></a>修改个人头像</h2><p>将原来的 <code>\themes\next\source\images</code> 下的 <code>avatar.png</code> 覆盖为自己想要的头像即可。</p>
 <h2 id="图片圆角阴影"><a href="#图片圆角阴影" class="headerlink" title="图片圆角阴影"></a>图片圆角阴影</h2><p>在 <code>\themes\next\source\css\_common\components\post</code> 下的 <code>post-body.styl</code> 中修改：</p>
-<figure class="highlight styl"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">iframe</span>, <span class="selector-tag">img</span>, <span class="selector-tag">video</span>, embed &#123;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">0px</span> <span class="number">5px</span> <span class="number">10px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">iframe</span>, <span class="selector-tag">img</span>, <span class="selector-tag">video</span>, embed &#123;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">0px</span> <span class="number">5px</span> <span class="number">10px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="修改背景图片"><a href="#修改背景图片" class="headerlink" title="修改背景图片"></a>修改背景图片</h2><p>首先将背景图片放入 <code>./themes/next/source/images</code> 中，命名为 <code>background.jpg</code> 。</p>
 <p>在根目录而不是主题目录下的 <code>source</code> 文件夹下新建文件夹 <code>_data</code> 。</p>
@@ -896,7 +900,7 @@
 <p>最后在主题目录下的 <code>_config.yml</code> 文件中找到 <code>custom_file_path</code> ，将对应的注释 # 去掉。</p>
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">custom_file_path:</span></span><br><span class="line">  <span class="comment">#head: source/_data/head.swig</span></span><br><span class="line">  <span class="comment">#header: source/_data/header.swig</span></span><br><span class="line">  <span class="comment">#sidebar: source/_data/sidebar.swig</span></span><br><span class="line">  <span class="comment">#postMeta: source/_data/post-meta.swig</span></span><br><span class="line">  <span class="comment">#postBodyEnd: source/_data/post-body-end.swig</span></span><br><span class="line">  <span class="comment">#footer: source/_data/footer.swig</span></span><br><span class="line">  <span class="comment">#bodyEnd: source/_data/body-end.swig</span></span><br><span class="line">  <span class="comment">#variable: source/_data/variables.styl</span></span><br><span class="line">  <span class="comment">#mixin: source/_data/mixins.styl</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">source/_data/styles.styl</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.cnblogs.com/mmzuo-798/p/10510225.html">Hexo server 报错 TypeError: Cannot read property ‘utcOffset’ of null 解决方法 | 博客园</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.cnblogs.com/mmzuo-798/p/10510225.html">Hexo server 报错 TypeError: Cannot read property utcOffset of null 解决方法</a></p>
 <p><a href="https://shallingzhang.github.io/2022/08/31/Hexo-Next%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96%E5%8D%9A%E5%AE%A2/#%E9%85%8D%E7%BD%AE">Hexo + Next 主题美化博客 | Shalling’s Blog</a><br><a href="https://sspai.com/post/59568">hexo next 主题优化-少数派</a><br><a href="https://www.cnblogs.com/factory/p/10567649.html">Hexo 的 next 主题安装-博客园</a><br><a href="http://home.ustc.edu.cn/~liujunyan/blog/hexo-next-theme-config/">Hexo 博客 NexT 主题的安装使用-Julian’s blog</a><br><a href="https://theme-next.js.org/pisces/">NexT | Theme for Hexo</a><br><a href="https://github.com/next-theme/hexo-theme-next?tab=readme-ov-file">NexT Theme | Github</a><br><a href="https://hexo.io/themes/">Themes | Hexo</a><br><a href="https://juejin.cn/post/6924497164362055693">玩遍博客网站，我整理了 Hexo 及其流行的风格主题 | 掘金</a><br><a href="https://zhuanlan.zhihu.com/p/491537945">8 款颜值爆赞的 Hexo 主题推荐！快来搭建个人博客玩玩 | 知乎</a><br><a href="https://juejin.cn/post/7169115268944560135">Hexo-Next 主题搭建个人博客最新配置教程 | 掘金</a></p>
 <p><a href="https://www.snowmoon.top/2021/02/21/next%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/">next主题美化——背景图片、动画 | SnowMoon-Haoyu’s Blog</a></p>
 ]]></content>
@@ -983,90 +987,6 @@
       </categories>
       <tags>
         <tag>Open Source Library</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SecureCRT 的下载、安装和使用</title>
-    <url>/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>SecureCRT 是一个终端仿真应用程序，为计算专业人员提供安全的远程访问、文件传输和数据隧道。</p>
-<span id="more"></span>
-
-<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>从官方网站下载资源：<a href="https://www.vandyke.com/cgi-bin/releases.php?product=securecrt">https://www.vandyke.com/cgi-bin/releases.php?product=securecrt</a> 。</p>
-<p>从百度网盘下载资源。</p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>双击 <code>scrt_sfx833-x64.exe</code> 运行安装程序。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/01-run.png" class>
-
-<p>点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/02-next.png" class>
-
-<p>勾选 <code>I accept ...</code> ，点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/03-accept.png" class>
-
-<p>勾选 <code>Common profile</code> ，点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/04-common.png" class>
-
-<p>选择 <code>Custom</code> ，点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/05-custom.png" class>
-
-<p>点击 <code>Choose</code> 选择自定义安装目录，点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/06-folder.png" class>
-
-<p>默认勾选，点击 <code>Next</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/07-next.png" class>
-
-<p>点击 <code>Install</code> ，开始安装。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/08-install.png" class>
-
-<p>安装完毕，点击 <code>Finish</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/09-finish.png" class>
-
-<p>激活方式参考 <a href="https://zhuanlan.zhihu.com/p/163089404">SecureCRT 的下载、安装、激活 | 知乎 | ytrunning</a> 。</p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="SecureCRT"><a href="#SecureCRT" class="headerlink" title="SecureCRT"></a>SecureCRT</h2><p>打开以后进入主界面，点击 File ，有三种连接：<code>Connect...</code> 、<code>Quick Connect</code> 和 <code>Local Connect</code>，分别是已存储的连接、快速连接和本地连接。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/10-three-type.png" class>
-
-<p>点击 <code>Quick Connect</code> ，默认是 <code>SSH2</code> ，其中 <code>Hostname</code> 填写虚拟机 IP 地址， <code>Username</code> 填写虚拟机用户名，若是密钥登录，勾选 <code>PublicKey</code> ；若是密码登录，勾选 <code>Password</code> 。填写、勾选完毕后，点击 <code>Connect</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/11-fill-up.png" class>
-
-<p>接下来填写并确认密码，勾选 <code>Save password</code> 保存密码，点击 <code>OK</code> 进行连接。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/12-password.png" class>
-
-<p>连接成功！</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/13-success.png" class>
-
-<h2 id="SecureFX"><a href="#SecureFX" class="headerlink" title="SecureFX"></a>SecureFX</h2><p>SecureFX 有两种打开方式：</p>
-<p>1.如果已经打开 SecureCRT ，点击 <code>SecureFX</code> 图标即可打开。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/14-SecureFX.png" class>
-
-<p>2.如果没有打开 SecureCRT，打开 SecureFX 应用。</p>
-<p>打开 SerureFX 后：</p>
-<p>1.如果已经登录过 SecureCRT ， <code>Sessions</code> 有已连接过的 IP ，点击 <code>Connect</code> 直接连接。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/15-had-connected.png" class>
-
-<p>2.如果没有登录过 SecureCRT ，进行与 SecureCRT 中相似的操作进行连接。</p>
-<p>连接成功后，进入管理页面。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/16-success-file.png" class>
-
-<p>可直接手动拖动文件，文件传输成功后，会显示 <code>Finished</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/17-finished.png" class>
-
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="更改终端外观"><a href="#更改终端外观" class="headerlink" title="更改终端外观"></a>更改终端外观</h2><p>点击 <code>Options</code> ，选择 <code>Session Options...</code> 。</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/18-options.png" class>
-
-<p>选中 <code>Appearance</code> ，设置 <code>Current color scheme</code> 为 <code>White/Black</code> ，点击 <code>Font...</code> 调整字体和大小。 </p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/19-scheme-font.png" class>
-
-<p>更改终端外观成功！</p>
-<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/20-change-success.png" class>
-
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/qq_39052513/article/details/100272502">SecureCRT 的下载、安装 | CSDN | 超Ren专属</a></p>
-<p><a href="https://blog.csdn.net/qq_39052513/article/details/104692026">SecureCRT 的使用教程 | CSDN | 超Ren专属</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/163089404">SecureCRT 的下载、安装、激活 | 知乎 | ytrunning</a> </p>
-]]></content>
-      <categories>
-        <category>Download &amp; Install &amp; Configure</category>
-      </categories>
-      <tags>
-        <tag>SSH</tag>
       </tags>
   </entry>
   <entry>
@@ -1566,6 +1486,90 @@
       </tags>
   </entry>
   <entry>
+    <title>SecureCRT 的下载、安装和使用</title>
+    <url>/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>SecureCRT 是一个终端仿真应用程序，为计算专业人员提供安全的远程访问、文件传输和数据隧道。</p>
+<span id="more"></span>
+
+<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>从官方网站下载资源：<a href="https://www.vandyke.com/cgi-bin/releases.php?product=securecrt">https://www.vandyke.com/cgi-bin/releases.php?product=securecrt</a> 。</p>
+<p>从百度网盘下载资源。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>双击 <code>scrt_sfx833-x64.exe</code> 运行安装程序。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/01-run.png" class>
+
+<p>点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/02-next.png" class>
+
+<p>勾选 <code>I accept ...</code> ，点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/03-accept.png" class>
+
+<p>勾选 <code>Common profile</code> ，点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/04-common.png" class>
+
+<p>选择 <code>Custom</code> ，点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/05-custom.png" class>
+
+<p>点击 <code>Choose</code> 选择自定义安装目录，点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/06-folder.png" class>
+
+<p>默认勾选，点击 <code>Next</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/07-next.png" class>
+
+<p>点击 <code>Install</code> ，开始安装。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/08-install.png" class>
+
+<p>安装完毕，点击 <code>Finish</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/09-finish.png" class>
+
+<p>激活方式参考 <a href="https://zhuanlan.zhihu.com/p/163089404">SecureCRT 的下载、安装、激活 | 知乎 | ytrunning</a> 。</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="SecureCRT"><a href="#SecureCRT" class="headerlink" title="SecureCRT"></a>SecureCRT</h2><p>打开以后进入主界面，点击 File ，有三种连接：<code>Connect...</code> 、<code>Quick Connect</code> 和 <code>Local Connect</code>，分别是已存储的连接、快速连接和本地连接。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/10-three-type.png" class>
+
+<p>点击 <code>Quick Connect</code> ，默认是 <code>SSH2</code> ，其中 <code>Hostname</code> 填写虚拟机 IP 地址， <code>Username</code> 填写虚拟机用户名，若是密钥登录，勾选 <code>PublicKey</code> ；若是密码登录，勾选 <code>Password</code> 。填写、勾选完毕后，点击 <code>Connect</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/11-fill-up.png" class>
+
+<p>接下来填写并确认密码，勾选 <code>Save password</code> 保存密码，点击 <code>OK</code> 进行连接。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/12-password.png" class>
+
+<p>连接成功！</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/13-success.png" class>
+
+<h2 id="SecureFX"><a href="#SecureFX" class="headerlink" title="SecureFX"></a>SecureFX</h2><p>SecureFX 有两种打开方式：</p>
+<p>1.如果已经打开 SecureCRT ，点击 <code>SecureFX</code> 图标即可打开。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/14-SecureFX.png" class>
+
+<p>2.如果没有打开 SecureCRT，打开 SecureFX 应用。</p>
+<p>打开 SerureFX 后：</p>
+<p>1.如果已经登录过 SecureCRT ， <code>Sessions</code> 有已连接过的 IP ，点击 <code>Connect</code> 直接连接。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/15-had-connected.png" class>
+
+<p>2.如果没有登录过 SecureCRT ，进行与 SecureCRT 中相似的操作进行连接。</p>
+<p>连接成功后，进入管理页面。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/16-success-file.png" class>
+
+<p>可直接手动拖动文件，文件传输成功后，会显示 <code>Finished</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/17-finished.png" class>
+
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="更改终端外观"><a href="#更改终端外观" class="headerlink" title="更改终端外观"></a>更改终端外观</h2><p>点击 <code>Options</code> ，选择 <code>Session Options...</code> 。</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/18-options.png" class>
+
+<p>选中 <code>Appearance</code> ，设置 <code>Current color scheme</code> 为 <code>White/Black</code> ，点击 <code>Font...</code> 调整字体和大小。 </p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/19-scheme-font.png" class>
+
+<p>更改终端外观成功！</p>
+<img src="/2024/03/16/SecureCRT%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/20-change-success.png" class>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/qq_39052513/article/details/100272502">SecureCRT 的下载、安装 | CSDN | 超Ren专属</a></p>
+<p><a href="https://blog.csdn.net/qq_39052513/article/details/104692026">SecureCRT 的使用教程 | CSDN | 超Ren专属</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/163089404">SecureCRT 的下载、安装、激活 | 知乎 | ytrunning</a> </p>
+]]></content>
+      <categories>
+        <category>Download &amp; Install &amp; Configure</category>
+      </categories>
+      <tags>
+        <tag>SSH</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Solaris 10 的下载、安装和配置</title>
     <url>/2024/03/17/Solaris10%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h1 id="映像下载"><a href="#映像下载" class="headerlink" title="映像下载"></a>映像下载</h1><p>使用的是 <a href="https://www.cnblogs.com/shrec/p/4257353.html">在 VirtualBox 上安装 Solaris 10 全教程（包括下载） </a> 提供的资源。</p>
@@ -1940,6 +1944,24 @@
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2023/12/22/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>VScode 配置 Java 环境</title>
     <url>/2024/01/02/VSCode%E9%85%8D%E7%BD%AEJava%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<h1 id="安装扩展"><a href="#安装扩展" class="headerlink" title="安装扩展"></a>安装扩展</h1><img src="/2024/01/02/VSCode%E9%85%8D%E7%BD%AEJava%E7%8E%AF%E5%A2%83/01-install-extension.png" class>
@@ -1968,22 +1990,58 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2023/12/22/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+    <title>使用 Utterances 为 Hexo + NexT 博客添加评论</title>
+    <url>/2024/03/26/%E4%BD%BF%E7%94%A8Utterances%E4%B8%BAHexo-NexT%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/</url>
+    <content><![CDATA[<p>Utterances 是一个基于 Github issues 构建的轻量级评论插件，只有使用 Github 账号登录后才能评论。NexT 7.0.0 版本已经集成了 Utterances ，故非常方便使用 Utterances 来为 Hexo + NexT 博客添加评论。</p>
+<p>Offical：<a href="https://utteranc.es/">https://utteranc.es/</a> 。</p>
+<p>Github：<a href="https://github.com/utterance/utterances">https://github.com/utterance/utterances</a> 。</p>
+<span id="more"></span>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h1 id="新建-Github-仓库"><a href="#新建-Github-仓库" class="headerlink" title="新建 Github 仓库"></a>新建 Github 仓库</h1><p>由于是基于 Github issues，我们需要一个仓库来存储评论。</p>
+<p>在 <a href="https://github.com/">Github</a> 上创建一个空库，并且必须是 public 的，这样用户才可以查看并发布评论。</p>
+<p><img src="/"></p>
+<h1 id="安装-Github-App"><a href="#安装-Github-App" class="headerlink" title="安装 Github App"></a>安装 Github App</h1><p>安装地址：<a href="https://github.com/apps/utterances">https://github.com/apps/utterances</a> 。</p>
+<p>访问安装地址，进入安装页面，单击 <code>Install</code> 按钮。</p>
+<p><img src="/"></p>
+<p>选择关联的仓库，我们选择刚刚建好的仓库。</p>
+<p><img src="/"></p>
+<p>至此，Github 端配置完成，接下来在网页或博客中配置使用 Utterances 。</p>
+<h1 id="在-Hexo-NexT-中使用"><a href="#在-Hexo-NexT-中使用" class="headerlink" title="在 Hexo NexT 中使用"></a>在 Hexo NexT 中使用</h1><p>编辑 Hexo 主题配置文件 <code>_config.yml</code>，添加以下配置：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Utterances</span></span><br><span class="line"><span class="comment"># For more information: https://utteranc.es</span></span><br><span class="line"><span class="attr">utterances:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">FreesiaNZ/freesianz.comments</span> <span class="comment"># Github repository owner and name</span></span><br><span class="line">  <span class="comment"># Available values: pathname | url | title | og:title</span></span><br><span class="line">  <span class="attr">issue_term:</span> <span class="string">pathname</span></span><br><span class="line">  <span class="comment"># Available values: github-light | github-dark | preferred-color-scheme | github-dark-orange | icy-dark | dark-blue | photon-dark | boxy-light</span></span><br><span class="line">  <span class="attr">theme:</span> <span class="string">github-light</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>为了更好地匹配我的自定义主题，决定修改部分样式。</p>
+<p>查找到 <code>\themes\next\source\js\third-party\comments\utterances.js</code> ：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* global NexT, CONFIG */</span></span><br><span class="line"></span><br><span class="line">document.addEventListener(&#x27;page<span class="punctuation">:</span>loaded&#x27;<span class="punctuation">,</span> () =&gt; <span class="punctuation">&#123;</span></span><br><span class="line">  if (!CONFIG.page.comments) return;</span><br><span class="line"></span><br><span class="line">  NexT.utils.loadComments(&#x27;.utterances-container&#x27;)</span><br><span class="line">    .then(() =&gt; NexT.utils.getScript(&#x27;https<span class="punctuation">:</span><span class="comment">//utteranc.es/client.js&#x27;, &#123;</span></span><br><span class="line">      attributes<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        async       <span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">        crossOrigin <span class="punctuation">:</span> &#x27;anonymous&#x27;<span class="punctuation">,</span></span><br><span class="line">        &#x27;repo&#x27;      <span class="punctuation">:</span> CONFIG.utterances.repo<span class="punctuation">,</span></span><br><span class="line">        &#x27;issue-term&#x27;<span class="punctuation">:</span> CONFIG.utterances.issue_term<span class="punctuation">,</span></span><br><span class="line">        &#x27;theme&#x27;     <span class="punctuation">:</span> CONFIG.utterances.theme</span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      parentNode<span class="punctuation">:</span> document.querySelector(&#x27;.utterances-container&#x27;)</span><br><span class="line">    <span class="punctuation">&#125;</span>));</span><br><span class="line"><span class="punctuation">&#125;</span>);</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>查看 <a href="https://utteranc.es/client.js">https://utteranc.es/client.js</a> 内容，可以使用 <a href="https://www.wetools.com/js-formatter">在线 JS 代码美化工具</a> 进行解析：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">(() =&gt; <span class="punctuation">&#123;</span></span><br><span class="line">	const e = window.matchMedia(<span class="string">&quot;(prefers-color-scheme: dark)&quot;</span>)</span><br><span class="line">		.matches ? <span class="attr">&quot;github-dark&quot;</span> <span class="punctuation">:</span> <span class="string">&quot;github-light&quot;</span><span class="punctuation">,</span></span><br><span class="line">		t = new URL(location.href)<span class="punctuation">,</span></span><br><span class="line">		n = t.searchParams.get(<span class="string">&quot;utterances&quot;</span>);</span><br><span class="line">	n &amp;&amp; (localStorage.setItem(<span class="string">&quot;utterances-session&quot;</span><span class="punctuation">,</span> n)<span class="punctuation">,</span> t.searchParams.delete(<span class="string">&quot;utterances&quot;</span>)<span class="punctuation">,</span> history.replaceState(void <span class="number">0</span><span class="punctuation">,</span> document.title<span class="punctuation">,</span> t.href));</span><br><span class="line">	let r = document.currentScript;</span><br><span class="line">	void <span class="number">0</span> === r &amp;&amp; (r = document.querySelector(&#x27;script<span class="punctuation">[</span>src^=<span class="string">&quot;https://utteranc.es/client.js&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span>script<span class="punctuation">[</span>src^=<span class="string">&quot;http://localhost:4000/client.js&quot;</span><span class="punctuation">]</span>&#x27;));</span><br><span class="line">	const i = <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span>;</span><br><span class="line">	for (let e = <span class="number">0</span>; e &lt; r.attributes.length; e++) <span class="punctuation">&#123;</span></span><br><span class="line">		const t = r.attributes.item(e);</span><br><span class="line">		i<span class="punctuation">[</span>t.name.replace(/^data-/<span class="punctuation">,</span> <span class="string">&quot;&quot;</span>)<span class="punctuation">]</span> = t.value</span><br><span class="line">	<span class="punctuation">&#125;</span></span><br><span class="line">	<span class="string">&quot;preferred-color-scheme&quot;</span> === i.theme &amp;&amp; (i.theme = e);</span><br><span class="line">	const a = document.querySelector(<span class="string">&quot;link[rel=&#x27;canonical&#x27;]&quot;</span>);</span><br><span class="line">	i.url = a ? a.href <span class="punctuation">:</span> t.origin + t.pathname + t.search<span class="punctuation">,</span> i.origin = t.origin<span class="punctuation">,</span> i.pathname = t.pathname.length &lt; <span class="number">2</span> ? <span class="attr">&quot;index&quot;</span> <span class="punctuation">:</span> t.pathname.substr(<span class="number">1</span>)</span><br><span class="line">		.replace(/\.\w+$/<span class="punctuation">,</span> <span class="string">&quot;&quot;</span>)<span class="punctuation">,</span> i.title = document.title;</span><br><span class="line">	const s = document.querySelector(<span class="string">&quot;meta[name=&#x27;description&#x27;]&quot;</span>);</span><br><span class="line">	i.description = s ? s.content <span class="punctuation">:</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">	const o = encodeURIComponent(i.description)</span><br><span class="line">		.length;</span><br><span class="line">	o &gt; <span class="number">1e3</span> &amp;&amp; (i.description = i.description.substr(<span class="number">0</span><span class="punctuation">,</span> Math.floor(<span class="number">1e3</span> * i.description.length / o)));</span><br><span class="line">	const c = document.querySelector(<span class="string">&quot;meta[property=&#x27;og:title&#x27;],meta[name=&#x27;og:title&#x27;]&quot;</span>);</span><br><span class="line">	i<span class="punctuation">[</span><span class="string">&quot;og:title&quot;</span><span class="punctuation">]</span> = c ? c.content <span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span> i.session = n || localStorage.getItem(<span class="string">&quot;utterances-session&quot;</span>) || <span class="string">&quot;&quot;</span><span class="punctuation">,</span> document.head.insertAdjacentHTML(<span class="string">&quot;afterbegin&quot;</span><span class="punctuation">,</span> <span class="string">&quot;&lt;style&gt;\n    .utterances &#123;\n      position: relative;\n      box-sizing: border-box;\n      width: 100%;\n      max-width: 760px;\n      margin-left: auto;\n      margin-right: auto;\n    &#125;\n    .utterances-frame &#123;\n      color-scheme: light;\n      position: absolute;\n      left: 0;\n      right: 0;\n      width: 1px;\n      min-width: 100%;\n      max-width: 100%;\n      height: 100%;\n      border: 0;\n    &#125;\n  &lt;/style&gt;&quot;</span>);</span><br><span class="line">	const l = r.src.match(/^https<span class="punctuation">:</span>\/\/utteranc\.es|http<span class="punctuation">:</span>\/\/localhost<span class="punctuation">:</span>\d+/)<span class="punctuation">[</span><span class="number">0</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">		h = `$<span class="punctuation">&#123;</span>l<span class="punctuation">&#125;</span>/utterances.html`;</span><br><span class="line">	r.insertAdjacentHTML(<span class="string">&quot;afterend&quot;</span><span class="punctuation">,</span> `&lt;div class=<span class="string">&quot;utterances&quot;</span>&gt;\n    &lt;iframe class=<span class="string">&quot;utterances-frame&quot;</span> title=<span class="string">&quot;Comments&quot;</span> scrolling=<span class="string">&quot;no&quot;</span> src=<span class="string">&quot;$&#123;h&#125;?$&#123;new URLSearchParams(i)&#125;&quot;</span> loading=<span class="string">&quot;lazy&quot;</span>&gt;&lt;/iframe&gt;\n  &lt;/div&gt;`);</span><br><span class="line">	const m = r.nextElementSibling;</span><br><span class="line">	r.parentElement.removeChild(r)<span class="punctuation">,</span> addEventListener(<span class="string">&quot;message&quot;</span><span class="punctuation">,</span> (e =&gt; <span class="punctuation">&#123;</span></span><br><span class="line">		if (e.origin !== l) return;</span><br><span class="line">		const t = e.data;</span><br><span class="line">		t &amp;&amp; <span class="string">&quot;resize&quot;</span> === t.type &amp;&amp; t.height &amp;&amp; (m.style.height = `$<span class="punctuation">&#123;</span>t.height<span class="punctuation">&#125;</span>px`)</span><br><span class="line">	<span class="punctuation">&#125;</span>))</span><br><span class="line"><span class="punctuation">&#125;</span>)();</span><br><span class="line"><span class="comment">//# sourceMappingURL=client.js.map</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>提取其中的 CSS 进行观察：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.utterances</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">760px</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>: auto;</span><br><span class="line">  <span class="attribute">margin-right</span>: auto;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.utterances-frame</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>-scheme: light;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">1px</span>;</span><br><span class="line">  <span class="attribute">min-width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>查找到 <code>themes\next\source\css\_common\components\third-party\utterances.styl</code> ：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">if (hexo-config(&#x27;utterances<span class="selector-class">.enable</span>&#x27;)) &#123;</span><br><span class="line">  <span class="selector-class">.utterances</span> &#123;</span><br><span class="line">    <span class="attribute">max-width</span>: unset;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参考提取出的 CSS ，根据需求修改 <code>utterances.styl</code> 文件为： 。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">if (hexo-config(&#x27;utterances<span class="selector-class">.enable</span>&#x27;)) &#123;</span><br><span class="line">  <span class="selector-class">.utterances</span> &#123;</span><br><span class="line">    <span class="attribute">max-width</span>: unset;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.8</span>) none repeat scroll <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.utterances-frame</span> &#123;</span><br><span class="line">    <span class="attribute">min-width</span>: <span class="number">90%</span> <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">max-width</span>: <span class="number">90%</span> <span class="meta">!important</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>修改之前的效果：</p>
+<p><img src="/"></p>
+<p>修改之后的效果：</p>
+<p><img src="/"></p>
+<p>最终评论的效果：</p>
+<p><img src="/"></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://blog.lanweihong.com/posts/24011/">Hexo NexT 主题使用 utterances 搭建评论系统 | 蓝伟洪的博客</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/76237379">Hexo + NexT 使用 utterances 评论插件 | 知乎</a></p>
 ]]></content>
+      <categories>
+        <category>How to Start a Personal Blog</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>NexT</tag>
+        <tag>Utterances</tag>
+      </tags>
   </entry>
   <entry>
     <title>使用 Hexo &amp; Github 搭建个人博客</title>
@@ -2244,46 +2302,10 @@
         <category>Project</category>
       </categories>
       <tags>
-        <tag>docker</tag>
         <tag>nginx</tag>
+        <tag>docker</tag>
         <tag>prometheus</tag>
         <tag>grafana</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 Utterances 为 Hexo + NexT 博客添加评论</title>
-    <url>/2024/03/26/%E4%BD%BF%E7%94%A8Utterances%E4%B8%BAHexo-NexT%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/</url>
-    <content><![CDATA[<p>Utterances 是一个基于 Github issues 构建的轻量级评论插件，只有使用 Github 账号登录后才能评论。NexT 7.0.0 版本已经集成了 Utterances ，故非常方便使用 Utterances 来为 Hexo + NexT 博客添加评论。</p>
-<p>Utterances：<a href="https://utteranc.es/">https://utteranc.es/</a></p>
-<p>Github：<a href="https://github.com/utterance/utterances">https://github.com/utterance/utterances</a></p>
-<span id="more"></span>
-
-<h1 id="新建-Github-仓库"><a href="#新建-Github-仓库" class="headerlink" title="新建 Github 仓库"></a>新建 Github 仓库</h1><p>由于是基于 Github issues，我们需要一个仓库来存储评论，所以我们需要在 Github 上创建一个空库，并且必须是 pulbic 的，这样用户才可以查看并发布评论。</p>
-<p><img src="/"></p>
-<h1 id="安装-Github-App"><a href="#安装-Github-App" class="headerlink" title="安装 Github App"></a>安装 Github App</h1><p>地址：<a href="https://github.com/apps/utterances">https://github.com/apps/utterances</a></p>
-<p>访问安装地址，进入安装页面，单击 <code>Install</code> 按钮。</p>
-<p><img src="/"></p>
-<p>选择关联的仓库，我们选择刚刚建好的仓库。</p>
-<p><img src="/"></p>
-<p>至此，Github 端配置完成，接下来在网页或博客中配置使用 Utterances 。</p>
-<h1 id="在-Hexo-NexT-中使用"><a href="#在-Hexo-NexT-中使用" class="headerlink" title="在 Hexo NexT 中使用"></a>在 Hexo NexT 中使用</h1><p>编辑 Hexo 主题配置文件 <code>_config.yml</code>，添加以下配置：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Utterances</span></span><br><span class="line"><span class="comment"># For more information: https://utteranc.es</span></span><br><span class="line"><span class="attr">utterances:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">FreesiaNZ/freesianz.comments</span> <span class="comment"># Github repository owner and name</span></span><br><span class="line">  <span class="comment"># Available values: pathname | url | title | og:title</span></span><br><span class="line">  <span class="attr">issue_term:</span> <span class="string">pathname</span></span><br><span class="line">  <span class="comment"># Available values: github-light | github-dark | preferred-color-scheme | github-dark-orange | icy-dark | dark-blue | photon-dark | boxy-light</span></span><br><span class="line">  <span class="attr">theme:</span> <span class="string">github-light</span></span><br></pre></td></tr></table></figure>
-
-<p>为了更好地匹配我的自定义主题，修改文件：<br><code>themes\next\source\css\_common\components\third-party\utterances.styl</code> 。</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">if</span> <span class="string">(hexo-config(&#x27;utterances.enable&#x27;))</span> &#123;</span><br><span class="line">  <span class="string">.utterances</span> &#123;</span><br><span class="line">    <span class="attr">max-width:</span> <span class="string">unset;</span></span><br><span class="line">    <span class="attr">background:</span> <span class="string">rgba(255</span>,<span class="number">255</span>,<span class="number">255</span>,<span class="number">0.8</span><span class="string">)</span> <span class="string">none</span> <span class="string">repeat</span> <span class="string">scroll</span> <span class="type">!important;</span></span><br><span class="line">    <span class="attr">border-radius:</span> <span class="string">10px;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>最终评论的效果：</p>
-<p><img src="/"></p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://blog.lanweihong.com/posts/24011/">Hexo NexT 主题使用 utterances 搭建评论系统 | 蓝伟洪的博客</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/76237379">Hexo + NexT 使用 utterances 评论插件 | 知乎</a></p>
-]]></content>
-      <categories>
-        <category>How to Start a Personal Blog</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>NexT</tag>
-        <tag>Utterances</tag>
       </tags>
   </entry>
 </search>
